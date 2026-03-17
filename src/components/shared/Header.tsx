@@ -81,8 +81,8 @@ export function Header() {
              )}
            </div>
 
-           <Link href="/resources" className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-[#4a4a4a] hover:text-[#1b1b1e] hover:bg-[#f5f5f5] rounded-full transition-colors">
-             <LayoutTemplate strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Resources
+           <Link href="/blog" className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-[#4a4a4a] hover:text-[#1b1b1e] hover:bg-[#f5f5f5] rounded-full transition-colors">
+             <LayoutTemplate strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Blog
            </Link>
         </nav>
 
@@ -187,8 +187,8 @@ export function Header() {
                       </div>
                     )}
                   </div>
-                  <Link href="/resources" className="flex items-center gap-4 py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl" onClick={() => setMobileMenuOpen(false)}>
-                    <LayoutTemplate strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Resources
+                  <Link href="/blog" className="flex items-center gap-4 py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl" onClick={() => setMobileMenuOpen(false)}>
+                    <LayoutTemplate strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Blog
                   </Link>
                 </div>
                 <div className="py-6 flex flex-col gap-4">

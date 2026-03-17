@@ -85,7 +85,7 @@ export function ValueProps() {
 
         <AnimateIn delay={0.5}>
           <div className="mt-14 text-center">
-            <CTAButton href="/contact" variant="primary">
+            <CTAButton href="/strategy-call" variant="primary">
               Book Strategy Call
             </CTAButton>
           </div>

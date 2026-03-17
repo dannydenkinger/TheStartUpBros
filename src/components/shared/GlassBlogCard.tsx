@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
@@ -20,6 +21,7 @@ interface GlassBlogCardProps {
   readTime?: string;
   tags?: string[];
   className?: string;
+  href?: string;
 }
 
 const defaultPost = {
@@ -46,8 +48,9 @@ export function GlassBlogCard({
   readTime = defaultPost.readTime,
   tags = defaultPost.tags,
   className,
+  href,
 }: GlassBlogCardProps) {
-  return (
+  const cardContent = (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
@@ -123,4 +126,10 @@ export function GlassBlogCard({
       </Card>
     </motion.div>
   );
+
+  if (href) {
+    return <Link href={href} className="block h-full">{cardContent}</Link>;
+  }
+
+  return cardContent;
 }

@@ -7,7 +7,7 @@ const columns = [
       { label: "About", href: "/" },
       { label: "Portfolio", href: "/portfolio" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/contact" },
+      { label: "Contact", href: "/strategy-call" },
     ],
   },
   {
@@ -20,11 +20,11 @@ const columns = [
     ],
   },
   {
-    title: "Resources",
+    title: "Blog",
     links: [
-      { label: "Case Studies", href: "/blog" },
+      { label: "Case Studies", href: "/portfolio" },
       { label: "How We Work", href: "/services" },
-      { label: "Book a Call", href: "/contact" },
+      { label: "Book a Call", href: "/strategy-call" },
     ],
   },
 ];

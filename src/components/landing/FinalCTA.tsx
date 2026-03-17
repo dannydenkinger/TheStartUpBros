@@ -17,7 +17,7 @@ export function FinalCTA() {
             and budget — no obligations.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <CTAButton href="/contact" variant="primary">
+            <CTAButton href="/strategy-call" variant="primary">
               Book Strategy Call
             </CTAButton>
             <CTAButton href="/portfolio" variant="secondary">

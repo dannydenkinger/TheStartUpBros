@@ -15,22 +15,22 @@ export function Hero() {
 
         <AnimateIn variant="fadeUp" delay={0.08}>
           <h1 className="text-display text-foreground">
-            Website &amp; UX Design Partners
+            Build Lean. Launch Fast.
             <br className="hidden sm:block" />
-            For AI SaaS
+            Scale Smart.
           </h1>
         </AnimateIn>
 
         <AnimateIn variant="fadeUp" delay={0.16}>
           <p className="text-body-lg mt-6 mx-auto !text-[#787878]">
-            We design websites &amp; products for fast-moving SaaS companies.
+            The one-stop shop for AI-powered MVPs. We deliver 90% solutions in record time, eliminating the overhead of full-scale hiring so you can focus on the market.
           </p>
         </AnimateIn>
 
         <AnimateIn variant="fadeUp" delay={0.24}>
           <div className="mt-8 flex items-center justify-center">
-            <CTAButton href="https://bricxlabs.com/strategy-call" variant="primary">
-              Try Bricx for 1 Week
+            <CTAButton href="/strategy-call" variant="primary">
+              Book a Consultation
             </CTAButton>
           </div>
         </AnimateIn>
