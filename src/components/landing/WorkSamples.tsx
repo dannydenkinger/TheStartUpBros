@@ -5,39 +5,39 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const workSamples = [
   {
     title: "Writesonic GEO Platform",
-    image: "/images/portfolio/geo-analytics.avif",
+    image: "/images/portfolio/sales-crm-perspective.webp",
     href: "/portfolio/writesonic",
   },
   {
     title: "Loopback MVP",
-    image: "/images/portfolio/ai-finance.avif",
+    image: "/images/portfolio/ai-landing.webp",
     href: "/portfolio/loopback",
   },
   {
     title: "N3on Token Launch",
-    image: "/images/portfolio/token-platform.avif",
+    image: "/images/portfolio/defi-landing.webp",
     href: "/portfolio/n3on",
   },
   {
     title: "Thrust Mobile App",
-    image: "/images/portfolio/thrust-mobile.avif",
+    image: "/images/portfolio/travel-app.webp",
     href: "/portfolio/thrust",
   },
   {
     title: "SocialSonic Dashboard",
-    image: "/images/portfolio/socialsonic.avif",
+    image: "/images/portfolio/freelancer-dashboard.webp",
     href: "/portfolio/socialsonic",
   },
   {
     title: "Community Search",
-    image: "/images/portfolio/community-search.avif",
+    image: "/images/portfolio/productivity-dashboard.webp",
     href: "/portfolio/community",
   },
 ];
 
 export function WorkSamples() {
   return (
-    <section className="px-6 lg:px-10 py-24 md:py-32 bg-[#f9f9f9]">
+    <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-[1400px]">
         <AnimateIn>
           <div className="text-center mb-16">
@@ -50,7 +50,7 @@ export function WorkSamples() {
           {workSamples.map((sample, i) => (
             <AnimateIn key={sample.title} delay={i * 0.06}>
               <Link href={sample.href} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-[#e3e3e3] bg-white shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <div className="relative aspect-[4/3] overflow-hidden">
                     <Image
                       src={sample.image}
@@ -75,7 +75,7 @@ export function WorkSamples() {
           <div className="text-center mt-14">
             <Link
               href="/portfolio"
-              className="inline-flex items-center gap-2 rounded-full border border-[#e0e0e0] bg-white px-8 py-3.5 text-[14px] font-medium text-[#242424] shadow-sm hover:bg-[#f5f5f5] hover:-translate-y-0.5 transition-all duration-200"
+              className="btn-pill btn-pill-secondary"
             >
               View More
               <svg

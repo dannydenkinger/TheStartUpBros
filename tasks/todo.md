@@ -99,3 +99,63 @@
   - [x] Implement the `Context & Outcomes` 2-column meta grid with border dividers
   - [x] Build a generic `CaseStudyShowcase` bento block component for the main visual flow
   - [x] Use Unsplash images and wire up the `FinalCTA` at the bottom
+
+## V1.0 Transformation (2026-03-18)
+
+### Phase T1: Branding Cleanup (BRICX → Startup Bros)
+  - [x] Rename `.badge-bricx` → `.badge-pill` in globals.css
+  - [x] Update all `.badge-bricx` consumers (portfolio, FinalCTA, CaseStudies, ValueProps)
+  - [x] Fix portfolio metadata: `"Case Studies | BRICX"` → `"Case Studies | Startup Bros"`
+  - [x] Replace all `BRICX` text references in Header, FAQ, Testimonials, Industries
+  - [x] Verified: `grep -ri "bricx" src/` returns zero results
+
+### Phase T2: Dark Mode Theme Transformation
+  - [x] CSS Variables — dark palette (#0a0a0b bg, #ededed fg, rgba glass cards)
+  - [x] Glassmorphism cards — backdrop-filter, translucent borders
+  - [x] Buttons & badges — inverted primary (white bg/dark text), translucent secondary
+  - [x] Typography — all heading colors → #ededed, body/caption → #8a8a8a
+  - [x] Component sweep — all hardcoded light colors updated (~25 files)
+  - [x] Verified: zero `bg-white`, `#f9f9f9`, `#262626`, `#e3e3e3` in .tsx files
+
+### Phase T3: Enhanced Framer Motion
+  - [x] Updated animation ease curve to `[0.16, 1, 0.3, 1]`
+  - [x] Stagger delay increased to 0.1s
+  - [x] BentoItem hover animation (scale + border glow via motion.div)
+  - [x] MagneticButton component (mouse-tracking translate with spring physics)
+  - [x] ServiceGrid stagger animation with viewport trigger
+  - [x] MagneticButton wrapped around Hero + FinalCTA primary CTAs
+
+### Phase T4: SEO — Siloed Service Pages + JSON-LD
+  - [x] Extended Service type with slug, longDescription, useCases, techStack, deliverables
+  - [x] Extended services data with slugs and rich content per service
+  - [x] Created `src/app/services/[slug]/page.tsx` with generateStaticParams + generateMetadata
+  - [x] Created `src/components/shared/JsonLd.tsx` (reusable server component)
+  - [x] Added Organization JSON-LD to homepage
+  - [x] Added ProfessionalService JSON-LD to service pages
+  - [x] Added CreativeWork JSON-LD to portfolio case study pages
+  - [x] Updated navigation.ts — service dropdown hrefs → `/services/[slug]`
+  - [x] Updated Footer.tsx — service links → real routes
+  - [x] Updated sitemap.ts — added service + tools routes
+
+### Phase T5: SaaS Cost Calculator
+  - [x] Created `/tools/saas-cost` page with unique metadata
+  - [x] Created SaaSCostCalculator client component with 8 feature toggles
+  - [x] Each toggle = glassmorphism card with icon + label + estimated days
+  - [x] Output: total days, complexity tier (Simple/Standard/Complex), CTA
+  - [x] WebApplication JSON-LD schema
+  - [x] Smooth layout animations with AnimatePresence
+
+### Phase T6: Portfolio Case Study Template
+  - [x] Extended PortfolioProject type with slug, challenge, solution, timeline, techStack, outcomes
+  - [x] Extended portfolio data with rich content for all 6 projects
+  - [x] Restructured template: Hero → Challenge → Solution → Timeline → Tech Stack → Outcomes → CTA
+  - [x] Added generateStaticParams + generateMetadata from portfolio data
+  - [x] CreativeWork JSON-LD on each case study
+
+### Phase T7: Final Verification
+  - [x] `npm run build` — zero errors, all 23 pages generated
+  - [x] All 5 service pages statically generated
+  - [x] All 6 portfolio case study pages statically generated
+  - [x] SaaS cost calculator page generated
+  - [x] JSON-LD on homepage, service pages, portfolio pages, and calculator
+  - [x] Full grep audit — zero BRICX references, zero light-mode colors

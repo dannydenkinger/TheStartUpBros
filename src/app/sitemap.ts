@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
+import { services } from "@/data/services";
 
 const siteUrl = "https://startupbros.dev";
 
@@ -11,7 +12,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/portfolio`, lastModified: new Date(), priority: 0.8 },
     { url: `${siteUrl}/blog`, lastModified: new Date(), priority: 0.8 },
     { url: `${siteUrl}/contact`, lastModified: new Date(), priority: 0.9 },
+    { url: `${siteUrl}/tools/saas-cost`, lastModified: new Date(), priority: 0.7 },
   ];
+
+  // Service pages
+  const serviceRoutes = services.map((s) => ({
+    url: `${siteUrl}/services/${s.slug}`,
+    lastModified: new Date(),
+    priority: 0.85 as const,
+  }));
 
   // Blog posts
   const contentDir = path.join(process.cwd(), "src/content/blog");
@@ -26,5 +35,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   }
 
-  return [...staticRoutes, ...blogRoutes];
+  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
 }

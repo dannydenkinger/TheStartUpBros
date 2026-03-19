@@ -27,7 +27,7 @@ export function TechBrandsMarquee() {
           {brands.map((brand) => (
             <div
               key={brand}
-              className="text-lg md:text-xl font-bold text-[#242424]/40 hover:text-[#242424]/80 transition-colors duration-300 select-none cursor-default tracking-wide uppercase mx-12"
+              className="text-lg md:text-xl font-bold text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 select-none cursor-default tracking-wide uppercase mx-12"
             >
               {brand}
             </div>

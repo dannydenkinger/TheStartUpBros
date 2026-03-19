@@ -7,9 +7,9 @@ import { cn } from "@/lib/utils";
 // --- Hero Pill Badges Component ---
 export function FocusPill({ icon, text, asLink = false, href = "#" }: { icon: React.ReactNode, text: string, asLink?: boolean, href?: string }) {
   const content = (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-black/10 bg-white/50 backdrop-blur-md shadow-sm transition-all hover:shadow-md hover:bg-white/80">
+    <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-secondary backdrop-blur-md shadow-sm transition-all hover:shadow-md hover:bg-muted">
       {icon}
-      <span className="text-xs font-medium text-[#262626]">{text}</span>
+      <span className="text-xs font-medium text-foreground">{text}</span>
     </div>
   );
 
@@ -46,10 +46,10 @@ export const Icons = {
 export function DoubleVisualBlock({ img1, img2, className }: { img1: string, img2: string, className?: string }) {
   return (
     <div className={cn("grid grid-cols-1 md:grid-cols-2 gap-8 w-full", className)}>
-      <div className="relative aspect-square w-full rounded-[24px] overflow-hidden bg-[#f5f5f5] shadow-sm border border-black/5">
+      <div className="relative aspect-square w-full rounded-[24px] overflow-hidden bg-card shadow-sm border border-border">
         <Image src={img1} alt="Case study detail" fill className="object-cover" />
       </div>
-      <div className="relative aspect-square w-full rounded-[24px] overflow-hidden bg-[#f5f5f5] shadow-sm border border-black/5">
+      <div className="relative aspect-square w-full rounded-[24px] overflow-hidden bg-card shadow-sm border border-border">
         <Image src={img2} alt="Case study detail" fill className="object-cover" />
       </div>
     </div>
@@ -60,14 +60,14 @@ export function FeatureBentoBlock({ title, description, image }: { title: string
   return (
     <div className="flex flex-col gap-6 w-full mt-24">
       <div className="max-w-[800px]">
-        <h3 className="text-[32px] md:text-[40px] font-medium leading-[1.1] tracking-[-0.02em] text-[#262626] mb-4">
+        <h3 className="text-[32px] md:text-[40px] font-medium leading-[1.1] tracking-[-0.02em] text-foreground mb-4">
           {title}
         </h3>
         <p className="text-[17px] text-muted-foreground leading-relaxed">
           {description}
         </p>
       </div>
-      <div className="relative aspect-[2/1] w-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-[#f5f5f5] shadow-sm border border-black/5 mt-4">
+      <div className="relative aspect-[2/1] w-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-card shadow-sm border border-border mt-4">
          <Image src={image} alt={title} fill className="object-cover" />
       </div>
     </div>

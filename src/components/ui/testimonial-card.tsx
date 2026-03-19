@@ -23,7 +23,7 @@ export function TestimonialCard({
   const content = (
     <div
       className={cn(
-        "relative flex w-[350px] shrink-0 flex-col gap-4 rounded-2xl border border-[#e3e3e3] bg-white p-6 shadow-sm transition-shadow hover:shadow-md",
+        "relative flex w-[350px] shrink-0 flex-col gap-4 rounded-2xl border border-border bg-card p-6 shadow-sm transition-shadow hover:shadow-md",
         className
       )}
     >

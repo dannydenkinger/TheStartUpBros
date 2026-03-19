@@ -9,6 +9,11 @@ export interface Service {
   description: string;
   icon: string;
   features: string[];
+  slug: string;
+  longDescription: string;
+  useCases: string[];
+  techStack: string[];
+  deliverables: string[];
 }
 
 export interface PortfolioProject {
@@ -17,6 +22,12 @@ export interface PortfolioProject {
   image: string;
   tags: string[];
   deviceType: "macbook" | "iphone" | "both";
+  slug: string;
+  challenge: string;
+  solution: string;
+  timeline: string;
+  techStack: string[];
+  outcomes: string[];
 }
 
 export interface BlogPost {

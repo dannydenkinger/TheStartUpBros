@@ -73,7 +73,7 @@ export function ContactFormModal() {
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-[960px] bg-[#f9f9f9] rounded-2xl shadow-2xl shadow-black/20 overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+      <div className="relative w-full max-w-[960px] bg-popover rounded-2xl shadow-2xl shadow-black/20 overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
         {/* Close button */}
         <button
           onClick={closeModal}
@@ -123,7 +123,7 @@ export function ContactFormModal() {
           </div>
 
           {/* ─── Right Column: Contact Form ─── */}
-          <div className="w-full lg:w-[420px] bg-white px-8 py-10 lg:py-12 lg:px-8 border-l border-border/50 shrink-0">
+          <div className="w-full lg:w-[420px] bg-secondary px-8 py-10 lg:py-12 lg:px-8 border-l border-border/50 shrink-0">
             <h3 className="text-[20px] font-semibold text-foreground leading-tight mb-8">
               See what Startup Bros can do for your product in 7 days.
             </h3>
@@ -150,7 +150,7 @@ export function ContactFormModal() {
                     type="text"
                     required
                     placeholder="you@domain.com"
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   />
                 </div>
 
@@ -164,7 +164,7 @@ export function ContactFormModal() {
                     type="text"
                     required
                     placeholder="Acme Inc."
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   />
                 </div>
 
@@ -178,7 +178,7 @@ export function ContactFormModal() {
                     type="url"
                     required
                     placeholder="www.acme.com"
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   />
                 </div>
 
@@ -191,7 +191,7 @@ export function ContactFormModal() {
                     name="budget"
                     required
                     defaultValue=""
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   >
                     <option value="" disabled>Select your budget</option>
                     {budgetOptions.map((opt) => (
@@ -210,7 +210,7 @@ export function ContactFormModal() {
                     required
                     rows={3}
                     placeholder="Tell us about your product"
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground placeholder:text-muted-foreground/50 resize-y focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full px-4 py-3 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 resize-y focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   />
                 </div>
 
@@ -224,7 +224,7 @@ export function ContactFormModal() {
                     type="text"
                     required
                     placeholder="Google, referral, social media..."
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-[#f9f9f9] text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                   />
                 </div>
 

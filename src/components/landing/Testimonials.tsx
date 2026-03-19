@@ -52,7 +52,7 @@ const testimonials = [
       role: "VP Design, AI Startup",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "BRICX treats your product like their own. The attention to detail in micro-interactions was something we'd never seen from an agency.",
+    text: "Startup Bros treats your product like their own. The attention to detail in micro-interactions was something we'd never seen from an agency.",
   },
 ];
 
@@ -64,7 +64,7 @@ export function Testimonials() {
   return (
     <section
       className={cn(
-        "bg-[#f9f9f9] text-foreground",
+        "bg-background text-foreground",
         "py-16 sm:py-24 md:py-32 px-0"
       )}
     >
@@ -75,47 +75,63 @@ export function Testimonials() {
               Don&apos;t Take Our Word. Take Theirs.
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
-              Hear from founders and product leaders who scaled with BRICX.
+              Hear from founders and product leaders who scaled with Startup Bros.
             </p>
           </div>
         </AnimateIn>
 
-        {/* Row 1 — scrolls left */}
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">
-          <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:40s]">
-            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row group-hover:[animation-play-state:paused]">
-              {[...Array(4)].map((_, setIndex) =>
-                topRow.map((testimonial, i) => (
-                  <TestimonialCard
-                    key={`top-${setIndex}-${i}`}
-                    {...testimonial}
-                  />
-                ))
-              )}
-            </div>
+        {/* Row 1 — scrolls left, seamless infinite */}
+        <div className="relative flex w-full overflow-hidden">
+          <div className="flex [gap:1rem] animate-marquee [--duration:60s]">
+            {[...Array(4)].map((_, setIndex) =>
+              topRow.map((testimonial, i) => (
+                <TestimonialCard
+                  key={`top-a-${setIndex}-${i}`}
+                  {...testimonial}
+                />
+              ))
+            )}
+          </div>
+          <div className="flex [gap:1rem] animate-marquee [--duration:60s]" aria-hidden="true">
+            {[...Array(4)].map((_, setIndex) =>
+              topRow.map((testimonial, i) => (
+                <TestimonialCard
+                  key={`top-b-${setIndex}-${i}`}
+                  {...testimonial}
+                />
+              ))
+            )}
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-[#f9f9f9] sm:block" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-[#f9f9f9] sm:block" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-background sm:block z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-background sm:block z-10" />
         </div>
 
-        {/* Row 2 — scrolls right (reversed direction) */}
-        <div className="relative flex w-full flex-col items-center justify-center overflow-hidden -mt-8">
-          <div className="group flex overflow-hidden p-2 [--gap:1rem] [gap:var(--gap)] flex-row [--duration:45s]">
-            <div className="flex shrink-0 justify-around [gap:var(--gap)] animate-marquee flex-row [animation-direction:reverse] group-hover:[animation-play-state:paused]">
-              {[...Array(4)].map((_, setIndex) =>
-                bottomRow.map((testimonial, i) => (
-                  <TestimonialCard
-                    key={`bottom-${setIndex}-${i}`}
-                    {...testimonial}
-                  />
-                ))
-              )}
-            </div>
+        {/* Row 2 — scrolls right, seamless infinite */}
+        <div className="relative flex w-full overflow-hidden -mt-8">
+          <div className="flex [gap:1rem] animate-marquee [--duration:65s] [animation-direction:reverse]">
+            {[...Array(4)].map((_, setIndex) =>
+              bottomRow.map((testimonial, i) => (
+                <TestimonialCard
+                  key={`bottom-a-${setIndex}-${i}`}
+                  {...testimonial}
+                />
+              ))
+            )}
+          </div>
+          <div className="flex [gap:1rem] animate-marquee [--duration:65s] [animation-direction:reverse]" aria-hidden="true">
+            {[...Array(4)].map((_, setIndex) =>
+              bottomRow.map((testimonial, i) => (
+                <TestimonialCard
+                  key={`bottom-b-${setIndex}-${i}`}
+                  {...testimonial}
+                />
+              ))
+            )}
           </div>
 
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-[#f9f9f9] sm:block" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-[#f9f9f9] sm:block" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-background sm:block z-10" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-background sm:block z-10" />
         </div>
       </div>
     </section>

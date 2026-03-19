@@ -9,61 +9,61 @@ const cases = [
     slug: "ltv-ai",
     title: "Building an Enterprise-Grade Website for LTV.ai",
     tags: ["AI", "Location"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    image: "/images/portfolio/crm-dashboard.webp",
   },
   {
     slug: "gigamind-landing",
     title: "Designing Gigamiind's Credible AI-First Landing Page",
     tags: ["AI", "San Francisco, CA"],
-    image: "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?w=800&q=80",
+    image: "/images/portfolio/ai-landing.webp",
   },
   {
     slug: "gigamind-product",
     title: "Redesigning GigaMind's Entire Product in Two Weeks",
     tags: ["AI", "San Francisco, CA"],
-    image: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80",
+    image: "/images/portfolio/productivity-dashboard.webp",
   },
   {
     slug: "sybill",
     title: "Redesigning Sybill Without Disrupting Existing Users",
     tags: ["AI", "Mountain View, CA"],
-    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&q=80",
+    image: "/images/portfolio/sales-crm-full.webp",
   },
   {
     slug: "hobbes-embedded",
     title: "Designing Hobbes's as an Embedded Partner",
     tags: ["AI", "San Francisco, CA"],
-    image: "https://images.unsplash.com/photo-1628126235206-5260b9ea6441?w=800&q=80",
+    image: "/images/portfolio/crm-journeys.webp",
   },
   {
     slug: "hobbes-rebrand",
     title: "Rebranding Hobbes for an AI-First Market",
     tags: ["AI", "San Francisco, CA"],
-    image: "https://images.unsplash.com/photo-1618556450991-2f1af64e8191?w=800&q=80",
+    image: "/images/portfolio/crm-detail.webp",
   },
   {
     slug: "alsuitup",
     title: "Turning AlSuitUp's Landing Page Into a Conversion Engine",
     tags: ["AI", "Albuquerque, New Mexico"],
-    image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
+    image: "/images/portfolio/fintech-mobile.webp",
   },
   {
     slug: "n3on",
     title: "Powering N3on's First Token Launch with a 10 Day Platform Redesign",
     tags: ["AI", "Canada"],
-    image: "https://images.unsplash.com/photo-1618556450994-a6a128ef0d9d?w=800&q=80",
+    image: "/images/portfolio/defi-landing.webp",
   },
   {
     slug: "socialsonic",
     title: "Designing Socialsonic's MVP To Reach 1000+ Users In 30 Days",
     tags: ["Marketing", "San Francisco, CA"],
-    image: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80",
+    image: "/images/portfolio/freelancer-dashboard.webp",
   },
   {
     slug: "manyreach",
     title: "Manyreach Website Revamp that Increased Conversions & AOV",
     tags: ["Sales", "Canada"],
-    image: "https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&q=80",
+    image: "/images/portfolio/sales-crm-detail.webp",
   },
 ];
 
@@ -76,7 +76,7 @@ export function CaseStudiesGrid() {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full sm:w-[300px] px-4 py-2 rounded-lg border border-[#e3e3e3] bg-transparent text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-accent"
+            className="w-full sm:w-[300px] px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-accent"
           />
           <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -85,7 +85,7 @@ export function CaseStudiesGrid() {
 
         <div className="w-full sm:w-auto flex items-center gap-3">
           <span className="text-sm font-medium text-muted-foreground">Category</span>
-          <select className="px-4 py-2 rounded-lg border border-[#e3e3e3] bg-transparent text-sm text-foreground focus:outline-none hover:bg-black/5 cursor-pointer appearance-none pr-8 relative">
+          <select className="px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none hover:bg-secondary cursor-pointer appearance-none pr-8 relative">
             <option value="most-relevant">Most Relevant</option>
             <option value="ai">AI</option>
             <option value="fintech">Fintech</option>
@@ -104,7 +104,7 @@ export function CaseStudiesGrid() {
       <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-[80px]">
         {cases.map((project) => (
           <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group flex flex-col gap-4">
-            <div className="relative aspect-[1.3/1] w-full overflow-hidden rounded-[20px] border border-[#e3e3e3]/50 shadow-sm bg-[#f5f5f5]">
+            <div className="relative aspect-[1.3/1] w-full overflow-hidden rounded-[20px] border border-border/50 shadow-sm bg-card">
               <Image
                 src={project.image}
                 alt={project.title}
@@ -118,13 +118,13 @@ export function CaseStudiesGrid() {
                   <Badge
                     key={tag}
                     variant="secondary"
-                    className="font-medium text-xs bg-black/5 hover:bg-black/10 text-foreground/70"
+                    className="font-medium text-xs bg-secondary hover:bg-muted text-foreground/70"
                   >
                     {tag}
                   </Badge>
                 ))}
               </div>
-              <h4 className="text-[24px] md:text-[32px] font-medium leading-[1.2] tracking-[-0.02em] text-[#262626] mt-1 group-hover:text-black/70 transition-colors">
+              <h4 className="text-[24px] md:text-[32px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground mt-1 group-hover:text-foreground/70 transition-colors">
                 {project.title}
               </h4>
             </div>

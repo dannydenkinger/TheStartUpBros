@@ -44,7 +44,7 @@ export function BookingForm() {
             name="name"
             required
             placeholder="Your name"
-            className="bg-white border-input rounded-xl h-11 text-[14px] placeholder:text-[#24242480] focus:border-[#09f]"
+            className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
           />
         </div>
         <div>
@@ -60,7 +60,7 @@ export function BookingForm() {
             type="email"
             required
             placeholder="you@company.com"
-            className="bg-white border-input rounded-xl h-11 text-[14px] placeholder:text-[#24242480] focus:border-[#09f]"
+            className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
           />
         </div>
       </div>
@@ -76,7 +76,7 @@ export function BookingForm() {
           id="company"
           name="company"
           placeholder="Your company or project"
-          className="bg-white border-input rounded-xl h-11 text-[14px] placeholder:text-[#24242480] focus:border-[#09f]"
+          className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
         />
       </div>
 
@@ -91,7 +91,7 @@ export function BookingForm() {
           id="budget"
           name="budget"
           required
-          className="w-full rounded-xl bg-white border border-input px-4 py-2.5 text-[14px] text-foreground h-11 focus:outline-none focus:border-[#09f] focus:ring-1 focus:ring-[#09f]"
+          className="w-full rounded-xl bg-secondary border border-input px-4 py-2.5 text-[14px] text-foreground h-11 focus:outline-none focus:border-[#09f] focus:ring-1 focus:ring-[#09f]"
         >
           <option value="">Select a range</option>
           <option value="5k-10k">$5,000 - $10,000</option>
@@ -114,7 +114,7 @@ export function BookingForm() {
           required
           rows={5}
           placeholder="What are you building? What's your timeline?"
-          className="bg-white border-input rounded-xl text-[14px] placeholder:text-[#24242480] focus:border-[#09f]"
+          className="bg-secondary border-input rounded-xl text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
         />
       </div>
 

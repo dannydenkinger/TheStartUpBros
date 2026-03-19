@@ -27,7 +27,7 @@ export function ClientLogos() {
             {clients.map((client) => (
               <span
                 key={client}
-                className="text-[15px] font-bold text-[#242424]/30 hover:text-[#242424]/70 transition-colors duration-300 select-none cursor-default tracking-wide uppercase"
+                className="text-[15px] font-bold text-muted-foreground/40 hover:text-muted-foreground transition-colors duration-300 select-none cursor-default tracking-wide uppercase"
               >
                 {client}
               </span>

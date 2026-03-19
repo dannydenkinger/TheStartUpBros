@@ -11,8 +11,8 @@ const cases = [
       "We built a multi-tenant property management platform with Stripe billing, role-based access, and automated tenant communications.",
     features: ["Next.js", "PostgreSQL", "Stripe", "Auth"],
     images: [
-      { src: "/images/portfolio/ai-finance.avif", w: 512, h: 321 },
-      { src: "/images/portfolio/sales-dashboard.avif", w: 512, h: 512 },
+      { src: "/images/portfolio/sales-crm-full.webp", w: 800, h: 600 },
+      { src: "/images/portfolio/crm-dashboard.webp", w: 800, h: 600 },
     ],
   },
   {
@@ -22,8 +22,8 @@ const cases = [
       "Custom document processing pipeline that extracts line items from invoices, categorizes expenses, and syncs with QuickBooks automatically.",
     features: ["Python", "LLMs", "OCR", "QuickBooks API"],
     images: [
-      { src: "/images/portfolio/ai-visits.avif", w: 512, h: 372 },
-      { src: "/images/portfolio/geo-analytics.avif", w: 512, h: 492 },
+      { src: "/images/portfolio/productivity-dashboard.webp", w: 800, h: 600 },
+      { src: "/images/portfolio/ai-landing.webp", w: 800, h: 600 },
     ],
   },
   {
@@ -33,8 +33,8 @@ const cases = [
       "Full-stack Web3 platform with pre-sale management, wallet integration, community discovery, and real-time transaction tracking.",
     features: ["React", "Solidity", "Web3.js", "WebSocket"],
     images: [
-      { src: "/images/portfolio/token-platform.avif", w: 488, h: 447 },
-      { src: "/images/portfolio/community-search.avif", w: 488, h: 363 },
+      { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
+      { src: "/images/portfolio/fintech-dashboard.webp", w: 800, h: 600 },
     ],
   },
 ];
@@ -48,7 +48,7 @@ export function CaseStudies() {
           <div className="lg:w-[380px] shrink-0">
             <div className="lg:sticky lg:top-[120px]">
               <AnimateIn>
-                <span className="badge-bricx mb-6 inline-block">Case Studies</span>
+                <span className="badge-pill mb-6 inline-block">Case Studies</span>
                 <h2 className="text-h2 text-foreground">
                   Real Results from
                   <br />
@@ -64,7 +64,7 @@ export function CaseStudies() {
               <AnimateIn delay={0.2}>
                 <div className="mt-10 hidden lg:block">
                   <div
-                    className="rounded-2xl border border-[#9ca2a669] bg-white overflow-hidden"
+                    className="rounded-2xl border border-border bg-card overflow-hidden"
                     style={{
                       boxShadow:
                         "0 4px 6px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08), 0 24px 80px rgba(0,0,0,0.06)",
@@ -73,10 +73,10 @@ export function CaseStudies() {
                     }}
                   >
                     <Image
-                      src="/images/portfolio/thrust-mobile.avif"
+                      src="/images/portfolio/travel-app.webp"
                       alt="Mobile app showcase"
-                      width={512}
-                      height={289}
+                      width={800}
+                      height={600}
                       className="w-full h-auto"
                     />
                   </div>
@@ -103,7 +103,7 @@ export function CaseStudies() {
                     {c.features.map((f) => (
                       <span
                         key={f}
-                        className="inline-flex items-center rounded-full border border-border bg-white px-3 py-1 text-[11px] font-medium text-muted-foreground"
+                        className="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-[11px] font-medium text-muted-foreground"
                       >
                         {f}
                       </span>
@@ -115,7 +115,7 @@ export function CaseStudies() {
                     {c.images.map((img, j) => (
                       <div
                         key={img.src}
-                        className="flex-1 rounded-2xl border border-[#e3e3e3] bg-white overflow-hidden"
+                        className="flex-1 rounded-2xl border border-border bg-card overflow-hidden"
                         style={{
                           boxShadow:
                             "0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)",

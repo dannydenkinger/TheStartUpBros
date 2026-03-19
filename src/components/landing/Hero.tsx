@@ -2,13 +2,14 @@
 
 import { CTAButton } from "@/components/shared/CTAButton";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { MagneticButton } from "@/components/shared/MagneticButton";
 
 export function Hero() {
   return (
-    <section className="bg-[#f9f9f9] px-6 lg:px-10 pt-[120px] md:pt-[156px] pb-14">
+    <section className="bg-background px-6 lg:px-10 pt-[120px] md:pt-[156px] pb-14">
       <div className="mx-auto max-w-[800px] text-center">
         <AnimateIn variant="fadeUp">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[#e0e0e0] bg-white px-4 py-2 text-[13px] font-medium text-[#242424] shadow-sm mb-8">
+          <span className="badge-pill mb-8">
             Website & UX Design Partners For AI SaaS &rarr;
           </span>
         </AnimateIn>
@@ -22,16 +23,18 @@ export function Hero() {
         </AnimateIn>
 
         <AnimateIn variant="fadeUp" delay={0.16}>
-          <p className="text-body-lg mt-6 mx-auto !text-[#787878]">
+          <p className="text-body-lg mt-6 mx-auto">
             The one-stop shop for AI-powered MVPs. We deliver 90% solutions in record time, eliminating the overhead of full-scale hiring so you can focus on the market.
           </p>
         </AnimateIn>
 
         <AnimateIn variant="fadeUp" delay={0.24}>
           <div className="mt-8 flex items-center justify-center">
-            <CTAButton href="/strategy-call" variant="primary">
-              Book a Consultation
-            </CTAButton>
+            <MagneticButton>
+              <CTAButton href="/strategy-call" variant="primary">
+                Book a Consultation
+              </CTAButton>
+            </MagneticButton>
           </div>
         </AnimateIn>
 

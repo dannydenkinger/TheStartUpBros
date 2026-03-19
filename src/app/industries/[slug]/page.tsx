@@ -137,7 +137,7 @@ const industryData: Record<
     ],
     testimonial: {
       quote:
-        "BRICX understood the complexity of our AI product and made it feel effortlessly simple for our users.",
+        "Startup Bros understood the complexity of our AI product and made it feel effortlessly simple for our users.",
       name: "Alex Chen",
       role: "CPO @ AI Startup",
     },
@@ -191,7 +191,7 @@ function getIndustryData(slug: string) {
       { title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
     ],
     testimonial: {
-      quote: "BRICX transformed our product experience. The results spoke for themselves within the first month.",
+      quote: "Startup Bros transformed our product experience. The results spoke for themselves within the first month.",
       name: "Product Leader",
       role: `${label} SaaS`,
     },
@@ -208,7 +208,7 @@ export default async function IndustryPage({
   const currentSlug = resolvedParams.slug;
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#f9f9f9]">
+    <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
       <section className="px-6 lg:px-10 pt-[180px] pb-[100px] text-center flex flex-col items-center justify-center">
         <h1 className="text-display max-w-4xl mx-auto mb-6 text-foreground">
@@ -219,7 +219,7 @@ export default async function IndustryPage({
         </p>
         <a
           href="/strategy-call"
-          className="inline-flex items-center justify-center rounded-full bg-[#242424] text-white px-8 py-3.5 text-[14px] font-medium hover:bg-[#333] transition-colors"
+          className="btn-pill btn-pill-primary px-8 py-3.5"
         >
           Book Strategy Call
         </a>
@@ -239,7 +239,7 @@ export default async function IndustryPage({
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {data.caseStudies.map((cs) => (
               <Link key={cs.title} href={cs.href} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-[#e3e3e3] bg-white shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+                <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
                   <div className="relative aspect-[16/10] overflow-hidden">
                     <Image
                       src={cs.image}
@@ -250,14 +250,14 @@ export default async function IndustryPage({
                   </div>
                   <div className="p-6">
                     <div className="flex items-center gap-3 mb-3">
-                      <span className="inline-flex items-center rounded-full border border-border bg-[#f9f9f9] px-3 py-1 text-[11px] font-medium text-muted-foreground">
+                      <span className="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-[11px] font-medium text-muted-foreground">
                         {cs.tag}
                       </span>
                       <span className="text-[12px] text-muted-foreground">
                         {cs.location}
                       </span>
                     </div>
-                    <h4 className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.02em] text-[#262626] group-hover:text-foreground/70 transition-colors">
+                    <h4 className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground group-hover:text-foreground/70 transition-colors">
                       {cs.title}
                     </h4>
                   </div>
@@ -269,7 +269,7 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Features Grid ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32 bg-white">
+      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-h2 text-foreground">Our Features</h2>
@@ -278,7 +278,7 @@ export default async function IndustryPage({
             {data.features.map((feature) => (
               <div
                 key={feature.title}
-                className="p-8 rounded-2xl border border-[#e3e3e3] bg-[#f9f9f9] hover:bg-white hover:shadow-lg transition-all duration-300"
+                className="p-8 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg transition-all duration-300"
               >
                 <h5 className="text-[16px] font-semibold text-foreground mb-3">
                   {feature.title}
@@ -293,7 +293,7 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Testimonial Quote ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-28 bg-[#f9f9f9]">
+      <section className="px-6 lg:px-10 py-24 md:py-28 bg-background">
         <div className="max-w-[800px] mx-auto text-center">
           <div className="flex justify-center mb-6">
             {[...Array(5)].map((_, i) => (
@@ -302,7 +302,7 @@ export default async function IndustryPage({
               </svg>
             ))}
           </div>
-          <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-[#262626] mb-8">
+          <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground mb-8">
             &ldquo;{data.testimonial.quote}&rdquo;
           </blockquote>
           <p className="text-[15px] font-bold text-foreground">
@@ -315,7 +315,7 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Explore Other Industries ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32 bg-white">
+      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-h2 text-foreground">Explore Other Industries</h2>
@@ -328,7 +328,7 @@ export default async function IndustryPage({
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="group block p-6 rounded-2xl border border-[#e3e3e3] bg-[#f9f9f9] hover:bg-white hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className="group block p-6 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
                 >
                   <h4 className="text-[17px] font-semibold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
                     {ind.name}

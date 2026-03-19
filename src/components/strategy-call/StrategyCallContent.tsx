@@ -50,7 +50,7 @@ export function StrategyCallContent() {
   };
 
   const inputStyles =
-    "w-full h-[46px] px-4 rounded-lg border border-[#e8e8e8] bg-[#f5f5f5] text-[14px] text-foreground placeholder:text-[#aaa] focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all";
+    "w-full h-[46px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all";
 
   return (
     <div className="min-h-screen -mt-[80px] pt-[80px]" style={{ background: "radial-gradient(circle, #e0e0e0 1px, transparent 1px)", backgroundSize: "24px 24px", backgroundColor: "#f4f4f5" }}>
@@ -130,7 +130,7 @@ export function StrategyCallContent() {
 
             {/* ─── Right Column: Form Card ─── */}
             <div className="w-full lg:w-[420px] shrink-0">
-              <div className="bg-white rounded-2xl shadow-xl shadow-black/8 border border-[#eee] p-8">
+              <div className="bg-card rounded-2xl shadow-xl shadow-black/8 border border-border p-8">
                 <h2 className="text-[20px] font-semibold text-foreground leading-tight mb-8">
                   See what Startup Bros can do
                   <br />
@@ -240,7 +240,7 @@ export function StrategyCallContent() {
                         required
                         rows={4}
                         placeholder="Tell us about your product"
-                        className="w-full px-4 py-3 rounded-lg border border-[#e8e8e8] bg-[#f5f5f5] text-[14px] text-foreground placeholder:text-[#aaa] resize-y focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                        className="w-full px-4 py-3 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 resize-y focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
                       />
                     </div>
 

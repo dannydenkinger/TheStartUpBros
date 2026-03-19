@@ -31,7 +31,7 @@ export default function BlogPage() {
               title="From Idea to MVP in 14 Days"
               excerpt="How we took a founder's napkin sketch and turned it into a deployed, revenue-ready SaaS product in just two weeks."
               tags={["Case Study", "SaaS"]}
-              image="https://images.unsplash.com/photo-1634017839464-5c339ebe3cb4?w=800&q=80"
+              image="/images/portfolio/travel-app.webp"
               href="/blog/from-idea-to-mvp-in-14-days"
             />
             <GlassBlogCard
@@ -39,7 +39,7 @@ export default function BlogPage() {
               title="Winning AI Pricing Pages"
               excerpt="A complete breakdown of how top AI tools structure their pricing for maximum conversion."
               tags={["Pricing", "Strategy"]}
-              image="https://images.unsplash.com/photo-1618556450991-2f1af64e8191?w=800&q=80"
+              image="/images/portfolio/ai-landing.webp"
               href="/blog/from-idea-to-mvp-in-14-days"
             />
             <GlassBlogCard
@@ -47,7 +47,7 @@ export default function BlogPage() {
               title="The Anatomy of a Perfect Dashboard"
               excerpt="Learn how to design dense data tables and analytics dashboards without overwhelming the user."
               tags={["UI Design", "Dashboards"]}
-              image="https://images.unsplash.com/photo-1618005198919-d3d4b5a92ead?w=800&q=80"
+              image="/images/portfolio/fintech-dashboard.webp"
               href="/blog/from-idea-to-mvp-in-14-days"
             />
             <GlassBlogCard
@@ -55,7 +55,7 @@ export default function BlogPage() {
               title="Design System Foundations"
               excerpt="How to setup a scalable Figma design system for a growing engineering team."
               tags={["Design Systems", "Figma"]}
-              image="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80"
+              image="/images/portfolio/crm-journeys.webp"
               href="/blog/from-idea-to-mvp-in-14-days"
             />
           </div>

@@ -13,10 +13,10 @@ const columns = [
   {
     title: "Services",
     links: [
-      { label: "App Development", href: "/services#full-stack" },
-      { label: "SaaS Platforms", href: "/services#saas" },
-      { label: "AI Agents", href: "/services#ai-agents" },
-      { label: "Web Design", href: "/services#web-design" },
+      { label: "App Development", href: "/services/full-stack-apps" },
+      { label: "SaaS Platforms", href: "/services/saas-dev" },
+      { label: "AI Agents", href: "/services/ai-agents" },
+      { label: "Web Design", href: "/services/web-design" },
     ],
   },
   {
@@ -31,7 +31,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-white">
+    <footer className="border-t border-border bg-background">
       <div className="mx-auto max-w-[1280px] px-6 lg:px-10 py-16">
         <div className="flex flex-col md:flex-row md:justify-between gap-12">
           {/* Brand */}

@@ -7,14 +7,14 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 
 const faqs = [
   {
-    question: "Why should I choose BRICX over traditional design agencies?",
+    question: "Why should I choose Startup Bros over traditional design agencies?",
     answer:
-      "Traditional agencies often take months to deliver, lack accountability, and work in silos. At BRICX, we deliver in days, collaborate closely with your team, and take full ownership of the product funnel to ensure your success.",
+      "Traditional agencies often take months to deliver, lack accountability, and work in silos. At Startup Bros, we deliver in days, collaborate closely with your team, and take full ownership of the product funnel to ensure your success.",
   },
   {
-    question: "How is BRICX different from hiring an in-house designer?",
+    question: "How is Startup Bros different from hiring an in-house designer?",
     answer:
-      "Hiring in-house means salaries, benefits, and months of onboarding. With BRICX you get an entire senior design team on-demand at a fraction of the cost — ready to ship from day one.",
+      "Hiring in-house means salaries, benefits, and months of onboarding. With Startup Bros you get an entire senior design team on-demand at a fraction of the cost — ready to ship from day one.",
   },
   {
     question: "How long does it take to see results?",
@@ -22,7 +22,7 @@ const faqs = [
       "Most clients see meaningful deliverables within the first week. Full product redesigns or MVPs are typically completed in 2–4 weeks depending on scope.",
   },
   {
-    question: "What services does BRICX offer?",
+    question: "What services does Startup Bros offer?",
     answer:
       "We offer end-to-end UI/UX design, website design, landing pages, design systems, product strategy, user research, prototyping, and developer-ready handoffs.",
   },
@@ -52,7 +52,7 @@ const faqs = [
       "Absolutely. We build in structured feedback loops at every milestone. Unlimited revisions are included until you're 100% satisfied.",
   },
   {
-    question: "How do I know if BRICX is the right fit for me?",
+    question: "How do I know if Startup Bros is the right fit for me?",
     answer:
       "Book a free strategy call. We'll discuss your goals, timeline, and budget to see if we're the right match — no strings attached.",
   },
@@ -130,11 +130,11 @@ export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="px-6 lg:px-10 py-24 md:py-32 bg-white">
+    <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
       <div className="mx-auto max-w-[800px]">
         <AnimateIn>
           <div className="text-center mb-4">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-[#e0e0e0] bg-[#f9f9f9] px-4 py-2 text-[13px] font-medium text-[#242424] shadow-sm mb-6">
+            <span className="badge-pill mb-6">
               FAQs
             </span>
           </div>
@@ -147,17 +147,9 @@ export function FAQ() {
           <div className="flex items-center justify-center gap-3 mb-16">
             <a
               href="/strategy-call"
-              className="inline-flex items-center justify-center rounded-full bg-[#242424] text-white px-6 py-3 text-[14px] font-medium hover:bg-[#333] transition-colors"
+              className="btn-pill btn-pill-primary"
             >
               Book Strategy Call
-            </a>
-            <a
-              href="https://api.whatsapp.com/send?phone=918178563140"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-[#e0e0e0] bg-white text-[#242424] px-6 py-3 text-[14px] font-medium hover:bg-[#f5f5f5] transition-colors"
-            >
-              Chat with Us
             </a>
           </div>
         </AnimateIn>
