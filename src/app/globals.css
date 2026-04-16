@@ -383,18 +383,106 @@
   animation: marquee-right 40s linear infinite;
 }
 
-/* Generic horizontal marquee (CSS-variable driven speed) */
+/* Generic horizontal marquee (CSS-variable driven speed).
+ * Uses the single-container-with-duplicates pattern: content is duplicated
+ * so -50% translation creates a seamless loop at the exact card boundary. */
 @keyframes marquee {
   0% {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-100% - 1rem));
+    transform: translateX(-50%);
   }
 }
 
 .animate-marquee {
   flex-shrink: 0;
-  min-width: 100%;
   animation: marquee var(--duration, 40s) linear infinite;
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-marquee-reverse {
+  flex-shrink: 0;
+  animation: marquee-reverse var(--duration, 40s) linear infinite;
+}
+
+/* ── Folder card styles ─────────────────────────────────── */
+
+.folder-card-stack {
+  position: relative;
+  isolation: isolate;
+  padding-top: 60px;
+}
+
+.folder-card-stack::before,
+.folder-card-stack::after {
+  content: "";
+  position: absolute;
+  top: 60px;
+  left: 6px;
+  right: 6px;
+  bottom: 0;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: var(--card);
+  z-index: -1;
+  transform-origin: bottom center;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.folder-card-stack::before {
+  transform: rotate(-2deg) translateY(6px);
+  opacity: 0.7;
+}
+
+.folder-card-stack::after {
+  transform: rotate(-4deg) translateY(10px);
+  opacity: 0.4;
+}
+
+.folder-card-stack:hover::before {
+  transform: rotate(-3deg) translateY(8px);
+  opacity: 0.8;
+}
+
+.folder-card-stack:hover::after {
+  transform: rotate(-5.5deg) translateY(14px);
+  opacity: 0.5;
+}
+
+.folder-card-body {
+  position: relative;
+  z-index: 1;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: visible;
+  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
+              0 8px 32px rgba(0, 0, 0, 0.06);
+}
+
+.folder-card-stack:hover .folder-card-body {
+  border-color: var(--ring);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+              0 16px 48px rgba(0, 0, 0, 0.12);
+}
+
+@media (max-width: 640px) {
+  .folder-card-stack::before {
+    transform: rotate(-1.5deg) translateY(4px);
+  }
+  .folder-card-stack::after {
+    transform: rotate(-3deg) translateY(8px);
+  }
 }

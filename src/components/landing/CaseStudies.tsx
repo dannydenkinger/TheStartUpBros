@@ -1,40 +1,62 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+
+function ClutchRating() {
+  return (
+    <div className="flex items-center gap-2">
+      <span className="text-[13px] font-bold text-foreground">Clutch</span>
+      <div className="flex gap-0.5">
+        {[...Array(5)].map((_, i) => (
+          <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#facc15">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+        ))}
+      </div>
+    </div>
+  );
+}
 
 const cases = [
   {
-    label: "SaaS Platform",
-    title: "From napkin sketch to production SaaS in 3 weeks",
-    description:
-      "We built a multi-tenant property management platform with Stripe billing, role-based access, and automated tenant communications.",
-    features: ["Next.js", "PostgreSQL", "Stripe", "Auth"],
-    images: [
-      { src: "/images/portfolio/sales-crm-full.webp", w: 800, h: 600 },
-      { src: "/images/portfolio/crm-dashboard.webp", w: 800, h: 600 },
+    tags: ["AI SaaS", "VC Backed", "NY"],
+    title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+    testimonial:
+      "Their designs consistently balanced visual aesthetics with functionality and business objectives.",
+    author: { name: "Samanyou Garg", role: "Founder @ Writesonic", image: "/images/portfolio/ai-finance.avif" },
+    href: "/portfolio/writesonic",
+    heroImage: "/images/portfolio/sales-crm-full.webp",
+    screenshots: [
+      "/images/portfolio/crm-dashboard.webp",
+      "/images/portfolio/productivity-dashboard.webp",
     ],
   },
   {
-    label: "AI Automation",
-    title: "AI agent that saves 4 hours of data entry per day",
-    description:
-      "Custom document processing pipeline that extracts line items from invoices, categorizes expenses, and syncs with QuickBooks automatically.",
-    features: ["Python", "LLMs", "OCR", "QuickBooks API"],
-    images: [
-      { src: "/images/portfolio/productivity-dashboard.webp", w: 800, h: 600 },
-      { src: "/images/portfolio/ai-landing.webp", w: 800, h: 600 },
+    tags: ["AI SaaS", "MVP + Web Design"],
+    title: "Designing Loopback's MVP & Landing Page In 21 Days",
+    testimonial:
+      "We couldn't have achieved throughout every stage of their work, from wireframes to polished final output. The team provided the client with real-time insights into their results.",
+    author: { name: "Mike Sitton", role: "Founder @ Loopback", image: "/images/portfolio/geo-analytics.avif" },
+    href: "/portfolio/loopback",
+    heroImage: "/images/portfolio/ai-landing.webp",
+    screenshots: [
+      "/images/portfolio/fintech-dashboard.webp",
+      "/images/portfolio/freelancer-dashboard.webp",
     ],
   },
   {
-    label: "Web3 Platform",
-    title: "Token launch platform with 910+ community members",
-    description:
-      "Full-stack Web3 platform with pre-sale management, wallet integration, community discovery, and real-time transaction tracking.",
-    features: ["React", "Solidity", "Web3.js", "WebSocket"],
-    images: [
-      { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
-      { src: "/images/portfolio/fintech-dashboard.webp", w: 800, h: 600 },
+    tags: ["Web3", "Product Design", "🇨🇦 Canada"],
+    title: "Launching N3on's token through Thrust",
+    testimonial:
+      "They're a creative design and developer partner us with creative vision. Their thought leadership is exceptional.",
+    author: { name: "Etai Yaacobi", role: "Founder & CEO @ Thrust", image: "/images/portfolio/sales-dashboard.avif" },
+    href: "/portfolio/n3on",
+    heroImage: "/images/portfolio/defi-landing.webp",
+    screenshots: [
+      "/images/portfolio/fintech-mobile.webp",
+      "/images/portfolio/travel-app.webp",
     ],
   },
 ];
@@ -42,101 +64,114 @@ const cases = [
 export function CaseStudies() {
   return (
     <section className="px-6 lg:px-10 py-20 md:py-28 border-t border-border">
-      <div className="mx-auto max-w-[1280px]">
-        <div className="flex flex-col lg:flex-row gap-14 lg:gap-20">
-          {/* Sticky left sidebar */}
-          <div className="lg:w-[380px] shrink-0">
-            <div className="lg:sticky lg:top-[120px]">
-              <AnimateIn>
-                <span className="badge-pill mb-6 inline-block">Case Studies</span>
-                <h2 className="text-h2 text-foreground">
-                  Real Results from
-                  <br />
-                  Real SaaS Companies
-                </h2>
-                <p className="text-body-lg mt-4">
-                  We don&apos;t just write code — we ship products that founders use to
-                  raise funding, acquire customers, and scale.
+      <div className="mx-auto max-w-[1400px]">
+        {/* Section Header */}
+        <AnimateIn>
+          <div className="text-center mb-16">
+            <span className="badge-pill mb-6 inline-block">Case Studies</span>
+            <h2 className="text-h2 text-foreground">
+              Real Results from Real SaaS
+              <br className="hidden sm:block" />
+              Companies
+            </h2>
+          </div>
+        </AnimateIn>
+
+        {/* Case Study Blocks — left column is sticky within each row */}
+        <div className="space-y-24">
+          {cases.map((c) => (
+            <div
+              key={c.title}
+              className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start"
+            >
+              {/* Left — sticks from the top of the row until the last image scrolls past */}
+              <div className="lg:w-[540px] shrink-0 lg:sticky lg:top-[120px] lg:self-start">
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 mb-7">
+                  {c.tags.map((tag) => (
+                    <span key={tag} className="badge-pill text-[13px]">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <h3 className="text-[36px] md:text-[48px] font-medium leading-[1.08] tracking-[-0.028em] text-foreground mb-7">
+                  {c.title}
+                </h3>
+
+                <ClutchRating />
+
+                <p className="text-[17px] leading-relaxed text-muted-foreground mt-6 mb-7 max-w-[480px]">
+                  &ldquo;{c.testimonial}&rdquo;
                 </p>
-              </AnimateIn>
 
-              {/* Featured floating image */}
-              <AnimateIn delay={0.2}>
-                <div className="mt-10 hidden lg:block">
-                  <div
-                    className="rounded-2xl border border-border bg-card overflow-hidden"
-                    style={{
-                      boxShadow:
-                        "0 4px 6px rgba(0,0,0,0.04), 0 12px 40px rgba(0,0,0,0.08), 0 24px 80px rgba(0,0,0,0.06)",
-                      transformStyle: "preserve-3d",
-                      transform: "perspective(1000px) rotateY(-2deg) rotateX(1deg)",
-                    }}
+                {/* Author */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-11 h-11 rounded-full overflow-hidden bg-secondary shrink-0">
+                      <Image
+                        src={c.author.image}
+                        alt={c.author.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <p className="text-[15px] font-semibold text-foreground leading-tight">
+                        {c.author.name}
+                      </p>
+                      <p className="text-[14px] text-muted-foreground leading-tight">
+                        {c.author.role}
+                      </p>
+                    </div>
+                  </div>
+                  <Link
+                    href={c.href}
+                    className="text-[15px] font-medium text-foreground hover:underline"
                   >
-                    <Image
-                      src="/images/portfolio/travel-app.webp"
-                      alt="Mobile app showcase"
-                      width={800}
-                      height={600}
-                      className="w-full h-auto"
-                    />
-                  </div>
+                    View Case Study
+                  </Link>
                 </div>
-              </AnimateIn>
-            </div>
-          </div>
+              </div>
 
-          {/* Right content — case study blocks */}
-          <div className="flex-1 space-y-0">
-            {cases.map((c, i) => (
-              <AnimateIn key={c.label} delay={i * 0.1}>
-                <div className={`space-y-5 py-12 ${i > 0 ? "border-t-[3px] border-accent" : ""}`}>
-                  <span className="inline-block text-[12px] font-medium text-muted-foreground uppercase tracking-[0.08em]">
-                    {c.label}
-                  </span>
-                  <h3 className="text-h3 text-foreground">{c.title}</h3>
-                  <p className="text-[13px] leading-relaxed text-muted-foreground max-w-lg">
-                    {c.description}
-                  </p>
-
-                  {/* Feature tags */}
-                  <div className="flex flex-wrap gap-2">
-                    {c.features.map((f) => (
-                      <span
-                        key={f}
-                        className="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-[11px] font-medium text-muted-foreground"
-                      >
-                        {f}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Floating image cards */}
-                  <div className="flex gap-3 mt-4">
-                    {c.images.map((img, j) => (
-                      <div
-                        key={img.src}
-                        className="flex-1 rounded-2xl border border-border bg-card overflow-hidden"
-                        style={{
-                          boxShadow:
-                            "0 2px 4px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06)",
-                          transform: j === 1 ? "translateY(12px)" : "translateY(0)",
-                        }}
-                      >
-                        <Image
-                          src={img.src}
-                          alt={`${c.label} screenshot ${j + 1}`}
-                          width={img.w}
-                          height={img.h}
-                          className="w-full h-auto"
-                        />
+              {/* Right — images stacked vertically, each with a View Case Study hover overlay */}
+              <div className="flex-1 flex flex-col gap-4 w-full">
+                {[c.heroImage, ...c.screenshots].map((src, imgIdx) => (
+                  <AnimateIn key={src} delay={imgIdx * 0.05}>
+                    <Link
+                      href={c.href}
+                      className="group relative block aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-card shadow-sm"
+                    >
+                      <Image
+                        src={src}
+                        alt={imgIdx === 0 ? c.title : "Case study screenshot"}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 backdrop-blur-[2px]">
+                        <span className="btn-pill btn-pill-primary shadow-lg">
+                          View Case Study
+                        </span>
                       </div>
-                    ))}
-                  </div>
-                </div>
-              </AnimateIn>
-            ))}
-          </div>
+                    </Link>
+                  </AnimateIn>
+                ))}
+              </div>
+            </div>
+          ))}
         </div>
+
+        {/* View All CTA */}
+        <AnimateIn delay={0.3}>
+          <div className="text-center mt-16">
+            <Link
+              href="/portfolio"
+              className="btn-pill btn-pill-primary"
+            >
+              View All Case Studies
+            </Link>
+          </div>
+        </AnimateIn>
       </div>
     </section>
   );

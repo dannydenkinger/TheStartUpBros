@@ -14,7 +14,28 @@ export interface Service {
   useCases: string[];
   techStack: string[];
   deliverables: string[];
+
+  // Bricx-style template fields (optional)
+  featureHighlights?: { icon: string; title: string; description: string }[];
+  caseStudySlugs?: [string, string];
+  testimonial?: { quote: string; name: string; role: string };
 }
+
+export type GalleryBlock =
+  | { type: "full"; image: string; alt?: string; caption?: string }
+  | {
+      type: "twoUp";
+      images: { src: string; alt?: string }[];
+      caption?: string;
+    }
+  | {
+      type: "imageWithCaption";
+      image: string;
+      alt?: string;
+      heading?: string;
+      body: string;
+      align?: "left" | "right";
+    };
 
 export interface PortfolioProject {
   title: string;
@@ -28,6 +49,17 @@ export interface PortfolioProject {
   timeline: string;
   techStack: string[];
   outcomes: string[];
+
+  // Gallery-style template fields (optional — legacy projects fall back to text layout)
+  client?: string;
+  year?: string;
+  industry?: string;
+  services?: string[];
+  websiteUrl?: string;
+  overview?: string;
+  gallery?: GalleryBlock[];
+  metrics?: { value: string; label: string }[];
+  quote?: { text: string; author?: string; role?: string };
 }
 
 export interface BlogPost {

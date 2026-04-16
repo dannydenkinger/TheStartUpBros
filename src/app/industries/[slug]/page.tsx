@@ -1,27 +1,71 @@
 import Image from "next/image";
 import Link from "next/link";
+import {
+  Activity,
+  BarChart3,
+  DollarSign,
+  Eye,
+  GitBranch,
+  Layers,
+  MousePointerClick,
+  Repeat,
+  Rocket,
+  Shield,
+  Smartphone,
+  Sparkles,
+  Target,
+  Terminal,
+  TrendingUp,
+  UserCog,
+  Users,
+  Workflow,
+  Zap,
+  type LucideIcon,
+} from "lucide-react";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
-/* ─── Industry data keyed by slug ─── */
-const industryData: Record<
-  string,
-  {
-    label: string;
-    headline: string;
-    subtitle: string;
-    caseStudies: {
-      tag: string;
-      location: string;
-      title: string;
-      image: string;
-      href: string;
-    }[];
-    features: { title: string; description: string }[];
-    testimonial: { quote: string; name: string; role: string };
-  }
-> = {
+// ─── Icon lookup ──────────────────────────────────────────────────────────
+const iconMap: Record<string, LucideIcon> = {
+  Zap,
+  Target,
+  BarChart3,
+  Users,
+  Repeat,
+  Layers,
+  Eye,
+  Terminal,
+  Activity,
+  Shield,
+  Workflow,
+  GitBranch,
+  TrendingUp,
+  MousePointerClick,
+  UserCog,
+  Rocket,
+  Smartphone,
+  DollarSign,
+  Sparkles,
+};
+
+// ─── Industry data keyed by slug ──────────────────────────────────────────
+type IndustryData = {
+  label: string;
+  headline: string;
+  subtitle: string;
+  caseStudies: {
+    tag: string;
+    location: string;
+    title: string;
+    image: string;
+    href: string;
+  }[];
+  features: { icon: string; title: string; description: string }[];
+  testimonial: { quote: string; name: string; role: string };
+};
+
+const industryData: Record<string, IndustryData> = {
   marketing: {
     label: "Marketing",
     headline: "Unforgettable Website & UX Design For Marketing SaaS",
@@ -30,46 +74,53 @@ const industryData: Record<
     caseStudies: [
       {
         tag: "Marketing",
-        location: "Miami Beach, Florida",
-        title: "Increasing BookMe's Landing Page Conversions in Two Weeks",
+        location: "San Francisco, CA",
+        title: "Designing SocialSonic's MVP To Reach 1000+ Users In 30 Days",
         image: "/images/portfolio/socialsonic.avif",
-        href: "/portfolio/bookme",
+        href: "/portfolio/socialsonic",
       },
       {
-        tag: "Marketing",
-        location: "San Francisco, CA",
-        title: "Designing Socialsonic's MVP To Reach 1000+ Users In 30 Days",
+        tag: "Productivity",
+        location: "New York, NY",
+        title:
+          "Building Community Search — A Unified Workspace Indexed in Under 180ms",
         image: "/images/portfolio/community-search.avif",
-        href: "/portfolio/socialsonic",
+        href: "/portfolio/community",
       },
     ],
     features: [
       {
+        icon: "Zap",
         title: "Fast Campaign Setup",
         description:
           "We reduce friction in onboarding so users can launch their first campaign within minutes.",
       },
       {
+        icon: "Target",
         title: "Outcome-Focused UX",
         description:
           "We design around what marketers care about — reach, ROI, and what's actually working.",
       },
       {
+        icon: "BarChart3",
         title: "Clarity in Metrics",
         description:
           "We turn raw performance data into clean insights — easy to share, easy to act on.",
       },
       {
+        icon: "Users",
         title: "Multi-Role Interfaces",
         description:
           "From CMOs to interns, we build flows that adapt to each role's goals, not just generic tools.",
       },
       {
+        icon: "Repeat",
         title: "Sticky Daily Workflows",
         description:
           "We design flows users return to — tracking progress, adjusting, iterating, and reporting.",
       },
       {
+        icon: "Layers",
         title: "Visual Builder Optimization",
         description:
           "Drag-and-drop is just the start. We fine-tune builders for conversion, clarity, and speed.",
@@ -77,9 +128,9 @@ const industryData: Record<
     ],
     testimonial: {
       quote:
-        "They consistently crafted designs that harmonized visual appeal, practical use, and business goals.",
-      name: "Samanyou Garg",
-      role: "Founder @ Socialsonic",
+        "They told us 'no' more than they told us 'yes' — and that's exactly why we hit 1000 users. Focus shipped the product.",
+      name: "Daniel Lee",
+      role: "Founder @ SocialSonic",
     },
   },
   ai: {
@@ -89,47 +140,53 @@ const industryData: Record<
       "We design delightful website & product user experiences for AI SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "AI",
+        tag: "AI SaaS",
         location: "San Francisco, CA",
         title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
         image: "/images/portfolio/geo-analytics.avif",
         href: "/portfolio/writesonic",
       },
       {
-        tag: "AI",
-        location: "New York, NY",
-        title: "Building an AI-Powered Analytics Dashboard in 14 Days",
-        image: "/images/portfolio/ai-finance.avif",
-        href: "/portfolio/ai-analytics",
+        tag: "AI Landing",
+        location: "San Francisco, CA",
+        title: "Designing Gigamind's Credible AI-First Landing Page",
+        image: "/images/portfolio/ai-landing.webp",
+        href: "/portfolio/gigamind-landing",
       },
     ],
     features: [
       {
+        icon: "Eye",
         title: "Model Output Visualization",
         description:
           "We design interfaces that make AI outputs interpretable and actionable for non-technical users.",
       },
       {
+        icon: "Terminal",
         title: "Prompt Engineering UX",
         description:
           "We create intuitive prompt interfaces that help users get the best results from AI models.",
       },
       {
+        icon: "Activity",
         title: "Real-Time Feedback Loops",
         description:
           "We build interfaces that show AI processing states clearly so users always know what's happening.",
       },
       {
+        icon: "Shield",
         title: "Trust & Transparency",
         description:
           "We design explainable AI interfaces that build user confidence through transparency.",
       },
       {
+        icon: "Workflow",
         title: "Adaptive Workflows",
         description:
           "We create flows that learn from user behavior and surface the most relevant features.",
       },
       {
+        icon: "GitBranch",
         title: "Data Pipeline Clarity",
         description:
           "We visualize complex data flows so users understand how their data moves through AI systems.",
@@ -137,20 +194,86 @@ const industryData: Record<
     ],
     testimonial: {
       quote:
-        "Startup Bros understood the complexity of our AI product and made it feel effortlessly simple for our users.",
-      name: "Alex Chen",
-      role: "CPO @ AI Startup",
+        "Startup Bros didn't just ship screens — they built the design language that the rest of our product now follows.",
+      name: "Samanyou Garg",
+      role: "Founder @ Writesonic",
     },
   },
-  /* fallback for any other slug */
+  sales: {
+    label: "Sales",
+    headline: "Unforgettable Website & UX Design For Sales SaaS & CRM",
+    subtitle:
+      "We design delightful website & product user experiences for Sales SaaS to increase signups & conversions.",
+    caseStudies: [
+      {
+        tag: "Sales Tools",
+        location: "Canada",
+        title:
+          "Manyreach Website Revamp that Increased Conversions & AOV",
+        image: "/images/portfolio/sales-crm-detail.webp",
+        href: "/portfolio/manyreach",
+      },
+      {
+        tag: "AI Sales",
+        location: "Mountain View, CA",
+        title: "Redesigning Sybill Without Disrupting Existing Users",
+        image: "/images/portfolio/sales-crm-full.webp",
+        href: "/portfolio/sybill",
+      },
+    ],
+    features: [
+      {
+        icon: "TrendingUp",
+        title: "Clear Deal Stages",
+        description:
+          "We design pipelines that make deal progression obvious — every rep knows what to do next.",
+      },
+      {
+        icon: "MousePointerClick",
+        title: "One-Click Actions",
+        description:
+          "Every common action — log a call, send a template, update a stage — is one click away.",
+      },
+      {
+        icon: "UserCog",
+        title: "Role-Based UX",
+        description:
+          "SDRs, AEs, and sales leaders each see the surface that matches their daily workflow.",
+      },
+      {
+        icon: "Rocket",
+        title: "Activation-Led Onboarding",
+        description:
+          "We design onboarding flows that get reps to their first closed deal — not to a settings page.",
+      },
+      {
+        icon: "Smartphone",
+        title: "Mobile-First Approach",
+        description:
+          "Sales happens on the road. Every workflow is designed to work one-handed on a phone.",
+      },
+      {
+        icon: "DollarSign",
+        title: "Revenue-Focused Design",
+        description:
+          "Every screen earns its place by helping reps close more, faster — or it doesn't ship.",
+      },
+    ],
+    testimonial: {
+      quote:
+        "We didn't change the product or the prices. We changed how buyers understood them — and AOV moved 34%.",
+      name: "Ben Northam",
+      role: "Co-founder @ Manyreach",
+    },
+  },
 };
 
 const otherIndustries = [
   { name: "AI", slug: "ai", description: "Design for intelligent products that feel effortless." },
   { name: "Marketing", slug: "marketing", description: "Conversion-focused design for marketing platforms." },
+  { name: "Sales", slug: "sales", description: "Streamlined workflows that close deals faster." },
   { name: "FinTech", slug: "fintech", description: "Trust-building interfaces for financial products." },
   { name: "EdTech", slug: "ed-tech", description: "Engaging learning experiences that drive completion." },
-  { name: "Sales", slug: "sales", description: "Streamlined workflows that close deals faster." },
   { name: "Web3", slug: "web3", description: "Intuitive design for decentralized applications." },
   { name: "Mobile Apps", slug: "mobile-apps", description: "Native-feeling experiences users love." },
   { name: "B2B / Agencies", slug: "agencies", description: "Enterprise-grade UX that scales with your team." },
@@ -158,9 +281,9 @@ const otherIndustries = [
   { name: "Supply Chain", slug: "b2b", description: "Operational interfaces that reduce friction and errors." },
 ];
 
-function getIndustryData(slug: string) {
+function getIndustryData(slug: string): IndustryData {
   if (industryData[slug]) return industryData[slug];
-  // Fallback: generate generic data
+  // Fallback: generic content, but case studies point to real portfolio pages
   const label = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
     label,
@@ -170,25 +293,26 @@ function getIndustryData(slug: string) {
       {
         tag: label,
         location: "San Francisco, CA",
-        title: `Designing a High-Converting ${label} Platform`,
-        image: "/images/portfolio/ai-finance.avif",
-        href: "/portfolio",
+        title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+        image: "/images/portfolio/geo-analytics.avif",
+        href: "/portfolio/writesonic",
       },
       {
         tag: label,
-        location: "New York, NY",
-        title: `Scaling ${label} Products With Premium UX`,
-        image: "/images/portfolio/geo-analytics.avif",
-        href: "/portfolio",
+        location: "Canada",
+        title:
+          "Manyreach Website Revamp that Increased Conversions & AOV",
+        image: "/images/portfolio/sales-crm-detail.webp",
+        href: "/portfolio/manyreach",
       },
     ],
     features: [
-      { title: "Rapid Prototyping", description: "From concept to clickable prototype in days, not months." },
-      { title: "Conversion Optimization", description: "Every screen designed to move users toward activation." },
-      { title: "Data-Driven Layouts", description: "We use analytics and heatmaps to refine every interaction." },
-      { title: "Scalable Design Systems", description: "Components and tokens that grow with your engineering team." },
-      { title: "User Research Baked In", description: "We talk to your users so every design decision is grounded in reality." },
-      { title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
+      { icon: "Sparkles", title: "Rapid Prototyping", description: "From concept to clickable prototype in days, not months." },
+      { icon: "Target", title: "Conversion Optimization", description: "Every screen designed to move users toward activation." },
+      { icon: "BarChart3", title: "Data-Driven Layouts", description: "We use analytics and heatmaps to refine every interaction." },
+      { icon: "Layers", title: "Scalable Design Systems", description: "Components and tokens that grow with your engineering team." },
+      { icon: "Users", title: "User Research Baked In", description: "We talk to your users so every design decision is grounded in reality." },
+      { icon: "Workflow", title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
     ],
     testimonial: {
       quote: "Startup Bros transformed our product experience. The results spoke for themselves within the first month.",
@@ -210,19 +334,45 @@ export default async function IndustryPage({
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="px-6 lg:px-10 pt-[180px] pb-[100px] text-center flex flex-col items-center justify-center">
+      <section className="px-6 lg:px-10 pt-[120px] pb-[60px] text-center flex flex-col items-center justify-center">
+        <div className="flex flex-wrap justify-center gap-3 mb-8">
+          <div className="badge-pill flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Official Framer Expert
+          </div>
+          <div className="badge-pill flex items-center gap-2">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+              <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+            </svg>
+            Certified Webflow Partner
+          </div>
+        </div>
+
         <h1 className="text-display max-w-4xl mx-auto mb-6 text-foreground">
           {data.headline}
         </h1>
         <p className="text-body-lg max-w-2xl mx-auto mb-10">
           {data.subtitle}
         </p>
-        <a
-          href="/strategy-call"
-          className="btn-pill btn-pill-primary px-8 py-3.5"
-        >
-          Book Strategy Call
-        </a>
+
+        <div className="flex flex-col sm:flex-row items-center gap-3">
+          <Link
+            href="/strategy-call"
+            className="btn-pill btn-pill-primary px-8 py-3.5"
+          >
+            Book Strategy Call
+          </Link>
+          <Link
+            href="/portfolio"
+            className="btn-pill btn-pill-secondary px-8 py-3.5"
+          >
+            View Our Work
+          </Link>
+        </div>
       </section>
 
       {/* ── Trusted By Marquee ── */}
@@ -272,22 +422,30 @@ export default async function IndustryPage({
       <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-h2 text-foreground">Our Features</h2>
+            <h2 className="text-h2 text-foreground">
+              Built For {data.label} Teams
+            </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.features.map((feature) => (
-              <div
-                key={feature.title}
-                className="p-8 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg transition-all duration-300"
-              >
-                <h5 className="text-[16px] font-semibold text-foreground mb-3">
-                  {feature.title}
-                </h5>
-                <p className="text-[14px] leading-[1.7] text-muted-foreground">
-                  {feature.description}
-                </p>
-              </div>
-            ))}
+            {data.features.map((feature) => {
+              const Icon = iconMap[feature.icon] ?? Sparkles;
+              return (
+                <div
+                  key={feature.title}
+                  className="p-8 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg transition-all duration-300"
+                >
+                  <div className="w-11 h-11 rounded-xl bg-secondary border border-border flex items-center justify-center mb-5">
+                    <Icon className="w-5 h-5 text-foreground" strokeWidth={1.8} />
+                  </div>
+                  <h5 className="text-[16px] font-semibold text-foreground mb-3">
+                    {feature.title}
+                  </h5>
+                  <p className="text-[14px] leading-[1.7] text-muted-foreground">
+                    {feature.description}
+                  </p>
+                </div>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -295,12 +453,15 @@ export default async function IndustryPage({
       {/* ── Testimonial Quote ── */}
       <section className="px-6 lg:px-10 py-24 md:py-28 bg-background">
         <div className="max-w-[800px] mx-auto text-center">
-          <div className="flex justify-center mb-6">
-            {[...Array(5)].map((_, i) => (
-              <svg key={i} width="20" height="20" viewBox="0 0 24 24" fill="#facc15" className="mx-0.5">
-                <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-              </svg>
-            ))}
+          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 mb-8">
+            <div className="flex">
+              {[...Array(5)].map((_, i) => (
+                <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#facc15" className="mx-0.5">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              ))}
+            </div>
+            <span className="text-[13px] font-semibold text-foreground">5.0</span>
           </div>
           <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground mb-8">
             &ldquo;{data.testimonial.quote}&rdquo;
@@ -342,6 +503,25 @@ export default async function IndustryPage({
                 </Link>
               ))}
           </div>
+        </div>
+      </section>
+
+      {/* ── Pricing CTA ── */}
+      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background border-t border-border">
+        <div className="max-w-[760px] mx-auto text-center">
+          <h2 className="text-h2 text-foreground mb-5">
+            So much value at such a flexible price
+          </h2>
+          <p className="text-body-lg mb-10">
+            Consultation-based custom pricing. We scope every project to the
+            fastest path to launch, no retainers, no bloat.
+          </p>
+          <Link
+            href="/strategy-call"
+            className="btn-pill btn-pill-primary px-8 py-3.5"
+          >
+            Book a Call
+          </Link>
         </div>
       </section>
 

@@ -1,0 +1,75 @@
+---
+title: "Why Every MVP Needs Stripe From Day One"
+description: "Skip the 'we'll add billing later' trap. Setting up Stripe in week one changes how the entire product gets built — for the better."
+date: "2026-04-05"
+author: "Brady Bender"
+authorRole: "CEO & Co-Founder"
+readTime: "6 min read"
+category: "Product"
+tags: ["Stripe", "MVP", "Billing"]
+image: "/images/portfolio/ai-finance.avif"
+---
+
+Most MVPs we audit have one thing in common: billing was added in month four. By then the team has shipped a dozen features that don't fit any pricing model, the data model doesn't track usage, and the founder is trying to retrofit a business model onto a product that wasn't designed to have one.
+
+Setting up Stripe in week one solves all of this. Here's why.
+
+## You'll know what your product actually is
+
+Pricing forces clarity. The moment you have to decide whether something is in the Free, Pro, or Enterprise tier, you also have to decide what your product *is*.
+
+Is your AI assistant priced per query? Per seat? Per workflow? You can't ship the right UI until you know — because the UI is built around the unit of value the user pays for.
+
+Without Stripe forcing the conversation, founders defer pricing decisions for months. The product drifts. By the time billing is added, half the features need to be redesigned to fit the pricing model.
+
+## Your first paying customer is your fastest feedback loop
+
+Free users churn silently. Paying customers complain loudly. The moment someone gives you money, you have a relationship — and that relationship surfaces every gap in the product within a week.
+
+Most MVPs we ship have their first paying customer in week 2 or 3. The feedback from that first paid relationship rewrites the next month of the roadmap. No paid customers means you're guessing.
+
+## Webhooks force you to think in events
+
+Stripe's architecture is event-driven. `customer.subscription.updated`, `invoice.payment_succeeded`, `customer.subscription.deleted` — each one is an event your product has to react to.
+
+Setting up webhook handlers in week one forces you to build the event-handling primitives the rest of your product will need anyway. Notifications. Audit logs. State transitions. Retry queues. All of these become natural extensions of the same patterns you used for billing webhooks.
+
+## Stripe Customer Portal is free polish
+
+The single highest-leverage feature in early-stage SaaS: a self-serve billing portal. Customers updating their payment method, viewing invoices, downgrading their plan — all without emailing you.
+
+Stripe Customer Portal does this with one configuration change. You ship it day one and you've eliminated a week of support work in your first quarter.
+
+## What to set up in week one
+
+Minimum viable Stripe integration:
+
+1. **Two products, three prices** — Free, Pro monthly, Pro annual (annual at ~17% discount)
+2. **Checkout session for upgrades** — one redirect, Stripe handles cards
+3. **Webhook handler for subscription state** — `created`, `updated`, `deleted`
+4. **Customer Portal link in settings** — one button, Stripe-hosted page
+5. **A `subscription_status` field on your User model** — `free`, `active`, `past_due`, `canceled`
+
+That's it. You can ship this in a day. It'll look almost exactly like Linear, Vercel, and every other SaaS that does billing well — because they all use the same Stripe primitives.
+
+## What to defer
+
+You don't need any of these in week one:
+
+- Usage-based billing (add when you have actual usage data)
+- Coupons and promo codes (add when you have a marketing motion)
+- Multi-currency (add when you have international customers)
+- Invoicing for enterprise (add when you have enterprise customers)
+- Tax calculation (Stripe Tax is one toggle later — don't optimize prematurely)
+
+Ship the simple version. Iterate.
+
+## The mindset shift
+
+The teams that add Stripe last treat billing as plumbing. The teams that add it first treat it as a forcing function — for clarity, for feedback, for product design discipline.
+
+Build for paying customers from day one. Even if you have zero. Especially if you have zero.
+
+---
+
+*Need help wiring up Stripe correctly? [Book a strategy call](/strategy-call) — we ship Stripe integrations in our standard MVP scope.*

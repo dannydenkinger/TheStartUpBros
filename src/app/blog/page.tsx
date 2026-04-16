@@ -1,23 +1,61 @@
+import fs from "fs";
+import path from "path";
+import matter from "gray-matter";
 import { GlassBlogCard } from "@/components/shared/GlassBlogCard";
 import { FinalCTA } from "@/components/landing/FinalCTA";
-import { Badge } from "@/components/ui/badge";
 
 export const metadata = {
   title: "Blog | Startup Bros",
-  description: "Case studies, insights, and lessons from building AI-powered MVPs for lean startups.",
+  description:
+    "Case studies, insights, and lessons from building AI-powered MVPs for lean startups.",
 };
 
-export default function BlogPage() {
-  return (
-    <div className="flex flex-col min-h-screen pt-16">
-      {/* Blog Hero */}
-      <section className="px-6 lg:px-10 pt-[180px] pb-[100px] text-center flex flex-col items-center justify-center border-b border-border/40">
-        <Badge variant="secondary" className="mb-6 invisible">Insights &amp; Guides</Badge>
+type BlogPost = {
+  slug: string;
+  title: string;
+  description: string;
+  date: string;
+  image?: string;
+  tags?: string[];
+  category?: string;
+  readTime?: string;
+};
 
-        <h1 className="text-display mt-8 mb-4 max-w-4xl mx-auto text-foreground">
+function getAllPosts(): BlogPost[] {
+  const contentDir = path.join(process.cwd(), "src/content/blog");
+  if (!fs.existsSync(contentDir)) return [];
+
+  return fs
+    .readdirSync(contentDir)
+    .filter((f) => f.endsWith(".mdx"))
+    .map((f) => {
+      const raw = fs.readFileSync(path.join(contentDir, f), "utf-8");
+      const { data } = matter(raw);
+      return {
+        slug: f.replace(".mdx", ""),
+        title: data.title,
+        description: data.description,
+        date: data.date,
+        image: data.image,
+        tags: data.tags ?? [],
+        category: data.category,
+        readTime: data.readTime,
+      };
+    })
+    .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+}
+
+export default function BlogPage() {
+  const posts = getAllPosts();
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      {/* Blog Hero */}
+      <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
+        <h1 className="text-display mb-4 max-w-4xl mx-auto text-foreground">
           Blog &amp; Case Studies
         </h1>
-        <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground mb-12">
+        <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground">
           Lessons from the trenches of rapid product development.
         </p>
       </section>
@@ -25,39 +63,24 @@ export default function BlogPage() {
       {/* Blog Grid */}
       <section className="px-6 lg:px-10 py-20 md:py-28 bg-secondary/10">
         <div className="max-w-[1280px] mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 justify-items-center max-w-4xl mx-auto">
-            <GlassBlogCard
-              className="max-w-full w-full"
-              title="From Idea to MVP in 14 Days"
-              excerpt="How we took a founder's napkin sketch and turned it into a deployed, revenue-ready SaaS product in just two weeks."
-              tags={["Case Study", "SaaS"]}
-              image="/images/portfolio/travel-app.webp"
-              href="/blog/from-idea-to-mvp-in-14-days"
-            />
-            <GlassBlogCard
-              className="max-w-full w-full"
-              title="Winning AI Pricing Pages"
-              excerpt="A complete breakdown of how top AI tools structure their pricing for maximum conversion."
-              tags={["Pricing", "Strategy"]}
-              image="/images/portfolio/ai-landing.webp"
-              href="/blog/from-idea-to-mvp-in-14-days"
-            />
-            <GlassBlogCard
-              className="max-w-full w-full"
-              title="The Anatomy of a Perfect Dashboard"
-              excerpt="Learn how to design dense data tables and analytics dashboards without overwhelming the user."
-              tags={["UI Design", "Dashboards"]}
-              image="/images/portfolio/fintech-dashboard.webp"
-              href="/blog/from-idea-to-mvp-in-14-days"
-            />
-            <GlassBlogCard
-              className="max-w-full w-full"
-              title="Design System Foundations"
-              excerpt="How to setup a scalable Figma design system for a growing engineering team."
-              tags={["Design Systems", "Figma"]}
-              image="/images/portfolio/crm-journeys.webp"
-              href="/blog/from-idea-to-mvp-in-14-days"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            {posts.map((post) => (
+              <GlassBlogCard
+                key={post.slug}
+                className="max-w-full w-full"
+                title={post.title}
+                excerpt={post.description}
+                tags={post.tags}
+                image={post.image}
+                href={`/blog/${post.slug}`}
+                readTime={post.readTime}
+                date={new Date(post.date).toLocaleDateString("en-US", {
+                  year: "numeric",
+                  month: "short",
+                  day: "numeric",
+                })}
+              />
+            ))}
           </div>
         </div>
       </section>

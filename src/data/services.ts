@@ -30,6 +30,51 @@ export const services: Service[] = [
       "Database schema & migrations",
       "Monitoring & alerting setup",
     ],
+    featureHighlights: [
+      {
+        icon: "Layers",
+        title: "Modern Frontend",
+        description:
+          "React + Next.js with server components, Tailwind, and Framer Motion — fast out of the box.",
+      },
+      {
+        icon: "Terminal",
+        title: "Production Backend",
+        description:
+          "Node.js or Python APIs designed for scale — with auth, rate limits, and observability from day one.",
+      },
+      {
+        icon: "Database",
+        title: "Database That Fits",
+        description:
+          "Postgres for most things, Redis where it matters. Schemas built to grow, not to retrofit.",
+      },
+      {
+        icon: "Zap",
+        title: "CI/CD From Day One",
+        description:
+          "Every push deploys. Preview URLs on every PR. Zero-downtime production deploys.",
+      },
+      {
+        icon: "Shield",
+        title: "Secure By Default",
+        description:
+          "Authentication, authorization, rate limiting, and audit trails built into the foundation.",
+      },
+      {
+        icon: "Activity",
+        title: "Observability Built In",
+        description:
+          "Structured logs, error tracking, and uptime monitoring so you know when something breaks.",
+      },
+    ],
+    caseStudySlugs: ["ltv-ai", "sybill"],
+    testimonial: {
+      quote:
+        "We shipped a complete redesign and didn't lose a single power user. That shouldn't be possible.",
+      name: "Nishit Asnani",
+      role: "Co-founder @ Sybill",
+    },
   },
   {
     title: "Custom SaaS Frameworks",
@@ -54,12 +99,57 @@ export const services: Service[] = [
     ],
     techStack: ["Next.js", "Stripe", "PostgreSQL", "Prisma", "NextAuth", "Tailwind CSS", "Vercel"],
     deliverables: [
-      "Multi-tenant SaaS application",
-      "Stripe billing integration",
+      "Production-deployed SaaS platform",
+      "Stripe billing + customer portal",
       "Admin dashboard",
       "RBAC system",
       "Onboarding flow",
     ],
+    featureHighlights: [
+      {
+        icon: "Users",
+        title: "Multi-Tenant From Day 1",
+        description:
+          "Workspaces, team invites, and isolated data — built in before the product ships, not retrofitted.",
+      },
+      {
+        icon: "DollarSign",
+        title: "Stripe Billing Done Right",
+        description:
+          "Subscriptions, usage-based pricing, customer portal, and webhooks — all handled correctly.",
+      },
+      {
+        icon: "Shield",
+        title: "Role-Based Access Control",
+        description:
+          "Owner, admin, member, viewer — with a permissions model your team can extend without rewriting.",
+      },
+      {
+        icon: "BarChart3",
+        title: "Usage Analytics",
+        description:
+          "Every event tracked, every dashboard answered. See what users do before they tell you.",
+      },
+      {
+        icon: "Workflow",
+        title: "Admin Tooling",
+        description:
+          "Admin dashboards for support, debugging, and impersonation — because you'll need them in week two.",
+      },
+      {
+        icon: "Rocket",
+        title: "Onboarding That Converts",
+        description:
+          "Activation-led onboarding flows that move users from signup to first value in minutes.",
+      },
+    ],
+    caseStudySlugs: ["writesonic", "gigamind-product"],
+    testimonial: {
+      quote:
+        "Startup Bros didn't just ship screens — they built the design language that the rest of our product now follows.",
+      name: "Samanyou Garg",
+      role: "Founder @ Writesonic",
+    },
   },
   {
     title: "AI Agents & Automation",
@@ -90,6 +180,51 @@ export const services: Service[] = [
       "Monitoring dashboard",
       "Prompt engineering documentation",
     ],
+    featureHighlights: [
+      {
+        icon: "Terminal",
+        title: "Production-Grade Prompts",
+        description:
+          "Versioned, tested, evaluated. We treat prompts like code, not like copy.",
+      },
+      {
+        icon: "GitBranch",
+        title: "RAG Pipelines",
+        description:
+          "Retrieval-augmented generation done right — with chunking, reranking, and hit-rate evaluation.",
+      },
+      {
+        icon: "Workflow",
+        title: "Tool Use & Orchestration",
+        description:
+          "Agents that call your APIs, hit your database, and chain actions — safely, with fallbacks.",
+      },
+      {
+        icon: "Shield",
+        title: "Guardrails & Evals",
+        description:
+          "Output validation, jailbreak protection, and evaluation suites so you know quality before deploy.",
+      },
+      {
+        icon: "Activity",
+        title: "Observability",
+        description:
+          "Every LLM call logged, every token counted. Debug failures, trace decisions, optimize cost.",
+      },
+      {
+        icon: "Zap",
+        title: "Latency-Aware",
+        description:
+          "Streaming, caching, and model routing designed so users never wait more than a second.",
+      },
+    ],
+    caseStudySlugs: ["loopback", "gigamind-landing"],
+    testimonial: {
+      quote:
+        "We came in with a hunch and walked out with a product our design partners loved. The shape they shipped is the shape we still ship today.",
+      name: "Marcus Weld",
+      role: "Co-founder @ Loopback",
+    },
   },
   {
     title: "Premium Web Design",
@@ -120,6 +255,51 @@ export const services: Service[] = [
       "Performance audit report",
       "CMS integration",
     ],
+    featureHighlights: [
+      {
+        icon: "Target",
+        title: "Conversion-Led Design",
+        description:
+          "Every section earns its place by lifting the funnel. No decorative noise, no wasted real estate.",
+      },
+      {
+        icon: "Smartphone",
+        title: "Mobile-First Always",
+        description:
+          "Designed for the thumb before the trackpad. Every layout works one-handed on a moving train.",
+      },
+      {
+        icon: "Sparkles",
+        title: "Micro-Interactions",
+        description:
+          "Framer Motion animations tuned for 60fps and subtle delight — not jank, not distraction.",
+      },
+      {
+        icon: "Eye",
+        title: "Brand That Sticks",
+        description:
+          "Identity systems built to scale — wordmark, color, type, motion — all from one visual logic.",
+      },
+      {
+        icon: "Zap",
+        title: "Lighthouse 100/100",
+        description:
+          "Performance-obsessed builds. Images, fonts, JS bundle — tuned so the page lands instantly.",
+      },
+      {
+        icon: "BarChart3",
+        title: "SEO-Ready",
+        description:
+          "Structured data, clean metadata, semantic HTML. You'll rank because the foundations are right.",
+      },
+    ],
+    caseStudySlugs: ["alsuitup", "hobbes-rebrand"],
+    testimonial: {
+      quote:
+        "We finally look like the company we already are. Buyers stopped second-guessing us in the first meeting.",
+      name: "Lauren Park",
+      role: "CEO @ Hobbes",
+    },
   },
   {
     title: "Custom Business Tools",
@@ -150,5 +330,50 @@ export const services: Service[] = [
       "User documentation",
       "Admin controls",
     ],
+    featureHighlights: [
+      {
+        icon: "BarChart3",
+        title: "Real-Time Dashboards",
+        description:
+          "Dashboards that update as data changes — not on refresh, not on page load. Built for operators.",
+      },
+      {
+        icon: "Workflow",
+        title: "Workflow Automation",
+        description:
+          "Chain steps across systems. What used to take 20 clicks becomes one — with audit logs.",
+      },
+      {
+        icon: "GitBranch",
+        title: "Third-Party Integrations",
+        description:
+          "Plaid, Stripe, QuickBooks, HubSpot, Slack — we plumb the tools you already use into one workflow.",
+      },
+      {
+        icon: "Terminal",
+        title: "Custom Calculators",
+        description:
+          "ROI calculators, pricing estimators, cost models — built to replace the spreadsheet nobody trusts.",
+      },
+      {
+        icon: "Users",
+        title: "Role-Based Tools",
+        description:
+          "One tool, three surfaces — one for the operator, one for the manager, one for the admin.",
+      },
+      {
+        icon: "Activity",
+        title: "Replaces Manual Work",
+        description:
+          "We measure success in hours saved per week. Every tool we ship pays for itself in a month.",
+      },
+    ],
+    caseStudySlugs: ["community", "manyreach"],
+    testimonial: {
+      quote:
+        "It became the most-used app in our workspace within a week. Then we couldn't imagine working without it.",
+      name: "Hannah Kim",
+      role: "Head of Community @ Maven",
+    },
   },
 ];

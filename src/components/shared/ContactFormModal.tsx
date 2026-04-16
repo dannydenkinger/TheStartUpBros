@@ -56,7 +56,26 @@ export function ContactFormModal() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1200));
+
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      source: "ContactFormModal",
+      name: form.get("name"),
+      email: form.get("email"),
+      company: form.get("company"),
+      description: form.get("description"),
+    };
+
+    try {
+      await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+    } catch {
+      // fail silently — dev scaffold, real handling comes with real endpoint
+    }
+
     setIsSubmitting(false);
     setSubmitted(true);
     setTimeout(() => {

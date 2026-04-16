@@ -1,0 +1,83 @@
+---
+title: "The 90% Rule: Shipping When It's Good Enough"
+description: "The last 10% of any feature takes 90% of the time — and 90% of the time, your users won't notice. Here's how to know when to stop."
+date: "2026-04-10"
+author: "Brady Bender"
+authorRole: "CEO & Co-Founder"
+readTime: "5 min read"
+category: "Strategy"
+tags: ["Product Strategy", "Shipping", "Process"]
+image: "/images/portfolio/productivity-dashboard.webp"
+---
+
+Here's the founder's dilemma: every feature can always be a little better. There's always one more edge case, one more polish pass, one more refactor. And every hour spent on the last 10% is an hour not spent shipping the next feature.
+
+The 90% rule: ship at 90% complete. Iterate from real usage. The remaining 10% is almost always different than what you expected.
+
+## Why 90% beats 100%
+
+The last 10% of a feature is rarely the part users care about. It's the parts *you* care about as the builder — the obscure edge case, the elegant abstraction, the tiny visual polish. Users don't see most of it.
+
+Shipping at 90% gets you something far more valuable than the last 10%: real data on what users actually do. That data tells you which 10% to build next — and it's almost never the 10% you would have built in isolation.
+
+## What "90%" actually means
+
+90% complete is not "buggy." It's:
+
+- The feature works for the most common path
+- It handles the second-most-common path
+- Edge cases either fail gracefully or are intentionally deferred
+- The UI is polished where users will see it most
+- Performance is acceptable, not optimal
+- It's documented for the team, not perfectly for end users
+
+The last 10% — the edge cases, the rare flows, the perfect polish — those get added based on actual usage, not anticipated usage.
+
+## Where the 90% rule breaks down
+
+The rule isn't universal. There are three places to ship 100%:
+
+1. **Anything involving money.** Payment flows, invoicing, refunds. Edge cases here become customer-trust issues, not just bugs.
+2. **Anything involving data loss.** Delete operations, undo functionality, sync conflicts. Users forgive most things; they don't forgive losing data.
+3. **Anything that's hard to fix later.** Database schemas, URL structures, public APIs. Get these right or you'll pay forever.
+
+For everything else: ship at 90%.
+
+## How to know you're at 90%
+
+A few signals:
+
+- The feature works in 80% of the test cases you would have written
+- The edge cases you're worried about are unlikely or recoverable
+- You've shown it to two people who aren't on the team and they understood it
+- The next thing you want to do is "make it nicer," not "make it work"
+
+When all four are true, you're at 90%. Ship it.
+
+## What to do with the saved time
+
+The hours you don't spend on the last 10% don't disappear — they go into the next feature. If you build 5 features at 90% in the time it takes to build 4 at 100%, you've shipped 25% more product *and* you have 5 sources of user feedback instead of 4.
+
+Compound that over a year. Now you understand why fast-shipping teams pull away.
+
+## The hardest part: deciding the 10% you're skipping
+
+The discipline isn't shipping — it's *deciding*. You have to consciously choose what *not* to build, and you have to be willing to say it out loud:
+
+> "We're not handling the case where the user has zero items selected. We'll fix it if it comes up."
+
+> "The empty state is just text for now. We'll redesign it after we know what users do."
+
+> "The mobile view is basic. We'll polish it after we see usage patterns."
+
+That's the rule, written down. The team agrees. You ship.
+
+## The takeaway
+
+The last 10% of a feature feels like the most important part because you're the closest to it. Distance reveals it for what it is: polish that users will mostly miss, on a feature that's already in their hands.
+
+Ship at 90%. Listen. Iterate. The product gets better faster than perfectionism allows.
+
+---
+
+*Trying to ship faster? [Book a strategy call](/strategy-call) — we'll review your roadmap and show you the 10% to cut from each feature.*

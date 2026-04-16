@@ -40,7 +40,7 @@ function MarqueeColumn({
   const doubled = [...images, ...images];
 
   return (
-    <div className="relative flex-1 overflow-hidden rounded-2xl" style={{ height: 780 }}>
+    <div className="relative flex-1 overflow-hidden rounded-2xl" style={{ height: 858 }}>
       <div
         className={`flex flex-col gap-3 ${
           direction === "up" ? "animate-marquee-up" : "animate-marquee-down"

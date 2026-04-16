@@ -128,7 +128,7 @@ export function SaaSCostCalculator() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <section className="px-6 lg:px-10 pt-[160px] pb-16">
+      <section className="px-6 lg:px-10 pt-[120px] pb-12">
         <div className="mx-auto max-w-[900px] text-center">
           <AnimateIn variant="fadeUp">
             <span className="badge-pill mb-6 inline-block">Free Tool</span>

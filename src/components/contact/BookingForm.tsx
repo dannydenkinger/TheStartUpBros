@@ -13,9 +13,27 @@ export function BookingForm() {
     e.preventDefault();
     setStatus("submitting");
 
-    // TODO: Connect to form endpoint (Formspree, Resend, or API route)
-    await new Promise((r) => setTimeout(r, 1000));
-    setStatus("success");
+    const form = new FormData(e.currentTarget);
+    const payload = {
+      source: "BookingForm",
+      name: form.get("name"),
+      email: form.get("email"),
+      company: form.get("company"),
+      budget: form.get("budget"),
+      description: form.get("description"),
+    };
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   if (status === "success") {

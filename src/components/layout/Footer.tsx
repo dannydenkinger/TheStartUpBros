@@ -4,10 +4,10 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/" },
       { label: "Portfolio", href: "/portfolio" },
+      { label: "Gallery", href: "/gallery" },
       { label: "Blog", href: "/blog" },
-      { label: "Contact", href: "/strategy-call" },
+      { label: "Book a Call", href: "/strategy-call" },
     ],
   },
   {
@@ -17,14 +17,15 @@ const columns = [
       { label: "SaaS Platforms", href: "/services/saas-dev" },
       { label: "AI Agents", href: "/services/ai-agents" },
       { label: "Web Design", href: "/services/web-design" },
+      { label: "Business Tools", href: "/services/tools" },
     ],
   },
   {
-    title: "Blog",
+    title: "Resources",
     links: [
       { label: "Case Studies", href: "/portfolio" },
-      { label: "How We Work", href: "/services" },
-      { label: "Book a Call", href: "/strategy-call" },
+      { label: "SaaS Cost Calculator", href: "/tools/saas-cost" },
+      { label: "All Services", href: "/services" },
     ],
   },
 ];
@@ -32,7 +33,7 @@ const columns = [
 export function Footer() {
   return (
     <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[1280px] px-6 lg:px-10 py-16">
+      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
         <div className="flex flex-col md:flex-row md:justify-between gap-12">
           {/* Brand */}
           <div className="max-w-xs">
@@ -72,24 +73,10 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="mt-12 pt-8 border-t border-border">
           <p className="text-[12px] text-muted-foreground">
             &copy; {new Date().getFullYear()} Startup Bros. All rights reserved.
           </p>
-          <div className="flex gap-6">
-            <Link
-              href="/contact"
-              className="text-[12px] text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Privacy Policy
-            </Link>
-            <Link
-              href="/contact"
-              className="text-[12px] text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </footer>

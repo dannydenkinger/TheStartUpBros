@@ -2,99 +2,76 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
-const workSamples = [
-  {
-    title: "Writesonic GEO Platform",
-    image: "/images/portfolio/sales-crm-perspective.webp",
-    href: "/portfolio/writesonic",
-  },
-  {
-    title: "Loopback MVP",
-    image: "/images/portfolio/ai-landing.webp",
-    href: "/portfolio/loopback",
-  },
-  {
-    title: "N3on Token Launch",
-    image: "/images/portfolio/defi-landing.webp",
-    href: "/portfolio/n3on",
-  },
-  {
-    title: "Thrust Mobile App",
-    image: "/images/portfolio/travel-app.webp",
-    href: "/portfolio/thrust",
-  },
-  {
-    title: "SocialSonic Dashboard",
-    image: "/images/portfolio/freelancer-dashboard.webp",
-    href: "/portfolio/socialsonic",
-  },
-  {
-    title: "Community Search",
-    image: "/images/portfolio/productivity-dashboard.webp",
-    href: "/portfolio/community",
-  },
+// Curated gallery — image-only showcase, no per-item navigation.
+// Mix of dashboards, mobile mockups, and landing pages for visual variety.
+const galleryImages = [
+  "/images/portfolio/sales-crm-perspective.webp",
+  "/images/portfolio/thrust-mobile.avif",
+  "/images/portfolio/ai-landing.webp",
+  "/images/portfolio/crm-dashboard.webp",
+  "/images/portfolio/freelancer-dashboard.webp",
+  "/images/portfolio/defi-landing.webp",
+  "/images/portfolio/fintech-mobile.webp",
+  "/images/portfolio/productivity-dashboard.webp",
+  "/images/portfolio/geo-analytics.avif",
+  "/images/portfolio/travel-app.webp",
+  "/images/portfolio/multichain.avif",
+  "/images/portfolio/sales-dashboard.avif",
+  "/images/portfolio/socialsonic.avif",
+  "/images/portfolio/fintech-dashboard.webp",
+  "/images/portfolio/community-search.avif",
 ];
 
 export function WorkSamples() {
   return (
-    <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
-      <div className="mx-auto max-w-[1400px]">
-        <AnimateIn>
-          <div className="text-center mb-16">
-            <h2 className="text-display mb-4">Work Samples</h2>
-          </div>
-        </AnimateIn>
-
-        {/* Bento-style grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {workSamples.map((sample, i) => (
-            <AnimateIn key={sample.title} delay={i * 0.06}>
-              <Link href={sample.href} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <Image
-                      src={sample.image}
-                      alt={sample.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-5">
-                    <h3 className="text-[16px] font-medium text-foreground group-hover:text-foreground/70 transition-colors">
-                      {sample.title}
-                    </h3>
-                  </div>
-                </div>
-              </Link>
-            </AnimateIn>
-          ))}
+    <section className="py-24 md:py-32 bg-background">
+      <AnimateIn>
+        <div className="text-center mb-16 px-6 lg:px-10">
+          <h2 className="text-display mb-4">Work Samples</h2>
         </div>
+      </AnimateIn>
 
-        {/* View More CTA */}
-        <AnimateIn delay={0.3}>
-          <div className="text-center mt-14">
-            <Link
-              href="/portfolio"
-              className="btn-pill btn-pill-secondary"
-            >
-              View More
-              <svg
-                width="16"
-                height="16"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="5" y1="12" x2="19" y2="12" />
-                <polyline points="12 5 19 12 12 19" />
-              </svg>
-            </Link>
+      {/* Uniform 4:3 grid — matches /gallery layout */}
+      <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        {galleryImages.map((src) => (
+          <div
+            key={src}
+            className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-9 group"
+          >
+            <div className="relative w-full h-full overflow-hidden rounded-xl">
+              <Image
+                src={src}
+                alt=""
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+              />
+            </div>
           </div>
-        </AnimateIn>
+        ))}
       </div>
+
+      {/* View More CTA → /gallery */}
+      <AnimateIn delay={0.15}>
+        <div className="text-center mt-14 px-6 lg:px-10">
+          <Link href="/gallery" className="btn-pill btn-pill-primary">
+            View Full Gallery
+            <svg
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
+            </svg>
+          </Link>
+        </div>
+      </AnimateIn>
     </section>
   );
 }

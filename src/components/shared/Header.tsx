@@ -77,12 +77,14 @@ export function Header() {
              </button>
 
              {industriesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[300px] p-2 rounded-2xl shadow-xl grid grid-cols-2 gap-1 pointer-events-auto border border-border" style={{ background: 'var(--surface-dropdown-bg)' }}>
-                  {industries.map(item => (
-                    <Link key={item.name} href={item.href} className="px-4 py-2 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors">
-                      {item.name}
-                    </Link>
-                  ))}
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 pointer-events-auto">
+                  <div className="w-[300px] p-2 rounded-2xl shadow-xl grid grid-cols-2 gap-1 border border-border" style={{ background: 'var(--surface-dropdown-bg)' }}>
+                    {industries.map(item => (
+                      <Link key={item.name} href={item.href} className="px-4 py-2 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors">
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
              )}
            </div>

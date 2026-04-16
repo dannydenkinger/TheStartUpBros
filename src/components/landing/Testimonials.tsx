@@ -80,26 +80,19 @@ export function Testimonials() {
           </div>
         </AnimateIn>
 
-        {/* Row 1 — scrolls left, seamless infinite */}
+        {/* Row 1 — scrolls left, seamless infinite.
+            Content is rendered twice so -50% animation closes cleanly at a card boundary. */}
         <div className="relative flex w-full overflow-hidden">
-          <div className="flex [gap:1rem] animate-marquee [--duration:60s]">
-            {[...Array(4)].map((_, setIndex) =>
-              topRow.map((testimonial, i) => (
-                <TestimonialCard
-                  key={`top-a-${setIndex}-${i}`}
-                  {...testimonial}
-                />
-              ))
-            )}
-          </div>
-          <div className="flex [gap:1rem] animate-marquee [--duration:60s]" aria-hidden="true">
-            {[...Array(4)].map((_, setIndex) =>
-              topRow.map((testimonial, i) => (
-                <TestimonialCard
-                  key={`top-b-${setIndex}-${i}`}
-                  {...testimonial}
-                />
-              ))
+          <div className="flex animate-marquee [--duration:60s] [&>*]:mr-4">
+            {[...Array(2)].map((_, groupIdx) =>
+              [...Array(4)].map((_, setIndex) =>
+                topRow.map((testimonial, i) => (
+                  <TestimonialCard
+                    key={`top-${groupIdx}-${setIndex}-${i}`}
+                    {...testimonial}
+                  />
+                )),
+              ),
             )}
           </div>
 
@@ -109,24 +102,16 @@ export function Testimonials() {
 
         {/* Row 2 — scrolls right, seamless infinite */}
         <div className="relative flex w-full overflow-hidden -mt-8">
-          <div className="flex [gap:1rem] animate-marquee [--duration:65s] [animation-direction:reverse]">
-            {[...Array(4)].map((_, setIndex) =>
-              bottomRow.map((testimonial, i) => (
-                <TestimonialCard
-                  key={`bottom-a-${setIndex}-${i}`}
-                  {...testimonial}
-                />
-              ))
-            )}
-          </div>
-          <div className="flex [gap:1rem] animate-marquee [--duration:65s] [animation-direction:reverse]" aria-hidden="true">
-            {[...Array(4)].map((_, setIndex) =>
-              bottomRow.map((testimonial, i) => (
-                <TestimonialCard
-                  key={`bottom-b-${setIndex}-${i}`}
-                  {...testimonial}
-                />
-              ))
+          <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4">
+            {[...Array(2)].map((_, groupIdx) =>
+              [...Array(4)].map((_, setIndex) =>
+                bottomRow.map((testimonial, i) => (
+                  <TestimonialCard
+                    key={`bottom-${groupIdx}-${setIndex}-${i}`}
+                    {...testimonial}
+                  />
+                )),
+              ),
             )}
           </div>
 

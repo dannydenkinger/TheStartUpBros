@@ -1,0 +1,132 @@
+---
+title: "How to Scope an MVP in a 2-Hour Call"
+description: "Most MVPs fail at scoping, not building. Here's the exact agenda we use to turn a 2-hour conversation into a complete MVP plan."
+date: "2026-04-14"
+author: "Brady Bender"
+authorRole: "CEO & Co-Founder"
+readTime: "8 min read"
+category: "Process"
+tags: ["MVP", "Process", "Scoping"]
+image: "/images/portfolio/sales-dashboard.avif"
+---
+
+The hardest part of building an MVP isn't the building. It's deciding what *not* to build. We've shipped 30+ MVPs in the last two years, and the difference between the ones that hit their launch date and the ones that slip is almost always how the scope call went.
+
+Here's the agenda we use. It works because it's relentless about cutting.
+
+## Before the call: 4 questions
+
+We send the founder these four questions 24 hours before the call. Their answers shape the entire conversation:
+
+1. **What's the one outcome a user gets from this product?** (One sentence. Not features — the outcome.)
+2. **Who specifically is the first user?** (Job title, company size, current workflow.)
+3. **What would a user pay $50/month for, today?** (Not what would be nice — what's worth real money.)
+4. **What happens if we ship in 4 weeks instead of 12?** (What gets cut? What stays?)
+
+Half the founders rewrite their answers three times before the call. That's the point — we want the deferred clarity to surface before we're on Zoom.
+
+## Hour 1: Define the wedge
+
+The first hour is spent on the *wedge* — the smallest, sharpest version of the product that delivers the one outcome to the one user.
+
+We do this with three rounds of cutting:
+
+### Round 1: Strip to the core loop
+
+Every product has a core loop — the action the user takes that produces the value they're paying for. We map it on a whiteboard:
+
+> User opens app → does X → gets Y → returns tomorrow because Z
+
+Anything not on that loop gets crossed out. Onboarding flows, settings pages, admin panels, dashboards — all "needed eventually," but not in the wedge.
+
+### Round 2: Cut the second-best path
+
+Most founders want to support two or three workflows on day one. We pick the one that produces the clearest outcome and cut the others.
+
+If the founder says "but some users will want to..." we write it down for v2. The wedge serves *one* user with *one* workflow.
+
+### Round 3: Cut the polish
+
+The wedge ships at 90%. We name what we're explicitly *not* building:
+
+- No empty states (just text for now)
+- No mobile (web-first, mobile later)
+- No team accounts (single-user only)
+- No analytics dashboard (use Stripe + PostHog)
+
+Each cut goes on the "v2" list. The list is long. That's how we know we're scoping right.
+
+## Hour 2: Build the plan
+
+The second hour translates the wedge into a 4-week build plan.
+
+### Week 1: Foundation
+
+- Auth, database, deploy pipeline
+- The data model for the core loop
+- Stripe set up (always week 1 — see [our other post](/blog/stripe-from-day-one))
+- The simplest possible version of the core flow, end-to-end
+
+By the end of week 1, the founder can use the product. It's ugly. It works.
+
+### Week 2: The core experience
+
+- Polish the core loop until it feels good
+- Add the second-most-common path (the one we kept from Round 2)
+- First version of onboarding for new users
+- Internal feedback from the founder daily
+
+### Week 3: Launch readiness
+
+- Pricing page, marketing site
+- Customer Portal, billing flows
+- Email notifications for the events that matter
+- Analytics on the conversion funnel
+
+### Week 4: Polish and launch
+
+- Bug bash with 3-5 friendly users
+- Visual polish on the surfaces users see most
+- Launch day operations
+- Post-launch monitoring and rapid response
+
+## What we don't decide on the call
+
+We don't pick:
+
+- The exact tech stack (we have a default; we use it)
+- The visual design (we have a system; we extend it)
+- Hosting (Vercel + Supabase, always)
+- Auth provider (Clerk or Supabase Auth, depending on need)
+
+Pre-deciding these saves hours of bikeshedding and lets the call stay focused on *what to build*, not *how*.
+
+## The output
+
+By the end of the 2-hour call, the founder has:
+
+- A one-sentence wedge definition
+- A list of features in scope (usually 5-8)
+- An equally long list of features explicitly *out* of scope
+- A week-by-week plan
+- A launch date
+
+The plan goes in writing within 24 hours. We start work the next Monday.
+
+## The hardest moment
+
+The hardest moment of every scope call is when the founder pushes back on a cut. "But we really need [feature]." Our answer is always the same:
+
+> "Not for the wedge. We'll build it in week 5 if it's still the right call. But we'll know by then — because we'll have real users."
+
+That's the discipline. Most MVPs fail because the scope call ends with too much in. Ours work because they end with almost nothing in — and the right things added back as data comes in.
+
+## The takeaway
+
+Scope is the lever. Two focused hours of cutting can save you three months of building the wrong thing. Use the time wisely — and always cut more than feels comfortable.
+
+The wedge is what ships. Everything else is a roadmap.
+
+---
+
+*Have an idea you want to scope? [Book a strategy call](/strategy-call) — first 30 minutes are free, no commitment.*

@@ -14,5 +14,5 @@ export const navigationItems: NavItem[] = [
   },
   { label: "Portfolio", href: "/portfolio" },
   { label: "Blog", href: "/blog" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contact", href: "/strategy-call" },
 ];

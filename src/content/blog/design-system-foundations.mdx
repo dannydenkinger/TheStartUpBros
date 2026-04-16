@@ -1,0 +1,93 @@
+---
+title: "Design System Foundations: What to Build First"
+description: "You don't need a full design system to ship fast. You need the four primitives that prevent the next six months of inconsistency."
+date: "2026-03-29"
+author: "Brady Bender"
+authorRole: "CEO & Co-Founder"
+readTime: "8 min read"
+category: "Engineering"
+tags: ["Design Systems", "Engineering", "Tokens"]
+image: "/images/portfolio/crm-journeys.webp"
+---
+
+The mistake most teams make with design systems: they try to build everything before they ship anything. Six months later they have a Storybook with 40 components and a product that still ships inconsistent UI.
+
+Here's what to build first — the four primitives that prevent inconsistency without slowing you down.
+
+## 1. Tokens, not constants
+
+Every spacing value, color, radius, font size, and shadow lives as a *token*, not a hardcoded number. Tokens are named, semantic, and versioned. Constants are scattered, opaque, and impossible to change globally.
+
+Minimum token surface:
+
+- **Spacing scale:** 4, 8, 12, 16, 20, 24, 32, 40, 48, 64
+- **Color roles:** background, foreground, muted, primary, border, destructive
+- **Radii:** sm, md, lg, full
+- **Type scale:** caption, body, body-lg, h3, h2, h1, display
+
+Six months in, when the founder says "make everything 10% denser," you change three numbers and ship. Without tokens, you change 200 files.
+
+## 2. Theme variables, not hex codes
+
+Every color references a CSS variable, never a hex. This isn't about dark mode — it's about *every* mode you might ship later. Tenant-branded white-label? Theme variable. High-contrast accessibility mode? Theme variable. Holiday theme for marketing? Theme variable.
+
+```css
+/* Bad */
+.button-primary { background: #0a0a0b; }
+
+/* Good */
+.button-primary { background: var(--color-primary); }
+```
+
+The discipline is harder than it looks. The payoff is enormous.
+
+## 3. Typography utility classes
+
+Three text-related decisions kill consistency faster than anything else:
+
+- Font size
+- Line height
+- Letter spacing
+
+Wrap them in named utility classes — `.text-h1`, `.text-body-lg`, `.text-caption` — and never let anyone write a one-off `font-size` outside the system.
+
+This single rule prevents the most common inconsistency in growing products: 12 different shades of "kind of like a heading."
+
+## 4. One button component, three variants
+
+Buttons are the most-used component in any UI. They're also the most-cloned. Every team ends up with 8 button styles by accident.
+
+The fix: ship one Button component with three variants (primary, secondary, ghost) and a size prop (sm, md, lg). Lock it down. Code review for new button styles.
+
+If a designer wants a fourth variant, they have to argue for it in a design review — not just paste new styles.
+
+## What to *not* build first
+
+These can wait until you have the four primitives:
+
+- **Form components** — every form is different early on; abstract too soon and you'll regret it
+- **Tables** — your first 5 tables will all need different things; wait for the pattern
+- **Modal/dialog system** — Radix UI Dialog is fine until you have a real reason to wrap it
+- **Icon system** — Lucide React is enough; don't build a custom icon set until you have a brand reason to
+- **Storybook** — useful at 30+ components, distracting at 5
+
+## When tokens become a system
+
+You'll know you're ready to call it a "design system" when:
+
+- New designers can't add styles without hitting an existing token
+- New engineers can't add colors without referencing a variable
+- A typography change ships in 1 PR, not 20
+- You can theme the entire app by changing one set of variables
+
+That's the bar. Until then, you don't have a design system — you have foundations. And foundations are exactly what you need.
+
+## The takeaway
+
+Build the four primitives — tokens, theme variables, typography utilities, one button component — and let the rest emerge from real product needs. Don't build a system in the abstract. Let the product write the requirements.
+
+Six months from now, you'll have a real design system that fits how your product actually grew — instead of one that constrains how it should have.
+
+---
+
+*Setting up a design system? [Book a strategy call](/strategy-call) — we'll review your stack and send you the four-week sprint plan we use with new product teams.*
