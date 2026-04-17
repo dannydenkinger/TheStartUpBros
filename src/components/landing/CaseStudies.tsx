@@ -67,9 +67,9 @@ export function CaseStudies() {
         {/* Section Header */}
         <AnimateIn>
           <div className="text-center mb-16">
-            <span className="badge-pill mb-6 inline-block">Design Studies</span>
+            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>Design Studies</span>
             <h2 className="text-h2 text-foreground">
-              Product deep-dives from the
+              Product <span style={{ color: 'var(--accent-brand)' }}>deep-dives</span> from the
               <br className="hidden sm:block" />
               kind of SaaS we build
             </h2>

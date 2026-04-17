@@ -10,17 +10,17 @@ export const metadata = {
 // Every screenshot available, shuffled for visual rhythm (dashboards, mobiles, landings interleaved)
 const galleryImages = [
   "/images/portfolio/vesta-hero.png",
-  "/images/portfolio/thrust-mobile.avif",
+  "/images/portfolio/zonex-dashboard.webp",
   "/images/portfolio/ai-landing.webp",
   "/images/portfolio/vesta-calendar.png",
-  "/images/portfolio/freelancer-dashboard.webp",
+  "/images/portfolio/zonex-film.webp",
   "/images/portfolio/defi-landing.webp",
   "/images/portfolio/vesta-analytics.png",
-  "/images/portfolio/productivity-dashboard.webp",
+  "/images/portfolio/zonex-coaching.webp",
   "/images/portfolio/geo-analytics.avif",
   "/images/portfolio/vesta-seo.png",
   "/images/portfolio/multichain.avif",
-  "/images/portfolio/sales-dashboard.avif",
+  "/images/portfolio/zonex-game-data.webp",
   "/images/portfolio/vesta-login.png",
   "/images/portfolio/fintech-dashboard.webp",
   "/images/portfolio/community-search.avif",
@@ -44,7 +44,7 @@ export default function GalleryPage() {
       {/* Hero */}
       <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
         <h1 className="text-display mt-8 mb-4 max-w-4xl mx-auto text-foreground">
-          Gallery
+          <span style={{ color: 'var(--accent-brand)' }}>Gallery</span>
         </h1>
         <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground">
           A visual tour of our product, dashboard, mobile, and web3 work.

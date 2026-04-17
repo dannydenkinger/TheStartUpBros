@@ -175,7 +175,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
         <div className="mx-auto max-w-[680px] text-center">
           <AnimateIn>
             <h2 className="text-h1 text-foreground mb-5">
-              Ready to Build Something Like This?
+              Ready to <span style={{ color: 'var(--accent-brand)' }}>Build</span> Something Like This?
             </h2>
             <p className="text-body-lg mb-10">
               Book a free strategy call. We&apos;ll scope your project and map
@@ -183,9 +183,11 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <MagneticButton>
-                <CTAButton href="/strategy-call" variant="primary">
-                  Book Strategy Call
-                </CTAButton>
+                <div style={{ borderRadius: 'inherit', boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}>
+                  <CTAButton href="/strategy-call" variant="primary">
+                    Book Strategy Call
+                  </CTAButton>
+                </div>
               </MagneticButton>
               <CTAButton href="/portfolio" variant="secondary">
                 View More Work

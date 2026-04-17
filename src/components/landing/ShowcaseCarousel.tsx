@@ -6,21 +6,21 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 // Distribute images across 4 columns — each column gets 2-3 images, duplicated for infinite loop
 const col1 = [
   { src: "/images/portfolio/vesta-hero.png", w: 2544, h: 1351 },
-  { src: "/images/portfolio/ai-finance.avif", w: 512, h: 321 },
+  { src: "/images/portfolio/zonex-film.webp", w: 1920, h: 1080 },
   { src: "/images/portfolio/travel-app.webp", w: 800, h: 600 },
 ];
 const col2 = [
-  { src: "/images/portfolio/sales-crm-full.webp", w: 800, h: 600 },
+  { src: "/images/portfolio/zonex-dashboard.webp", w: 1920, h: 1072 },
   { src: "/images/portfolio/vesta-calendar.png", w: 2538, h: 1348 },
   { src: "/images/portfolio/fintech-mobile.webp", w: 800, h: 600 },
 ];
 const col3 = [
   { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
   { src: "/images/portfolio/vesta-analytics.png", w: 2554, h: 1350 },
-  { src: "/images/portfolio/community-search.avif", w: 488, h: 363 },
+  { src: "/images/portfolio/zonex-coaching.webp", w: 3840, h: 2160 },
 ];
 const col4 = [
-  { src: "/images/portfolio/freelancer-dashboard.webp", w: 800, h: 600 },
+  { src: "/images/portfolio/zonex-game-data.webp", w: 3840, h: 2160 },
   { src: "/images/portfolio/vesta-seo.png", w: 2554, h: 1350 },
   { src: "/images/portfolio/vesta-login.png", w: 2538, h: 1339 },
 ];

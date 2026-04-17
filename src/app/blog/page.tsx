@@ -53,7 +53,7 @@ export default function BlogPage() {
       {/* Blog Hero */}
       <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
         <h1 className="text-display mb-4 max-w-4xl mx-auto text-foreground">
-          Blog &amp; Case Studies
+          Blog &amp; Case <span style={{ color: 'var(--accent-brand)' }}>Studies</span>
         </h1>
         <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground">
           Lessons from the trenches of rapid product development.

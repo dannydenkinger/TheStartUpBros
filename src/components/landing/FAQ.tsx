@@ -150,8 +150,8 @@ export function FAQ() {
       <div className="mx-auto max-w-[1200px]">
         <AnimateIn>
           <div className="text-center mb-14">
-            <span className="badge-pill mb-6 inline-block">FAQs</span>
-            <h2 className="text-display mb-4">All your Questions, Answered.</h2>
+            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>FAQs</span>
+            <h2 className="text-display mb-4">All your Questions, <span style={{ color: 'var(--accent-brand)' }}>Answered.</span></h2>
           </div>
         </AnimateIn>
 

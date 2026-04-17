@@ -16,8 +16,8 @@ const techStackLogos = [
 
 function StudioIcon() {
   return (
-    <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-[4px] bg-foreground shrink-0">
-      <span className="text-background text-[10px] font-bold leading-none tracking-tighter">
+    <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-[4px] shrink-0" style={{ background: 'var(--accent-brand)' }}>
+      <span className="text-white text-[10px] font-bold leading-none tracking-tighter">
         SB
       </span>
     </span>
@@ -72,7 +72,8 @@ export function Hero() {
         {/* Headline */}
         <AnimateIn variant="fadeUp" delay={0.08}>
           <h1 className="text-display text-foreground">
-            Websites and products for fast-moving
+            Websites and products for{" "}
+            <span style={{ color: 'var(--accent-brand)' }}>fast-moving</span>
             <br className="hidden md:block" />
             B2B and AI SaaS teams
           </h1>
@@ -92,6 +93,7 @@ export function Hero() {
               <Link
                 href="/strategy-call"
                 className="btn-pill btn-pill-primary inline-flex items-center gap-2.5 !pl-3"
+                style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
               >
                 <GoogleMeetIcon />
                 Book A Call

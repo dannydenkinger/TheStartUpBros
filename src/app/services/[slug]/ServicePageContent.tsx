@@ -95,7 +95,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       <section className="px-6 lg:px-10 pt-[120px] pb-16 md:pb-20 text-center flex flex-col items-center justify-center">
         <AnimateIn variant="fadeUp">
           <div className="flex flex-wrap justify-center gap-3 mb-8">
-            <div className="badge-pill flex items-center gap-2">
+            <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
               <svg
                 width="14"
                 height="14"
@@ -113,7 +113,7 @@ export function ServicePageContent({ service }: { service: Service }) {
               </svg>
               Founded by Denkinger Bros
             </div>
-            <div className="badge-pill flex items-center gap-2">
+            <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
               <svg
                 width="14"
                 height="14"
@@ -172,9 +172,11 @@ export function ServicePageContent({ service }: { service: Service }) {
         <AnimateIn variant="fadeUp" delay={0.24}>
           <div className="flex flex-col sm:flex-row items-center gap-3">
             <MagneticButton>
-              <CTAButton href="/strategy-call" variant="primary">
-                Book Strategy Call
-              </CTAButton>
+              <div style={{ borderRadius: 'inherit', boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}>
+                <CTAButton href="/strategy-call" variant="primary">
+                  Book Strategy Call
+                </CTAButton>
+              </div>
             </MagneticButton>
             <CTAButton href="/portfolio" variant="secondary">
               View Our Work
@@ -244,7 +246,7 @@ export function ServicePageContent({ service }: { service: Service }) {
           <div className="max-w-[1280px] mx-auto">
             <AnimateIn>
               <div className="text-center mb-16">
-                <h2 className="text-h2 text-foreground">What&apos;s Included</h2>
+                <h2 className="text-h2 text-foreground">What&apos;s <span style={{ color: 'var(--accent-brand)' }}>Included</span></h2>
               </div>
             </AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -433,7 +435,7 @@ export function ServicePageContent({ service }: { service: Service }) {
         <div className="max-w-[760px] mx-auto text-center">
           <AnimateIn>
             <h2 className="text-h2 text-foreground mb-5">
-              So much value at such a flexible price
+              So much value at such a <span style={{ color: 'var(--accent-brand)' }}>flexible</span> price
             </h2>
             <p className="text-body-lg mb-10">
               Consultation-based custom pricing. We scope every project to the

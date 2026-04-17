@@ -131,9 +131,9 @@ export function SaaSCostCalculator() {
       <section className="px-6 lg:px-10 pt-[120px] pb-12">
         <div className="mx-auto max-w-[900px] text-center">
           <AnimateIn variant="fadeUp">
-            <span className="badge-pill mb-6 inline-block">Free Tool</span>
+            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>Free Tool</span>
             <h1 className="text-display text-foreground mb-4">
-              SaaS Cost Calculator
+              SaaS Cost <span style={{ color: 'var(--accent-brand)' }}>Calculator</span>
             </h1>
             <p className="text-body-lg max-w-[600px] mx-auto">
               Toggle the features your MVP needs. We&apos;ll estimate the

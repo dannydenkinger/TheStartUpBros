@@ -85,6 +85,11 @@
   --sidebar-border: rgba(255, 255, 255, 0.1);
   --sidebar-ring: rgba(255, 255, 255, 0.2);
 
+  /* Brand accent — used sparingly on homepage for visual interest */
+  --accent-brand: #6366f1;
+  --accent-brand-soft: rgba(99, 102, 241, 0.15);
+  --accent-brand-glow: rgba(99, 102, 241, 0.25);
+
   /* Theme-aware surface colors */
   --surface-bg: #0a0a0b;
   --surface-card: rgba(255, 255, 255, 0.03);
@@ -151,6 +156,10 @@
   --surface-logo-bg: #1b1b1e;
   --surface-logo-mark: #ffffff;
   --surface-carousel-bg: #ffffff;
+
+  --accent-brand: #6366f1;
+  --accent-brand-soft: rgba(99, 102, 241, 0.08);
+  --accent-brand-glow: rgba(99, 102, 241, 0.12);
 }
 
 @layer base {

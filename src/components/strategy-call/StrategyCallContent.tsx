@@ -85,7 +85,7 @@ export function StrategyCallContent() {
 
               <AnimateIn variant="fadeUp" delay={0.08}>
                 <h1 className="text-[40px] md:text-[56px] font-medium text-foreground leading-[1.05] tracking-[-0.03em] mb-6">
-                  Let&apos;s map out your v1.0
+                  Let&apos;s map out your <span style={{ color: 'var(--accent-brand)' }}>v1.0</span>
                   <br className="hidden md:block" /> in the next 30 days.
                 </h1>
               </AnimateIn>
@@ -260,6 +260,7 @@ export function StrategyCallContent() {
                         type="submit"
                         disabled={isSubmitting}
                         className="btn-pill btn-pill-primary w-full !py-3 disabled:opacity-60 disabled:cursor-not-allowed"
+                        style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center gap-2">

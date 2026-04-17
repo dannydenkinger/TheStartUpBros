@@ -333,13 +333,13 @@ export default async function IndustryPage({
       {/* ── Hero ── */}
       <section className="px-6 lg:px-10 pt-[120px] pb-[60px] text-center flex flex-col items-center justify-center">
         <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <div className="badge-pill flex items-center gap-2">
+          <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
             Founded by Denkinger Bros
           </div>
-          <div className="badge-pill flex items-center gap-2">
+          <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -360,6 +360,7 @@ export default async function IndustryPage({
           <Link
             href="/strategy-call"
             className="btn-pill btn-pill-primary px-8 py-3.5"
+            style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
           >
             Book Strategy Call
           </Link>
@@ -502,7 +503,7 @@ export default async function IndustryPage({
       <section className="px-6 lg:px-10 py-24 md:py-32 bg-background border-t border-border">
         <div className="max-w-[760px] mx-auto text-center">
           <h2 className="text-h2 text-foreground mb-5">
-            So much value at such a flexible price
+            So much value at such a <span style={{ color: 'var(--accent-brand)' }}>flexible</span> price
           </h2>
           <p className="text-body-lg mb-10">
             Consultation-based custom pricing. We scope every project to the

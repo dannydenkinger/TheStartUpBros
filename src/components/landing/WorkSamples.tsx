@@ -6,17 +6,17 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 // Mix of dashboards, mobile mockups, and landing pages for visual variety.
 const galleryImages = [
   "/images/portfolio/vesta-hero.png",
-  "/images/portfolio/thrust-mobile.avif",
+  "/images/portfolio/zonex-dashboard.webp",
   "/images/portfolio/ai-landing.webp",
   "/images/portfolio/vesta-calendar.png",
-  "/images/portfolio/freelancer-dashboard.webp",
+  "/images/portfolio/zonex-film.webp",
   "/images/portfolio/defi-landing.webp",
   "/images/portfolio/vesta-analytics.png",
-  "/images/portfolio/productivity-dashboard.webp",
+  "/images/portfolio/zonex-coaching.webp",
   "/images/portfolio/geo-analytics.avif",
   "/images/portfolio/vesta-seo.png",
   "/images/portfolio/multichain.avif",
-  "/images/portfolio/sales-dashboard.avif",
+  "/images/portfolio/zonex-game-data.webp",
   "/images/portfolio/vesta-login.png",
   "/images/portfolio/fintech-dashboard.webp",
   "/images/portfolio/community-search.avif",
@@ -27,7 +27,7 @@ export function WorkSamples() {
     <section className="py-24 md:py-32 bg-background">
       <AnimateIn>
         <div className="text-center mb-16 px-6 lg:px-10">
-          <h2 className="text-display mb-4">Work Samples</h2>
+          <h2 className="text-display mb-4">Work <span style={{ color: 'var(--accent-brand)' }}>Samples</span></h2>
         </div>
       </AnimateIn>
 

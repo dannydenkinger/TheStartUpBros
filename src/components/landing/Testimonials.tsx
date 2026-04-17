@@ -72,7 +72,7 @@ export function Testimonials() {
         <AnimateIn>
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-6">
             <h2 className="text-display max-w-[720px] mx-auto">
-              How we work
+              How we <span style={{ color: 'var(--accent-brand)' }}>work</span>
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
               The principles behind every project we ship.
