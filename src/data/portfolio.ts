@@ -165,8 +165,8 @@ export const projects: PortfolioProject[] = [
     outcomes: [
       "Shipped to Apple App Store, Google Play Store, and browser",
       "Deployed across concerts, conferences, sports venues, and creator drops",
-      "Partnership with Unsigned Prospects for collegiate athlete content ownership",
-      "Joint venture with ZFlo addressing the $30B package security problem",
+      "Multi-surface design system unifying iOS, Android, and web",
+      "Blockchain infrastructure wrapped in interactions any non-crypto user understands",
     ],
     gallery: [
       {
