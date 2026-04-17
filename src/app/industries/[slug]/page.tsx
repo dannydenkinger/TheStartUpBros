@@ -68,9 +68,9 @@ type IndustryData = {
 const industryData: Record<string, IndustryData> = {
   marketing: {
     label: "Marketing",
-    headline: "Unforgettable Website & UX Design For Marketing SaaS",
+    headline: "Full-Stack Development For Marketing Startups",
     subtitle:
-      "We design delightful website & product user experiences for Marketing SaaS to increase signups & conversions.",
+      "We build custom apps, websites, and software for Marketing startups — from idea to launch.",
     caseStudies: [
       {
         tag: "Marketing",
@@ -91,53 +91,53 @@ const industryData: Record<string, IndustryData> = {
     features: [
       {
         icon: "Zap",
-        title: "Fast Campaign Setup",
+        title: "Rapid MVP Delivery",
         description:
-          "We reduce friction in onboarding so users can launch their first campaign within minutes.",
+          "We ship your marketing platform fast — functional core features first so you can start acquiring users immediately.",
       },
       {
         icon: "Target",
-        title: "Outcome-Focused UX",
+        title: "Conversion-Driven Architecture",
         description:
-          "We design around what marketers care about — reach, ROI, and what's actually working.",
+          "Every feature we build is engineered to drive signups, engagement, and revenue — not just look good.",
       },
       {
         icon: "BarChart3",
-        title: "Clarity in Metrics",
+        title: "Analytics & Reporting Engines",
         description:
-          "We turn raw performance data into clean insights — easy to share, easy to act on.",
+          "We build custom dashboards and reporting pipelines that turn raw data into actionable marketing insights.",
       },
       {
         icon: "Users",
-        title: "Multi-Role Interfaces",
+        title: "Multi-Tenant Platforms",
         description:
-          "From CMOs to interns, we build flows that adapt to each role's goals, not just generic tools.",
+          "From solo founders to enterprise teams, we architect role-based systems that scale with your user base.",
       },
       {
         icon: "Repeat",
-        title: "Sticky Daily Workflows",
+        title: "Automation & Integrations",
         description:
-          "We design flows users return to — tracking progress, adjusting, iterating, and reporting.",
+          "We wire up APIs, webhooks, and third-party integrations so your platform works seamlessly with the tools marketers already use.",
       },
       {
         icon: "Layers",
-        title: "Visual Builder Optimization",
+        title: "Scalable Infrastructure",
         description:
-          "Drag-and-drop is just the start. We fine-tune builders for conversion, clarity, and speed.",
+          "Clean code, modular architecture, and cloud-native deployments — built to handle growth from day one.",
       },
     ],
     testimonial: {
       quote:
-        "They told us 'no' more than they told us 'yes' — and that's exactly why we hit 1000 users. Focus shipped the product.",
+        "They told us 'no' more than they told us 'yes' — and that's exactly why the MVP shipped clean. StartUpBros built exactly what we needed to hit 1000 users.",
       name: "Daniel Lee",
       role: "Founder @ SocialSonic",
     },
   },
   ai: {
     label: "AI",
-    headline: "Unforgettable Website & UX Design For AI SaaS",
+    headline: "Full-Stack Development For AI Startups",
     subtitle:
-      "We design delightful website & product user experiences for AI SaaS to increase signups & conversions.",
+      "We build custom apps, websites, and software for AI startups — from idea to launch.",
     caseStudies: [
       {
         tag: "AI SaaS",
@@ -157,53 +157,53 @@ const industryData: Record<string, IndustryData> = {
     features: [
       {
         icon: "Eye",
-        title: "Model Output Visualization",
+        title: "Model Integration & APIs",
         description:
-          "We design interfaces that make AI outputs interpretable and actionable for non-technical users.",
+          "We build robust backends that connect to LLMs, vision models, and custom ML pipelines — making AI outputs production-ready.",
       },
       {
         icon: "Terminal",
-        title: "Prompt Engineering UX",
+        title: "Custom AI Feature Development",
         description:
-          "We create intuitive prompt interfaces that help users get the best results from AI models.",
+          "From prompt orchestration to fine-tuning workflows, we engineer the AI-powered features that set your product apart.",
       },
       {
         icon: "Activity",
-        title: "Real-Time Feedback Loops",
+        title: "Real-Time Processing Infrastructure",
         description:
-          "We build interfaces that show AI processing states clearly so users always know what's happening.",
+          "We build streaming, websocket, and queue-based systems so your AI features respond instantly at scale.",
       },
       {
         icon: "Shield",
-        title: "Trust & Transparency",
+        title: "Security & Compliance Engineering",
         description:
-          "We design explainable AI interfaces that build user confidence through transparency.",
+          "We architect data handling, access controls, and audit trails that keep your AI product trustworthy and compliant.",
       },
       {
         icon: "Workflow",
-        title: "Adaptive Workflows",
+        title: "Intelligent Automation Pipelines",
         description:
-          "We create flows that learn from user behavior and surface the most relevant features.",
+          "We build multi-step AI workflows — chained models, conditional logic, and human-in-the-loop checkpoints baked into your product.",
       },
       {
         icon: "GitBranch",
-        title: "Data Pipeline Clarity",
+        title: "Data Pipeline Engineering",
         description:
-          "We visualize complex data flows so users understand how their data moves through AI systems.",
+          "We architect ETL pipelines, vector databases, and retrieval systems that keep your AI models fed with clean, current data.",
       },
     ],
     testimonial: {
       quote:
-        "Startup Bros didn't just ship screens — they built the design language that the rest of our product now follows.",
+        "StartUpBros didn't just ship features — they built the technical foundation that the rest of our product now runs on.",
       name: "Samanyou Garg",
       role: "Founder @ Writesonic",
     },
   },
   sales: {
     label: "Sales",
-    headline: "Unforgettable Website & UX Design For Sales SaaS & CRM",
+    headline: "Full-Stack Development For Sales & CRM Startups",
     subtitle:
-      "We design delightful website & product user experiences for Sales SaaS to increase signups & conversions.",
+      "We build custom apps, websites, and software for Sales startups — from idea to launch.",
     caseStudies: [
       {
         tag: "Sales Tools",
@@ -224,44 +224,44 @@ const industryData: Record<string, IndustryData> = {
     features: [
       {
         icon: "TrendingUp",
-        title: "Clear Deal Stages",
+        title: "Custom Pipeline Engineering",
         description:
-          "We design pipelines that make deal progression obvious — every rep knows what to do next.",
+          "We build deal-tracking systems with real-time stage transitions, automated follow-ups, and forecasting logic baked in.",
       },
       {
         icon: "MousePointerClick",
-        title: "One-Click Actions",
+        title: "Workflow Automation",
         description:
-          "Every common action — log a call, send a template, update a stage — is one click away.",
+          "Log calls, fire emails, update stages — we engineer one-click automations that eliminate repetitive busywork for your reps.",
       },
       {
         icon: "UserCog",
-        title: "Role-Based UX",
+        title: "Role-Based Access & Views",
         description:
-          "SDRs, AEs, and sales leaders each see the surface that matches their daily workflow.",
+          "We architect permission systems and custom dashboards so SDRs, AEs, and managers each get exactly the data they need.",
       },
       {
         icon: "Rocket",
-        title: "Activation-Led Onboarding",
+        title: "Fast Onboarding Flows",
         description:
-          "We design onboarding flows that get reps to their first closed deal — not to a settings page.",
+          "We build activation sequences that get new users to their first value moment — importing contacts, not configuring settings.",
       },
       {
         icon: "Smartphone",
-        title: "Mobile-First Approach",
+        title: "Mobile-Ready Architecture",
         description:
-          "Sales happens on the road. Every workflow is designed to work one-handed on a phone.",
+          "Sales happens on the road. We build responsive, PWA-capable platforms that perform flawlessly on any device.",
       },
       {
         icon: "DollarSign",
-        title: "Revenue-Focused Design",
+        title: "Revenue-Driven Features",
         description:
-          "Every screen earns its place by helping reps close more, faster — or it doesn't ship.",
+          "Every feature we ship is tied to a revenue outcome — helping reps close more deals, faster, with less friction.",
       },
     ],
     testimonial: {
       quote:
-        "We didn't change the product or the prices. We changed how buyers understood them — and AOV moved 34%.",
+        "StartUpBros rebuilt our entire frontend and backend in weeks. We didn't change the offer — we changed the platform — and AOV moved 34%.",
       name: "Ben Northam",
       role: "Co-founder @ Manyreach",
     },
@@ -269,16 +269,16 @@ const industryData: Record<string, IndustryData> = {
 };
 
 const otherIndustries = [
-  { name: "AI", slug: "ai", description: "Design for intelligent products that feel effortless." },
-  { name: "Marketing", slug: "marketing", description: "Conversion-focused design for marketing platforms." },
-  { name: "Sales", slug: "sales", description: "Streamlined workflows that close deals faster." },
-  { name: "FinTech", slug: "fintech", description: "Trust-building interfaces for financial products." },
-  { name: "EdTech", slug: "ed-tech", description: "Engaging learning experiences that drive completion." },
-  { name: "Web3", slug: "web3", description: "Intuitive design for decentralized applications." },
-  { name: "Mobile Apps", slug: "mobile-apps", description: "Native-feeling experiences users love." },
-  { name: "B2B / Agencies", slug: "agencies", description: "Enterprise-grade UX that scales with your team." },
-  { name: "Healthcare", slug: "healthcare", description: "Clinical workflows designed for clarity and speed." },
-  { name: "Supply Chain", slug: "b2b", description: "Operational interfaces that reduce friction and errors." },
+  { name: "AI", slug: "ai", description: "Custom software for AI-powered products — from model integration to production deployment." },
+  { name: "Marketing", slug: "marketing", description: "Full-stack platforms that help marketing teams acquire, engage, and convert." },
+  { name: "Sales", slug: "sales", description: "CRM tools, pipeline systems, and automations built to close deals faster." },
+  { name: "FinTech", slug: "fintech", description: "Secure, compliant financial platforms engineered for trust and performance." },
+  { name: "EdTech", slug: "ed-tech", description: "Learning platforms and course systems built for engagement and scale." },
+  { name: "Web3", slug: "web3", description: "Decentralized apps, smart contract integrations, and blockchain-native platforms." },
+  { name: "Mobile Apps", slug: "mobile-apps", description: "Cross-platform and native mobile apps built for speed and reliability." },
+  { name: "B2B / Agencies", slug: "agencies", description: "Enterprise-grade SaaS and internal tools that scale with your business." },
+  { name: "Healthcare", slug: "healthcare", description: "HIPAA-aware clinical software built for clarity, speed, and compliance." },
+  { name: "Supply Chain", slug: "b2b", description: "Operations platforms and logistics tools that reduce friction and errors." },
 ];
 
 function getIndustryData(slug: string): IndustryData {
@@ -287,8 +287,8 @@ function getIndustryData(slug: string): IndustryData {
   const label = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
     label,
-    headline: `Unforgettable Website & UX Design For ${label} SaaS`,
-    subtitle: `We design delightful website & product user experiences for ${label} SaaS to increase signups & conversions.`,
+    headline: `Full-Stack Development For ${label} Startups`,
+    subtitle: `We build custom apps, websites, and software for ${label} startups — from idea to launch.`,
     caseStudies: [
       {
         tag: label,
@@ -307,17 +307,17 @@ function getIndustryData(slug: string): IndustryData {
       },
     ],
     features: [
-      { icon: "Sparkles", title: "Rapid Prototyping", description: "From concept to clickable prototype in days, not months." },
-      { icon: "Target", title: "Conversion Optimization", description: "Every screen designed to move users toward activation." },
-      { icon: "BarChart3", title: "Data-Driven Layouts", description: "We use analytics and heatmaps to refine every interaction." },
-      { icon: "Layers", title: "Scalable Design Systems", description: "Components and tokens that grow with your engineering team." },
-      { icon: "Users", title: "User Research Baked In", description: "We talk to your users so every design decision is grounded in reality." },
-      { icon: "Workflow", title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
+      { icon: "Sparkles", title: "Rapid MVP Development", description: "From concept to working product in weeks, not months — we ship functional software fast." },
+      { icon: "Target", title: "Conversion-Optimized Engineering", description: "Every feature is built to drive signups, engagement, and revenue from day one." },
+      { icon: "BarChart3", title: "Custom Analytics & Dashboards", description: "We build reporting systems that turn your raw data into clear, actionable insights." },
+      { icon: "Layers", title: "Scalable Architecture", description: "Clean code, modular systems, and cloud-native infrastructure that grows with your user base." },
+      { icon: "Users", title: "User-Centered Development", description: "We build based on real user needs — not assumptions — so every feature earns its place." },
+      { icon: "Workflow", title: "API & Integration Engineering", description: "We connect your product to the tools your users already rely on — seamless, reliable, documented." },
     ],
     testimonial: {
-      quote: "Startup Bros transformed our product experience. The results spoke for themselves within the first month.",
+      quote: "StartUpBros built our entire platform from scratch. The product was live and acquiring users within the first month.",
       name: "Product Leader",
-      role: `${label} SaaS`,
+      role: `${label} Startup`,
     },
   };
 }
@@ -383,7 +383,7 @@ export default async function IndustryPage({
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-h2 text-foreground">
-              Our {data.label} UX Design Case Studies
+              Our {data.label} Work
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

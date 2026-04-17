@@ -11,11 +11,11 @@ export function FinalCTA() {
         <AnimateIn>
           <span className="badge-pill mb-6 inline-block">Work With Us</span>
           <h2 className="text-h1 text-foreground">
-            Design That Moves The Needle
+            Ready to Build?
           </h2>
           <p className="text-body-lg mt-5 mb-10">
-            Book a free strategy call. We&apos;ll map out your product, timeline,
-            and budget — no obligations.
+            Book a free strategy call and let&apos;s map out your project,
+            tech stack, and launch timeline — zero obligations.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <MagneticButton>

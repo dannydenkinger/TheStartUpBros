@@ -45,63 +45,63 @@ const services: FolderService[] = [
   {
     title: "Web Development",
     description:
-      "Fast, modern, and reliable websites built to be the high-performance home for your business.",
+      "Lightning-fast, responsive websites built with modern frameworks that convert visitors into customers from day one.",
     icons: [Globe, Code, Monitor],
     image: "/images/portfolio/ai-landing.webp",
   },
   {
     title: "Custom App Development",
     description:
-      "We build the custom software or mobile apps you need to bring your unique product idea to life.",
+      "Full-stack web and mobile apps engineered from scratch to turn your product idea into a scalable, shipped reality.",
     icons: [Smartphone, Layers, Terminal],
     image: "/images/portfolio/travel-app.webp",
   },
   {
     title: "Search Optimization (SEO)",
     description:
-      "Getting your business found on the first page of Google by the people actively looking for your services.",
+      "Technical SEO and content strategy that gets your startup ranking on page one for the keywords your customers are searching.",
     icons: [Search, TrendingUp, BarChart3],
     image: "/images/portfolio/fintech-dashboard.webp",
   },
   {
     title: "Brand Design",
     description:
-      "A unique and professional look that makes your startup stand out from every competitor in the market.",
+      "A cohesive visual identity -- logo, color system, and brand guidelines -- that makes your startup look like a million bucks on launch day.",
     icons: [Palette, Paintbrush, Sparkles],
     image: "/images/portfolio/defi-landing.webp",
   },
   {
     title: "Custom Automation",
     description:
-      "Connecting your apps to handle the busy work so you can focus on the big-picture growth.",
+      "Workflow automations that connect your tools, eliminate repetitive tasks, and free your team to focus on growth.",
     icons: [Cog, Workflow, Zap],
     image: "/images/portfolio/productivity-dashboard.webp",
   },
   {
     title: "AI Integration",
     description:
-      "Smart tools and AI solutions that give your business a modern, high-tech competitive edge.",
+      "Custom AI agents, chatbots, and intelligent features baked into your product to give you a serious competitive edge.",
     icons: [Brain, Bot, Cpu],
     image: "/images/portfolio/crm-dashboard.webp",
   },
   {
     title: "Lead Generation",
     description:
-      "Building a system that finds your ideal customers and brings them directly to your door.",
+      "Automated outbound and inbound systems that find your ideal customers and deliver them straight to your pipeline.",
     icons: [Users, Target, Magnet],
     image: "/images/portfolio/sales-crm-full.webp",
   },
   {
     title: "Digital Advertising",
     description:
-      "High-impact ads designed to put your brand in front of the right people at the exact right time.",
+      "Data-driven ad campaigns across Google, Meta, and LinkedIn that put your startup in front of the right people at the right time.",
     icons: [Megaphone, MousePointerClick, LineChart],
     image: "/images/portfolio/freelancer-dashboard.webp",
   },
   {
     title: "Strategy & Consulting",
     description:
-      "Expert guidance to help you plan your roadmap, pick the right tech, and avoid costly mistakes.",
+      "Hands-on guidance to validate your idea, plan your technical roadmap, and avoid the costly mistakes that sink most startups.",
     icons: [Lightbulb, Compass, Presentation],
     image: "/images/portfolio/fintech-app-duo.webp",
   },

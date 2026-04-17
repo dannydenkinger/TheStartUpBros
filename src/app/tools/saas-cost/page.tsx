@@ -3,11 +3,11 @@ import { JsonLd } from "@/components/shared/JsonLd";
 import { SaaSCostCalculator } from "@/components/tools/SaaSCostCalculator";
 
 export const metadata: Metadata = {
-  title: "SaaS Cost Calculator | Startup Bros",
+  title: "SaaS Cost Calculator | StartUpBros",
   description:
     "Estimate the cost and timeline for your SaaS MVP. Toggle features, see complexity tiers, and get a ballpark scope — free.",
   openGraph: {
-    title: "SaaS Cost Calculator | Startup Bros",
+    title: "SaaS Cost Calculator | StartUpBros",
     description:
       "Estimate the cost and timeline for your SaaS MVP. Toggle features, see complexity tiers, and get a ballpark scope — free.",
     url: "https://startupbros.dev/tools/saas-cost",
@@ -29,7 +29,7 @@ const webAppJsonLd = {
   },
   provider: {
     "@type": "Organization",
-    name: "Startup Bros",
+    name: "StartUpBros",
     url: "https://startupbros.dev",
   },
 };

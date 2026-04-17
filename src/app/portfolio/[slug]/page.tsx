@@ -17,10 +17,10 @@ export function generateMetadata({
     const project = projects.find((p) => p.slug === slug);
     if (!project) return { title: "Case Study Not Found" };
     return {
-      title: `${project.title} | Startup Bros`,
+      title: `${project.title} | StartUpBros`,
       description: project.description,
       openGraph: {
-        title: `${project.title} — Case Study | Startup Bros`,
+        title: `${project.title} — Case Study | StartUpBros`,
         description: project.description,
         url: `https://startupbros.dev/portfolio/${slug}`,
         images: [{ url: project.image }],
@@ -45,7 +45,7 @@ export default async function CaseStudyPage({
     description: project.description,
     creator: {
       "@type": "Organization",
-      name: "Startup Bros",
+      name: "StartUpBros",
       url: "https://startupbros.dev",
     },
     url: `https://startupbros.dev/portfolio/${slug}`,

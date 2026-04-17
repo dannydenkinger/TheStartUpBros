@@ -13,11 +13,11 @@ const columns = [
   {
     title: "Services",
     links: [
-      { label: "App Development", href: "/services/full-stack-apps" },
-      { label: "SaaS Platforms", href: "/services/saas-dev" },
-      { label: "AI Agents", href: "/services/ai-agents" },
-      { label: "Web Design", href: "/services/web-design" },
-      { label: "Business Tools", href: "/services/tools" },
+      { label: "Web Development", href: "/services/web-development" },
+      { label: "Custom Apps", href: "/services/custom-app-dev" },
+      { label: "SEO", href: "/services/seo" },
+      { label: "AI Integration", href: "/services/ai-integration" },
+      { label: "All Services", href: "/services" },
     ],
   },
   {
@@ -41,11 +41,11 @@ export function Footer() {
               href="/"
               className="text-[15px] font-semibold tracking-[-0.02em] text-foreground"
             >
-              Startup Bros
+              StartUpBros
             </Link>
             <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
-              AI-powered MVP development for lean startups. Build lean, launch
-              fast, scale smart.
+              Full-stack development for startups. We build apps, websites, and
+              software — from idea to launch.
             </p>
           </div>
 
@@ -75,7 +75,7 @@ export function Footer() {
 
         <div className="mt-12 pt-8 border-t border-border">
           <p className="text-[12px] text-muted-foreground">
-            &copy; {new Date().getFullYear()} Startup Bros. All rights reserved.
+            &copy; {new Date().getFullYear()} StartUpBros. All rights reserved.
           </p>
         </div>
       </div>

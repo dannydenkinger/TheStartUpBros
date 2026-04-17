@@ -12,10 +12,10 @@ import { JsonLd } from "@/components/shared/JsonLd";
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  name: "Startup Bros",
+  name: "StartUpBros",
   url: "https://startupbros.dev",
   description:
-    "AI-powered MVP development for lean startups. Full-stack apps, SaaS platforms, AI agents, and premium web design.",
+    "Full-stack development for startups. We build apps, websites, and software — from idea to launch.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",

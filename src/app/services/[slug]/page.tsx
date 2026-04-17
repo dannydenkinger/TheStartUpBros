@@ -17,10 +17,10 @@ export function generateMetadata({
     const service = services.find((s) => s.slug === slug);
     if (!service) return { title: "Service Not Found" };
     return {
-      title: `${service.title} | Startup Bros`,
+      title: `${service.title} | StartUpBros`,
       description: service.longDescription,
       openGraph: {
-        title: `${service.title} | Startup Bros`,
+        title: `${service.title} | StartUpBros`,
         description: service.longDescription,
         url: `https://startupbros.dev/services/${slug}`,
       },
@@ -44,7 +44,7 @@ export default async function ServicePage({
     description: service.longDescription,
     provider: {
       "@type": "Organization",
-      name: "Startup Bros",
+      name: "StartUpBros",
       url: "https://startupbros.dev",
     },
     areaServed: "Worldwide",

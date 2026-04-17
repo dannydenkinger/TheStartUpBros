@@ -15,7 +15,7 @@ const budgetOptions = [
 ];
 
 const bulletPoints = [
-  "Senior developers lead every project, guided by co-founder & CTO Brady Bender.",
+  "Senior developers lead every project, guided by co-founders & CEOs Anthony and Danny Denkinger.",
   "50+ shipped products across 30+ industries — from AI tools to SaaS platforms to mobile apps.",
   "4.9/5 on Clutch with a 99.7% client satisfaction rate.",
   "Most projects kick off within 48 hours. Typical MVP ships in 2–4 weeks.",

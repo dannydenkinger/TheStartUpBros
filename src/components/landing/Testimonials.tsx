@@ -12,7 +12,7 @@ const testimonials = [
       role: "Founder, PropTech Startup",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "Startup Bros took our napkin sketch and turned it into a production-ready SaaS in under three weeks. Unreal.",
+    text: "StartUpBros took our rough product spec and shipped a production-ready SaaS with user auth, billing, and a full API in under three weeks. Unreal.",
   },
   {
     author: {
@@ -20,7 +20,7 @@ const testimonials = [
       role: "Operations Lead",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "Their AI agent replaced four hours of manual data entry per day. The ROI was obvious within the first week.",
+    text: "They built us a custom automation pipeline that replaced four hours of manual data entry per day. The ROI was obvious within the first week.",
   },
   {
     author: {
@@ -28,7 +28,7 @@ const testimonials = [
       role: "CEO, FinTech MVP",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "Finally, a dev team that gets startup speed. No scope creep, no surprises — just shipped product.",
+    text: "Finally, a dev team that actually gets startup speed. Clean code, daily deploys, no scope creep — just shipped product.",
   },
   {
     author: {
@@ -36,7 +36,7 @@ const testimonials = [
       role: "Head of Product, EdTech",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "They understood our product vision instantly. The UX they delivered outperformed every agency we'd worked with before.",
+    text: "They understood our product vision instantly and built an app that outperformed every prototype we'd gotten from other agencies. The codebase was clean enough for our team to extend on day one.",
   },
   {
     author: {
@@ -44,7 +44,7 @@ const testimonials = [
       role: "CTO, HealthTech",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "From wireframes to a fully branded design system in 10 days. Our engineering team was able to start building immediately.",
+    text: "From initial architecture to a fully deployed MVP in 10 days. CI/CD pipeline, staging environment, production-ready — the whole nine yards.",
   },
   {
     author: {
@@ -52,7 +52,7 @@ const testimonials = [
       role: "VP Design, AI Startup",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "Startup Bros treats your product like their own. The attention to detail in micro-interactions was something we'd never seen from an agency.",
+    text: "StartUpBros treats your product like their own. The code quality, test coverage, and attention to performance were things we'd never seen from an outside team.",
   },
 ];
 
@@ -75,7 +75,7 @@ export function Testimonials() {
               Don&apos;t Take Our Word. Take Theirs.
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
-              Hear from founders and product leaders who scaled with Startup Bros.
+              Hear from founders and product leaders who scaled with StartUpBros.
             </p>
           </div>
         </AnimateIn>

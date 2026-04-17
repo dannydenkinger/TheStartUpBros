@@ -2,8 +2,8 @@ import { CaseStudiesGrid } from "@/components/portfolio/CaseStudiesGrid";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata = {
-  title: "Case Studies | Startup Bros",
-  description: "25+ UX Design Case Studies For B2B & AI SaaS",
+  title: "Case Studies | StartUpBros",
+  description: "50+ apps, websites, and software products built for startups across 30+ industries.",
 };
 
 export default function PortfolioPage() {
@@ -16,7 +16,7 @@ export default function PortfolioPage() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Official Framer Expert
+            50+ Projects Shipped
           </div>
           <div className="badge-pill flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,17 +24,17 @@ export default function PortfolioPage() {
                <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Certified Webflow Partner
+            30+ Industries
           </div>
         </div>
 
         <h1 className="text-display mt-8 mb-4">Portfolio</h1>
         <p className="text-body-lg max-w-[600px] mb-12 mx-auto">
-          We specialize exclusively in designing for AI SaaS, ensuring every detail aligns with modern product standards and rapid iteration cycles.
+          Full-stack apps, websites, and software built for startups across every vertical. Here&apos;s what we&apos;ve shipped.
         </p>
-        
+
         <h1 className="text-display max-w-[900px] mx-auto text-foreground font-medium">
-          25+ UX Design Case Studies For B2B & AI SaaS
+          50+ Products Built For Startups
         </h1>
       </section>
 

@@ -2,7 +2,7 @@ import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata = {
-  title: "Gallery | Startup Bros",
+  title: "Gallery | StartUpBros",
   description:
     "A showcase of our recent product, dashboard, and landing page work — dashboards, AI tools, mobile apps, and web3 surfaces.",
 };

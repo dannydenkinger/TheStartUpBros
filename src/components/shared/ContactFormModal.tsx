@@ -13,7 +13,7 @@ const budgetOptions = [
 ];
 
 const bulletPoints = [
-  "Senior developers lead projects, guided by co-founder & CTO Brady Bender.",
+  "Senior developers lead projects, guided by co-founders & CEOs Anthony and Danny Denkinger.",
   "50+ SaaS products for startups, teams & enterprises across 30+ industries.",
   "4.9/5 on Clutch with a 99.7% client satisfaction rate.",
   "Fastest turnaround in the space. Most projects kick off in 48 hours.",
@@ -144,7 +144,7 @@ export function ContactFormModal() {
           {/* ─── Right Column: Contact Form ─── */}
           <div className="w-full lg:w-[420px] bg-secondary px-8 py-10 lg:py-12 lg:px-8 border-l border-border/50 shrink-0">
             <h3 className="text-[20px] font-semibold text-foreground leading-tight mb-8">
-              See what Startup Bros can do for your product in 7 days.
+              See what StartUpBros can do for your product in 7 days.
             </h3>
 
             {submitted ? (

@@ -1,4 +1,4 @@
-# Startup Bros — Build Progress
+# StartUpBros — Build Progress
 
 ## Phase 16: Gallery-Style Case Study Pages (2026-04-16)
 

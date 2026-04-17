@@ -5,9 +5,9 @@ import { GlassBlogCard } from "@/components/shared/GlassBlogCard";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata = {
-  title: "Blog | Startup Bros",
+  title: "Blog | StartUpBros",
   description:
-    "Case studies, insights, and lessons from building AI-powered MVPs for lean startups.",
+    "Case studies, insights, and lessons from building apps and software for startups.",
 };
 
 type BlogPost = {
