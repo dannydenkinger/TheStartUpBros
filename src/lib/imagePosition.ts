@@ -11,9 +11,9 @@ type ImageSettings = { x?: number; y?: number; zoom?: number };
 
 const settingsMap: Record<string, ImageSettings> = {
   // ── EstateFlow ──────────────────────────────────────────
-  "/images/portfolio/estateflow-dashboard.png": { x: 0, y: 0 },
-  "/images/portfolio/estateflow-properties.png": { x: 0, y: 50 },
-  "/images/portfolio/estateflow-tenants.png": { x: 0, y: 50 },
+  "/images/portfolio/estateflow-dashboard.png": { x: 0, y: 0, zoom: 1.2 },
+  "/images/portfolio/estateflow-properties.png": { x: 27, y: 31, zoom: 1.1 },
+  "/images/portfolio/estateflow-tenants.png": { x: 0, y: 0, zoom: 1.92 },
   "/images/portfolio/estateflow-leasing.png": { x: 0, y: 50 },
   "/images/portfolio/estateflow-market.png": { x: 50, y: 0 },
   "/images/portfolio/estateflow-finance.png": { x: 0, y: 50 },
