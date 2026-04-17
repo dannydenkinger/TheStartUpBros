@@ -73,17 +73,16 @@ const industryData: Record<string, IndustryData> = {
       "We design delightful website & product user experiences for Marketing SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "Marketing",
-        location: "San Francisco, CA",
-        title: "Designing SocialSonic's MVP To Reach 1000+ Users In 30 Days",
+        tag: "Sports",
+        location: "Startup Bros",
+        title: "ZoneX — AI Sports Analytics Platform",
         image: "/images/portfolio/socialsonic.avif",
         href: "/portfolio/socialsonic",
       },
       {
         tag: "Productivity",
-        location: "New York, NY",
-        title:
-          "Building Community Search — A Unified Workspace Indexed in Under 180ms",
+        location: "Design Study",
+        title: "Federated Search Command Palette — A Product Study",
         image: "/images/portfolio/community-search.avif",
         href: "/portfolio/community",
       },
@@ -128,9 +127,9 @@ const industryData: Record<string, IndustryData> = {
     ],
     testimonial: {
       quote:
-        "They told us 'no' more than they told us 'yes' — and that's exactly why we hit 1000 users. Focus shipped the product.",
-      name: "Daniel Lee",
-      role: "Founder @ SocialSonic",
+        "Coaches don't want to operate a data tool — they want to make a decision. The shortest line between raw film and a game-day adjustment a coach actually trusts is the whole product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   ai: {
@@ -140,18 +139,18 @@ const industryData: Record<string, IndustryData> = {
       "We design delightful website & product user experiences for AI SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "AI SaaS",
-        location: "San Francisco, CA",
-        title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+        tag: "AI Healthcare",
+        location: "Startup Bros",
+        title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
         href: "/portfolio/writesonic",
       },
       {
-        tag: "AI Landing",
-        location: "San Francisco, CA",
-        title: "Designing Gigamind's Credible AI-First Landing Page",
+        tag: "Private LLMs",
+        location: "Startup Bros",
+        title: "K Project — Private AI for Regulated Industries",
         image: "/images/portfolio/ai-landing.webp",
-        href: "/portfolio/gigamind-landing",
+        href: "/portfolio/loopback",
       },
     ],
     features: [
@@ -194,9 +193,9 @@ const industryData: Record<string, IndustryData> = {
     ],
     testimonial: {
       quote:
-        "Startup Bros didn't just ship screens — they built the design language that the rest of our product now follows.",
-      name: "Samanyou Garg",
-      role: "Founder @ Writesonic",
+        "The interesting problem in enterprise AI isn't capability — it's control. Giving organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure is the real work.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   sales: {
@@ -207,16 +206,15 @@ const industryData: Record<string, IndustryData> = {
     caseStudies: [
       {
         tag: "Sales Tools",
-        location: "Canada",
-        title:
-          "Manyreach Website Revamp that Increased Conversions & AOV",
+        location: "Design Study",
+        title: "Pricing Page as Guidance — An AOV Study",
         image: "/images/portfolio/sales-crm-detail.webp",
         href: "/portfolio/manyreach",
       },
       {
         tag: "AI Sales",
-        location: "Mountain View, CA",
-        title: "Redesigning Sybill Without Disrupting Existing Users",
+        location: "Design Study",
+        title: "Zero-Churn Product Migration — A UX Study",
         image: "/images/portfolio/sales-crm-full.webp",
         href: "/portfolio/sybill",
       },
@@ -261,9 +259,9 @@ const industryData: Record<string, IndustryData> = {
     ],
     testimonial: {
       quote:
-        "We didn't change the product or the prices. We changed how buyers understood them — and AOV moved 34%.",
-      name: "Ben Northam",
-      role: "Co-founder @ Manyreach",
+        "A pricing page that asks the buyer to choose leaves AOV on the table. Turning the page into a guidance tool — value ladder, mid-tier anchor, outcome calculator — moves buyers to the tier that actually fits their team.",
+      name: "Denkinger Bros",
+      role: "Design Study",
     },
   },
 };
@@ -292,16 +290,15 @@ function getIndustryData(slug: string): IndustryData {
     caseStudies: [
       {
         tag: label,
-        location: "San Francisco, CA",
-        title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+        location: "Startup Bros",
+        title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
         href: "/portfolio/writesonic",
       },
       {
         tag: label,
-        location: "Canada",
-        title:
-          "Manyreach Website Revamp that Increased Conversions & AOV",
+        location: "Design Study",
+        title: "Pricing Page as Guidance — An AOV Study",
         image: "/images/portfolio/sales-crm-detail.webp",
         href: "/portfolio/manyreach",
       },
@@ -315,9 +312,9 @@ function getIndustryData(slug: string): IndustryData {
       { icon: "Workflow", title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
     ],
     testimonial: {
-      quote: "Startup Bros transformed our product experience. The results spoke for themselves within the first month.",
-      name: "Product Leader",
-      role: `${label} SaaS`,
+      quote: `Good ${label} SaaS design starts with the buyer's actual workflow — every screen earns its place by moving them one step closer to the outcome they came for.`,
+      name: "Denkinger Bros",
+      role: "Design Study",
     },
   };
 }
@@ -340,7 +337,7 @@ export default async function IndustryPage({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Official Framer Expert
+            Founded by Denkinger Bros
           </div>
           <div className="badge-pill flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -348,7 +345,7 @@ export default async function IndustryPage({
               <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Certified Webflow Partner
+            Trial Week Included
           </div>
         </div>
 
@@ -383,7 +380,7 @@ export default async function IndustryPage({
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-h2 text-foreground">
-              Our {data.label} UX Design Case Studies
+              {data.label} Design Studies
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -454,14 +451,9 @@ export default async function IndustryPage({
       <section className="px-6 lg:px-10 py-24 md:py-28 bg-background">
         <div className="max-w-[800px] mx-auto text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 mb-8">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#facc15" className="mx-0.5">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-[13px] font-semibold text-foreground">5.0</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Denkinger Bros · Design Study
+            </span>
           </div>
           <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground mb-8">
             &ldquo;{data.testimonial.quote}&rdquo;

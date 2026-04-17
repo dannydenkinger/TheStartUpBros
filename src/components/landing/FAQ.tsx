@@ -17,12 +17,12 @@ const faqs = [
   {
     question: "How is Startup Bros different from hiring an in-house designer?",
     answer:
-      "Hiring in-house means salaries, benefits, and months of onboarding. With Startup Bros you get an entire senior design team on-demand at a fraction of the cost — ready to ship from day one.",
+      "Hiring in-house means salaries, benefits, and months of onboarding. With Startup Bros you get a founder-led team — Anthony and Danny directly on your project — at a fraction of the cost, ready to ship from day one.",
   },
   {
     question: "How long does it take to see results?",
     answer:
-      "Most clients see meaningful deliverables within the first week. Full product redesigns or MVPs are typically completed in 2–4 weeks depending on scope.",
+      "We aim to have a usable milestone in week one. Full MVPs and product redesigns typically ship in 2–4 weeks depending on scope.",
   },
   {
     question: "What services does Startup Bros offer?",
@@ -32,7 +32,7 @@ const faqs = [
   {
     question: "Do you have experience in my industry?",
     answer:
-      "We've designed for 50+ SaaS companies across AI, Fintech, HealthTech, EdTech, Web3, B2B, Marketing, and more. Our cross-industry experience lets us bring proven patterns to your niche.",
+      "We focus on B2B SaaS, AI products, fintech, and web3. Our design studies across these verticals shape the patterns we bring to every project — from trust signals on enterprise tools to data density in fintech dashboards.",
   },
   {
     question: "Will I be locked into a long-term contract?",

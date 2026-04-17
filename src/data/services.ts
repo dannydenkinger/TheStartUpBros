@@ -71,9 +71,9 @@ export const services: Service[] = [
     caseStudySlugs: ["ltv-ai", "sybill"],
     testimonial: {
       quote:
-        "We shipped a complete redesign and didn't lose a single power user. That shouldn't be possible.",
-      name: "Nishit Asnani",
-      role: "Co-founder @ Sybill",
+        "A redesign that churns power users isn't a win, no matter how good the new UI is. Two parallel surfaces and an opt-in migration protect both cohorts.",
+      name: "Denkinger Bros",
+      role: "Design Study",
     },
   },
   {
@@ -146,9 +146,9 @@ export const services: Service[] = [
     caseStudySlugs: ["writesonic", "gigamind-product"],
     testimonial: {
       quote:
-        "Startup Bros didn't just ship screens — they built the design language that the rest of our product now follows.",
-      name: "Samanyou Garg",
-      role: "Founder @ Writesonic",
+        "Language can't be a barrier to care. SAID works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
@@ -221,9 +221,9 @@ export const services: Service[] = [
     caseStudySlugs: ["loopback", "gigamind-landing"],
     testimonial: {
       quote:
-        "We came in with a hunch and walked out with a product our design partners loved. The shape they shipped is the shape we still ship today.",
-      name: "Marcus Weld",
-      role: "Co-founder @ Loopback",
+        "The interesting problem in enterprise AI isn't capability — it's control. K Project gives organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
@@ -296,9 +296,9 @@ export const services: Service[] = [
     caseStudySlugs: ["alsuitup", "hobbes-rebrand"],
     testimonial: {
       quote:
-        "We finally look like the company we already are. Buyers stopped second-guessing us in the first meeting.",
-      name: "Lauren Park",
-      role: "CEO @ Hobbes",
+        "A brand that reads 'hobby project' to a Series B+ buyer is actively losing deals. Restraint — one accent, one type, one motion principle — is the bar.",
+      name: "Denkinger Bros",
+      role: "Design Study",
     },
   },
   {
@@ -371,9 +371,9 @@ export const services: Service[] = [
     caseStudySlugs: ["community", "manyreach"],
     testimonial: {
       quote:
-        "It became the most-used app in our workspace within a week. Then we couldn't imagine working without it.",
-      name: "Hannah Kim",
-      role: "Head of Community @ Maven",
+        "A search tool used 40 times a day has to be faster than Cmd+T. Keyboard-first UI, incremental sync, and sub-second latency compound into a tool users can't imagine working without.",
+      name: "Denkinger Bros",
+      role: "Design Study",
     },
   },
 ];

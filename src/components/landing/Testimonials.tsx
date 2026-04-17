@@ -8,51 +8,51 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const testimonials = [
   {
     author: {
-      name: "Alex R.",
-      role: "Founder, PropTech Startup",
+      name: "Ship in weeks",
+      role: "How we work",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "Startup Bros took our napkin sketch and turned it into a production-ready SaaS in under three weeks. Unreal.",
+    text: "Most MVPs take 3–6 months at an agency. We aim for 2–4 weeks. Scope tight, stack modern, decisions fast.",
   },
   {
     author: {
-      name: "Sarah K.",
-      role: "Operations Lead",
+      name: "Trial week included",
+      role: "How we work",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "Their AI agent replaced four hours of manual data entry per day. The ROI was obvious within the first week.",
+    text: "Start with a paid trial week. Love the work or walk away — no questions, no long-term lock-in.",
   },
   {
     author: {
-      name: "Marcus T.",
-      role: "CEO, FinTech MVP",
+      name: "Founders-only",
+      role: "How we work",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "Finally, a dev team that gets startup speed. No scope creep, no surprises — just shipped product.",
+    text: "You work directly with Anthony and Danny. No account managers. No junior designers learning on your product.",
   },
   {
     author: {
-      name: "Danielle P.",
-      role: "Head of Product, EdTech",
+      name: "Modern stack",
+      role: "How we work",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "They understood our product vision instantly. The UX they delivered outperformed every agency we'd worked with before.",
+    text: "Next.js, Supabase, Stripe, OpenAI — what fast-moving SaaS is actually built on. No template mills, no WordPress hacks.",
   },
   {
     author: {
-      name: "James W.",
-      role: "CTO, HealthTech",
+      name: "Design and dev, one team",
+      role: "How we work",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "From wireframes to a fully branded design system in 10 days. Our engineering team was able to start building immediately.",
+    text: "No handoff seams between design and engineering. What you see in Figma is what ships to production.",
   },
   {
     author: {
-      name: "Priya M.",
-      role: "VP Design, AI Startup",
+      name: "Built by founders, for founders",
+      role: "How we work",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "Startup Bros treats your product like their own. The attention to detail in micro-interactions was something we'd never seen from an agency.",
+    text: "We've been in the weeds of a launch. Every decision we make is tuned for speed, clarity, and what a real user will actually do.",
   },
 ];
 
@@ -72,10 +72,10 @@ export function Testimonials() {
         <AnimateIn>
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-6">
             <h2 className="text-display max-w-[720px] mx-auto">
-              Don&apos;t Take Our Word. Take Theirs.
+              How we work
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
-              Hear from founders and product leaders who scaled with Startup Bros.
+              The principles behind every project we ship.
             </p>
           </div>
         </AnimateIn>

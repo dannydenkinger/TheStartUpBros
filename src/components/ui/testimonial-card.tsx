@@ -27,7 +27,7 @@ export function TestimonialCard({
         className,
       )}
     >
-      {/* Top row: avatar left, "on Clutch" right */}
+      {/* Top row: avatar left, principle badge right */}
       <div className="flex items-start justify-between gap-3">
         <div className="relative w-20 h-20 rounded-xl overflow-hidden bg-secondary shrink-0">
           <Image
@@ -38,9 +38,8 @@ export function TestimonialCard({
           />
         </div>
         <div className="flex items-center gap-1.5 mt-2">
-          <span className="text-[13px] text-muted-foreground">on</span>
-          <span className="text-[16px] font-bold text-foreground tracking-tight">
-            Clutch
+          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+            Principle
           </span>
         </div>
       </div>
@@ -56,13 +55,13 @@ export function TestimonialCard({
         &ldquo;{text}&rdquo;
       </p>
 
-      {/* Footer: read link left, Clutch wordmark + arrow right */}
+      {/* Footer: read link left, studio wordmark + arrow right */}
       <div className="flex items-center justify-between pt-4 border-t border-border/40">
-        <p className="text-[13px] text-muted-foreground underline underline-offset-2 decoration-border">
-          Read full review on clutch
+        <p className="text-[13px] text-muted-foreground">
+          How we work at Startup Bros
         </p>
         <div className="flex items-center gap-1 text-foreground">
-          <span className="text-[14px] font-bold tracking-tight">Clutch</span>
+          <span className="text-[14px] font-bold tracking-tight">Startup Bros</span>
           <svg
             width="12"
             height="12"
