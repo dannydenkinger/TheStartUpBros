@@ -26,10 +26,10 @@ const cases = [
       "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
     author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
     href: "/portfolio/zonex",
-    heroImage: "/images/portfolio/socialsonic.avif",
+    heroImage: "/images/portfolio/zonex-dashboard.webp",
     screenshots: [
-      "/images/portfolio/freelancer-dashboard.webp",
-      "/images/portfolio/crm-detail.webp",
+      "/images/portfolio/zonex-film.webp",
+      "/images/portfolio/zonex-coaching.webp",
     ],
   },
   {
