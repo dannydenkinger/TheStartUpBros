@@ -7,7 +7,7 @@ export const projects: PortfolioProject[] = [
     slug: "said",
     description:
       "A secure, offline-first AI translation system for healthcare, defense, and emergency environments — real-time multilingual care without a network connection.",
-    image: "/images/portfolio/sales-crm-perspective.webp",
+    image: "/images/portfolio/said-hero-brand.png",
     tags: ["AI", "Healthcare", "Defense"],
     deviceType: "macbook",
     client: "SAID Technology",
@@ -31,15 +31,15 @@ export const projects: PortfolioProject[] = [
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/geo-analytics.avif",
-        alt: "SAID Technology interface",
+        image: "/images/portfolio/said-lineup.png",
+        alt: "SAID Technology interface — consultation, conversation, translation detail, and security status",
         caption:
           "On-device translation tuned for medical scenarios — patient intake, symptoms, consent, critical care.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/sales-dashboard.avif",
-        alt: "Clinical workflow integration",
+        image: "/images/portfolio/said-clinical.png",
+        alt: "Clinician reviewing a SAID translation at the bedside",
         heading: "Designed for the moment, not the demo",
         body: "Every interaction tuned for ambulances without signal, field hospitals, and the bedside of a patient who speaks a language the clinician doesn't. Offline-first isn't a feature — it's the foundation.",
         align: "left",
@@ -48,21 +48,21 @@ export const projects: PortfolioProject[] = [
         type: "twoUp",
         images: [
           {
-            src: "/images/portfolio/sales-crm-detail.webp",
-            alt: "Translation detail view",
+            src: "/images/portfolio/said-translation-detail.png",
+            alt: "Translation detail view with source and target language panels",
           },
           {
-            src: "/images/portfolio/sales-crm-full.webp",
-            alt: "Clinical dashboard",
+            src: "/images/portfolio/said-chat-marble.png",
+            alt: "Bilingual conversation view",
           },
         ],
         caption:
-          "Detail and overview surfaces share one component system — consistent across hospital, field, and defense deployments.",
+          "Detail and conversation surfaces share one component system — consistent across hospital, field, and defense deployments.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/crm-dashboard.webp",
-        alt: "Privacy-first architecture",
+        image: "/images/portfolio/said-security.png",
+        alt: "Privacy-first architecture — HIPAA, GDPR, and SOC 2 posture",
         heading: "Mission-driven, not general-purpose",
         body: "SAID isn't a general-purpose AI tool. It's a focused system designed so language is never a barrier to care — and so patient data never leaves the device unless a clinician explicitly sends it.",
         align: "right",
