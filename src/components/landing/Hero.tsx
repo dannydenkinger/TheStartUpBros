@@ -5,20 +5,20 @@ import { CTAButton } from "@/components/shared/CTAButton";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 
-// VC backers of companies we've designed for
-const vcLogos = [
-  "Y Combinator",
-  "General Catalyst",
-  "Pantera",
-  "Accel",
-  "Greycroft",
+const techStackLogos = [
+  "Next.js",
+  "Stripe",
+  "Vercel",
+  "OpenAI",
+  "Supabase",
+  "Tailwind",
 ];
 
-function ClutchIcon() {
+function StudioIcon() {
   return (
-    <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-[4px] bg-[#ee3037] shrink-0">
-      <span className="text-white text-[10px] font-bold leading-none tracking-tighter">
-        C
+    <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-[4px] bg-foreground shrink-0">
+      <span className="text-background text-[10px] font-bold leading-none tracking-tighter">
+        SB
       </span>
     </span>
   );
@@ -42,15 +42,15 @@ export function Hero() {
   return (
     <section className="bg-background px-6 lg:px-10 pt-[100px] md:pt-[124px] pb-20">
       <div className="mx-auto max-w-[1020px] text-center">
-        {/* Clutch rating pill with arrow */}
+        {/* Founder pill */}
         <AnimateIn variant="fadeUp">
           <Link
             href="/strategy-call"
             className="inline-flex items-center gap-2 badge-pill mb-10 hover:bg-muted transition-colors"
           >
-            <ClutchIcon />
+            <StudioIcon />
             <span className="text-[13px] font-medium text-foreground">
-              Average 4.9/5 Verified Ratings on Clutch
+              Founded by the Denkinger brothers — taking first clients
             </span>
             <svg
               width="13"
@@ -72,16 +72,16 @@ export function Hero() {
         {/* Headline */}
         <AnimateIn variant="fadeUp" delay={0.08}>
           <h1 className="text-display text-foreground">
-            The #1 Rated Fastest Website &amp; UX
+            Websites and products for fast-moving
             <br className="hidden md:block" />
-            Agency For B2B &amp; AI SaaS
+            B2B and AI SaaS teams
           </h1>
         </AnimateIn>
 
         {/* Subtitle */}
         <AnimateIn variant="fadeUp" delay={0.16}>
           <p className="text-body-lg mt-6 mx-auto max-w-[560px]">
-            We design websites &amp; products for fast-moving SaaS companies.
+            Two brothers. Modern stack. Built to ship in weeks, not months.
           </p>
         </AnimateIn>
 
@@ -98,7 +98,7 @@ export function Hero() {
               </Link>
             </MagneticButton>
             <CTAButton href="/portfolio" variant="secondary">
-              See 1000+ Designs Portfolio
+              See Design Gallery
             </CTAButton>
           </div>
         </AnimateIn>
@@ -107,10 +107,10 @@ export function Hero() {
         <AnimateIn variant="fadeUp" delay={0.32}>
           <div className="mt-14">
             <p className="text-[13px] text-muted-foreground font-medium mb-6">
-              Trusted by 50+ SaaS backed by
+              Built on the stack trusted by modern SaaS
             </p>
             <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
-              {vcLogos.map((logo) => (
+              {techStackLogos.map((logo) => (
                 <span
                   key={logo}
                   className="text-[15px] font-semibold text-muted-foreground/70 tracking-tight"

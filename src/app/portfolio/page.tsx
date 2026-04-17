@@ -2,8 +2,8 @@ import { CaseStudiesGrid } from "@/components/portfolio/CaseStudiesGrid";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata = {
-  title: "Case Studies | StartUpBros",
-  description: "50+ apps, websites, and software products built for startups across 30+ industries.",
+  title: "Design Studies | Startup Bros",
+  description: "Design studies and concept work — B2B and AI SaaS deep-dives by the Denkinger brothers.",
 };
 
 export default function PortfolioPage() {
@@ -16,7 +16,7 @@ export default function PortfolioPage() {
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            50+ Projects Shipped
+            Founded by Denkinger Bros
           </div>
           <div className="badge-pill flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -24,17 +24,17 @@ export default function PortfolioPage() {
                <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            30+ Industries
+            Trial Week Included
           </div>
         </div>
 
-        <h1 className="text-display mt-8 mb-4">Portfolio</h1>
+        <h1 className="text-display mt-8 mb-4">Design Gallery</h1>
         <p className="text-body-lg max-w-[600px] mb-12 mx-auto">
-          Full-stack apps, websites, and software built for startups across every vertical. Here&apos;s what we&apos;ve shipped.
+          Concept work and design deep-dives from the kind of fast-moving B2B and AI SaaS we love to build.
         </p>
 
         <h1 className="text-display max-w-[900px] mx-auto text-foreground font-medium">
-          50+ Products Built For Startups
+          Design Studies — B2B &amp; AI SaaS Deep-Dives
         </h1>
       </section>
 

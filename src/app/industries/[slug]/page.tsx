@@ -68,217 +68,215 @@ type IndustryData = {
 const industryData: Record<string, IndustryData> = {
   marketing: {
     label: "Marketing",
-    headline: "Full-Stack Development For Marketing Startups",
+    headline: "Unforgettable Website & UX Design For Marketing SaaS",
     subtitle:
-      "We build custom apps, websites, and software for Marketing startups — from idea to launch.",
+      "We design delightful website & product user experiences for Marketing SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "Marketing",
-        location: "San Francisco, CA",
-        title: "Designing SocialSonic's MVP To Reach 1000+ Users In 30 Days",
+        tag: "Sports",
+        location: "Startup Bros",
+        title: "ZoneX — AI Sports Analytics Platform",
         image: "/images/portfolio/socialsonic.avif",
-        href: "/portfolio/socialsonic",
+        href: "/portfolio/zonex",
       },
       {
-        tag: "Productivity",
-        location: "New York, NY",
-        title:
-          "Building Community Search — A Unified Workspace Indexed in Under 180ms",
-        image: "/images/portfolio/community-search.avif",
-        href: "/portfolio/community",
+        tag: "Web3 Commerce",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
     ],
     features: [
       {
         icon: "Zap",
-        title: "Rapid MVP Delivery",
+        title: "Fast Campaign Setup",
         description:
-          "We ship your marketing platform fast — functional core features first so you can start acquiring users immediately.",
+          "We reduce friction in onboarding so users can launch their first campaign within minutes.",
       },
       {
         icon: "Target",
-        title: "Conversion-Driven Architecture",
+        title: "Outcome-Focused UX",
         description:
-          "Every feature we build is engineered to drive signups, engagement, and revenue — not just look good.",
+          "We design around what marketers care about — reach, ROI, and what's actually working.",
       },
       {
         icon: "BarChart3",
-        title: "Analytics & Reporting Engines",
+        title: "Clarity in Metrics",
         description:
-          "We build custom dashboards and reporting pipelines that turn raw data into actionable marketing insights.",
+          "We turn raw performance data into clean insights — easy to share, easy to act on.",
       },
       {
         icon: "Users",
-        title: "Multi-Tenant Platforms",
+        title: "Multi-Role Interfaces",
         description:
-          "From solo founders to enterprise teams, we architect role-based systems that scale with your user base.",
+          "From CMOs to interns, we build flows that adapt to each role's goals, not just generic tools.",
       },
       {
         icon: "Repeat",
-        title: "Automation & Integrations",
+        title: "Sticky Daily Workflows",
         description:
-          "We wire up APIs, webhooks, and third-party integrations so your platform works seamlessly with the tools marketers already use.",
+          "We design flows users return to — tracking progress, adjusting, iterating, and reporting.",
       },
       {
         icon: "Layers",
-        title: "Scalable Infrastructure",
+        title: "Visual Builder Optimization",
         description:
-          "Clean code, modular architecture, and cloud-native deployments — built to handle growth from day one.",
+          "Drag-and-drop is just the start. We fine-tune builders for conversion, clarity, and speed.",
       },
     ],
     testimonial: {
       quote:
-        "They told us 'no' more than they told us 'yes' — and that's exactly why the MVP shipped clean. StartUpBros built exactly what we needed to hit 1000 users.",
-      name: "Daniel Lee",
-      role: "Founder @ SocialSonic",
+        "Coaches don't want to operate a data tool — they want to make a decision. The shortest line between raw film and a game-day adjustment a coach actually trusts is the whole product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   ai: {
     label: "AI",
-    headline: "Full-Stack Development For AI Startups",
+    headline: "Unforgettable Website & UX Design For AI SaaS",
     subtitle:
-      "We build custom apps, websites, and software for AI startups — from idea to launch.",
+      "We design delightful website & product user experiences for AI SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "AI SaaS",
-        location: "San Francisco, CA",
-        title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+        tag: "AI Healthcare",
+        location: "Startup Bros",
+        title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
-        href: "/portfolio/writesonic",
+        href: "/portfolio/said",
       },
       {
-        tag: "AI Landing",
-        location: "San Francisco, CA",
-        title: "Designing Gigamind's Credible AI-First Landing Page",
+        tag: "Private LLMs",
+        location: "Startup Bros",
+        title: "K Project — Private AI for Regulated Industries",
         image: "/images/portfolio/ai-landing.webp",
-        href: "/portfolio/gigamind-landing",
+        href: "/portfolio/k-project",
       },
     ],
     features: [
       {
         icon: "Eye",
-        title: "Model Integration & APIs",
+        title: "Model Output Visualization",
         description:
-          "We build robust backends that connect to LLMs, vision models, and custom ML pipelines — making AI outputs production-ready.",
+          "We design interfaces that make AI outputs interpretable and actionable for non-technical users.",
       },
       {
         icon: "Terminal",
-        title: "Custom AI Feature Development",
+        title: "Prompt Engineering UX",
         description:
-          "From prompt orchestration to fine-tuning workflows, we engineer the AI-powered features that set your product apart.",
+          "We create intuitive prompt interfaces that help users get the best results from AI models.",
       },
       {
         icon: "Activity",
-        title: "Real-Time Processing Infrastructure",
+        title: "Real-Time Feedback Loops",
         description:
-          "We build streaming, websocket, and queue-based systems so your AI features respond instantly at scale.",
+          "We build interfaces that show AI processing states clearly so users always know what's happening.",
       },
       {
         icon: "Shield",
-        title: "Security & Compliance Engineering",
+        title: "Trust & Transparency",
         description:
-          "We architect data handling, access controls, and audit trails that keep your AI product trustworthy and compliant.",
+          "We design explainable AI interfaces that build user confidence through transparency.",
       },
       {
         icon: "Workflow",
-        title: "Intelligent Automation Pipelines",
+        title: "Adaptive Workflows",
         description:
-          "We build multi-step AI workflows — chained models, conditional logic, and human-in-the-loop checkpoints baked into your product.",
+          "We create flows that learn from user behavior and surface the most relevant features.",
       },
       {
         icon: "GitBranch",
-        title: "Data Pipeline Engineering",
+        title: "Data Pipeline Clarity",
         description:
-          "We architect ETL pipelines, vector databases, and retrieval systems that keep your AI models fed with clean, current data.",
+          "We visualize complex data flows so users understand how their data moves through AI systems.",
       },
     ],
     testimonial: {
       quote:
-        "StartUpBros didn't just ship features — they built the technical foundation that the rest of our product now runs on.",
-      name: "Samanyou Garg",
-      role: "Founder @ Writesonic",
+        "The interesting problem in enterprise AI isn't capability — it's control. Giving organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure is the real work.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   sales: {
     label: "Sales",
-    headline: "Full-Stack Development For Sales & CRM Startups",
+    headline: "Unforgettable Website & UX Design For Sales SaaS & CRM",
     subtitle:
-      "We build custom apps, websites, and software for Sales startups — from idea to launch.",
+      "We design delightful website & product user experiences for Sales SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "Sales Tools",
-        location: "Canada",
-        title:
-          "Manyreach Website Revamp that Increased Conversions & AOV",
-        image: "/images/portfolio/sales-crm-detail.webp",
-        href: "/portfolio/manyreach",
+        tag: "Web3 Commerce",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
       {
-        tag: "AI Sales",
-        location: "Mountain View, CA",
-        title: "Redesigning Sybill Without Disrupting Existing Users",
-        image: "/images/portfolio/sales-crm-full.webp",
-        href: "/portfolio/sybill",
+        tag: "AI Analytics",
+        location: "Startup Bros",
+        title: "ZoneX — AI Sports Analytics Platform",
+        image: "/images/portfolio/socialsonic.avif",
+        href: "/portfolio/zonex",
       },
     ],
     features: [
       {
         icon: "TrendingUp",
-        title: "Custom Pipeline Engineering",
+        title: "Clear Deal Stages",
         description:
-          "We build deal-tracking systems with real-time stage transitions, automated follow-ups, and forecasting logic baked in.",
+          "We design pipelines that make deal progression obvious — every rep knows what to do next.",
       },
       {
         icon: "MousePointerClick",
-        title: "Workflow Automation",
+        title: "One-Click Actions",
         description:
-          "Log calls, fire emails, update stages — we engineer one-click automations that eliminate repetitive busywork for your reps.",
+          "Every common action — log a call, send a template, update a stage — is one click away.",
       },
       {
         icon: "UserCog",
-        title: "Role-Based Access & Views",
+        title: "Role-Based UX",
         description:
-          "We architect permission systems and custom dashboards so SDRs, AEs, and managers each get exactly the data they need.",
+          "SDRs, AEs, and sales leaders each see the surface that matches their daily workflow.",
       },
       {
         icon: "Rocket",
-        title: "Fast Onboarding Flows",
+        title: "Activation-Led Onboarding",
         description:
-          "We build activation sequences that get new users to their first value moment — importing contacts, not configuring settings.",
+          "We design onboarding flows that get reps to their first closed deal — not to a settings page.",
       },
       {
         icon: "Smartphone",
-        title: "Mobile-Ready Architecture",
+        title: "Mobile-First Approach",
         description:
-          "Sales happens on the road. We build responsive, PWA-capable platforms that perform flawlessly on any device.",
+          "Sales happens on the road. Every workflow is designed to work one-handed on a phone.",
       },
       {
         icon: "DollarSign",
-        title: "Revenue-Driven Features",
+        title: "Revenue-Focused Design",
         description:
-          "Every feature we ship is tied to a revenue outcome — helping reps close more deals, faster, with less friction.",
+          "Every screen earns its place by helping reps close more, faster — or it doesn't ship.",
       },
     ],
     testimonial: {
       quote:
-        "StartUpBros rebuilt our entire frontend and backend in weeks. We didn't change the offer — we changed the platform — and AOV moved 34%.",
-      name: "Ben Northam",
-      role: "Co-founder @ Manyreach",
+        "Web3 platforms were built for crypto natives. LOOT8 was built for the artist, the venue, and the fan — the blockchain is the infrastructure, but the experience is the product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
 };
 
 const otherIndustries = [
-  { name: "AI", slug: "ai", description: "Custom software for AI-powered products — from model integration to production deployment." },
-  { name: "Marketing", slug: "marketing", description: "Full-stack platforms that help marketing teams acquire, engage, and convert." },
-  { name: "Sales", slug: "sales", description: "CRM tools, pipeline systems, and automations built to close deals faster." },
-  { name: "FinTech", slug: "fintech", description: "Secure, compliant financial platforms engineered for trust and performance." },
-  { name: "EdTech", slug: "ed-tech", description: "Learning platforms and course systems built for engagement and scale." },
-  { name: "Web3", slug: "web3", description: "Decentralized apps, smart contract integrations, and blockchain-native platforms." },
-  { name: "Mobile Apps", slug: "mobile-apps", description: "Cross-platform and native mobile apps built for speed and reliability." },
-  { name: "B2B / Agencies", slug: "agencies", description: "Enterprise-grade SaaS and internal tools that scale with your business." },
-  { name: "Healthcare", slug: "healthcare", description: "HIPAA-aware clinical software built for clarity, speed, and compliance." },
-  { name: "Supply Chain", slug: "b2b", description: "Operations platforms and logistics tools that reduce friction and errors." },
+  { name: "AI", slug: "ai", description: "Design for intelligent products that feel effortless." },
+  { name: "Marketing", slug: "marketing", description: "Conversion-focused design for marketing platforms." },
+  { name: "Sales", slug: "sales", description: "Streamlined workflows that close deals faster." },
+  { name: "FinTech", slug: "fintech", description: "Trust-building interfaces for financial products." },
+  { name: "EdTech", slug: "ed-tech", description: "Engaging learning experiences that drive completion." },
+  { name: "Web3", slug: "web3", description: "Intuitive design for decentralized applications." },
+  { name: "Mobile Apps", slug: "mobile-apps", description: "Native-feeling experiences users love." },
+  { name: "B2B / Agencies", slug: "agencies", description: "Enterprise-grade UX that scales with your team." },
+  { name: "Healthcare", slug: "healthcare", description: "Clinical workflows designed for clarity and speed." },
+  { name: "Supply Chain", slug: "b2b", description: "Operational interfaces that reduce friction and errors." },
 ];
 
 function getIndustryData(slug: string): IndustryData {
@@ -287,37 +285,36 @@ function getIndustryData(slug: string): IndustryData {
   const label = slug.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   return {
     label,
-    headline: `Full-Stack Development For ${label} Startups`,
-    subtitle: `We build custom apps, websites, and software for ${label} startups — from idea to launch.`,
+    headline: `Unforgettable Website & UX Design For ${label} SaaS`,
+    subtitle: `We design delightful website & product user experiences for ${label} SaaS to increase signups & conversions.`,
     caseStudies: [
       {
         tag: label,
-        location: "San Francisco, CA",
-        title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+        location: "Startup Bros",
+        title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
-        href: "/portfolio/writesonic",
+        href: "/portfolio/said",
       },
       {
         tag: label,
-        location: "Canada",
-        title:
-          "Manyreach Website Revamp that Increased Conversions & AOV",
-        image: "/images/portfolio/sales-crm-detail.webp",
-        href: "/portfolio/manyreach",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
     ],
     features: [
-      { icon: "Sparkles", title: "Rapid MVP Development", description: "From concept to working product in weeks, not months — we ship functional software fast." },
-      { icon: "Target", title: "Conversion-Optimized Engineering", description: "Every feature is built to drive signups, engagement, and revenue from day one." },
-      { icon: "BarChart3", title: "Custom Analytics & Dashboards", description: "We build reporting systems that turn your raw data into clear, actionable insights." },
-      { icon: "Layers", title: "Scalable Architecture", description: "Clean code, modular systems, and cloud-native infrastructure that grows with your user base." },
-      { icon: "Users", title: "User-Centered Development", description: "We build based on real user needs — not assumptions — so every feature earns its place." },
-      { icon: "Workflow", title: "API & Integration Engineering", description: "We connect your product to the tools your users already rely on — seamless, reliable, documented." },
+      { icon: "Sparkles", title: "Rapid Prototyping", description: "From concept to clickable prototype in days, not months." },
+      { icon: "Target", title: "Conversion Optimization", description: "Every screen designed to move users toward activation." },
+      { icon: "BarChart3", title: "Data-Driven Layouts", description: "We use analytics and heatmaps to refine every interaction." },
+      { icon: "Layers", title: "Scalable Design Systems", description: "Components and tokens that grow with your engineering team." },
+      { icon: "Users", title: "User Research Baked In", description: "We talk to your users so every design decision is grounded in reality." },
+      { icon: "Workflow", title: "Developer-Ready Handoffs", description: "Organized Figma files with specs, tokens, and annotations." },
     ],
     testimonial: {
-      quote: "StartUpBros built our entire platform from scratch. The product was live and acquiring users within the first month.",
-      name: "Product Leader",
-      role: `${label} Startup`,
+      quote: `Good ${label} SaaS design starts with the buyer's actual workflow — every screen earns its place by moving them one step closer to the outcome they came for.`,
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   };
 }
@@ -340,7 +337,7 @@ export default async function IndustryPage({
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Official Framer Expert
+            Founded by Denkinger Bros
           </div>
           <div className="badge-pill flex items-center gap-2">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -348,7 +345,7 @@ export default async function IndustryPage({
               <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
             </svg>
-            Certified Webflow Partner
+            Trial Week Included
           </div>
         </div>
 
@@ -383,7 +380,7 @@ export default async function IndustryPage({
         <div className="max-w-[1280px] mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-h2 text-foreground">
-              Our {data.label} Work
+              {data.label} Design Studies
             </h2>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -454,14 +451,9 @@ export default async function IndustryPage({
       <section className="px-6 lg:px-10 py-24 md:py-28 bg-background">
         <div className="max-w-[800px] mx-auto text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 mb-8">
-            <div className="flex">
-              {[...Array(5)].map((_, i) => (
-                <svg key={i} width="14" height="14" viewBox="0 0 24 24" fill="#facc15" className="mx-0.5">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                </svg>
-              ))}
-            </div>
-            <span className="text-[13px] font-semibold text-foreground">5.0</span>
+            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+              Denkinger Bros · Design Study
+            </span>
           </div>
           <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground mb-8">
             &ldquo;{data.testimonial.quote}&rdquo;

@@ -8,51 +8,51 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const testimonials = [
   {
     author: {
-      name: "Alex R.",
-      role: "Founder, PropTech Startup",
+      name: "Ship in weeks",
+      role: "How we work",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "StartUpBros took our rough product spec and shipped a production-ready SaaS with user auth, billing, and a full API in under three weeks. Unreal.",
+    text: "Most MVPs take 3–6 months at an agency. We aim for 2–4 weeks. Scope tight, stack modern, decisions fast.",
   },
   {
     author: {
-      name: "Sarah K.",
-      role: "Operations Lead",
+      name: "Trial week included",
+      role: "How we work",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "They built us a custom automation pipeline that replaced four hours of manual data entry per day. The ROI was obvious within the first week.",
+    text: "Start with a paid trial week. Love the work or walk away — no questions, no long-term lock-in.",
   },
   {
     author: {
-      name: "Marcus T.",
-      role: "CEO, FinTech MVP",
+      name: "Founders-only",
+      role: "How we work",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "Finally, a dev team that actually gets startup speed. Clean code, daily deploys, no scope creep — just shipped product.",
+    text: "You work directly with Anthony and Danny. No account managers. No junior designers learning on your product.",
   },
   {
     author: {
-      name: "Danielle P.",
-      role: "Head of Product, EdTech",
+      name: "Modern stack",
+      role: "How we work",
       image: "/images/portfolio/ai-finance.avif",
     },
-    text: "They understood our product vision instantly and built an app that outperformed every prototype we'd gotten from other agencies. The codebase was clean enough for our team to extend on day one.",
+    text: "Next.js, Supabase, Stripe, OpenAI — what fast-moving SaaS is actually built on. No template mills, no WordPress hacks.",
   },
   {
     author: {
-      name: "James W.",
-      role: "CTO, HealthTech",
+      name: "Design and dev, one team",
+      role: "How we work",
       image: "/images/portfolio/geo-analytics.avif",
     },
-    text: "From initial architecture to a fully deployed MVP in 10 days. CI/CD pipeline, staging environment, production-ready — the whole nine yards.",
+    text: "No handoff seams between design and engineering. What you see in Figma is what ships to production.",
   },
   {
     author: {
-      name: "Priya M.",
-      role: "VP Design, AI Startup",
+      name: "Built by founders, for founders",
+      role: "How we work",
       image: "/images/portfolio/sales-dashboard.avif",
     },
-    text: "StartUpBros treats your product like their own. The code quality, test coverage, and attention to performance were things we'd never seen from an outside team.",
+    text: "We've been in the weeds of a launch. Every decision we make is tuned for speed, clarity, and what a real user will actually do.",
   },
 ];
 
@@ -72,10 +72,10 @@ export function Testimonials() {
         <AnimateIn>
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-6">
             <h2 className="text-display max-w-[720px] mx-auto">
-              Don&apos;t Take Our Word. Take Theirs.
+              How we work
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
-              Hear from founders and product leaders who scaled with StartUpBros.
+              The principles behind every project we ship.
             </p>
           </div>
         </AnimateIn>

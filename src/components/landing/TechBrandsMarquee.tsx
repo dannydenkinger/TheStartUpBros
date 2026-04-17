@@ -4,16 +4,16 @@ import { Marquee } from "@/components/shared/Marquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
 const brands = [
-  "Sybill",
-  "Writesonic",
+  "Next.js",
   "Supabase",
   "Vercel",
   "Linear",
   "OpenAI",
   "Anthropic",
-  "Scale",
-  "Cohere",
-  "Pinecone"
+  "Stripe",
+  "Tailwind",
+  "Figma",
+  "Framer",
 ];
 
 export function TechBrandsMarquee() {
@@ -21,7 +21,7 @@ export function TechBrandsMarquee() {
     <section className="py-12 bg-background border-b border-border/40 overflow-hidden">
       <AnimateIn variant="fadeIn">
         <p className="text-center text-[13px] font-medium text-muted-foreground mb-8">
-          Trusted by Leading Tech Brands to Deliver
+          Tools we build with
         </p>
         <Marquee pauseOnHover={false} direction="right" className="[--duration:25s]">
           {brands.map((brand) => (

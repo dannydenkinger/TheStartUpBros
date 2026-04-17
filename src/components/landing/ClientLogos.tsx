@@ -3,18 +3,18 @@
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
 const clients = [
-  "Sybill",
-  "Writesonic",
-  "IBM Innovation",
-  "AlchemAI",
-  "TPAID",
-  "KEARNEY",
-  "thruster",
-  "JI Thrust",
-  "flowstep",
-  "Seedstocks",
-  "Protocal",
-  "INSTALL APP",
+  "Linear",
+  "Notion",
+  "Arc",
+  "Superhuman",
+  "Raycast",
+  "Loops",
+  "Mercury",
+  "Attio",
+  "Cursor",
+  "Perplexity",
+  "Pitch",
+  "Campsite",
 ];
 
 export function ClientLogos() {
@@ -23,7 +23,7 @@ export function ClientLogos() {
       <div className="mx-auto max-w-[1100px]">
         <AnimateIn variant="fadeIn">
           <p className="text-center text-[13px] font-medium text-muted-foreground mb-8">
-            Trusted by Leading Tech Brands to Deliver
+            Inspired by
           </p>
           <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
             {clients.map((client) => (

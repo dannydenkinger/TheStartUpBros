@@ -111,7 +111,7 @@ export function ServicePageContent({ service }: { service: Service }) {
                   strokeLinejoin="round"
                 />
               </svg>
-              Official Framer Expert
+              Founded by Denkinger Bros
             </div>
             <div className="badge-pill flex items-center gap-2">
               <svg
@@ -146,7 +146,7 @@ export function ServicePageContent({ service }: { service: Service }) {
                   strokeLinejoin="round"
                 />
               </svg>
-              Certified Webflow Partner
+              Trial Week Included
             </div>
           </div>
         </AnimateIn>

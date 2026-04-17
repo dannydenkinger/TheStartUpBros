@@ -10,29 +10,29 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const faqs = [
   {
     question:
-      "Why should I choose StartUpBros over hiring developers myself?",
+      "Why should I choose Startup Bros over traditional design agencies?",
     answer:
-      "Hiring developers means months of recruiting, six-figure salaries, and no guarantee they can ship a full product. With StartUpBros, you get a battle-tested full-stack team that's built dozens of startup products — ready to deploy from day one.",
+      "Traditional agencies often take months to deliver, lack accountability, and work in silos. At Startup Bros, we deliver in days, collaborate closely with your team, and take full ownership of the product funnel to ensure your success.",
   },
   {
-    question: "How is StartUpBros different from a freelancer or dev shop?",
+    question: "How is Startup Bros different from hiring an in-house designer?",
     answer:
-      "Freelancers disappear. Dev shops pad timelines. We operate like your in-house engineering team — embedded in your workflow, shipping daily, and accountable to your launch date. No hand-offs, no black boxes.",
+      "Hiring in-house means salaries, benefits, and months of onboarding. With Startup Bros you get a founder-led team — Anthony and Danny directly on your project — at a fraction of the cost, ready to ship from day one.",
   },
   {
-    question: "How long does it take to build an MVP?",
+    question: "How long does it take to see results?",
     answer:
-      "Most MVPs ship in 2–4 weeks. We scope aggressively, cut what doesn't matter for launch, and get you to market fast. Full-scale apps with complex features typically take 6–10 weeks.",
+      "We aim to have a usable milestone in week one. Full MVPs and product redesigns typically ship in 2–4 weeks depending on scope.",
   },
   {
-    question: "What services does StartUpBros offer?",
+    question: "What services does Startup Bros offer?",
     answer:
-      "We cover nine core services: Web Development, Custom App Development, SEO, Brand Design, Custom Automation, AI Integration, Lead Generation, Digital Advertising, and Strategy & Consulting. Everything your startup needs under one roof.",
+      "We offer end-to-end UI/UX design, website design, landing pages, design systems, product strategy, user research, prototyping, and developer-ready handoffs.",
   },
   {
     question: "Do you have experience in my industry?",
     answer:
-      "We've built products across AI, Fintech, HealthTech, EdTech, PropTech, B2B SaaS, eCommerce, and more. Our cross-industry experience means we bring proven technical patterns and growth strategies to your niche.",
+      "We focus on B2B SaaS, AI products, fintech, and web3. Our design studies across these verticals shape the patterns we bring to every project — from trust signals on enterprise tools to data density in fintech dashboards.",
   },
   {
     question: "Will I be locked into a long-term contract?",
@@ -40,39 +40,39 @@ const faqs = [
       "No. We operate on flexible engagement models with no long-term lock-ins. You can scale up or down based on your needs at any time.",
   },
   {
-    question: "How do you collaborate with our team?",
+    question: "How do you ensure collaboration with our team?",
     answer:
-      "We work inside your existing tools — Slack, GitHub, Linear, Notion — and push daily commits. You get full visibility into progress with shared repos, staging environments, and async standups.",
+      "We work inside your existing tools — Slack, Figma, Linear, Notion — and provide daily updates. You're never out of the loop.",
   },
   {
     question: "What kind of deliverables can I expect?",
     answer:
-      "Clean, production-ready code in a private repo, deployed to staging and production environments, with full API documentation, CI/CD pipelines, and admin access to everything we build.",
+      "Pixel-perfect Figma files, interactive prototypes, design systems with components, and developer-ready specs with assets and annotations.",
   },
   {
-    question: "Do you take feedback during the development process?",
+    question: "Do you take feedback during the design process?",
     answer:
-      "Absolutely. We run weekly demos on staging so you can click through real builds — not static mockups. Feedback gets prioritized and shipped in the next sprint.",
+      "Absolutely. We build in structured feedback loops at every milestone. Unlimited revisions are included until you're 100% satisfied.",
   },
   {
-    question: "How do I know if StartUpBros is the right fit for me?",
+    question: "How do I know if Startup Bros is the right fit for me?",
     answer:
-      "Book a free strategy call. We'll talk through your product idea, technical requirements, and timeline to see if we're the right match — no strings attached.",
+      "Book a free strategy call. We'll discuss your goals, timeline, and budget to see if we're the right match — no strings attached.",
   },
   {
-    question: "What tech stack do you use?",
+    question: "How do you handle handoffs to developers?",
     answer:
-      "We're stack-agnostic but lean toward modern, scalable tools: Next.js, React, Node, Python, PostgreSQL, Supabase, AWS, and Vercel. We'll pick what's right for your product, not what's trendy.",
+      "We deliver organized Figma files with auto-layout, component documentation, design tokens, and CSS specs. Our designs are built to be developer-friendly from the start.",
   },
   {
-    question: "Can you help with strategy, or do you only write code?",
+    question: "Can you help us with strategy, or do you only handle design?",
     answer:
-      "Strategy is core to our process. Before writing a line of code, we map your market, validate your idea, and architect a technical roadmap so every sprint moves the needle on real business goals.",
+      "Strategy is core to our process. Before touching pixels, we analyze your market, competitors, and user flows to ensure the design solves real business problems.",
   },
   {
     question: "How much involvement is required from our team?",
     answer:
-      "Minimal. We need a kickoff session and periodic feedback reviews. Everything else — architecture, development, testing, deployment — is handled by us.",
+      "Minimal. We need a kickoff session and periodic feedback reviews. Everything else — research, design, iteration — is handled by us.",
   },
   {
     question: "What happens if we're not happy with the work?",
@@ -80,9 +80,9 @@ const faqs = [
       "We offer unlimited revisions within scope. If after the first milestone you're not satisfied, we'll refund your investment — no questions asked.",
   },
   {
-    question: "Do you offer support after launch?",
+    question: "Do you offer support after the project is delivered?",
     answer:
-      "Yes. We offer ongoing retainer packages for maintenance, feature development, bug fixes, and scaling support as your product grows and your user base expands.",
+      "Yes. We offer ongoing retainer packages for continuous design support, updates, and iteration as your product evolves.",
   },
 ];
 

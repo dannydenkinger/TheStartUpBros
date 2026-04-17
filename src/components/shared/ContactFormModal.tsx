@@ -13,17 +13,17 @@ const budgetOptions = [
 ];
 
 const bulletPoints = [
-  "Senior developers lead projects, guided by co-founders & CEOs Anthony and Danny Denkinger.",
-  "50+ SaaS products for startups, teams & enterprises across 30+ industries.",
-  "4.9/5 on Clutch with a 99.7% client satisfaction rate.",
-  "Fastest turnaround in the space. Most projects kick off in 48 hours.",
+  "Founded by Anthony & Danny Denkinger — you work directly with us, not account managers.",
+  "Modern stack: Next.js, Supabase, Stripe, OpenAI — what fast-moving SaaS is actually built on.",
+  "Most projects kick off within 48 hours of scope. Typical MVP ships in 2–4 weeks.",
+  "Design and development under one roof — no handoff seams between Figma and production.",
   "Start with a trial week. Love the work or walk away. Simple as that.",
 ];
 
 const stats = [
-  { icon: "📁", value: "50+", label: "Projects" },
-  { icon: "📊", value: "30+", label: "Industries" },
-  { icon: "❤️", value: "99.7%", label: "Client Satisfaction" },
+  { icon: "🧭", value: "Scope", label: "Within 48 hours" },
+  { icon: "🎨", value: "Design", label: "Usable by week one" },
+  { icon: "🚀", value: "Ship", label: "MVP in 2–4 weeks" },
 ];
 
 export function ContactFormModal() {
@@ -106,9 +106,9 @@ export function ContactFormModal() {
           <div className="flex-1 px-8 lg:px-10 py-10 lg:py-12">
             {/* Headline */}
             <h2 className="text-[28px] lg:text-[32px] font-bold text-foreground leading-[1.15] tracking-[-0.02em] mb-6">
-              Try The #1 Rated SaaS
+              Try Our SaaS Dev Team
               <br />
-              Dev Team For 1 Week.
+              For One Week.
               <br />
               Zero Risk.
             </h2>
@@ -144,7 +144,7 @@ export function ContactFormModal() {
           {/* ─── Right Column: Contact Form ─── */}
           <div className="w-full lg:w-[420px] bg-secondary px-8 py-10 lg:py-12 lg:px-8 border-l border-border/50 shrink-0">
             <h3 className="text-[20px] font-semibold text-foreground leading-tight mb-8">
-              See what StartUpBros can do for your product in 7 days.
+              See what Startup Bros can do for your product in 7 days.
             </h3>
 
             {submitted ? (

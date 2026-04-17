@@ -6,64 +6,28 @@ import { Badge } from "@/components/ui/badge";
 
 const cases = [
   {
-    slug: "ltv-ai",
-    title: "Building an Enterprise-Grade Website for LTV.ai",
-    tags: ["AI", "Location"],
-    image: "/images/portfolio/crm-dashboard.webp",
+    slug: "said",
+    title: "SAID Technology — Offline-First Medical Translation",
+    tags: ["AI", "Healthcare"],
+    image: "/images/portfolio/sales-crm-perspective.webp",
   },
   {
-    slug: "gigamind-landing",
-    title: "Designing Gigamiind's Credible AI-First Landing Page",
-    tags: ["AI", "San Francisco, CA"],
-    image: "/images/portfolio/ai-landing.webp",
-  },
-  {
-    slug: "gigamind-product",
-    title: "Redesigning GigaMind's Entire Product in Two Weeks",
-    tags: ["AI", "San Francisco, CA"],
-    image: "/images/portfolio/productivity-dashboard.webp",
-  },
-  {
-    slug: "sybill",
-    title: "Redesigning Sybill Without Disrupting Existing Users",
-    tags: ["AI", "Mountain View, CA"],
-    image: "/images/portfolio/sales-crm-full.webp",
-  },
-  {
-    slug: "hobbes-embedded",
-    title: "Designing Hobbes's as an Embedded Partner",
-    tags: ["AI", "San Francisco, CA"],
-    image: "/images/portfolio/crm-journeys.webp",
-  },
-  {
-    slug: "hobbes-rebrand",
-    title: "Rebranding Hobbes for an AI-First Market",
-    tags: ["AI", "San Francisco, CA"],
-    image: "/images/portfolio/crm-detail.webp",
-  },
-  {
-    slug: "alsuitup",
-    title: "Turning AlSuitUp's Landing Page Into a Conversion Engine",
-    tags: ["AI", "Albuquerque, New Mexico"],
-    image: "/images/portfolio/fintech-mobile.webp",
-  },
-  {
-    slug: "n3on",
-    title: "Powering N3on's First Token Launch with a 10 Day Platform Redesign",
-    tags: ["AI", "Canada"],
-    image: "/images/portfolio/defi-landing.webp",
-  },
-  {
-    slug: "socialsonic",
-    title: "Designing Socialsonic's MVP To Reach 1000+ Users In 30 Days",
-    tags: ["Marketing", "San Francisco, CA"],
+    slug: "zonex",
+    title: "ZoneX — AI Sports Analytics Platform",
+    tags: ["AI", "Sports"],
     image: "/images/portfolio/freelancer-dashboard.webp",
   },
   {
-    slug: "manyreach",
-    title: "Manyreach Website Revamp that Increased Conversions & AOV",
-    tags: ["Sales", "Canada"],
-    image: "/images/portfolio/sales-crm-detail.webp",
+    slug: "loot8",
+    title: "LOOT8 — Web3 Content & Commerce Platform",
+    tags: ["Web3", "Mobile"],
+    image: "/images/portfolio/defi-landing.webp",
+  },
+  {
+    slug: "k-project",
+    title: "K Project — Private AI for Regulated Industries",
+    tags: ["AI", "Private LLMs"],
+    image: "/images/portfolio/ai-landing.webp",
   },
 ];
 

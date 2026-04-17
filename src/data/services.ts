@@ -2,100 +2,25 @@ import type { Service } from "@/types";
 
 export const services: Service[] = [
   {
-    title: "Web Development",
-    slug: "web-development",
+    title: "Full-Stack App Development",
+    slug: "full-stack-apps",
     description:
-      "Fast, modern, and reliable websites built to be the high-performance home for your business.",
+      "End-to-end web and mobile applications built with modern frameworks. From authentication to deployment, we handle every layer.",
     longDescription:
-      "We build blazing-fast marketing sites, landing pages, and web platforms on modern frameworks like Next.js and React. Every build ships with responsive layouts, SEO fundamentals, and performance tuning baked in — so your site loads instantly and converts from day one.",
-    icon: "globe",
-    features: [
-      "Next.js & React builds",
-      "Responsive, mobile-first layouts",
-      "Performance-tuned for Lighthouse 100/100",
-      "CMS integration (Sanity, Contentful, MDX)",
-      "Analytics & conversion tracking",
-    ],
-    useCases: [
-      "Launch a premium marketing site for your startup",
-      "Rebuild an outdated site on a modern stack",
-      "Ship a high-converting landing page in days",
-      "Create a content-driven site with headless CMS",
-    ],
-    techStack: ["Next.js", "React", "Tailwind CSS", "Framer Motion", "Vercel", "Sanity", "MDX", "TypeScript"],
-    deliverables: [
-      "Fully responsive production website",
-      "SEO optimization & structured data",
-      "Performance audit report",
-      "CMS setup & content workflow",
-      "Analytics & tracking integration",
-    ],
-    featureHighlights: [
-      {
-        icon: "Zap",
-        title: "Sub-Second Load Times",
-        description:
-          "Server-rendered, edge-cached, image-optimized. Your site loads before the user blinks.",
-      },
-      {
-        icon: "Smartphone",
-        title: "Mobile-First Always",
-        description:
-          "Designed for the thumb first, the trackpad second. Every layout works perfectly on any screen.",
-      },
-      {
-        icon: "Search",
-        title: "SEO Built In",
-        description:
-          "Semantic HTML, structured data, meta tags, and sitemaps — the technical foundation Google rewards.",
-      },
-      {
-        icon: "Paintbrush",
-        title: "Pixel-Perfect Build",
-        description:
-          "Every section earns its place. Clean typography, intentional spacing, and animations that feel premium.",
-      },
-      {
-        icon: "FileEdit",
-        title: "Easy Content Updates",
-        description:
-          "Headless CMS integration so your team can update copy, images, and pages without touching code.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Conversion Tracking",
-        description:
-          "Analytics, heatmaps, and event tracking wired in so you know exactly what's working.",
-      },
-    ],
-    caseStudySlugs: ["alsuitup", "hobbes-rebrand"],
-    testimonial: {
-      quote:
-        "We finally look like the company we already are. Buyers stopped second-guessing us in the first meeting.",
-      name: "Lauren Park",
-      role: "CEO @ Hobbes",
-    },
-  },
-  {
-    title: "Custom App Development",
-    slug: "custom-app-dev",
-    description:
-      "The 'Full Stack' offering — building custom software or mobile apps to bring unique product ideas to life.",
-    longDescription:
-      "We build production-ready web and mobile applications from the ground up. From authentication and database design to APIs and cloud deployment, every layer is handled — delivered as a complete, scalable product ready for real users on day one.",
+      "We build production-ready web and mobile applications from the ground up using React, Next.js, Node.js, and Python. Every project includes authentication, database design, API development, CI/CD pipelines, and cloud deployment — delivered as a complete, scalable product ready for users.",
     icon: "code",
     features: [
       "React / Next.js frontends",
       "Node.js / Python backends",
       "Database design & optimization",
-      "API development & third-party integrations",
+      "API development & integrations",
       "CI/CD & cloud deployment",
     ],
     useCases: [
-      "Launch an MVP web app in 2-4 weeks",
-      "Build a cross-platform mobile app with React Native",
-      "Create a multi-tenant SaaS platform with billing",
+      "Launch an MVP web app in 2–4 weeks",
       "Migrate a legacy system to a modern stack",
+      "Build a cross-platform mobile app with React Native",
+      "Create real-time collaborative features",
     ],
     techStack: ["Next.js", "React", "Node.js", "Python", "PostgreSQL", "Redis", "AWS", "Vercel"],
     deliverables: [
@@ -143,266 +68,116 @@ export const services: Service[] = [
           "Structured logs, error tracking, and uptime monitoring so you know when something breaks.",
       },
     ],
-    caseStudySlugs: ["ltv-ai", "sybill"],
+    caseStudySlugs: ["loot8", "said"],
     testimonial: {
       quote:
-        "We shipped a complete redesign and didn't lose a single power user. That shouldn't be possible.",
-      name: "Nishit Asnani",
-      role: "Co-founder @ Sybill",
+        "Full-stack means the product works end-to-end — from the iOS app to the backend to the on-device inference layer. No seams between design, engineering, and deployment.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
-    title: "Search Optimization (SEO)",
-    slug: "seo",
+    title: "Custom SaaS Frameworks",
+    slug: "saas-dev",
     description:
-      "Getting your business found on the first page of Google by people actively looking for your services.",
+      "Multi-tenant SaaS platforms with billing, auth, and admin dashboards baked in from the start.",
     longDescription:
-      "We handle the technical and strategic SEO work that gets startups ranking. From site audits and keyword research to on-page optimization and content strategy, we build the organic pipeline that compounds month over month without ad spend.",
-    icon: "search",
+      "We architect multi-tenant SaaS platforms with Stripe billing, role-based access control, admin dashboards, and usage analytics built into the foundation. Skip months of boilerplate and go straight to building your unique value proposition.",
+    icon: "layers",
     features: [
-      "Technical SEO audits & fixes",
-      "Keyword research & content strategy",
-      "On-page optimization",
-      "Schema markup & structured data",
-      "Performance & Core Web Vitals tuning",
+      "Multi-tenant architecture",
+      "Stripe billing integration",
+      "Role-based access control",
+      "Admin dashboards",
+      "Usage analytics & monitoring",
     ],
     useCases: [
-      "Rank on page one for your core product keywords",
-      "Fix technical issues tanking your search visibility",
-      "Build a content engine that drives organic leads",
-      "Outrank competitors in a crowded startup niche",
+      "Launch a subscription-based B2B platform",
+      "Add billing and team management to an existing app",
+      "Build a white-label solution for resellers",
+      "Create a marketplace with seller dashboards",
     ],
-    techStack: ["Google Search Console", "Ahrefs", "Screaming Frog", "Next.js", "Vercel Analytics", "Schema.org"],
+    techStack: ["Next.js", "Stripe", "PostgreSQL", "Prisma", "NextAuth", "Tailwind CSS", "Vercel"],
     deliverables: [
-      "Full technical SEO audit report",
-      "Keyword strategy & content roadmap",
-      "On-page optimization across all pages",
-      "Schema markup implementation",
-      "Monthly ranking & traffic reports",
+      "Production-deployed SaaS platform",
+      "Stripe billing + customer portal",
+      "Admin dashboard",
+      "RBAC system",
+      "Onboarding flow",
     ],
     featureHighlights: [
       {
-        icon: "FileSearch",
-        title: "Technical Audit",
+        icon: "Users",
+        title: "Multi-Tenant From Day 1",
         description:
-          "We crawl every page, find every broken link, and fix the indexing issues killing your rankings.",
+          "Workspaces, team invites, and isolated data — built in before the product ships, not retrofitted.",
       },
       {
-        icon: "TrendingUp",
-        title: "Keyword Strategy",
+        icon: "DollarSign",
+        title: "Stripe Billing Done Right",
         description:
-          "Data-driven keyword targets based on search volume, intent, and what you can actually win.",
-      },
-      {
-        icon: "Code",
-        title: "Developer-Led SEO",
-        description:
-          "We don't just suggest fixes — we ship them. Meta tags, sitemaps, structured data, all in code.",
-      },
-      {
-        icon: "Gauge",
-        title: "Core Web Vitals",
-        description:
-          "Page speed, layout shift, and interactivity tuned to pass every Google performance threshold.",
-      },
-      {
-        icon: "FileText",
-        title: "Content Roadmap",
-        description:
-          "A prioritized plan for the pages and posts that will drive the most qualified traffic.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Transparent Reporting",
-        description:
-          "Monthly reports showing rankings, traffic, and pipeline impact — no vanity metrics.",
-      },
-    ],
-    caseStudySlugs: ["writesonic", "socialsonic"],
-    testimonial: {
-      quote:
-        "Organic traffic went from an afterthought to our top acquisition channel in three months. The ROI speaks for itself.",
-      name: "Samanyou Garg",
-      role: "Founder @ Writesonic",
-    },
-  },
-  {
-    title: "Brand Design",
-    slug: "brand-design",
-    description:
-      "A unique and professional look that makes your startup stand out from every competitor.",
-    longDescription:
-      "We build brand identities that make early-stage startups look like established players. Logo, color system, typography, and design language — all engineered to scale as you grow, so you never need a rebrand at Series A.",
-    icon: "palette",
-    features: [
-      "Logo & wordmark design",
-      "Color system & typography",
-      "Brand guidelines document",
-      "Design system & component library",
-      "Social media & marketing templates",
-    ],
-    useCases: [
-      "Define a brand identity before your first launch",
-      "Rebrand an existing startup that's outgrown its look",
-      "Build a design system for consistent marketing",
-      "Create investor-ready pitch materials and collateral",
-    ],
-    techStack: ["Figma", "Adobe Illustrator", "Tailwind CSS", "Framer Motion", "Storybook", "Chromatic"],
-    deliverables: [
-      "Complete brand identity package",
-      "Brand guidelines & usage documentation",
-      "Design system with reusable components",
-      "Social media template kit",
-      "Pitch deck template",
-    ],
-    featureHighlights: [
-      {
-        icon: "Eye",
-        title: "Identity That Sticks",
-        description:
-          "Logo, wordmark, color, and type — all built from one visual logic that's impossible to forget.",
-      },
-      {
-        icon: "Palette",
-        title: "Scalable Color System",
-        description:
-          "A palette engineered for dark mode, light mode, web, print, and every surface your brand touches.",
-      },
-      {
-        icon: "Type",
-        title: "Typography That Works",
-        description:
-          "Font pairings selected for readability, personality, and performance across every screen size.",
-      },
-      {
-        icon: "Layout",
-        title: "Design System",
-        description:
-          "Reusable components in Figma and code so every page, email, and ad stays on-brand automatically.",
-      },
-      {
-        icon: "Sparkles",
-        title: "Motion Language",
-        description:
-          "Subtle animations and transitions that feel premium and reinforce your brand personality.",
-      },
-      {
-        icon: "FileText",
-        title: "Brand Guidelines",
-        description:
-          "A clear document your team and contractors can follow — so the brand stays consistent without you.",
-      },
-    ],
-    caseStudySlugs: ["hobbes-rebrand", "n3on"],
-    testimonial: {
-      quote:
-        "People assume we're a much bigger company than we are. That's entirely because of how the brand looks and feels now.",
-      name: "Lauren Park",
-      role: "CEO @ Hobbes",
-    },
-  },
-  {
-    title: "Custom Automation",
-    slug: "custom-automation",
-    description:
-      "Connecting your apps to handle the 'busy work' so you can focus on the big-picture growth.",
-    longDescription:
-      "We build custom integrations and automated workflows that connect the tools your team already uses. From CRM pipelines and Slack notifications to invoice processing and data syncing, we eliminate the manual work that's burning your team's hours.",
-    icon: "workflow",
-    features: [
-      "Multi-app workflow automation",
-      "CRM & sales pipeline integrations",
-      "Data syncing across platforms",
-      "Custom webhook & API connectors",
-      "Scheduled jobs & background tasks",
-    ],
-    useCases: [
-      "Sync leads from your website to your CRM automatically",
-      "Auto-generate invoices when a deal closes in HubSpot",
-      "Send Slack alerts when key metrics change",
-      "Connect your app to third-party platforms without Zapier limits",
-    ],
-    techStack: ["Node.js", "Python", "Make", "Zapier", "n8n", "PostgreSQL", "Redis", "AWS Lambda"],
-    deliverables: [
-      "Custom automation workflows",
-      "API integrations & webhook handlers",
-      "Error handling & retry logic",
-      "Monitoring dashboard",
-      "Documentation & runbooks",
-    ],
-    featureHighlights: [
-      {
-        icon: "Workflow",
-        title: "End-to-End Workflows",
-        description:
-          "Multi-step automations that chain actions across your CRM, database, Slack, and email — reliably.",
-      },
-      {
-        icon: "GitBranch",
-        title: "Custom Integrations",
-        description:
-          "When Zapier can't cut it, we build direct API integrations that handle edge cases and scale.",
-      },
-      {
-        icon: "RefreshCw",
-        title: "Data Syncing",
-        description:
-          "Keep your tools in sync in real-time. No more copy-pasting between spreadsheets and dashboards.",
-      },
-      {
-        icon: "Bell",
-        title: "Smart Notifications",
-        description:
-          "Alerts in Slack, email, or SMS triggered by the events that actually matter to your team.",
+          "Subscriptions, usage-based pricing, customer portal, and webhooks — all handled correctly.",
       },
       {
         icon: "Shield",
-        title: "Error Handling Built In",
+        title: "Role-Based Access Control",
         description:
-          "Retry logic, dead-letter queues, and alerting so failed automations get caught, not lost.",
+          "Owner, admin, member, viewer — with a permissions model your team can extend without rewriting.",
       },
       {
-        icon: "Activity",
-        title: "Measurable Time Saved",
+        icon: "BarChart3",
+        title: "Usage Analytics",
         description:
-          "We track hours saved per week. Every automation we ship pays for itself within the first month.",
+          "Every event tracked, every dashboard answered. See what users do before they tell you.",
+      },
+      {
+        icon: "Workflow",
+        title: "Admin Tooling",
+        description:
+          "Admin dashboards for support, debugging, and impersonation — because you'll need them in week two.",
+      },
+      {
+        icon: "Rocket",
+        title: "Onboarding That Converts",
+        description:
+          "Activation-led onboarding flows that move users from signup to first value in minutes.",
       },
     ],
-    caseStudySlugs: ["community", "manyreach"],
+    caseStudySlugs: ["said", "k-project"],
     testimonial: {
       quote:
-        "It became the most-used app in our workspace within a week. Then we couldn't imagine working without it.",
-      name: "Hannah Kim",
-      role: "Head of Community @ Maven",
+        "Language can't be a barrier to care. SAID works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
-    title: "AI Integration",
-    slug: "ai-integration",
+    title: "AI Agents & Automation",
+    slug: "ai-agents",
     description:
-      "Smart tools and AI solutions that give your business a modern, high-tech competitive edge.",
+      "Intelligent agents that automate workflows, process documents, and make decisions. Powered by the latest LLMs.",
     longDescription:
-      "We build custom AI features and intelligent agents powered by the latest LLMs. From chatbots and document processing to RAG pipelines and AI-powered search, we integrate AI into your product or workflow where it creates real, measurable value.",
+      "We build custom AI agents that automate complex workflows using the latest LLMs. From document processing and data extraction to conversational AI and RAG pipelines, we deliver intelligent systems that save hours of manual work every day.",
     icon: "brain",
     features: [
       "Custom AI agent workflows",
-      "RAG pipelines & knowledge bases",
-      "Chatbot & conversational AI",
       "Document processing & extraction",
-      "AI-powered search & recommendations",
+      "Chatbot & conversational AI",
+      "RAG pipelines & knowledge bases",
+      "API orchestration & tool use",
     ],
     useCases: [
-      "Add an AI assistant to your SaaS product",
-      "Build a support chatbot trained on your knowledge base",
-      "Automate document review and data extraction",
-      "Create an AI research tool for your team",
+      "Automate invoice processing and data entry",
+      "Build a customer support chatbot with your knowledge base",
+      "Create an AI research assistant for your team",
+      "Automate document review and compliance checks",
     ],
     techStack: ["Python", "LangChain", "OpenAI", "Anthropic", "Pinecone", "FastAPI", "PostgreSQL"],
     deliverables: [
-      "Custom AI agent or feature",
+      "Custom AI agent system",
       "RAG pipeline with vector store",
       "API endpoints for integration",
-      "Monitoring & cost tracking dashboard",
+      "Monitoring dashboard",
       "Prompt engineering documentation",
     ],
     featureHighlights: [
@@ -422,7 +197,7 @@ export const services: Service[] = [
         icon: "Workflow",
         title: "Tool Use & Orchestration",
         description:
-          "Agents that call your APIs, query your database, and chain actions — safely, with fallbacks.",
+          "Agents that call your APIs, hit your database, and chain actions — safely, with fallbacks.",
       },
       {
         icon: "Shield",
@@ -432,248 +207,173 @@ export const services: Service[] = [
       },
       {
         icon: "Activity",
-        title: "Full Observability",
+        title: "Observability",
         description:
           "Every LLM call logged, every token counted. Debug failures, trace decisions, optimize cost.",
       },
       {
         icon: "Zap",
-        title: "Latency-Optimized",
+        title: "Latency-Aware",
         description:
           "Streaming, caching, and model routing designed so users never wait more than a second.",
       },
     ],
-    caseStudySlugs: ["loopback", "gigamind-product"],
+    caseStudySlugs: ["k-project", "said"],
     testimonial: {
       quote:
-        "We came in with a hunch and walked out with a product our design partners loved. The shape they shipped is the shape we still ship today.",
-      name: "Marcus Weld",
-      role: "Co-founder @ Loopback",
+        "The interesting problem in enterprise AI isn't capability — it's control. K Project gives organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
-    title: "Lead Generation",
-    slug: "lead-generation",
+    title: "Premium Web Design",
+    slug: "web-design",
     description:
-      "Building a system that finds your ideal customers and brings them directly to your door.",
+      "Beautiful, conversion-optimized websites that establish credibility and drive action. Mobile-first, performance-obsessed.",
     longDescription:
-      "We build automated lead generation systems that find, qualify, and deliver your ideal customers. From outbound email infrastructure and LinkedIn automation to landing page funnels and lead scoring, we engineer the pipeline so you stop chasing and start closing.",
-    icon: "users",
+      "We design and build premium websites that look like they cost ten times more than they do. Every pixel is intentional — optimized for conversion, SEO, and performance. Mobile-first responsive design with Lighthouse 100/100 targets.",
+    icon: "palette",
     features: [
-      "Outbound email infrastructure & sequences",
-      "Landing page funnels & lead magnets",
-      "Lead scoring & qualification workflows",
-      "CRM pipeline automation",
-      "LinkedIn outreach automation",
+      "Brand identity & design systems",
+      "Responsive, mobile-first layouts",
+      "Micro-interactions & animations",
+      "SEO optimization",
+      "Lighthouse 100/100 targets",
     ],
     useCases: [
-      "Build a cold outbound system that books meetings on autopilot",
-      "Create a lead magnet funnel that captures and nurtures prospects",
-      "Set up lead scoring so sales only talks to qualified buyers",
-      "Automate follow-ups that convert warm leads into customers",
+      "Launch a premium marketing site for your startup",
+      "Redesign an outdated website to increase conversions",
+      "Build a high-performance landing page for a campaign",
+      "Create a design system for consistent branding",
     ],
-    techStack: ["Next.js", "HubSpot", "Apollo", "Instantly", "Make", "PostgreSQL", "Resend", "Vercel"],
+    techStack: ["Next.js", "Tailwind CSS", "Framer Motion", "Figma", "Vercel", "MDX"],
     deliverables: [
-      "Lead generation system architecture",
-      "Outbound email sequences & infrastructure",
-      "Landing pages & lead capture forms",
-      "CRM integration & pipeline setup",
-      "Performance dashboard & reporting",
-    ],
-    featureHighlights: [
-      {
-        icon: "Mail",
-        title: "Outbound Infrastructure",
-        description:
-          "Domain warming, deliverability tuning, and multi-inbox rotation so your emails actually land.",
-      },
-      {
-        icon: "Target",
-        title: "Precision Targeting",
-        description:
-          "ICP-matched prospect lists built from intent signals, firmographics, and technographics.",
-      },
-      {
-        icon: "Filter",
-        title: "Lead Scoring",
-        description:
-          "Automated qualification so your sales team only spends time on leads ready to buy.",
-      },
-      {
-        icon: "Repeat",
-        title: "Automated Follow-Ups",
-        description:
-          "Multi-step sequences that nurture cold leads into warm conversations without manual effort.",
-      },
-      {
-        icon: "BarChart3",
-        title: "Pipeline Analytics",
-        description:
-          "Real-time dashboards showing open rates, reply rates, and pipeline value at every stage.",
-      },
-      {
-        icon: "Plug",
-        title: "CRM Integration",
-        description:
-          "Every lead, touchpoint, and deal stage synced into your CRM automatically — zero data entry.",
-      },
-    ],
-    caseStudySlugs: ["manyreach", "socialsonic"],
-    testimonial: {
-      quote:
-        "We went from zero outbound pipeline to 40 qualified meetings a month. The system basically runs itself now.",
-      name: "Jake Torres",
-      role: "Founder @ ManyReach",
-    },
-  },
-  {
-    title: "Digital Advertising",
-    slug: "digital-advertising",
-    description:
-      "High-impact ads designed to put your brand in front of the right people at the right time.",
-    longDescription:
-      "We build and manage paid acquisition campaigns across Google, Meta, and LinkedIn. From creative and copy to audience targeting and bid optimization, we run the ads that turn budget into pipeline — with transparent reporting so you always know your CAC.",
-    icon: "megaphone",
-    features: [
-      "Google Ads (Search, Display, YouTube)",
-      "Meta Ads (Facebook & Instagram)",
-      "LinkedIn Ads for B2B",
-      "Ad creative & copywriting",
-      "Conversion tracking & attribution",
-    ],
-    useCases: [
-      "Launch a paid acquisition channel for your startup",
-      "Reduce CAC on existing campaigns with better targeting",
-      "Run retargeting campaigns that convert warm traffic",
-      "Test product-market fit with rapid ad experiments",
-    ],
-    techStack: ["Google Ads", "Meta Ads Manager", "LinkedIn Campaign Manager", "Google Analytics", "Vercel Analytics", "Figma"],
-    deliverables: [
-      "Campaign strategy & media plan",
-      "Ad creative & copy variants",
-      "Audience targeting & segmentation",
-      "Conversion tracking setup",
-      "Weekly performance reports & optimization",
+      "Fully responsive website",
+      "Design system & component library",
+      "SEO optimization & meta tags",
+      "Performance audit report",
+      "CMS integration",
     ],
     featureHighlights: [
       {
         icon: "Target",
-        title: "Precision Audiences",
+        title: "Conversion-Led Design",
         description:
-          "Lookalikes, retargeting, and intent-based segments that put your ads in front of actual buyers.",
+          "Every section earns its place by lifting the funnel. No decorative noise, no wasted real estate.",
       },
       {
-        icon: "Paintbrush",
-        title: "High-Converting Creative",
+        icon: "Smartphone",
+        title: "Mobile-First Always",
         description:
-          "Ad creative and copy built to stop the scroll — tested, iterated, and optimized for clicks.",
+          "Designed for the thumb before the trackpad. Every layout works one-handed on a moving train.",
       },
       {
-        icon: "TrendingUp",
-        title: "Continuous Optimization",
+        icon: "Sparkles",
+        title: "Micro-Interactions",
         description:
-          "Weekly bid adjustments, A/B tests, and budget reallocation based on what's actually converting.",
+          "Framer Motion animations tuned for 60fps and subtle delight — not jank, not distraction.",
+      },
+      {
+        icon: "Eye",
+        title: "Brand That Sticks",
+        description:
+          "Identity systems built to scale — wordmark, color, type, motion — all from one visual logic.",
+      },
+      {
+        icon: "Zap",
+        title: "Lighthouse 100/100",
+        description:
+          "Performance-obsessed builds. Images, fonts, JS bundle — tuned so the page lands instantly.",
       },
       {
         icon: "BarChart3",
-        title: "Transparent Reporting",
+        title: "SEO-Ready",
         description:
-          "Dashboards showing spend, CPC, CAC, and ROAS — no black boxes, no vanity metrics.",
-      },
-      {
-        icon: "Repeat",
-        title: "Retargeting Funnels",
-        description:
-          "Multi-touch campaigns that bring visitors back and move them from awareness to purchase.",
-      },
-      {
-        icon: "DollarSign",
-        title: "Budget Efficiency",
-        description:
-          "We treat your ad budget like our own. Every dollar is tracked, tested, and accountable.",
+          "Structured data, clean metadata, semantic HTML. You'll rank because the foundations are right.",
       },
     ],
-    caseStudySlugs: ["thrust", "n3on"],
+    caseStudySlugs: ["loot8", "zonex"],
     testimonial: {
       quote:
-        "Our cost per lead dropped 60% in the first month. They actually understand startup unit economics, not just ad dashboards.",
-      name: "Aidan Cole",
-      role: "Growth Lead @ Thrust",
+        "Premium design is about restraint — one accent, one type, one motion principle — carried through every surface so the brand lands the same in the deck, the site, and the product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
-    title: "Strategy & Consulting",
-    slug: "strategy-consulting",
+    title: "Custom Business Tools",
+    slug: "tools",
     description:
-      "Expert guidance to help you plan your roadmap, pick the right tech, and avoid costly mistakes.",
+      "Internal tools, calculators, dashboards, and workflow apps that replace spreadsheets and save hours every week.",
     longDescription:
-      "We help founders make the right technical and strategic decisions before writing a single line of code. From tech stack selection and architecture reviews to product roadmapping and build-vs-buy analysis, we save you months of wasted effort and six figures in wrong turns.",
-    icon: "compass",
+      "We build custom internal tools that replace the spreadsheets and manual processes holding your team back. Real-time dashboards, calculators, workflow automation, and data visualization — integrated with the tools you already use.",
+    icon: "wrench",
     features: [
-      "Tech stack selection & architecture review",
-      "Product roadmap planning",
-      "Build vs. buy analysis",
-      "Technical due diligence",
-      "Fractional CTO advisory",
+      "Custom calculators & estimators",
+      "Real-time dashboards",
+      "Workflow automation tools",
+      "Data visualization",
+      "Third-party integrations",
     ],
     useCases: [
-      "Choose the right tech stack before building your MVP",
-      "Get an architecture review before scaling your product",
-      "Plan a 6-month product roadmap with realistic milestones",
-      "Evaluate whether to build in-house or outsource",
+      "Replace a complex spreadsheet with a purpose-built tool",
+      "Build a client-facing ROI calculator",
+      "Create an internal operations dashboard",
+      "Automate a multi-step business workflow",
     ],
-    techStack: ["Notion", "Linear", "Figma", "Miro", "GitHub", "Vercel"],
+    techStack: ["React", "Next.js", "D3.js", "Recharts", "PostgreSQL", "Plaid", "Zapier"],
     deliverables: [
-      "Technical strategy document",
-      "Architecture diagram & recommendations",
-      "Product roadmap with milestones",
-      "Tech stack recommendation report",
-      "Ongoing advisory retainer (optional)",
+      "Custom business application",
+      "Data visualization dashboards",
+      "Third-party API integrations",
+      "User documentation",
+      "Admin controls",
     ],
     featureHighlights: [
       {
-        icon: "Map",
-        title: "Technical Roadmap",
+        icon: "BarChart3",
+        title: "Real-Time Dashboards",
         description:
-          "A clear, prioritized plan for what to build, when to build it, and what stack to use.",
+          "Dashboards that update as data changes — not on refresh, not on page load. Built for operators.",
+      },
+      {
+        icon: "Workflow",
+        title: "Workflow Automation",
+        description:
+          "Chain steps across systems. What used to take 20 clicks becomes one — with audit logs.",
       },
       {
         icon: "GitBranch",
-        title: "Architecture Review",
+        title: "Third-Party Integrations",
         description:
-          "We audit your codebase and infrastructure, then tell you exactly where the landmines are.",
+          "Plaid, Stripe, QuickBooks, HubSpot, Slack — we plumb the tools you already use into one workflow.",
       },
       {
-        icon: "Scale",
-        title: "Build vs. Buy Analysis",
+        icon: "Terminal",
+        title: "Custom Calculators",
         description:
-          "Honest assessment of when to write code, when to buy a tool, and when to hire.",
-      },
-      {
-        icon: "Shield",
-        title: "Technical Due Diligence",
-        description:
-          "Investor-grade code and infrastructure reviews that surface risks before they become problems.",
+          "ROI calculators, pricing estimators, cost models — built to replace the spreadsheet nobody trusts.",
       },
       {
         icon: "Users",
-        title: "Fractional CTO",
+        title: "Role-Based Tools",
         description:
-          "Senior technical leadership on a retainer — without the $300K salary and equity dilution.",
+          "One tool, three surfaces — one for the operator, one for the manager, one for the admin.",
       },
       {
-        icon: "Lightbulb",
-        title: "Founder-First Advice",
+        icon: "Activity",
+        title: "Replaces Manual Work",
         description:
-          "We've built startups ourselves. Every recommendation is grounded in shipping, not theory.",
+          "We measure success in hours saved per week. Every tool we ship pays for itself in a month.",
       },
     ],
-    caseStudySlugs: ["gigamind-landing", "loopback"],
+    caseStudySlugs: ["zonex", "loot8"],
     testimonial: {
       quote:
-        "They talked us out of rebuilding our backend from scratch and saved us four months. Best money we ever spent was on the advice that said 'don't spend money.'",
-      name: "Marcus Weld",
-      role: "Co-founder @ Loopback",
+        "Coaches don't want to operate a data tool — they want to make a decision. The best custom tools remove the operator role entirely and turn the user into an asker.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
 ];

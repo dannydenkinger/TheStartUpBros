@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Briefcase, Layers, Heart } from "lucide-react";
+import { Check, Briefcase, Layers, Rocket } from "lucide-react";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
@@ -15,17 +15,17 @@ const budgetOptions = [
 ];
 
 const bulletPoints = [
-  "Senior developers lead every project, guided by co-founders & CEOs Anthony and Danny Denkinger.",
-  "50+ shipped products across 30+ industries — from AI tools to SaaS platforms to mobile apps.",
-  "4.9/5 on Clutch with a 99.7% client satisfaction rate.",
-  "Most projects kick off within 48 hours. Typical MVP ships in 2–4 weeks.",
+  "Founded by Anthony & Danny Denkinger — you work directly with us, not account managers.",
+  "Modern stack: Next.js, Supabase, Stripe, OpenAI — what fast-moving SaaS is actually built on.",
+  "Kickoff within 48 hours of scope. Typical MVP ships in 2–4 weeks.",
+  "Design and development under one roof — no handoff seams between Figma and production.",
   "Start with a trial week. Love the work or walk away — no questions asked.",
 ];
 
 const stats = [
-  { icon: Briefcase, value: "50+", label: "Projects shipped" },
-  { icon: Layers, value: "30+", label: "Industries" },
-  { icon: Heart, value: "99.7%", label: "Client satisfaction" },
+  { icon: Briefcase, value: "Scope", label: "Within 48 hours" },
+  { icon: Layers, value: "Design", label: "Usable by week one" },
+  { icon: Rocket, value: "Ship", label: "MVP in 2–4 weeks" },
 ];
 
 export function StrategyCallContent() {
@@ -71,30 +71,14 @@ export function StrategyCallContent() {
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* ─── Left: sales narrative ─── */}
             <div className="flex-1">
-              {/* Clutch rating pill */}
+              {/* Founder pill */}
               <AnimateIn variant="fadeUp">
                 <div className="inline-flex items-center gap-2 badge-pill mb-7">
                   <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
-                    Reviewed on
+                    Founded by
                   </span>
                   <span className="text-[13px] font-bold text-foreground tracking-tight">
-                    Clutch
-                  </span>
-                  <div className="flex items-center gap-0.5">
-                    {[...Array(5)].map((_, i) => (
-                      <svg
-                        key={i}
-                        width="12"
-                        height="12"
-                        viewBox="0 0 24 24"
-                        fill="#facc15"
-                      >
-                        <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-                      </svg>
-                    ))}
-                  </div>
-                  <span className="text-[11px] font-semibold text-foreground ml-1">
-                    5.0
+                    Anthony &amp; Danny Denkinger
                   </span>
                 </div>
               </AnimateIn>

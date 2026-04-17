@@ -4,29 +4,28 @@ import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
-function ClutchRating() {
+function StudyLabel() {
   return (
     <div className="flex items-center gap-2">
-      <span className="text-[13px] font-bold text-foreground">Clutch</span>
-      <div className="flex gap-0.5">
-        {[...Array(5)].map((_, i) => (
-          <svg key={i} width="12" height="12" viewBox="0 0 24 24" fill="#facc15">
-            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
-          </svg>
-        ))}
-      </div>
+      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+        Denkinger Bros
+      </span>
+      <span className="w-1 h-1 rounded-full bg-muted-foreground/60" />
+      <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+        Design Study
+      </span>
     </div>
   );
 }
 
 const cases = [
   {
-    tags: ["AI SaaS", "VC Backed", "NY"],
-    title: "Designing the First GEO Platform For Writesonic's 1M+ Users",
+    tags: ["AI", "Healthcare", "Defense"],
+    title: "SAID Technology — Offline-First Medical Translation",
     testimonial:
-      "Their designs consistently balanced visual aesthetics with functionality and business objectives.",
-    author: { name: "Samanyou Garg", role: "Founder @ Writesonic", image: "/images/portfolio/ai-finance.avif" },
-    href: "/portfolio/writesonic",
+      "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/ai-finance.avif" },
+    href: "/portfolio/said",
     heroImage: "/images/portfolio/sales-crm-full.webp",
     screenshots: [
       "/images/portfolio/crm-dashboard.webp",
@@ -34,25 +33,25 @@ const cases = [
     ],
   },
   {
-    tags: ["AI SaaS", "MVP + Web Design"],
-    title: "Designing Loopback's MVP & Landing Page In 21 Days",
+    tags: ["AI", "Sports", "Computer Vision"],
+    title: "ZoneX — AI Sports Analytics Platform",
     testimonial:
-      "We couldn't have achieved throughout every stage of their work, from wireframes to polished final output. The team provided the client with real-time insights into their results.",
-    author: { name: "Mike Sitton", role: "Founder @ Loopback", image: "/images/portfolio/geo-analytics.avif" },
-    href: "/portfolio/loopback",
-    heroImage: "/images/portfolio/ai-landing.webp",
+      "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
+    href: "/portfolio/zonex",
+    heroImage: "/images/portfolio/socialsonic.avif",
     screenshots: [
-      "/images/portfolio/fintech-dashboard.webp",
       "/images/portfolio/freelancer-dashboard.webp",
+      "/images/portfolio/crm-detail.webp",
     ],
   },
   {
-    tags: ["Web3", "Product Design", "🇨🇦 Canada"],
-    title: "Launching N3on's token through Thrust",
+    tags: ["Web3", "Mobile", "Blockchain"],
+    title: "LOOT8 — Web3 Content & Commerce Platform",
     testimonial:
-      "They're a creative design and developer partner us with creative vision. Their thought leadership is exceptional.",
-    author: { name: "Etai Yaacobi", role: "Founder & CEO @ Thrust", image: "/images/portfolio/sales-dashboard.avif" },
-    href: "/portfolio/n3on",
+      "Web3 platforms were built for crypto natives. LOOT8 was built for the artist, the venue, and the fan — the blockchain is the infrastructure, but the experience is the product.",
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/sales-dashboard.avif" },
+    href: "/portfolio/loot8",
     heroImage: "/images/portfolio/defi-landing.webp",
     screenshots: [
       "/images/portfolio/fintech-mobile.webp",
@@ -68,11 +67,11 @@ export function CaseStudies() {
         {/* Section Header */}
         <AnimateIn>
           <div className="text-center mb-16">
-            <span className="badge-pill mb-6 inline-block">Case Studies</span>
+            <span className="badge-pill mb-6 inline-block">Design Studies</span>
             <h2 className="text-h2 text-foreground">
-              Real Results from Real SaaS
+              Product deep-dives from the
               <br className="hidden sm:block" />
-              Companies
+              kind of SaaS we build
             </h2>
           </div>
         </AnimateIn>
@@ -99,7 +98,7 @@ export function CaseStudies() {
                   {c.title}
                 </h3>
 
-                <ClutchRating />
+                <StudyLabel />
 
                 <p className="text-[17px] leading-relaxed text-muted-foreground mt-6 mb-7 max-w-[480px]">
                   &ldquo;{c.testimonial}&rdquo;
