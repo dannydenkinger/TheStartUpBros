@@ -76,7 +76,7 @@ const industryData: Record<string, IndustryData> = {
         tag: "Sports",
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
-        image: "/images/portfolio/socialsonic.avif",
+        image: "/images/portfolio/zonex-dashboard.webp",
         href: "/portfolio/zonex",
       },
       {
@@ -215,7 +215,7 @@ const industryData: Record<string, IndustryData> = {
         tag: "AI Analytics",
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
-        image: "/images/portfolio/socialsonic.avif",
+        image: "/images/portfolio/zonex-dashboard.webp",
         href: "/portfolio/zonex",
       },
     ],

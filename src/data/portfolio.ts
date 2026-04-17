@@ -84,7 +84,7 @@ export const projects: PortfolioProject[] = [
     slug: "zonex",
     description:
       "An AI-driven sports analytics platform that turns raw film and game data into actionable intelligence — computer vision, structured data, and explainable models built for coaches, not data scientists.",
-    image: "/images/portfolio/freelancer-dashboard.webp",
+    image: "/images/portfolio/zonex-dashboard.webp",
     tags: ["AI", "Sports", "Computer Vision"],
     deviceType: "macbook",
     client: "ZoneX",
@@ -108,24 +108,24 @@ export const projects: PortfolioProject[] = [
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/socialsonic.avif",
-        alt: "ZoneX analytics dashboard",
+        image: "/images/portfolio/zonex-dashboard.webp",
+        alt: "ZoneX dashboard — recent form, efficiency trends, and game results",
         caption:
-          "One intelligence layer — film, data, and AI unified for the coach on the sideline.",
+          "The dashboard lands a coach in the last ten games — efficiency trends, net rating, and recent results in one glance.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/freelancer-dashboard.webp",
-        alt: "Coaching workflow",
+        image: "/images/portfolio/zonex-coaching.webp",
+        alt: "Coach-specific portal memo with fit analysis",
         heading: "Built for the coach, not the data team",
-        body: "Most analytics tools make the coach the operator. ZoneX makes the coach the asker — the platform handles the film breakdown, the model tuning, and the data cleaning. Coaches get answers they can act on in minutes, not weeks.",
+        body: "Most analytics tools make the coach the operator. ZoneX makes the coach the asker — portal memos, fit drivers, and coach lenses are generated for the specific decision in front of them.",
         align: "right",
       },
       {
         type: "twoUp",
         images: [
-          { src: "/images/portfolio/crm-dashboard.webp", alt: "Film analysis" },
-          { src: "/images/portfolio/crm-detail.webp", alt: "Game data detail" },
+          { src: "/images/portfolio/zonex-film.webp", alt: "Computer vision tracking on live game film" },
+          { src: "/images/portfolio/zonex-game-data.webp", alt: "Per-game summary with Four Factors breakdown" },
         ],
         caption:
           "Film analysis and structured game data share a single dashboard — the same lens on every source.",

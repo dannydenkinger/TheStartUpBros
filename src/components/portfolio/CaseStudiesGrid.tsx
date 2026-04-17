@@ -15,7 +15,7 @@ const cases = [
     slug: "zonex",
     title: "ZoneX — AI Sports Analytics Platform",
     tags: ["AI", "Sports"],
-    image: "/images/portfolio/freelancer-dashboard.webp",
+    image: "/images/portfolio/zonex-dashboard.webp",
   },
   {
     slug: "loot8",
