@@ -29,6 +29,12 @@ const cases = [
     tags: ["AI", "Private LLMs"],
     image: "/images/portfolio/ai-landing.webp",
   },
+  {
+    slug: "vesta-crm",
+    title: "Vesta CRM — Complete CRM Platform Built From Scratch",
+    tags: ["CRM", "Full-Stack"],
+    image: "/images/portfolio/vesta-hero.png",
+  },
 ];
 
 export function CaseStudiesGrid() {

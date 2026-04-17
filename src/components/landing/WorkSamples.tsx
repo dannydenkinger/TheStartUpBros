@@ -5,19 +5,19 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 // Curated gallery — image-only showcase, no per-item navigation.
 // Mix of dashboards, mobile mockups, and landing pages for visual variety.
 const galleryImages = [
-  "/images/portfolio/sales-crm-perspective.webp",
+  "/images/portfolio/vesta-hero.png",
   "/images/portfolio/thrust-mobile.avif",
   "/images/portfolio/ai-landing.webp",
-  "/images/portfolio/crm-dashboard.webp",
+  "/images/portfolio/vesta-calendar.png",
   "/images/portfolio/freelancer-dashboard.webp",
   "/images/portfolio/defi-landing.webp",
-  "/images/portfolio/fintech-mobile.webp",
+  "/images/portfolio/vesta-analytics.png",
   "/images/portfolio/productivity-dashboard.webp",
   "/images/portfolio/geo-analytics.avif",
-  "/images/portfolio/travel-app.webp",
+  "/images/portfolio/vesta-seo.png",
   "/images/portfolio/multichain.avif",
   "/images/portfolio/sales-dashboard.avif",
-  "/images/portfolio/socialsonic.avif",
+  "/images/portfolio/vesta-login.png",
   "/images/portfolio/fintech-dashboard.webp",
   "/images/portfolio/community-search.avif",
 ];

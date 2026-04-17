@@ -274,4 +274,76 @@ export const projects: PortfolioProject[] = [
       role: "Startup Bros",
     },
   },
+  {
+    title: "Vesta CRM — Full-Stack CRM Platform",
+    slug: "vesta-crm",
+    description:
+      "A complete CRM platform built from the ground up — contacts, pipelines, outreach automations, data capture, financials, integrated calendar, marketing analytics, and SEO tools, all in one workspace.",
+    image: "/images/portfolio/vesta-hero.png",
+    tags: ["CRM", "Full-Stack", "SaaS"],
+    deviceType: "macbook",
+    client: "Vesta CRM",
+    year: "2025",
+    industry: "CRM / SaaS",
+    services: ["Full-Stack Development", "Custom App Development", "Automation", "SEO"],
+    overview:
+      "Vesta CRM's team needed to stop paying for five different tools that didn't talk to each other. We built their platform as a single system that replaced the entire stack — CRM, email outreach, calendar, financial tracking, marketing analytics, and SEO monitoring — all under one login. The result was a custom-built solution that fit their exact workflow instead of forcing them into someone else's.",
+    challenge:
+      "The team was juggling separate tools for contact management, email sequences, scheduling, financial tracking, and marketing analytics. Data lived in five places, nothing synced, and the ops team spent hours every week copying information between systems. They needed one platform that handled everything — built specifically for how they operate.",
+    solution:
+      "We built Vesta CRM end-to-end: a contacts database with custom fields and tagging, a visual pipeline with drag-and-drop deal stages, automated outreach sequences with email integration, a unified calendar syncing Google Calendar, Apple Calendar, and CRM events, a financial dashboard for revenue tracking, and a full marketing analytics suite with traffic, SEO rankings, Core Web Vitals, and search query monitoring. Authentication with Google SSO, role-based access, and a command palette for power users.",
+    timeline: "5 weeks",
+    techStack: ["Next.js", "React", "Node.js", "PostgreSQL", "Google Calendar API", "Google Search Console", "Tailwind CSS", "Vercel"],
+    outcomes: [
+      "Replaced 5 separate tools with one unified platform",
+      "Automated outreach sequences saved 12+ hours per week",
+      "Real-time pipeline visibility eliminated manual reporting",
+      "Integrated calendar reduced scheduling friction to zero",
+      "Built-in SEO monitoring caught ranking drops within 24 hours",
+    ],
+    gallery: [
+      {
+        type: "full",
+        image: "/images/portfolio/vesta-hero.png",
+        alt: "Vesta CRM landing page and dashboard",
+        caption:
+          "The Vesta CRM landing page — sales pipeline, revenue metrics, and a full feature overview in one view.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/vesta-calendar.png",
+        alt: "Vesta CRM integrated calendar",
+        heading: "One calendar for everything",
+        body: "Google Calendar, Apple Calendar, CRM tasks, stay dates, and events — all synced into a single view. The team stopped switching tabs and started seeing their full schedule in context. Event sources are filterable, and quick tasks can be created without leaving the calendar.",
+        align: "left",
+      },
+      {
+        type: "twoUp",
+        images: [
+          { src: "/images/portfolio/vesta-analytics.png", alt: "Marketing analytics dashboard" },
+          { src: "/images/portfolio/vesta-seo.png", alt: "SEO performance dashboard" },
+        ],
+        caption:
+          "Marketing analytics and SEO monitoring built directly into the CRM — traffic sources, search rankings, Core Web Vitals, and top queries all in one place.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/vesta-login.png",
+        alt: "Vesta CRM login screen",
+        heading: "Clean auth with Google SSO",
+        body: "Authentication built with Google SSO for one-click access. The split-screen login sets the tone for the product — professional, fast, no friction. New team members onboard in seconds, not days.",
+        align: "right",
+      },
+    ],
+    metrics: [
+      { value: "5→1", label: "Tools consolidated" },
+      { value: "12+ hrs", label: "Saved per week" },
+      { value: "5 wks", label: "Concept to launch" },
+    ],
+    quote: {
+      text: "We went from juggling five different tools to one platform that actually fits how we work. Vesta CRM is the system we always needed but couldn't find off the shelf.",
+      author: "Danny Denkinger",
+      role: "StartUpBros",
+    },
+  },
 ];

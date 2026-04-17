@@ -20,19 +20,6 @@ function StudyLabel() {
 
 const cases = [
   {
-    tags: ["AI", "Healthcare", "Defense"],
-    title: "SAID Technology — Offline-First Medical Translation",
-    testimonial:
-      "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/ai-finance.avif" },
-    href: "/portfolio/said",
-    heroImage: "/images/portfolio/sales-crm-full.webp",
-    screenshots: [
-      "/images/portfolio/crm-dashboard.webp",
-      "/images/portfolio/productivity-dashboard.webp",
-    ],
-  },
-  {
     tags: ["AI", "Sports", "Computer Vision"],
     title: "ZoneX — AI Sports Analytics Platform",
     testimonial:
@@ -56,6 +43,19 @@ const cases = [
     screenshots: [
       "/images/portfolio/fintech-mobile.webp",
       "/images/portfolio/travel-app.webp",
+    ],
+  },
+  {
+    tags: ["CRM", "Full-Stack", "SaaS"],
+    title: "Vesta CRM — Complete CRM Platform Built From Scratch",
+    testimonial:
+      "We went from juggling five different tools to one platform that actually fits how we work. Vesta CRM is the system we always needed but couldn't find off the shelf.",
+    author: { name: "Danny Denkinger", role: "StartUpBros", image: "/images/portfolio/vesta-hero.png" },
+    href: "/portfolio/vesta-crm",
+    heroImage: "/images/portfolio/vesta-hero.png",
+    screenshots: [
+      "/images/portfolio/vesta-calendar.png",
+      "/images/portfolio/vesta-analytics.png",
     ],
   },
 ];
