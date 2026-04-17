@@ -68,12 +68,12 @@ export const services: Service[] = [
           "Structured logs, error tracking, and uptime monitoring so you know when something breaks.",
       },
     ],
-    caseStudySlugs: ["ltv-ai", "sybill"],
+    caseStudySlugs: ["loot8", "said"],
     testimonial: {
       quote:
-        "A redesign that churns power users isn't a win, no matter how good the new UI is. Two parallel surfaces and an opt-in migration protect both cohorts.",
-      name: "Denkinger Bros",
-      role: "Design Study",
+        "Full-stack means the product works end-to-end — from the iOS app to the backend to the on-device inference layer. No seams between design, engineering, and deployment.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
@@ -143,7 +143,7 @@ export const services: Service[] = [
           "Activation-led onboarding flows that move users from signup to first value in minutes.",
       },
     ],
-    caseStudySlugs: ["writesonic", "gigamind-product"],
+    caseStudySlugs: ["said", "k-project"],
     testimonial: {
       quote:
         "Language can't be a barrier to care. SAID works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
@@ -218,7 +218,7 @@ export const services: Service[] = [
           "Streaming, caching, and model routing designed so users never wait more than a second.",
       },
     ],
-    caseStudySlugs: ["loopback", "gigamind-landing"],
+    caseStudySlugs: ["k-project", "said"],
     testimonial: {
       quote:
         "The interesting problem in enterprise AI isn't capability — it's control. K Project gives organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure.",
@@ -293,12 +293,12 @@ export const services: Service[] = [
           "Structured data, clean metadata, semantic HTML. You'll rank because the foundations are right.",
       },
     ],
-    caseStudySlugs: ["alsuitup", "hobbes-rebrand"],
+    caseStudySlugs: ["loot8", "zonex"],
     testimonial: {
       quote:
-        "A brand that reads 'hobby project' to a Series B+ buyer is actively losing deals. Restraint — one accent, one type, one motion principle — is the bar.",
-      name: "Denkinger Bros",
-      role: "Design Study",
+        "Premium design is about restraint — one accent, one type, one motion principle — carried through every surface so the brand lands the same in the deck, the site, and the product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
   {
@@ -368,12 +368,12 @@ export const services: Service[] = [
           "We measure success in hours saved per week. Every tool we ship pays for itself in a month.",
       },
     ],
-    caseStudySlugs: ["community", "manyreach"],
+    caseStudySlugs: ["zonex", "loot8"],
     testimonial: {
       quote:
-        "A search tool used 40 times a day has to be faster than Cmd+T. Keyboard-first UI, incremental sync, and sub-second latency compound into a tool users can't imagine working without.",
-      name: "Denkinger Bros",
-      role: "Design Study",
+        "Coaches don't want to operate a data tool — they want to make a decision. The best custom tools remove the operator role entirely and turn the user into an asker.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
 ];

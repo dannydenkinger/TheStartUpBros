@@ -77,14 +77,14 @@ const industryData: Record<string, IndustryData> = {
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
         image: "/images/portfolio/socialsonic.avif",
-        href: "/portfolio/socialsonic",
+        href: "/portfolio/zonex",
       },
       {
-        tag: "Productivity",
-        location: "Design Study",
-        title: "Federated Search Command Palette — A Product Study",
-        image: "/images/portfolio/community-search.avif",
-        href: "/portfolio/community",
+        tag: "Web3 Commerce",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
     ],
     features: [
@@ -143,14 +143,14 @@ const industryData: Record<string, IndustryData> = {
         location: "Startup Bros",
         title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
-        href: "/portfolio/writesonic",
+        href: "/portfolio/said",
       },
       {
         tag: "Private LLMs",
         location: "Startup Bros",
         title: "K Project — Private AI for Regulated Industries",
         image: "/images/portfolio/ai-landing.webp",
-        href: "/portfolio/loopback",
+        href: "/portfolio/k-project",
       },
     ],
     features: [
@@ -205,18 +205,18 @@ const industryData: Record<string, IndustryData> = {
       "We design delightful website & product user experiences for Sales SaaS to increase signups & conversions.",
     caseStudies: [
       {
-        tag: "Sales Tools",
-        location: "Design Study",
-        title: "Pricing Page as Guidance — An AOV Study",
-        image: "/images/portfolio/sales-crm-detail.webp",
-        href: "/portfolio/manyreach",
+        tag: "Web3 Commerce",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
       {
-        tag: "AI Sales",
-        location: "Design Study",
-        title: "Zero-Churn Product Migration — A UX Study",
-        image: "/images/portfolio/sales-crm-full.webp",
-        href: "/portfolio/sybill",
+        tag: "AI Analytics",
+        location: "Startup Bros",
+        title: "ZoneX — AI Sports Analytics Platform",
+        image: "/images/portfolio/socialsonic.avif",
+        href: "/portfolio/zonex",
       },
     ],
     features: [
@@ -259,9 +259,9 @@ const industryData: Record<string, IndustryData> = {
     ],
     testimonial: {
       quote:
-        "A pricing page that asks the buyer to choose leaves AOV on the table. Turning the page into a guidance tool — value ladder, mid-tier anchor, outcome calculator — moves buyers to the tier that actually fits their team.",
-      name: "Denkinger Bros",
-      role: "Design Study",
+        "Web3 platforms were built for crypto natives. LOOT8 was built for the artist, the venue, and the fan — the blockchain is the infrastructure, but the experience is the product.",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   },
 };
@@ -293,14 +293,14 @@ function getIndustryData(slug: string): IndustryData {
         location: "Startup Bros",
         title: "SAID Technology — Offline-First Medical Translation",
         image: "/images/portfolio/geo-analytics.avif",
-        href: "/portfolio/writesonic",
+        href: "/portfolio/said",
       },
       {
         tag: label,
-        location: "Design Study",
-        title: "Pricing Page as Guidance — An AOV Study",
-        image: "/images/portfolio/sales-crm-detail.webp",
-        href: "/portfolio/manyreach",
+        location: "Startup Bros",
+        title: "LOOT8 — Web3 Content & Commerce Platform",
+        image: "/images/portfolio/defi-landing.webp",
+        href: "/portfolio/loot8",
       },
     ],
     features: [
@@ -313,8 +313,8 @@ function getIndustryData(slug: string): IndustryData {
     ],
     testimonial: {
       quote: `Good ${label} SaaS design starts with the buyer's actual workflow — every screen earns its place by moving them one step closer to the outcome they came for.`,
-      name: "Denkinger Bros",
-      role: "Design Study",
+      name: "Anthony Denkinger",
+      role: "Startup Bros",
     },
   };
 }

@@ -6,76 +6,28 @@ import { Badge } from "@/components/ui/badge";
 
 const cases = [
   {
-    slug: "ltv-ai",
-    title: "Enterprise-Grade AI Marketing Site — A Design Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/crm-dashboard.webp",
-  },
-  {
-    slug: "gigamind-landing",
-    title: "Credible AI-First Landing Page — A Conversion Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/ai-landing.webp",
-  },
-  {
-    slug: "gigamind-product",
-    title: "Two-Week Product Unification Sprint — A Design Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/productivity-dashboard.webp",
-  },
-  {
-    slug: "writesonic",
+    slug: "said",
     title: "SAID Technology — Offline-First Medical Translation",
     tags: ["AI", "Healthcare"],
     image: "/images/portfolio/sales-crm-perspective.webp",
   },
   {
-    slug: "loopback",
-    title: "K Project — Private AI for Regulated Industries",
-    tags: ["AI", "Private LLMs"],
-    image: "/images/portfolio/ai-landing.webp",
-  },
-  {
-    slug: "n3on",
-    title: "LOOT8 — Web3 Content & Commerce Platform",
-    tags: ["Web3", "Mobile"],
-    image: "/images/portfolio/defi-landing.webp",
-  },
-  {
-    slug: "socialsonic",
+    slug: "zonex",
     title: "ZoneX — AI Sports Analytics Platform",
     tags: ["AI", "Sports"],
     image: "/images/portfolio/freelancer-dashboard.webp",
   },
   {
-    slug: "sybill",
-    title: "Zero-Churn Product Migration — A UX Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/sales-crm-full.webp",
+    slug: "loot8",
+    title: "LOOT8 — Web3 Content & Commerce Platform",
+    tags: ["Web3", "Mobile"],
+    image: "/images/portfolio/defi-landing.webp",
   },
   {
-    slug: "hobbes-embedded",
-    title: "Embedded AI Assistant — A Partner-First Design Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/crm-journeys.webp",
-  },
-  {
-    slug: "hobbes-rebrand",
-    title: "AI-First Brand Refresh — A Visual System Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/crm-detail.webp",
-  },
-  {
-    slug: "alsuitup",
-    title: "Landing Page as Conversion Engine — A CRO Study",
-    tags: ["AI", "Design Study"],
-    image: "/images/portfolio/fintech-mobile.webp",
-  },
-  {
-    slug: "manyreach",
-    title: "Pricing Page as Guidance — An AOV Study",
-    tags: ["Sales", "Design Study"],
-    image: "/images/portfolio/sales-crm-detail.webp",
+    slug: "k-project",
+    title: "K Project — Private AI for Regulated Industries",
+    tags: ["AI", "Private LLMs"],
+    image: "/images/portfolio/ai-landing.webp",
   },
 ];
 

@@ -25,7 +25,7 @@ const cases = [
     testimonial:
       "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
     author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/ai-finance.avif" },
-    href: "/portfolio/writesonic",
+    href: "/portfolio/said",
     heroImage: "/images/portfolio/sales-crm-full.webp",
     screenshots: [
       "/images/portfolio/crm-dashboard.webp",
@@ -33,16 +33,16 @@ const cases = [
     ],
   },
   {
-    tags: ["AI", "Research", "Private LLMs"],
-    title: "K Project — Private AI for Regulated Industries",
+    tags: ["AI", "Sports", "Computer Vision"],
+    title: "ZoneX — AI Sports Analytics Platform",
     testimonial:
-      "The interesting problem in enterprise AI isn't capability — it's control. K Project is about giving organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure.",
+      "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
     author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
-    href: "/portfolio/loopback",
-    heroImage: "/images/portfolio/ai-landing.webp",
+    href: "/portfolio/zonex",
+    heroImage: "/images/portfolio/socialsonic.avif",
     screenshots: [
-      "/images/portfolio/fintech-dashboard.webp",
       "/images/portfolio/freelancer-dashboard.webp",
+      "/images/portfolio/crm-detail.webp",
     ],
   },
   {
@@ -51,7 +51,7 @@ const cases = [
     testimonial:
       "Web3 platforms were built for crypto natives. LOOT8 was built for the artist, the venue, and the fan — the blockchain is the infrastructure, but the experience is the product.",
     author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/sales-dashboard.avif" },
-    href: "/portfolio/n3on",
+    href: "/portfolio/loot8",
     heroImage: "/images/portfolio/defi-landing.webp",
     screenshots: [
       "/images/portfolio/fintech-mobile.webp",
