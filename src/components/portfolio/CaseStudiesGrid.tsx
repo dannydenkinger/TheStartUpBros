@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
+import { getImageStyle } from "@/lib/imagePosition";
 
 const cases = [
   {
@@ -34,6 +35,12 @@ const cases = [
     title: "Vesta CRM — Complete CRM Platform Built From Scratch",
     tags: ["CRM", "Full-Stack"],
     image: "/images/portfolio/vesta-hero.png",
+  },
+  {
+    slug: "estateflow",
+    title: "EstateFlow — Property Management Platform",
+    tags: ["PropTech", "Full-Stack"],
+    image: "/images/portfolio/estateflow-dashboard.png",
   },
 ];
 
@@ -80,6 +87,7 @@ export function CaseStudiesGrid() {
                 alt={project.title}
                 fill
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
+                style={getImageStyle(project.image)}
               />
             </div>
             <div className="flex flex-col items-start gap-2 pt-2 px-1">

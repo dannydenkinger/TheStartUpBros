@@ -346,4 +346,76 @@ export const projects: PortfolioProject[] = [
       role: "StartUpBros",
     },
   },
+  {
+    title: "EstateFlow — Property Management Platform",
+    slug: "estateflow",
+    description:
+      "A full-stack property management platform — portfolio tracking, tenant management, lease operations, financial reporting, document automation, and market intelligence, all in one dark-mode workspace.",
+    image: "/images/portfolio/estateflow-dashboard.png",
+    tags: ["PropTech", "Full-Stack", "SaaS"],
+    deviceType: "macbook",
+    client: "EstateFlow",
+    year: "2025",
+    industry: "Real Estate / PropTech",
+    services: ["Full-Stack Development", "Custom App Development", "Automation", "AI Integration"],
+    overview:
+      "EstateFlow's founders needed to replace their patchwork of spreadsheets, property management tools, and accounting software with a single platform purpose-built for how they actually operate. We built an end-to-end property management system — portfolio dashboard with net income tracking, property listings with photo galleries, a tenant directory with lease and rent details, a leasing center for publishing listings, an operations calendar syncing rent due dates and lease events, a full document center with legal templates, financial reporting with general ledger, and real-time market data with Zillow API integration.",
+    challenge:
+      "Property managers were stuck toggling between spreadsheets for finances, separate tools for tenant communication, generic calendars for lease dates, and manual document workflows. Nothing synced, nothing gave a full picture of the portfolio, and scaling past a handful of units meant hiring ops staff just to keep track of the paperwork.",
+    solution:
+      "We built EstateFlow as a single workspace: a dashboard showing portfolio value, net income trends, occupancy rates, and rent collection at a glance. Properties with photo galleries and at-a-glance metrics. A tenant directory with lease terms, contact info, and rent status. A leasing center for publishing and managing listings. An operations calendar tracking rent due dates and lease expirations. A document center with legal templates and compliance tracking. A financial module with general ledger and transaction history. And a market data feed integrating Zillow Zestimates, economic indicators, and real estate news — all under one login.",
+    timeline: "6 weeks",
+    techStack: ["Next.js", "React", "Node.js", "PostgreSQL", "Zillow API", "Tailwind CSS", "Vercel"],
+    outcomes: [
+      "Consolidated 6+ tools into one unified property management platform",
+      "Real-time portfolio tracking with net income and occupancy metrics",
+      "Automated lease and rent tracking eliminated manual calendar management",
+      "Document templates reduced legal prep time by 80%",
+      "Market data integration provides property valuations without leaving the platform",
+    ],
+    gallery: [
+      {
+        type: "full",
+        image: "/images/portfolio/estateflow-dashboard.png",
+        alt: "EstateFlow main dashboard with portfolio metrics and rent collection",
+        caption:
+          "The EstateFlow dashboard — portfolio value, net income trends, occupancy rate, calendar, and rent collection in one view.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/estateflow-properties.png",
+        alt: "Property listings grid with photos and key metrics",
+        heading: "Every property at a glance",
+        body: "Properties display with photos, addresses, valuations, rent amounts, and occupancy status. Managers see their entire portfolio without clicking into individual units — and can filter, sort, and search across all properties instantly.",
+        align: "left",
+      },
+      {
+        type: "twoUp",
+        images: [
+          { src: "/images/portfolio/estateflow-tenants.png", alt: "Tenant directory with lease details" },
+          { src: "/images/portfolio/estateflow-finance.png", alt: "Financial overview with general ledger" },
+        ],
+        caption:
+          "Tenant management and financial reporting share the same data layer — rent payments, lease terms, and transaction history stay in sync automatically.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/estateflow-documents.png",
+        alt: "Document center with legal templates and compliance tools",
+        heading: "Legal templates, not legal headaches",
+        body: "The document center ships with residential lease agreements, notices to vacate, pet addendums, and contractor agreements — all templated and ready to customize. Recent documents are tracked with file sizes and timestamps for compliance auditing.",
+        align: "right",
+      },
+    ],
+    metrics: [
+      { value: "6+", label: "Tools replaced" },
+      { value: "80%", label: "Less legal prep" },
+      { value: "6 wks", label: "Concept to launch" },
+    ],
+    quote: {
+      text: "EstateFlow turned our entire property operation into one screen. We used to spend half the day switching between spreadsheets, email, and three different apps — now everything lives in one place.",
+      author: "Danny Denkinger",
+      role: "StartUpBros",
+    },
+  },
 ];

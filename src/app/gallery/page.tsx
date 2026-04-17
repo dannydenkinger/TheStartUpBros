@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { getImageStyle } from "@/lib/imagePosition";
 
 export const metadata = {
   title: "Gallery | StartUpBros",
@@ -11,21 +12,28 @@ export const metadata = {
 const galleryImages = [
   "/images/portfolio/vesta-hero.png",
   "/images/portfolio/zonex-dashboard.webp",
+  "/images/portfolio/estateflow-dashboard.png",
   "/images/portfolio/ai-landing.webp",
   "/images/portfolio/vesta-calendar.png",
   "/images/portfolio/zonex-film.webp",
+  "/images/portfolio/estateflow-properties.png",
   "/images/portfolio/defi-landing.webp",
   "/images/portfolio/vesta-analytics.png",
   "/images/portfolio/zonex-coaching.webp",
+  "/images/portfolio/estateflow-tenants.png",
   "/images/portfolio/geo-analytics.avif",
   "/images/portfolio/vesta-seo.png",
   "/images/portfolio/multichain.avif",
+  "/images/portfolio/estateflow-leasing.png",
   "/images/portfolio/zonex-game-data.webp",
   "/images/portfolio/vesta-login.png",
+  "/images/portfolio/estateflow-documents.png",
   "/images/portfolio/fintech-dashboard.webp",
   "/images/portfolio/community-search.avif",
+  "/images/portfolio/estateflow-finance.png",
   "/images/portfolio/ai-finance.avif",
   "/images/portfolio/defi-pages.webp",
+  "/images/portfolio/estateflow-market.png",
   "/images/portfolio/thrust-web.avif",
   "/images/portfolio/sales-crm-detail.webp",
   "/images/portfolio/crm-dashboard.webp",
@@ -66,6 +74,7 @@ export default function GalleryPage() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  style={getImageStyle(src)}
                 />
               </div>
             </div>

@@ -6,6 +6,7 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { projects } from "@/data/portfolio";
+import { getImageStyle } from "@/lib/imagePosition";
 import type { GalleryBlock, PortfolioProject } from "@/types";
 
 export function CaseStudyContent({ project }: { project: PortfolioProject }) {
@@ -110,6 +111,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               className="object-cover"
               priority
               sizes="(max-width: 768px) 100vw, 92vw"
+              style={getImageStyle(project.image)}
             />
           </div>
         </AnimateIn>
@@ -137,6 +139,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
                   fill
                   className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   sizes="(max-width: 768px) 100vw, 55vw"
+                  style={getImageStyle(nextProject.image)}
                 />
               </div>
               <div className="flex-1">
@@ -347,6 +350,7 @@ function GalleryBlockRenderer({
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 1280px"
+              style={getImageStyle(block.image)}
             />
           </div>
           {block.caption && (
@@ -375,6 +379,7 @@ function GalleryBlockRenderer({
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 50vw"
+                  style={getImageStyle(img.src)}
                 />
               </div>
             ))}
@@ -406,6 +411,7 @@ function GalleryBlockRenderer({
               fill
               className="object-cover"
               sizes="(max-width: 768px) 100vw, 58vw"
+              style={getImageStyle(block.image)}
             />
           </div>
         </div>

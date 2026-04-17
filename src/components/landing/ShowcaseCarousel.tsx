@@ -7,22 +7,22 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const col1 = [
   { src: "/images/portfolio/vesta-hero.png", w: 2544, h: 1351 },
   { src: "/images/portfolio/zonex-film.webp", w: 1920, h: 1080 },
-  { src: "/images/portfolio/travel-app.webp", w: 800, h: 600 },
+  { src: "/images/portfolio/estateflow-dashboard.png", w: 2552, h: 1342 },
 ];
 const col2 = [
   { src: "/images/portfolio/zonex-dashboard.webp", w: 1920, h: 1072 },
-  { src: "/images/portfolio/vesta-calendar.png", w: 2538, h: 1348 },
+  { src: "/images/portfolio/estateflow-properties.png", w: 2555, h: 1342 },
   { src: "/images/portfolio/fintech-mobile.webp", w: 800, h: 600 },
 ];
 const col3 = [
   { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
   { src: "/images/portfolio/vesta-analytics.png", w: 2554, h: 1350 },
-  { src: "/images/portfolio/zonex-coaching.webp", w: 3840, h: 2160 },
+  { src: "/images/portfolio/estateflow-tenants.png", w: 2555, h: 1341 },
 ];
 const col4 = [
-  { src: "/images/portfolio/zonex-game-data.webp", w: 3840, h: 2160 },
+  { src: "/images/portfolio/estateflow-leasing.png", w: 2552, h: 1342 },
   { src: "/images/portfolio/vesta-seo.png", w: 2554, h: 1350 },
-  { src: "/images/portfolio/vesta-login.png", w: 2538, h: 1339 },
+  { src: "/images/portfolio/zonex-coaching.webp", w: 3840, h: 2160 },
 ];
 
 type ImgData = { src: string; w: number; h: number };

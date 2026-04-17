@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { getImageStyle } from "@/lib/imagePosition";
 
 function StudyLabel() {
   return (
@@ -56,6 +57,19 @@ const cases = [
     screenshots: [
       "/images/portfolio/vesta-calendar.png",
       "/images/portfolio/vesta-analytics.png",
+    ],
+  },
+  {
+    tags: ["PropTech", "Full-Stack", "SaaS"],
+    title: "EstateFlow — Property Management Platform",
+    testimonial:
+      "EstateFlow turned our entire property operation into one screen. We used to spend half the day switching between spreadsheets, email, and three different apps — now everything lives in one place.",
+    author: { name: "Danny Denkinger", role: "StartUpBros", image: "/images/portfolio/estateflow-dashboard.png" },
+    href: "/portfolio/estateflow",
+    heroImage: "/images/portfolio/estateflow-dashboard.png",
+    screenshots: [
+      "/images/portfolio/estateflow-properties.png",
+      "/images/portfolio/estateflow-tenants.png",
     ],
   },
 ];
@@ -146,6 +160,7 @@ export function CaseStudies() {
                         alt={imgIdx === 0 ? c.title : "Case study screenshot"}
                         fill
                         className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                        style={getImageStyle(src)}
                       />
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 backdrop-blur-[2px]">
                         <span className="btn-pill btn-pill-primary shadow-lg">
