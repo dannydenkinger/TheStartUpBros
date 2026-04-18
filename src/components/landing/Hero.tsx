@@ -40,7 +40,7 @@ function GoogleMeetIcon() {
 
 export function Hero() {
   return (
-    <section className="bg-background px-6 lg:px-10 pt-[100px] md:pt-[124px] pb-20">
+    <section className="bg-background px-6 lg:px-10 pt-[60px] md:pt-[84px] pb-12 flex-1 flex flex-col justify-center">
       <div className="mx-auto max-w-[1020px] text-center">
         {/* Founder pill */}
         <AnimateIn variant="fadeUp">

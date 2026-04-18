@@ -21,32 +21,6 @@ function StudyLabel() {
 
 const cases = [
   {
-    tags: ["AI", "Sports", "Computer Vision"],
-    title: "ZoneX — AI Sports Analytics Platform",
-    testimonial:
-      "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
-    href: "/portfolio/zonex",
-    heroImage: "/images/portfolio/zonex-dashboard.webp",
-    screenshots: [
-      "/images/portfolio/zonex-film.webp",
-      "/images/portfolio/zonex-coaching.webp",
-    ],
-  },
-  {
-    tags: ["Web3", "Mobile", "Blockchain"],
-    title: "LOOT8 — Web3 Content & Commerce Platform",
-    testimonial:
-      "Web3 platforms were built for crypto natives. LOOT8 was built for the artist, the venue, and the fan — the blockchain is the infrastructure, but the experience is the product.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/sales-dashboard.avif" },
-    href: "/portfolio/loot8",
-    heroImage: "/images/portfolio/defi-landing.webp",
-    screenshots: [
-      "/images/portfolio/fintech-mobile.webp",
-      "/images/portfolio/travel-app.webp",
-    ],
-  },
-  {
     tags: ["CRM", "Full-Stack", "SaaS"],
     title: "Vesta CRM — Complete CRM Platform Built From Scratch",
     testimonial:
@@ -60,16 +34,29 @@ const cases = [
     ],
   },
   {
-    tags: ["PropTech", "Full-Stack", "SaaS"],
-    title: "EstateFlow — Property Management Platform",
+    tags: ["AI", "Sports", "Computer Vision"],
+    title: "ZoneX — AI Sports Analytics Platform",
     testimonial:
-      "EstateFlow turned our entire property operation into one screen. We used to spend half the day switching between spreadsheets, email, and three different apps — now everything lives in one place.",
-    author: { name: "Danny Denkinger", role: "StartUpBros", image: "/images/portfolio/estateflow-dashboard.png" },
-    href: "/portfolio/estateflow",
-    heroImage: "/images/portfolio/estateflow-dashboard.png",
+      "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
+    href: "/portfolio/zonex",
+    heroImage: "/images/portfolio/zonex-dashboard.webp",
     screenshots: [
-      "/images/portfolio/estateflow-properties.png",
-      "/images/portfolio/estateflow-tenants.png",
+      "/images/portfolio/zonex-film.webp",
+      "/images/portfolio/zonex-coaching.webp",
+    ],
+  },
+  {
+    tags: ["AI", "Healthcare", "Defense"],
+    title: "SAID Technology — Offline-First Medical Translation",
+    testimonial:
+      "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/said-hero-brand.png" },
+    href: "/portfolio/said",
+    heroImage: "/images/portfolio/said-hero-brand.png",
+    screenshots: [
+      "/images/portfolio/said-lineup.png",
+      "/images/portfolio/said-clinical.png",
     ],
   },
 ];

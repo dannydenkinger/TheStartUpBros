@@ -32,7 +32,13 @@ const settingsMap: Record<string, ImageSettings> = {
   "/images/portfolio/zonex-film.webp": {},
   "/images/portfolio/zonex-game-data.webp": {},
 
-  // ── SAID / Sales CRM ───────────────────────────────────
+  // ── SAID Technology ─────────────────────────────────────
+  "/images/portfolio/said-hero-brand.png": {},
+  "/images/portfolio/said-lineup.png": {},
+  "/images/portfolio/said-clinical.png": {},
+  "/images/portfolio/said-translation-detail.png": {},
+  "/images/portfolio/said-chat-marble.png": {},
+  "/images/portfolio/said-security.png": {},
   "/images/portfolio/sales-crm-perspective.webp": {},
   "/images/portfolio/sales-crm-detail.webp": {},
   "/images/portfolio/sales-crm-full.webp": {},

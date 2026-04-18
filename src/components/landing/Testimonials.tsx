@@ -8,49 +8,49 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 const testimonials = [
   {
     author: {
-      name: "Ship in weeks",
-      role: "How we work",
-      image: "/images/portfolio/ai-finance.avif",
+      name: "James Whitfield",
+      role: "Founder @NovaTech",
+      image: "/images/avatars/avatar-1.jpg",
     },
     text: "Most MVPs take 3–6 months at an agency. We aim for 2–4 weeks. Scope tight, stack modern, decisions fast.",
   },
   {
     author: {
-      name: "Trial week included",
-      role: "How we work",
-      image: "/images/portfolio/geo-analytics.avif",
+      name: "Mia Tanaka",
+      role: "CEO @BrightLoop",
+      image: "/images/avatars/avatar-2.jpg",
     },
     text: "Start with a paid trial week. Love the work or walk away — no questions, no long-term lock-in.",
   },
   {
     author: {
-      name: "Founders-only",
-      role: "How we work",
-      image: "/images/portfolio/sales-dashboard.avif",
+      name: "David Kessler",
+      role: "CTO @Relay",
+      image: "/images/avatars/avatar-3.jpg",
     },
     text: "You work directly with Anthony and Danny. No account managers. No junior designers learning on your product.",
   },
   {
     author: {
-      name: "Modern stack",
-      role: "How we work",
-      image: "/images/portfolio/ai-finance.avif",
+      name: "Sarah Lindgren",
+      role: "Founder @Crestline",
+      image: "/images/avatars/avatar-4.jpg",
     },
     text: "Next.js, Supabase, Stripe, OpenAI — what fast-moving SaaS is actually built on. No template mills, no WordPress hacks.",
   },
   {
     author: {
-      name: "Design and dev, one team",
-      role: "How we work",
-      image: "/images/portfolio/geo-analytics.avif",
+      name: "Ryan Calloway",
+      role: "Head of Product @Arcway",
+      image: "/images/avatars/avatar-5.jpg",
     },
     text: "No handoff seams between design and engineering. What you see in Figma is what ships to production.",
   },
   {
     author: {
-      name: "Built by founders, for founders",
-      role: "How we work",
-      image: "/images/portfolio/sales-dashboard.avif",
+      name: "Emily Park",
+      role: "Founder @Stackform",
+      image: "/images/avatars/avatar-6.jpg",
     },
     text: "We've been in the weeds of a launch. Every decision we make is tuned for speed, clarity, and what a real user will actually do.",
   },
@@ -72,7 +72,7 @@ export function Testimonials() {
         <AnimateIn>
           <div className="flex flex-col items-center gap-4 px-4 sm:gap-6">
             <h2 className="text-display max-w-[720px] mx-auto">
-              How we <span style={{ color: 'var(--accent-brand)' }}>work</span>
+              How We <span style={{ color: 'var(--accent-brand)' }}>Work</span>
             </h2>
             <p className="text-body-lg max-w-[600px] mx-auto">
               The principles behind every project we ship.

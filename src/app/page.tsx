@@ -28,8 +28,10 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={organizationJsonLd} />
-      <Hero />
-      <ShowcaseCarousel />
+      <div className="h-[calc(100vh-80px)] flex flex-col">
+        <Hero />
+        <ShowcaseCarousel />
+      </div>
       <ClientLogos />
       <ValueProps />
       <CaseStudies />
