@@ -82,7 +82,7 @@ const services: FolderService[] = [
     description:
       "Custom AI agents, chatbots, and intelligent features baked into your product to give you a serious competitive edge.",
     icons: [Brain, Bot, Cpu],
-    image: "/images/portfolio/crm-dashboard.webp",
+    image: "/images/portfolio/ai-integration.webp",
   },
   {
     title: "Lead Generation",
