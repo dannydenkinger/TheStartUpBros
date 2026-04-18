@@ -51,12 +51,12 @@ const cases = [
     title: "SAID Technology — Offline-First Medical Translation",
     testimonial:
       "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/said-hero-brand.png" },
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/said-hero-brand.webp" },
     href: "/portfolio/said",
-    heroImage: "/images/portfolio/said-hero-brand.png",
+    heroImage: "/images/portfolio/said-hero-brand.webp",
     screenshots: [
-      "/images/portfolio/said-lineup.png",
-      "/images/portfolio/said-clinical.png",
+      "/images/portfolio/said-lineup.webp",
+      "/images/portfolio/said-clinical.webp",
     ],
   },
 ];

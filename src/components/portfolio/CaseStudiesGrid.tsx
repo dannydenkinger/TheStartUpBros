@@ -11,7 +11,7 @@ const cases = [
     slug: "said",
     title: "SAID Technology — Offline-First Medical Translation",
     tags: ["AI", "Healthcare"],
-    image: "/images/portfolio/said-hero-brand.png",
+    image: "/images/portfolio/said-hero-brand.webp",
   },
   {
     slug: "zonex",

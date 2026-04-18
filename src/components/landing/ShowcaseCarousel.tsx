@@ -10,17 +10,17 @@ const col1 = [
   { src: "/images/portfolio/estateflow-properties.png", w: 2555, h: 1342 },
 ];
 const col2 = [
-  { src: "/images/portfolio/said-hero-brand.png", w: 5504, h: 3072 },
+  { src: "/images/portfolio/said-hero-brand.webp", w: 5504, h: 3072 },
   { src: "/images/portfolio/zonex-film.webp", w: 1920, h: 1080 },
   { src: "/images/portfolio/vesta-seo.png", w: 2554, h: 1350 },
 ];
 const col3 = [
   { src: "/images/portfolio/estateflow-dashboard.png", w: 2552, h: 1342 },
-  { src: "/images/portfolio/said-clinical.png", w: 5504, h: 3072 },
+  { src: "/images/portfolio/said-clinical.webp", w: 5504, h: 3072 },
   { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
 ];
 const col4 = [
-  { src: "/images/portfolio/said-lineup.png", w: 5504, h: 3072 },
+  { src: "/images/portfolio/said-lineup.webp", w: 5504, h: 3072 },
   { src: "/images/portfolio/vesta-calendar.png", w: 2538, h: 1348 },
   { src: "/images/portfolio/fintech-mobile.webp", w: 800, h: 600 },
 ];

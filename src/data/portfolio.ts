@@ -7,7 +7,7 @@ export const projects: PortfolioProject[] = [
     slug: "said",
     description:
       "A secure, offline-first AI translation system for healthcare, defense, and emergency environments — real-time multilingual care without a network connection.",
-    image: "/images/portfolio/said-hero-brand.png",
+    image: "/images/portfolio/said-hero-brand.webp",
     tags: ["AI", "Healthcare", "Defense"],
     deviceType: "macbook",
     client: "SAID Technology",
@@ -31,14 +31,14 @@ export const projects: PortfolioProject[] = [
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/said-lineup.png",
+        image: "/images/portfolio/said-lineup.webp",
         alt: "SAID Technology interface — consultation, conversation, translation detail, and security status",
         caption:
           "On-device translation tuned for medical scenarios — patient intake, symptoms, consent, critical care.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/said-clinical.png",
+        image: "/images/portfolio/said-clinical.webp",
         alt: "Clinician reviewing a SAID translation at the bedside",
         heading: "Designed for the moment, not the demo",
         body: "Every interaction tuned for ambulances without signal, field hospitals, and the bedside of a patient who speaks a language the clinician doesn't. Offline-first isn't a feature — it's the foundation.",
@@ -48,11 +48,11 @@ export const projects: PortfolioProject[] = [
         type: "twoUp",
         images: [
           {
-            src: "/images/portfolio/said-translation-detail.png",
+            src: "/images/portfolio/said-translation-detail.webp",
             alt: "Translation detail view with source and target language panels",
           },
           {
-            src: "/images/portfolio/said-chat-marble.png",
+            src: "/images/portfolio/said-chat-marble.webp",
             alt: "Bilingual conversation view",
           },
         ],
@@ -61,7 +61,7 @@ export const projects: PortfolioProject[] = [
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/said-security.png",
+        image: "/images/portfolio/said-security.webp",
         alt: "Privacy-first architecture — HIPAA, GDPR, and SOC 2 posture",
         heading: "Mission-driven, not general-purpose",
         body: "SAID isn't a general-purpose AI tool. It's a focused system designed so language is never a barrier to care — and so patient data never leaves the device unless a clinician explicitly sends it.",
