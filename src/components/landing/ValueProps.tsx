@@ -68,7 +68,7 @@ const services: FolderService[] = [
     description:
       "A cohesive visual identity -- logo, color system, and brand guidelines -- that makes your startup look like a million bucks on launch day.",
     icons: [Palette, Paintbrush, Sparkles],
-    image: "/images/portfolio/defi-landing.webp",
+    image: "/images/portfolio/brand-design.webp",
   },
   {
     title: "Custom Automation",
