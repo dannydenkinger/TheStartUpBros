@@ -6,7 +6,7 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { projects } from "@/data/portfolio";
-import { getImageStyle } from "@/lib/imagePosition";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 import type { GalleryBlock, PortfolioProject } from "@/types";
 
 export function CaseStudyContent({ project }: { project: PortfolioProject }) {
@@ -104,15 +104,17 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <section className="px-6 md:px-0 w-full md:w-[92vw] max-w-none mx-auto mb-20 md:mb-32">
         <AnimateIn variant="scaleIn" delay={0.1}>
           <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-card border border-border">
-            <Image
-              src={project.image}
-              alt={`${project.title} hero`}
-              fill
-              className="object-cover"
-              priority
-              sizes="(max-width: 768px) 100vw, 92vw"
-              style={getImageStyle(project.image)}
-            />
+            <div className="absolute inset-0" style={getWrapperStyle(project.image)}>
+              <Image
+                src={project.image}
+                alt={`${project.title} hero`}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width: 768px) 100vw, 92vw"
+                style={getImageStyle(project.image)}
+              />
+            </div>
           </div>
         </AnimateIn>
       </section>
@@ -133,14 +135,16 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               className="group flex flex-col md:flex-row md:items-end gap-8 md:gap-12"
             >
               <div className="relative w-full md:w-[55%] aspect-[16/10] rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
-                <Image
-                  src={nextProject.image}
-                  alt={nextProject.title}
-                  fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-                  sizes="(max-width: 768px) 100vw, 55vw"
-                  style={getImageStyle(nextProject.image)}
-                />
+                <div className="absolute inset-0" style={getWrapperStyle(nextProject.image)}>
+                  <Image
+                    src={nextProject.image}
+                    alt={nextProject.title}
+                    fill
+                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    sizes="(max-width: 768px) 100vw, 55vw"
+                    style={getImageStyle(nextProject.image)}
+                  />
+                </div>
               </div>
               <div className="flex-1">
                 {nextProject.industry && (
@@ -344,14 +348,16 @@ function GalleryBlockRenderer({
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col gap-4">
           <div className="relative aspect-[16/10] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
-            <Image
-              src={block.image}
-              alt={block.alt ?? ""}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 1280px"
-              style={getImageStyle(block.image)}
-            />
+            <div className="absolute inset-0" style={getWrapperStyle(block.image)}>
+              <Image
+                src={block.image}
+                alt={block.alt ?? ""}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 1280px"
+                style={getImageStyle(block.image)}
+              />
+            </div>
           </div>
           {block.caption && (
             <p className="text-[14px] text-muted-foreground max-w-[680px] mx-auto text-center">
@@ -373,14 +379,16 @@ function GalleryBlockRenderer({
                 key={`${img.src}-${i}`}
                 className="relative aspect-[4/3] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border"
               >
-                <Image
-                  src={img.src}
-                  alt={img.alt ?? ""}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  style={getImageStyle(img.src)}
-                />
+                <div className="absolute inset-0" style={getWrapperStyle(img.src)}>
+                  <Image
+                    src={img.src}
+                    alt={img.alt ?? ""}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                    style={getImageStyle(img.src)}
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -405,14 +413,16 @@ function GalleryBlockRenderer({
       >
         <div className="md:col-span-7">
           <div className="relative aspect-[4/3] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
-            <Image
-              src={block.image}
-              alt={block.alt ?? ""}
-              fill
-              className="object-cover"
-              sizes="(max-width: 768px) 100vw, 58vw"
-              style={getImageStyle(block.image)}
-            />
+            <div className="absolute inset-0" style={getWrapperStyle(block.image)}>
+              <Image
+                src={block.image}
+                alt={block.alt ?? ""}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 58vw"
+                style={getImageStyle(block.image)}
+              />
+            </div>
           </div>
         </div>
         <div className="md:col-span-5">

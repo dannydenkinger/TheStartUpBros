@@ -76,20 +76,27 @@ const settingsMap: Record<string, ImageSettings> = {
   "/images/portfolio/travel-app.webp": {},
 };
 
+/** Apply to the <Image> element — handles pan (object-position) only. */
 export function getImageStyle(src: string): React.CSSProperties {
   const s = settingsMap[src];
   const x = s?.x ?? 50;
   const y = s?.y ?? 50;
+
+  return { objectPosition: `${x}% ${y}%` };
+}
+
+/** Apply to the image's wrapper div — handles zoom via scale transform.
+ *  Kept separate so the hover transition-transform on the Image
+ *  doesn't animate the base zoom on page load. */
+export function getWrapperStyle(src: string): React.CSSProperties | undefined {
+  const s = settingsMap[src];
   const zoom = s?.zoom ?? 1;
+  if (zoom === 1) return undefined;
 
-  const style: React.CSSProperties = {
-    objectPosition: `${x}% ${y}%`,
+  const x = s?.x ?? 50;
+  const y = s?.y ?? 50;
+  return {
+    transform: `scale(${zoom})`,
+    transformOrigin: `${x}% ${y}%`,
   };
-
-  if (zoom !== 1) {
-    style.transform = `scale(${zoom})`;
-    style.transformOrigin = `${x}% ${y}%`;
-  }
-
-  return style;
 }

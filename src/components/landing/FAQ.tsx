@@ -87,11 +87,8 @@ const faqs = [
 ];
 
 const teamAvatars = [
-  "/images/portfolio/ai-finance.avif",
-  "/images/portfolio/geo-analytics.avif",
-  "/images/portfolio/sales-dashboard.avif",
-  "/images/portfolio/ai-visits.avif",
-  "/images/portfolio/socialsonic.avif",
+  "/images/avatars/anthony-denkinger.png",
+  "/images/avatars/danny-denkinger.png",
 ];
 
 function FAQItem({

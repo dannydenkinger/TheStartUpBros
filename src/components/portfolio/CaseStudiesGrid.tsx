@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { getImageStyle } from "@/lib/imagePosition";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 const cases = [
   {
@@ -106,13 +106,15 @@ export function CaseStudiesGrid() {
         {filtered.map((project) => (
           <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group flex flex-col gap-4">
             <div className="relative aspect-[1.3/1] w-full overflow-hidden rounded-[24px] border border-border/50 shadow-sm bg-card">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
-                style={getImageStyle(project.image)}
-              />
+              <div className="absolute inset-0" style={getWrapperStyle(project.image)}>
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
+                  style={getImageStyle(project.image)}
+                />
+              </div>
             </div>
             <div className="flex flex-col items-start gap-2 pt-2 px-1">
               <div className="flex flex-wrap gap-2">

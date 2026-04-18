@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
-import { getImageStyle } from "@/lib/imagePosition";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 function StudyLabel() {
   return (
@@ -25,7 +25,7 @@ const cases = [
     title: "Vesta CRM — Complete CRM Platform Built From Scratch",
     testimonial:
       "We went from juggling five different tools to one platform that actually fits how we work. Vesta CRM is the system we always needed but couldn't find off the shelf.",
-    author: { name: "Danny Denkinger", role: "StartUpBros", image: "/images/portfolio/vesta-hero.png" },
+    author: { name: "Danny Denkinger", role: "StartUpBros", image: "/images/avatars/danny-denkinger.png" },
     href: "/portfolio/vesta-crm",
     heroImage: "/images/portfolio/vesta-hero.png",
     screenshots: [
@@ -38,7 +38,7 @@ const cases = [
     title: "ZoneX — AI Sports Analytics Platform",
     testimonial:
       "Coaches don't want to operate a data tool — they want to make a decision. ZoneX is the shortest line between raw film and a game-day adjustment a coach actually trusts.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/geo-analytics.avif" },
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/avatars/anthony-denkinger.png" },
     href: "/portfolio/zonex",
     heroImage: "/images/portfolio/zonex-dashboard.webp",
     screenshots: [
@@ -51,7 +51,7 @@ const cases = [
     title: "SAID Technology — Offline-First Medical Translation",
     testimonial:
       "Language can't be a barrier to care. We built SAID so translation works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
-    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/portfolio/said-hero-brand.webp" },
+    author: { name: "Anthony Denkinger", role: "Startup Bros", image: "/images/avatars/anthony-denkinger.png" },
     href: "/portfolio/said",
     heroImage: "/images/portfolio/said-hero-brand.webp",
     screenshots: [
@@ -127,9 +127,9 @@ export function CaseStudies() {
                   </div>
                   <Link
                     href={c.href}
-                    className="text-[15px] font-medium text-foreground hover:underline"
+                    className="btn-pill btn-pill-primary text-[13px]"
                   >
-                    View Case Study
+                    View Case Study →
                   </Link>
                 </div>
               </div>
@@ -142,13 +142,15 @@ export function CaseStudies() {
                       href={c.href}
                       className="group relative block aspect-[16/10] rounded-2xl overflow-hidden border border-border bg-card shadow-sm"
                     >
-                      <Image
-                        src={src}
-                        alt={imgIdx === 0 ? c.title : "Case study screenshot"}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                        style={getImageStyle(src)}
-                      />
+                      <div className="absolute inset-0" style={getWrapperStyle(src)}>
+                        <Image
+                          src={src}
+                          alt={imgIdx === 0 ? c.title : "Case study screenshot"}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                          style={getImageStyle(src)}
+                        />
+                      </div>
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/30 backdrop-blur-[2px]">
                         <span className="btn-pill btn-pill-primary shadow-lg">
                           View Case Study

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
-import { getImageStyle } from "@/lib/imagePosition";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 // Curated gallery — image-only showcase, no per-item navigation.
 // Mix of dashboards, mobile mockups, and landing pages for visual variety.
@@ -40,7 +40,7 @@ export function WorkSamples() {
             key={src}
             className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group"
           >
-            <div className="relative w-full h-full overflow-hidden rounded-xl">
+            <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
               <Image
                 src={src}
                 alt=""

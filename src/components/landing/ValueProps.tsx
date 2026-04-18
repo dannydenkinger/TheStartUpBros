@@ -50,11 +50,11 @@ const services: FolderService[] = [
     image: "/images/portfolio/web-development.webp",
   },
   {
-    title: "Custom App Development",
+    title: "Brand Design",
     description:
-      "Full-stack web and mobile apps engineered from scratch to turn your product idea into a scalable, shipped reality.",
-    icons: [Smartphone, Layers, Terminal],
-    image: "/images/portfolio/custom-app-development.webp",
+      "A cohesive visual identity -- logo, color system, and brand guidelines -- that makes your startup look like a million bucks on launch day.",
+    icons: [Palette, Paintbrush, Sparkles],
+    image: "/images/portfolio/brand-design.webp",
   },
   {
     title: "Search Optimization (SEO)",
@@ -64,11 +64,11 @@ const services: FolderService[] = [
     image: "/images/portfolio/seo-optimization.webp",
   },
   {
-    title: "Brand Design",
+    title: "Custom App Development",
     description:
-      "A cohesive visual identity -- logo, color system, and brand guidelines -- that makes your startup look like a million bucks on launch day.",
-    icons: [Palette, Paintbrush, Sparkles],
-    image: "/images/portfolio/brand-design.webp",
+      "Full-stack web and mobile apps engineered from scratch to turn your product idea into a scalable, shipped reality.",
+    icons: [Smartphone, Layers, Terminal],
+    image: "/images/portfolio/custom-app-development.webp",
   },
   {
     title: "Custom Automation",
@@ -87,7 +87,7 @@ const services: FolderService[] = [
   {
     title: "Lead Generation",
     description:
-      "Automated outbound and inbound systems that find your ideal customers and deliver them straight to your pipeline.",
+      "Automated outbound and inbound systems that find your ideal customers and deliver them straight to your sales pipeline.",
     icons: [Users, Target, Magnet],
     image: "/images/portfolio/sales-crm-full.webp",
   },

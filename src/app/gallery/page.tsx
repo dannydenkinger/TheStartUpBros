@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
-import { getImageStyle } from "@/lib/imagePosition";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 export const metadata = {
   title: "Gallery | StartUpBros",
@@ -67,7 +67,7 @@ export default function GalleryPage() {
               key={src}
               className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group"
             >
-              <div className="relative w-full h-full overflow-hidden rounded-xl">
+              <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
                 <Image
                   src={src}
                   alt=""
