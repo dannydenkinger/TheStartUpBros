@@ -47,7 +47,7 @@ const services: FolderService[] = [
     description:
       "Lightning-fast, responsive websites built with modern frameworks that convert visitors into customers from day one.",
     icons: [Globe, Code, Monitor],
-    image: "/images/portfolio/ai-landing.webp",
+    image: "/images/portfolio/web-development.webp",
   },
   {
     title: "Custom App Development",
