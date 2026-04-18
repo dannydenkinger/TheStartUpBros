@@ -103,7 +103,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       {/* ─── Hero image ────────────────────────────────────────────── */}
       <section className="px-6 md:px-0 w-full md:w-[92vw] max-w-none mx-auto mb-20 md:mb-32">
         <AnimateIn variant="scaleIn" delay={0.1}>
-          <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full rounded-[24px] md:rounded-[36px] overflow-hidden bg-card border border-border">
+          <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full rounded-[24px] md:rounded-[32px] overflow-hidden bg-card border border-border">
             <Image
               src={project.image}
               alt={`${project.title} hero`}
@@ -132,7 +132,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               href={`/portfolio/${nextProject.slug}`}
               className="group flex flex-col md:flex-row md:items-end gap-8 md:gap-12"
             >
-              <div className="relative w-full md:w-[55%] aspect-[16/10] rounded-[20px] md:rounded-[28px] overflow-hidden bg-card border border-border">
+              <div className="relative w-full md:w-[55%] aspect-[16/10] rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
                 <Image
                   src={nextProject.image}
                   alt={nextProject.title}
@@ -343,7 +343,7 @@ function GalleryBlockRenderer({
     return (
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col gap-4">
-          <div className="relative aspect-[16/10] w-full rounded-[20px] md:rounded-[28px] overflow-hidden bg-card border border-border">
+          <div className="relative aspect-[16/10] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
             <Image
               src={block.image}
               alt={block.alt ?? ""}
@@ -371,7 +371,7 @@ function GalleryBlockRenderer({
             {block.images.map((img, i) => (
               <div
                 key={`${img.src}-${i}`}
-                className="relative aspect-[4/3] w-full rounded-[20px] md:rounded-[24px] overflow-hidden bg-card border border-border"
+                className="relative aspect-[4/3] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border"
               >
                 <Image
                   src={img.src}
@@ -404,7 +404,7 @@ function GalleryBlockRenderer({
         }`}
       >
         <div className="md:col-span-7">
-          <div className="relative aspect-[4/3] w-full rounded-[20px] md:rounded-[24px] overflow-hidden bg-card border border-border">
+          <div className="relative aspect-[4/3] w-full rounded-[16px] md:rounded-[24px] overflow-hidden bg-card border border-border">
             <Image
               src={block.image}
               alt={block.alt ?? ""}

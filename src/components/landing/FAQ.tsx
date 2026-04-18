@@ -108,8 +108,10 @@ function FAQItem({
   return (
     <div
       className={cn(
-        "rounded-xl border border-border bg-card transition-colors",
-        isOpen && "bg-card",
+        "rounded-xl border bg-card transition-all duration-300",
+        isOpen
+          ? "border-l-2 border-l-[var(--accent-brand)] border-border"
+          : "border-border",
       )}
     >
       <button

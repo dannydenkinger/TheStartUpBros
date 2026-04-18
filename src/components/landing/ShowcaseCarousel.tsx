@@ -74,7 +74,7 @@ export function ShowcaseCarousel() {
     <section className="overflow-hidden flex-1 min-h-0">
       <AnimateIn variant="fadeIn" className="h-full">
         <div className="rounded-none md:rounded-t-3xl mx-0 md:mx-6 lg:mx-10 pt-3 px-3 h-full" style={{ background: 'var(--surface-carousel-bg)' }}>
-          <div className="flex gap-3 h-full">
+          <div className="flex gap-3 h-full carousel-hover-pause">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />
             <MarqueeColumn images={col3} direction="up" duration={28} />

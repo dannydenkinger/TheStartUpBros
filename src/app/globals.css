@@ -186,7 +186,7 @@
 .card-elevated {
   background: var(--surface-card);
   border: 1px solid var(--border);
-  border-radius: 18px;
+  border-radius: 24px;
   backdrop-filter: blur(12px);
   box-shadow:
     0 0 0 0.5px var(--border),
@@ -363,6 +363,11 @@
 
 .animate-marquee-down {
   animation: marquee-down linear infinite;
+}
+
+.carousel-hover-pause:hover .animate-marquee-up,
+.carousel-hover-pause:hover .animate-marquee-down {
+  animation-play-state: paused;
 }
 
 /* Horizontal marquee animations */

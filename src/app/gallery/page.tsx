@@ -61,11 +61,11 @@ export default function GalleryPage() {
 
       {/* Uniform grid — every tile is the same aspect ratio & size */}
       <section className="py-16 md:py-20">
-        <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-5">
+        <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-9 group"
+              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group"
             >
               <div className="relative w-full h-full overflow-hidden rounded-xl">
                 <Image
