@@ -54,7 +54,7 @@ const services: FolderService[] = [
     description:
       "Full-stack web and mobile apps engineered from scratch to turn your product idea into a scalable, shipped reality.",
     icons: [Smartphone, Layers, Terminal],
-    image: "/images/portfolio/travel-app.webp",
+    image: "/images/portfolio/custom-app-development.webp",
   },
   {
     title: "Search Optimization (SEO)",
