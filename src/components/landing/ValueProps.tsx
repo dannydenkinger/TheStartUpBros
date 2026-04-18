@@ -61,7 +61,7 @@ const services: FolderService[] = [
     description:
       "Technical SEO and content strategy that gets your startup ranking on page one for the keywords your customers are searching.",
     icons: [Search, TrendingUp, BarChart3],
-    image: "/images/portfolio/fintech-dashboard.webp",
+    image: "/images/portfolio/seo-optimization.webp",
   },
   {
     title: "Brand Design",
