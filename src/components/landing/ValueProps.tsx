@@ -75,7 +75,7 @@ const services: FolderService[] = [
     description:
       "Workflow automations that connect your tools, eliminate repetitive tasks, and free your team to focus on growth.",
     icons: [Cog, Workflow, Zap],
-    image: "/images/portfolio/productivity-dashboard.webp",
+    image: "/images/portfolio/custom-automation.webp",
   },
   {
     title: "AI Integration",
