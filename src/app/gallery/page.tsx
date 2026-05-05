@@ -10,40 +10,57 @@ export const metadata = {
 
 // Every screenshot available, shuffled for visual rhythm (dashboards, mobiles, landings interleaved)
 const galleryImages = [
-  "/images/portfolio/vesta-hero.png",
-  "/images/portfolio/zonex-dashboard.webp",
-  "/images/portfolio/estateflow-dashboard.png",
-  "/images/portfolio/ai-landing.webp",
-  "/images/portfolio/vesta-calendar.png",
-  "/images/portfolio/zonex-film.webp",
-  "/images/portfolio/estateflow-properties.png",
-  "/images/portfolio/defi-landing.webp",
-  "/images/portfolio/vesta-analytics.png",
-  "/images/portfolio/zonex-coaching.webp",
-  "/images/portfolio/estateflow-tenants.png",
-  "/images/portfolio/geo-analytics.avif",
-  "/images/portfolio/vesta-seo.png",
-  "/images/portfolio/multichain.avif",
-  "/images/portfolio/estateflow-leasing.png",
-  "/images/portfolio/zonex-game-data.webp",
-  "/images/portfolio/vesta-login.png",
-  "/images/portfolio/estateflow-documents.png",
-  "/images/portfolio/fintech-dashboard.webp",
-  "/images/portfolio/community-search.avif",
-  "/images/portfolio/estateflow-finance.png",
-  "/images/portfolio/ai-finance.avif",
-  "/images/portfolio/defi-pages.webp",
-  "/images/portfolio/estateflow-market.png",
-  "/images/portfolio/thrust-web.avif",
-  "/images/portfolio/sales-crm-detail.webp",
-  "/images/portfolio/crm-dashboard.webp",
-  "/images/portfolio/fintech-app-duo.webp",
-  "/images/portfolio/crm-journeys.webp",
-  "/images/portfolio/sales-crm-full.webp",
-  "/images/portfolio/token-platform.avif",
-  "/images/portfolio/sales-crm-perspective.webp",
-  "/images/portfolio/fintech-detail.webp",
-  "/images/portfolio/fintech-transactions.webp",
+  // Alternating dark ↔ light for visual rhythm
+  "/images/portfolio/vesta-hero.png",              // dark
+  "/images/portfolio/hotel-booking-landing.webp",  // light
+  "/images/portfolio/zonex-dashboard.webp",        // dark
+  "/images/portfolio/ecommerce-overview.webp",     // light
+  "/images/portfolio/estateflow-dashboard.png",    // dark
+  "/images/portfolio/snack-app-mobile.webp",       // light
+  "/images/portfolio/said-hero-brand.webp",        // dark
+  "/images/portfolio/property-ipad.webp",          // light
+  "/images/portfolio/zonex-film.webp",             // dark
+  "/images/portfolio/taskapp-dashboard.webp",      // light
+  "/images/portfolio/wallet-app-mobile.webp",      // dark
+  "/images/portfolio/ai-pattern-landing.webp",     // light
+  "/images/portfolio/estateflow-properties.png",   // dark
+  "/images/portfolio/aerion-landing.webp",         // light
+  "/images/portfolio/defi-landing.webp",           // dark
+  "/images/portfolio/cms-tablet.webp",             // light
+  "/images/portfolio/said-clinical.webp",          // dark
+  "/images/portfolio/wallet-dashboard-light.webp", // light
+  "/images/portfolio/analytics-dashboard-dark.webp", // dark
+  "/images/portfolio/juice-landing.webp",          // light/red
+  "/images/portfolio/estateflow-tenants.png",      // dark
+  "/images/portfolio/health-tracker-mobile.webp",  // dark/teal
+  "/images/portfolio/vesta-calendar.png",          // light
+  "/images/portfolio/finance-app-dark.webp",       // dark
+  "/images/portfolio/geo-analytics.avif",          // light
+  "/images/portfolio/project-board-dark.webp",     // dark
+  "/images/portfolio/vesta-seo.png",               // light
+  "/images/portfolio/stock-market-dashboard.webp", // dark
+  "/images/portfolio/zonex-coaching.webp",         // light
+  "/images/portfolio/said-lineup.webp",            // dark
+  "/images/portfolio/fintech-app-duo.webp",        // light
+  "/images/portfolio/multichain.avif",             // dark
+  "/images/portfolio/vesta-analytics.png",         // light
+  "/images/portfolio/defi-pages.webp",             // dark
+  "/images/portfolio/community-search.avif",       // light
+  "/images/portfolio/estateflow-leasing.png",      // dark
+  "/images/portfolio/crm-dashboard.webp",          // light
+  "/images/portfolio/token-platform.avif",         // dark
+  "/images/portfolio/fintech-dashboard.webp",      // light
+  "/images/portfolio/ai-finance.avif",             // dark
+  "/images/portfolio/sales-crm-detail.webp",       // light
+  "/images/portfolio/estateflow-market.png",       // dark
+  "/images/portfolio/sales-crm-full.webp",         // light
+  "/images/portfolio/thrust-web.avif",             // dark
+  "/images/portfolio/vesta-login.png",             // light
+  "/images/portfolio/estateflow-documents.png",    // dark
+  "/images/portfolio/sales-crm-perspective.webp",  // light
+  "/images/portfolio/estateflow-finance.png",      // dark
+  "/images/portfolio/fintech-detail.webp",         // light
+  "/images/portfolio/fintech-transactions.webp",   // light
 ];
 
 export default function GalleryPage() {
@@ -65,13 +82,14 @@ export default function GalleryPage() {
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group"
+              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group overflow-hidden"
             >
               <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
                 <Image
                   src={src}
                   alt=""
                   fill
+                  quality={90}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                   style={getImageStyle(src)}

@@ -74,6 +74,24 @@ const settingsMap: Record<string, ImageSettings> = {
   "/images/portfolio/socialsonic.avif": {},
   "/images/portfolio/thrust-web.avif": {},
   "/images/portfolio/travel-app.webp": {},
+
+  // ── Extra portfolio pieces ────────────────────────────
+  "/images/portfolio/snack-app-mobile.webp": {},
+  "/images/portfolio/hotel-booking-landing.webp": {},
+  "/images/portfolio/finance-app-dark.webp": {},
+  "/images/portfolio/ai-pattern-landing.webp": {},
+  "/images/portfolio/project-board-dark.webp": {},
+  "/images/portfolio/analytics-dashboard-dark.webp": {},
+  "/images/portfolio/stock-market-dashboard.webp": {},
+  "/images/portfolio/property-ipad.webp": {},
+  "/images/portfolio/wallet-app-mobile.webp": {},
+  "/images/portfolio/health-tracker-mobile.webp": {},
+  "/images/portfolio/juice-landing.webp": {},
+  "/images/portfolio/aerion-landing.webp": {},
+  "/images/portfolio/taskapp-dashboard.webp": {},
+  "/images/portfolio/cms-tablet.webp": {},
+  "/images/portfolio/ecommerce-overview.webp": {},
+  "/images/portfolio/wallet-dashboard-light.webp": {},
 };
 
 /** Apply to the <Image> element — handles pan (object-position) only. */

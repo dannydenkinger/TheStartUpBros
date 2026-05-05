@@ -128,17 +128,16 @@ export function Hero() {
         {/* Headline */}
         <AnimateIn variant="fadeUp" delay={0.08}>
           <h1 className="text-display text-foreground">
-            Websites and products for{" "}
-            <span style={{ color: 'var(--accent-brand)' }}>fast-moving</span>
+            Launch-Ready Products,{" "}
             <br className="hidden md:block" />
-            B2B and AI SaaS teams
+            <span style={{ color: 'var(--accent-brand)' }}>Built In Weeks</span> — Not Months
           </h1>
         </AnimateIn>
 
         {/* Subtitle */}
         <AnimateIn variant="fadeUp" delay={0.16}>
           <p className="text-body-lg mt-6 mx-auto max-w-[560px]">
-            Two brothers. Modern stack. Built to ship in weeks, not months.
+            Full-stack design and development for startups that need to move now.
           </p>
         </AnimateIn>
 

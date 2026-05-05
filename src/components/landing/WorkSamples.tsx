@@ -7,21 +7,21 @@ import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 // Mix of dashboards, mobile mockups, and landing pages for visual variety.
 const galleryImages = [
   "/images/portfolio/vesta-hero.png",
+  "/images/portfolio/hotel-booking-landing.webp",
   "/images/portfolio/zonex-dashboard.webp",
+  "/images/portfolio/ecommerce-overview.webp",
   "/images/portfolio/estateflow-dashboard.png",
-  "/images/portfolio/ai-landing.webp",
-  "/images/portfolio/vesta-calendar.png",
+  "/images/portfolio/snack-app-mobile.webp",
+  "/images/portfolio/said-hero-brand.webp",
+  "/images/portfolio/property-ipad.webp",
   "/images/portfolio/zonex-film.webp",
+  "/images/portfolio/taskapp-dashboard.webp",
   "/images/portfolio/estateflow-properties.png",
+  "/images/portfolio/ai-pattern-landing.webp",
   "/images/portfolio/defi-landing.webp",
-  "/images/portfolio/vesta-analytics.png",
-  "/images/portfolio/zonex-coaching.webp",
-  "/images/portfolio/estateflow-tenants.png",
-  "/images/portfolio/geo-analytics.avif",
-  "/images/portfolio/vesta-seo.png",
-  "/images/portfolio/multichain.avif",
-  "/images/portfolio/estateflow-leasing.png",
-  "/images/portfolio/zonex-game-data.webp",
+  "/images/portfolio/aerion-landing.webp",
+  "/images/portfolio/wallet-app-mobile.webp",
+  "/images/portfolio/cms-tablet.webp",
 ];
 
 export function WorkSamples() {
@@ -34,17 +34,18 @@ export function WorkSamples() {
       </AnimateIn>
 
       {/* Uniform 4:3 grid — matches /gallery layout */}
-      <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+      <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 isolate">
         {galleryImages.map((src) => (
           <div
             key={src}
-            className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group"
+            className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm group overflow-hidden isolate"
           >
-            <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
+            <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
               <Image
                 src={src}
                 alt=""
                 fill
+                quality={90}
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
                 className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                 style={getImageStyle(src)}

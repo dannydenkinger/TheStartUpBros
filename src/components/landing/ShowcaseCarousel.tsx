@@ -6,23 +6,27 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 // Distribute images across 4 columns — each column gets 2-3 images, duplicated for infinite loop
 const col1 = [
   { src: "/images/portfolio/zonex-dashboard.webp", w: 1920, h: 1072 },
+  { src: "/images/portfolio/hotel-booking-landing.webp", w: 400, h: 300 },
   { src: "/images/portfolio/vesta-hero.png", w: 2544, h: 1351 },
-  { src: "/images/portfolio/estateflow-properties.png", w: 2555, h: 1342 },
+  { src: "/images/portfolio/ecommerce-overview.webp", w: 400, h: 300 },
 ];
 const col2 = [
   { src: "/images/portfolio/said-hero-brand.webp", w: 5504, h: 3072 },
+  { src: "/images/portfolio/property-ipad.webp", w: 400, h: 300 },
   { src: "/images/portfolio/zonex-film.webp", w: 1920, h: 1080 },
-  { src: "/images/portfolio/vesta-seo.png", w: 2554, h: 1350 },
+  { src: "/images/portfolio/snack-app-mobile.webp", w: 400, h: 300 },
 ];
 const col3 = [
   { src: "/images/portfolio/estateflow-dashboard.png", w: 2552, h: 1342 },
+  { src: "/images/portfolio/taskapp-dashboard.webp", w: 400, h: 300 },
   { src: "/images/portfolio/said-clinical.webp", w: 5504, h: 3072 },
-  { src: "/images/portfolio/defi-landing.webp", w: 800, h: 600 },
+  { src: "/images/portfolio/ai-pattern-landing.webp", w: 400, h: 300 },
 ];
 const col4 = [
   { src: "/images/portfolio/said-lineup.webp", w: 5504, h: 3072 },
+  { src: "/images/portfolio/wallet-app-mobile.webp", w: 400, h: 300 },
   { src: "/images/portfolio/vesta-calendar.png", w: 2538, h: 1348 },
-  { src: "/images/portfolio/fintech-mobile.webp", w: 800, h: 600 },
+  { src: "/images/portfolio/aerion-landing.webp", w: 400, h: 300 },
 ];
 
 type ImgData = { src: string; w: number; h: number };
@@ -59,6 +63,7 @@ function MarqueeColumn({
               alt=""
               width={img.w}
               height={img.h}
+              quality={90}
               className="w-full h-auto object-cover"
               draggable={false}
             />

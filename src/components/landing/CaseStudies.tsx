@@ -147,6 +147,7 @@ export function CaseStudies() {
                           src={src}
                           alt={imgIdx === 0 ? c.title : "Case study screenshot"}
                           fill
+                          quality={90}
                           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                           style={getImageStyle(src)}
                         />

@@ -26,12 +26,6 @@ const cases = [
     image: "/images/portfolio/defi-landing.webp",
   },
   {
-    slug: "k-project",
-    title: "K Project — Private AI for Regulated Industries",
-    tags: ["AI", "Private LLMs"],
-    image: "/images/portfolio/ai-landing.webp",
-  },
-  {
     slug: "vesta-crm",
     title: "Vesta CRM — Complete CRM Platform Built From Scratch",
     tags: ["CRM", "Full-Stack"],
@@ -111,6 +105,7 @@ export function CaseStudiesGrid() {
                   src={project.image}
                   alt={project.title}
                   fill
+                  quality={90}
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
                   style={getImageStyle(project.image)}
                 />
