@@ -19,12 +19,20 @@ export function CTAButton({
       href={href}
       className={cn(
         "btn-pill",
-        variant === "primary" && "btn-pill-primary",
+        variant === "primary" && "btn-pill-primary group",
         variant === "secondary" && "btn-pill-secondary",
         className
       )}
     >
       {children}
+      {variant === "primary" && (
+        <span
+          aria-hidden
+          className="transition-transform duration-200 group-hover:translate-x-0.5"
+        >
+          →
+        </span>
+      )}
     </Link>
   );
 }

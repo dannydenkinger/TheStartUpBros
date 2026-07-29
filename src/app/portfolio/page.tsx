@@ -9,21 +9,28 @@ export const metadata = {
 export default function PortfolioPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      {/* Hero Section */}
-      <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
-        <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>Case Studies</span>
-        <h1 className="text-display mb-4 max-w-4xl mx-auto text-foreground">
-          Design <span style={{ color: 'var(--accent-brand)' }}>Studies</span>
-        </h1>
-        <p className="text-body-lg max-w-[600px] mx-auto text-muted-foreground">
-          Deep-dives from the kind of fast-moving B2B and AI SaaS we build.
-        </p>
+      {/* Hero */}
+      <section className="pt-16 md:pt-24 pb-14 md:pb-16">
+        <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+          <span className="badge-pill mb-8 inline-flex">
+            <span aria-hidden className="size-1.5 bg-(--accent-brand)" />
+            Case Studies
+          </span>
+          <div className="grid grid-cols-12 gap-6">
+            <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
+              Design <span className="accent-word">Studies</span>
+            </h1>
+            <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
+              Deep-dives from the kind of fast-moving B2B and AI SaaS we build.
+            </p>
+          </div>
+        </div>
       </section>
 
-      {/* Embedded Filter & Grid */}
+      {/* The Ledger */}
       <CaseStudiesGrid />
-      
-      <FinalCTA />
+
+      <FinalCTA index="06" />
     </div>
   );
 }

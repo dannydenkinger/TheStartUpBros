@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp } from "lucide-react";
 
 interface TocItem {
   id: string;
@@ -71,7 +70,7 @@ export function BlogTableOfContents() {
 
   return (
     <nav className="space-y-1">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-4">
+      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mb-4">
         On this page
       </p>
       <ul className="space-y-0.5">
@@ -89,15 +88,21 @@ export function BlogTableOfContents() {
                 }
               }}
               className={`
-                block py-1.5 text-[13px] leading-snug transition-all duration-200 border-l-2
-                ${heading.level === 3 ? "pl-6" : "pl-4"}
+                relative block py-1.5 text-[13px] leading-snug transition-colors duration-200
+                ${heading.level === 3 ? "pl-7" : "pl-4"}
                 ${
                   activeId === heading.id
-                    ? "border-foreground text-foreground font-medium"
-                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/40"
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground"
                 }
               `}
             >
+              {activeId === heading.id && (
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 bg-(--accent-brand)"
+                />
+              )}
               {heading.text}
             </a>
           </li>
@@ -105,9 +110,9 @@ export function BlogTableOfContents() {
       </ul>
       <button
         onClick={scrollToTop}
-        className="flex items-center gap-1.5 mt-6 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200"
+        className="flex items-baseline gap-1.5 mt-6 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
       >
-        <ArrowUp className="w-3 h-3" />
+        <span aria-hidden className="font-mono">↑</span>
         Back to top
       </button>
     </nav>

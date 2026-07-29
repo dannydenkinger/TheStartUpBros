@@ -3,43 +3,10 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import { projects } from "@/data/portfolio";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
-const cases = [
-  {
-    slug: "said",
-    title: "SAID Technology — Offline-First Medical Translation",
-    tags: ["AI", "Healthcare"],
-    image: "/images/portfolio/said-hero-brand.webp",
-  },
-  {
-    slug: "zonex",
-    title: "ZoneX — AI Sports Analytics Platform",
-    tags: ["AI", "Sports"],
-    image: "/images/portfolio/zonex-dashboard.webp",
-  },
-  {
-    slug: "loot8",
-    title: "LOOT8 — Web3 Content & Commerce Platform",
-    tags: ["Web3", "Mobile"],
-    image: "/images/portfolio/defi-landing.webp",
-  },
-  {
-    slug: "vesta-crm",
-    title: "Vesta CRM — Complete CRM Platform Built From Scratch",
-    tags: ["CRM", "Full-Stack"],
-    image: "/images/portfolio/vesta-hero.png",
-  },
-  {
-    slug: "estateflow",
-    title: "EstateFlow — Property Management Platform",
-    tags: ["PropTech", "Full-Stack"],
-    image: "/images/portfolio/estateflow-dashboard.png",
-  },
-];
-
-const allTags = Array.from(new Set(cases.flatMap((c) => c.tags))).sort();
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
 export function CaseStudiesGrid() {
   const [search, setSearch] = useState("");
@@ -47,7 +14,7 @@ export function CaseStudiesGrid() {
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
-    return cases.filter((project) => {
+    return projects.filter((project) => {
       const matchesCategory =
         category === "all" || project.tags.includes(category);
       const matchesSearch =
@@ -59,73 +26,120 @@ export function CaseStudiesGrid() {
   }, [search, category]);
 
   return (
-    <section className="px-6 md:px-0 pb-20 md:pb-28 w-[90vw] max-w-none mx-auto">
-      {/* Filter Bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4">
-        <div className="w-full sm:w-auto relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full sm:w-[300px] px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-accent"
-          />
-          <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </div>
+    <section className="mx-auto w-full max-w-[1360px] px-6 md:px-10 pb-24 md:pb-32">
+      {/* Toolbar */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-t border-border pt-6 mb-12">
+        <input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:w-[280px] h-10 rounded-[2px] border border-input bg-(--surface-input) px-3 font-mono text-xs tracking-[0.08em] text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200"
+        />
 
-        <div className="w-full sm:w-auto flex items-center gap-3">
-          <span className="text-sm font-medium text-muted-foreground">Category</span>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none hover:bg-secondary cursor-pointer appearance-none pr-8 relative"
-          >
-            <option value="all">All</option>
-            {allTags.map((tag) => (
-              <option key={tag} value={tag}>{tag}</option>
-            ))}
-          </select>
-          <div className="absolute right-4 pointer-events-none sm:relative sm:right-auto sm:-ml-8">
-            <svg className="w-4 h-4 text-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+        <div className="flex items-center gap-3">
+          <span className="text-micro-label text-muted-foreground">
+            Category
+          </span>
+          <div className="relative">
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              className="h-10 rounded-[2px] border border-input bg-(--surface-input) pl-3 pr-9 font-mono text-xs uppercase tracking-[0.08em] text-foreground focus:outline-none focus:border-foreground transition-colors duration-200 cursor-pointer appearance-none"
+            >
+              <option value="all">All</option>
+              {allTags.map((tag) => (
+                <option key={tag} value={tag}>
+                  {tag}
+                </option>
+              ))}
+            </select>
+            <svg
+              className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M19 9l-7 7-7-7"
+              />
             </svg>
           </div>
         </div>
       </div>
 
-      {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-[80px]">
-        {filtered.map((project) => (
-          <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group flex flex-col gap-4">
-            <div className="relative aspect-[1.3/1] w-full overflow-hidden rounded-[24px] border border-border/50 shadow-sm bg-card">
-              <div className="absolute inset-0" style={getWrapperStyle(project.image)}>
+      {/* Ledger rows */}
+      <div>
+        {filtered.map((project, i) => (
+          <Link
+            key={project.slug}
+            href={`/portfolio/${project.slug}`}
+            className="group relative flex items-start lg:items-baseline gap-5 lg:gap-6 border-t border-border py-8 lg:py-10 last:border-b"
+          >
+            <span className="hidden lg:block font-mono text-sm tracking-[0.04em] text-muted-foreground">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+
+            {/* Static thumbnail plate below lg */}
+            <div className="lg:hidden w-28 sm:w-36 shrink-0 rounded-md border border-border bg-secondary p-1">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-[3px]">
+                <div
+                  className="absolute inset-0"
+                  style={getWrapperStyle(project.image)}
+                >
+                  <Image
+                    src={project.image}
+                    alt={project.title}
+                    fill
+                    sizes="144px"
+                    className="object-cover"
+                    style={getImageStyle(project.image)}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className="flex-1 min-w-0">
+              <p className="lg:hidden mb-2 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                {String(i + 1).padStart(2, "0")} · {project.tags.join(" / ")} ·{" "}
+                {project.year}
+              </p>
+              <h2 className="font-display text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.01em] text-foreground transition-transform duration-300 lg:group-hover:translate-x-2">
+                {project.title}
+              </h2>
+            </div>
+
+            <span className="hidden lg:block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+              {project.tags.join(" / ")}
+            </span>
+            <span className="hidden lg:block font-mono text-sm tracking-[0.04em] text-muted-foreground">
+              {project.year}
+            </span>
+            <span
+              aria-hidden
+              className="font-mono text-base text-muted-foreground transition-colors duration-200 group-hover:text-(--accent-brand)"
+            >
+              ↗
+            </span>
+
+            {/* Hover reveal plate (lg+) */}
+            <div className="absolute right-[8%] top-1/2 -translate-y-1/2 w-[340px] aspect-[4/3] rounded-md border border-border overflow-hidden opacity-0 scale-[0.97] rotate-[-2deg] group-hover:opacity-100 group-hover:scale-100 group-hover:rotate-0 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] pointer-events-none hidden lg:block z-10 shadow-(--shadow-plate)">
+              <div
+                className="absolute inset-0"
+                style={getWrapperStyle(project.image)}
+              >
                 <Image
                   src={project.image}
-                  alt={project.title}
+                  alt=""
                   fill
-                  quality={90}
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
+                  sizes="340px"
+                  className="object-cover"
                   style={getImageStyle(project.image)}
                 />
               </div>
-            </div>
-            <div className="flex flex-col items-start gap-2 pt-2 px-1">
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="font-medium text-xs bg-secondary hover:bg-muted text-foreground/70"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <h4 className="text-[24px] md:text-[32px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground mt-1 group-hover:text-foreground/70 transition-colors">
-                {project.title}
-              </h4>
             </div>
           </Link>
         ))}

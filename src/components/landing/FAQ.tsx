@@ -3,9 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 const faqs = [
   {
@@ -92,38 +92,42 @@ const teamAvatars = [
 ];
 
 function FAQItem({
+  index,
   question,
   answer,
   isOpen,
   onToggle,
 }: {
+  index: string;
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
 }) {
   return (
-    <div
-      className={cn(
-        "rounded-xl border bg-card transition-all duration-300",
-        isOpen
-          ? "border-l-2 border-l-[var(--accent-brand)] border-border"
-          : "border-border",
-      )}
-    >
+    <div className="border-b border-border">
       <button
         onClick={onToggle}
-        className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
+        className="flex w-full items-baseline gap-6 py-6 text-left"
       >
-        <span className="text-[15px] font-medium text-foreground leading-[1.4]">
-          {question}
-        </span>
-        <ChevronDown
+        <span
           className={cn(
-            "h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300",
-            isOpen && "rotate-180",
+            "font-mono text-sm tracking-[0.04em] w-8 shrink-0 transition-colors duration-200",
+            isOpen ? "text-(--accent-brand)" : "text-muted-foreground",
           )}
-        />
+        >
+          {index}
+        </span>
+        <span className="text-h3 flex-1">{question}</span>
+        <span
+          aria-hidden
+          className={cn(
+            "font-mono text-lg leading-none shrink-0 text-muted-foreground transition-transform duration-300",
+            isOpen && "rotate-45 text-foreground",
+          )}
+        >
+          +
+        </span>
       </button>
       <div
         className={cn(
@@ -132,7 +136,7 @@ function FAQItem({
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 text-[14px] leading-[1.7] text-muted-foreground">
+          <p className="pb-6 ml-14 max-w-[560px] text-muted-foreground">
             {answer}
           </p>
         </div>
@@ -141,23 +145,29 @@ function FAQItem({
   );
 }
 
-export function FAQ() {
+export function FAQ({ index = "04" }: { index?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
-      <div className="mx-auto max-w-[1200px]">
+    <section className="px-6 md:px-10 py-24 md:py-32 bg-background">
+      <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
-          <div className="text-center mb-14">
-            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>FAQs</span>
-            <h2 className="text-display mb-4">All your Questions, <span style={{ color: 'var(--accent-brand)' }}>Answered.</span></h2>
-          </div>
+          <SectionHeader
+            index={index}
+            label="FAQ"
+            title={
+              <>
+                All your Questions,{" "}
+                <span className="accent-word">Answered.</span>
+              </>
+            }
+          />
         </AnimateIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* ─── Left: sticky CTA card ─────────────────────────────── */}
           <div className="lg:sticky lg:top-[120px] lg:self-start">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
+            <div className="rounded-md border border-border bg-card p-6">
               {/* Overlapping avatars */}
               <div className="flex -space-x-3 mb-5">
                 {teamAvatars.map((src, i) => (
@@ -184,18 +194,14 @@ export function FAQ() {
               <div className="flex flex-col gap-2">
                 <Link
                   href="/strategy-call"
-                  className="btn-pill btn-pill-primary w-full !py-3"
+                  className="btn-pill btn-pill-primary w-full"
                 >
                   Book Strategy Call
                 </Link>
                 <Link
                   href="/strategy-call"
-                  className="btn-pill btn-pill-secondary w-full !py-3 flex items-center justify-center gap-2"
+                  className="btn-pill btn-pill-secondary w-full"
                 >
-                  <MessageCircle
-                    className="w-4 h-4 text-emerald-500"
-                    strokeWidth={2.2}
-                  />
                   Chat with Us
                 </Link>
               </div>
@@ -203,10 +209,11 @@ export function FAQ() {
           </div>
 
           {/* ─── Right: FAQ stack ──────────────────────────────────── */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
+          <div className="lg:col-span-2 flex flex-col">
             {faqs.map((faq, i) => (
               <FAQItem
                 key={i}
+                index={String(i + 1).padStart(2, "0")}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === i}

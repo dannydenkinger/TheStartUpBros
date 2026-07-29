@@ -1,9 +1,9 @@
-import { cn } from "@/lib/utils";
 import {
   TestimonialCard,
   TestimonialAuthor,
 } from "@/components/ui/testimonial-card";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 const testimonials = [
   {
@@ -62,24 +62,23 @@ const bottomRow = testimonials.slice(Math.ceil(testimonials.length / 2));
 
 export function Testimonials() {
   return (
-    <section
-      className={cn(
-        "bg-background text-foreground",
-        "py-16 sm:py-24 md:py-32 px-0"
-      )}
-    >
-      <div className="mx-auto flex max-w-full flex-col items-center gap-4 text-center sm:gap-16">
+    <section className="bg-background text-foreground py-24 md:py-32">
+      <div className="mx-auto max-w-[1360px] px-6 md:px-10">
         <AnimateIn>
-          <div className="flex flex-col items-center gap-4 px-4 sm:gap-6">
-            <h2 className="text-display max-w-[720px] mx-auto">
-              How We <span style={{ color: 'var(--accent-brand)' }}>Work</span>
-            </h2>
-            <p className="text-body-lg max-w-[600px] mx-auto">
-              The principles behind every project we ship.
-            </p>
-          </div>
+          <SectionHeader
+            index="03"
+            label="PRINCIPLES"
+            title={
+              <>
+                How We <span className="accent-word">Work</span>
+              </>
+            }
+            intro="The principles behind every project we ship."
+          />
         </AnimateIn>
+      </div>
 
+      <div className="flex flex-col gap-4">
         {/* Row 1 — scrolls left, seamless infinite.
             Content is rendered twice so -50% animation closes cleanly at a card boundary. */}
         <div className="relative flex w-full overflow-hidden">
@@ -89,6 +88,7 @@ export function Testimonials() {
                 topRow.map((testimonial, i) => (
                   <TestimonialCard
                     key={`top-${groupIdx}-${setIndex}-${i}`}
+                    index={String(i + 1).padStart(2, "0")}
                     {...testimonial}
                   />
                 )),
@@ -101,13 +101,14 @@ export function Testimonials() {
         </div>
 
         {/* Row 2 — scrolls right, seamless infinite */}
-        <div className="relative flex w-full overflow-hidden -mt-8">
+        <div className="relative flex w-full overflow-hidden">
           <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 bottomRow.map((testimonial, i) => (
                   <TestimonialCard
                     key={`bottom-${groupIdx}-${setIndex}-${i}`}
+                    index={String(topRow.length + i + 1).padStart(2, "0")}
                     {...testimonial}
                   />
                 )),

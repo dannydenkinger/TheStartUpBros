@@ -22,9 +22,13 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import { CTAButton } from "@/components/shared/CTAButton";
+import { SectionHeader } from "@/components/shared/SectionHeader";
+import { StatusStrip } from "@/components/shared/StatusStrip";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { FAQ } from "@/components/landing/FAQ";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 // ─── Icon lookup ──────────────────────────────────────────────────────────
 const iconMap: Record<string, LucideIcon> = {
@@ -328,48 +332,45 @@ export default async function IndustryPage({
   const data = getIndustryData(resolvedParams.slug);
   const currentSlug = resolvedParams.slug;
 
+  // Continuous section numbering, computed in document order.
+  let sectionCount = 0;
+  const idx = () => String(++sectionCount).padStart(2, "0");
+
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="px-6 lg:px-10 pt-[120px] pb-[60px] text-center flex flex-col items-center justify-center">
-        <div className="flex flex-wrap justify-center gap-3 mb-8">
-          <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Founded by Denkinger Bros
+      <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
+        <div className="max-w-[1360px] mx-auto">
+          <div className="flex flex-wrap gap-3 mb-8">
+            <span className="badge-pill">Founded by Denkinger Bros</span>
+            <span className="badge-pill">Trial Week Included</span>
           </div>
-          <div className="badge-pill flex items-center gap-2" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              <line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-            </svg>
-            Trial Week Included
+
+          <div className="grid grid-cols-12 gap-x-6">
+            <h1 className="col-span-12 lg:col-span-9 text-display text-foreground mb-6">
+              {data.headline}
+            </h1>
           </div>
-        </div>
+          <p className="text-body-lg max-w-[680px] mb-10">{data.subtitle}</p>
 
-        <h1 className="text-display max-w-4xl mx-auto mb-6 text-foreground">
-          {data.headline}
-        </h1>
-        <p className="text-body-lg max-w-2xl mx-auto mb-10">
-          {data.subtitle}
-        </p>
+          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12">
+            <CTAButton href="/strategy-call" variant="primary">
+              Book Strategy Call
+            </CTAButton>
+            <CTAButton href="/portfolio" variant="secondary">
+              View Our Work
+            </CTAButton>
+          </div>
 
-        <div className="flex flex-col sm:flex-row items-center gap-3">
-          <Link
-            href="/strategy-call"
-            className="btn-pill btn-pill-primary px-8 py-3.5"
-            style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
-          >
-            Book Strategy Call
-          </Link>
-          <Link
-            href="/portfolio"
-            className="btn-pill btn-pill-secondary px-8 py-3.5"
-          >
-            View Our Work
-          </Link>
+          <div className="max-w-[840px]">
+            <StatusStrip
+              items={[
+                { label: "Scope", value: "Within 48 hours" },
+                { label: "Design", value: "Usable by week one" },
+                { label: "Ship", value: "MVP in 2–4 weeks" },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
@@ -377,38 +378,45 @@ export default async function IndustryPage({
       <TechBrandsMarquee />
 
       {/* ── Case Studies ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-h2 text-foreground">
-              {data.label} Design Studies
-            </h2>
-          </div>
+      <section className="px-6 md:px-10 py-24 md:py-32">
+        <div className="max-w-[1360px] mx-auto">
+          <SectionHeader
+            index={idx()}
+            label="DESIGN STUDIES"
+            title={`${data.label} Design Studies`}
+          />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {data.caseStudies.map((cs) => (
-              <Link key={cs.title} href={cs.href} className="group block">
-                <div className="relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
-                  <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={cs.image}
-                      alt={cs.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-6">
-                    <div className="flex items-center gap-3 mb-3">
-                      <span className="inline-flex items-center rounded-full border border-border bg-secondary px-3 py-1 text-[11px] font-medium text-muted-foreground">
-                        {cs.tag}
-                      </span>
-                      <span className="text-[12px] text-muted-foreground">
-                        {cs.location}
-                      </span>
+              <Link
+                key={cs.title}
+                href={cs.href}
+                className="group block border border-border rounded-md overflow-hidden bg-card hover:border-foreground/40 transition-colors duration-300"
+              >
+                <div className="border-b border-border bg-secondary p-1.5">
+                  <div className="relative aspect-[16/10] rounded-[4px] overflow-hidden isolate">
+                    <div
+                      className="absolute inset-0 overflow-hidden"
+                      style={getWrapperStyle(cs.image)}
+                    >
+                      <Image
+                        src={cs.image}
+                        alt={cs.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                        style={getImageStyle(cs.image)}
+                      />
                     </div>
-                    <h4 className="text-[20px] md:text-[24px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground group-hover:text-foreground/70 transition-colors">
-                      {cs.title}
-                    </h4>
                   </div>
+                </div>
+                <div className="p-6">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-3">
+                    {cs.tag} — {cs.location}
+                  </p>
+                  <h3 className="text-h3 text-foreground mb-4">{cs.title}</h3>
+                  <span className="text-micro-label text-foreground group-hover:text-(--accent-brand) transition-colors duration-200">
+                    → View Case Study
+                  </span>
                 </div>
               </Link>
             ))}
@@ -417,28 +425,31 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Features Grid ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-h2 text-foreground">
-              Built For {data.label} Teams
-            </h2>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.features.map((feature) => {
+      <section className="px-6 md:px-10 py-24 md:py-32">
+        <div className="max-w-[1360px] mx-auto">
+          <SectionHeader
+            index={idx()}
+            label="CAPABILITIES"
+            title={`Built For ${data.label} Teams`}
+          />
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+            {data.features.map((feature, i) => {
               const Icon = iconMap[feature.icon] ?? Sparkles;
               return (
                 <div
                   key={feature.title}
-                  className="p-8 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg transition-all duration-300"
+                  className="bg-background p-8 hover:bg-secondary/60 transition-colors duration-300"
                 >
-                  <div className="w-11 h-11 rounded-xl bg-secondary border border-border flex items-center justify-center mb-5">
-                    <Icon className="w-5 h-5 text-foreground" strokeWidth={1.8} />
+                  <div className="flex items-start justify-between mb-6">
+                    <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                    <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
                   </div>
-                  <h5 className="text-[16px] font-semibold text-foreground mb-3">
+                  <h3 className="text-h3 text-foreground mb-3">
                     {feature.title}
-                  </h5>
-                  <p className="text-[14px] leading-[1.7] text-muted-foreground">
+                  </h3>
+                  <p className="text-caption text-muted-foreground">
                     {feature.description}
                   </p>
                 </div>
@@ -449,48 +460,62 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Testimonial Quote ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-28 bg-background">
-        <div className="max-w-[800px] mx-auto text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-border bg-secondary px-4 py-2 mb-8">
-            <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
-              Denkinger Bros · Design Study
-            </span>
+      <section className="px-6 md:px-10 py-24 md:py-32">
+        <div className="max-w-[1360px] mx-auto">
+          <div className="border-t border-border pt-6 mb-16">
+            <p className="text-micro-label text-muted-foreground">
+              {idx()} / TESTIMONIAL
+            </p>
           </div>
-          <blockquote className="text-[24px] md:text-[32px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground mb-8">
-            &ldquo;{data.testimonial.quote}&rdquo;
-          </blockquote>
-          <p className="text-[15px] font-bold text-foreground">
-            {data.testimonial.name}
-          </p>
-          <p className="text-[13px] text-muted-foreground mt-1">
-            {data.testimonial.role}
-          </p>
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className="col-span-12 lg:col-span-9">
+              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-8">
+                Denkinger Bros · Design Study
+              </p>
+              <blockquote className="font-display italic text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.3] text-foreground mb-8">
+                &ldquo;{data.testimonial.quote}&rdquo;
+              </blockquote>
+              <p className="text-micro-label text-foreground">
+                {data.testimonial.name}
+              </p>
+              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mt-2">
+                {data.testimonial.role}
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── Explore Other Industries ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
-        <div className="max-w-[1280px] mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-h2 text-foreground">Explore Other Industries</h2>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+      <section className="px-6 md:px-10 py-24 md:py-32">
+        <div className="max-w-[1360px] mx-auto">
+          <SectionHeader
+            index={idx()}
+            label="INDUSTRIES"
+            title="Explore Other Industries"
+          />
+          <div>
             {otherIndustries
               .filter((ind) => ind.slug !== currentSlug)
               .slice(0, 8)
-              .map((ind) => (
+              .map((ind, i, arr) => (
                 <Link
                   key={ind.slug}
                   href={`/industries/${ind.slug}`}
-                  className="group block p-6 rounded-2xl border border-border bg-card hover:bg-secondary hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                  className={`group flex flex-col md:flex-row md:items-baseline gap-2 md:gap-6 border-t border-border py-6${
+                    i === arr.length - 1 ? " border-b" : ""
+                  }`}
                 >
-                  <h4 className="text-[17px] font-semibold text-foreground mb-2 group-hover:text-foreground/70 transition-colors">
+                  <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-h3 text-foreground md:w-[280px] shrink-0 transition-transform duration-300 lg:group-hover:translate-x-2">
                     {ind.name}
-                  </h4>
-                  <p className="text-[13px] leading-[1.6] text-muted-foreground mb-4">
+                  </h3>
+                  <p className="text-caption text-muted-foreground flex-1">
                     {ind.description}
                   </p>
-                  <span className="text-[13px] font-medium text-foreground group-hover:underline">
+                  <span className="text-micro-label text-foreground group-hover:text-(--accent-brand) transition-colors duration-200 whitespace-nowrap">
                     Explore {ind.name} →
                   </span>
                 </Link>
@@ -500,29 +525,36 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Pricing CTA ── */}
-      <section className="px-6 lg:px-10 py-24 md:py-32 bg-background border-t border-border">
-        <div className="max-w-[760px] mx-auto text-center">
-          <h2 className="text-h2 text-foreground mb-5">
-            So much value at such a <span style={{ color: 'var(--accent-brand)' }}>flexible</span> price
-          </h2>
-          <p className="text-body-lg mb-10">
-            Consultation-based custom pricing. We scope every project to the
-            fastest path to launch, no retainers, no bloat.
-          </p>
-          <Link
-            href="/strategy-call"
-            className="btn-pill btn-pill-primary px-8 py-3.5"
-          >
-            Book a Call
-          </Link>
+      <section className="px-6 md:px-10 py-24 md:py-32">
+        <div className="max-w-[1360px] mx-auto">
+          <div className="border-t border-border pt-6 mb-16">
+            <p className="text-micro-label text-muted-foreground">
+              {idx()} / PRICING
+            </p>
+          </div>
+          <div className="grid grid-cols-12 gap-x-6">
+            <div className="col-span-12 lg:col-span-7">
+              <h2 className="text-h2 text-foreground mb-5">
+                So much value at such a{" "}
+                <span className="accent-word">flexible</span> price
+              </h2>
+              <p className="text-body-lg max-w-[560px] mb-10">
+                Consultation-based custom pricing. We scope every project to the
+                fastest path to launch, no retainers, no bloat.
+              </p>
+              <CTAButton href="/strategy-call" variant="primary">
+                Book a Call
+              </CTAButton>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* ── FAQ ── */}
-      <FAQ />
+      <FAQ index={idx()} />
 
       {/* ── Final CTA ── */}
-      <FinalCTA />
+      <FinalCTA index={idx()} />
     </div>
   );
 }

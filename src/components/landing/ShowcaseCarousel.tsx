@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { cn } from "@/lib/utils";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 
 // Distribute images across 4 columns — each column gets 2-3 images, duplicated for infinite loop
@@ -35,16 +36,18 @@ function MarqueeColumn({
   images,
   direction,
   duration,
+  className,
 }: {
   images: ImgData[];
   direction: "up" | "down";
   duration: number;
+  className?: string;
 }) {
   // Duplicate images for seamless loop
   const doubled = [...images, ...images];
 
   return (
-    <div className="relative flex-1 overflow-hidden rounded-2xl h-full">
+    <div className={cn("relative flex-1 overflow-hidden h-full px-3", className)}>
       <div
         className={`flex flex-col gap-3 ${
           direction === "up" ? "animate-marquee-up" : "animate-marquee-down"
@@ -56,17 +59,19 @@ function MarqueeColumn({
         {doubled.map((img, i) => (
           <div
             key={`${img.src}-${i}`}
-            className="shrink-0 overflow-hidden rounded-2xl border border-border bg-card"
+            className="shrink-0 rounded-md border border-border bg-secondary p-1.5"
           >
-            <Image
-              src={img.src}
-              alt=""
-              width={img.w}
-              height={img.h}
-              quality={90}
-              className="w-full h-auto object-cover"
-              draggable={false}
-            />
+            <div className="rounded-[4px] overflow-hidden">
+              <Image
+                src={img.src}
+                alt=""
+                width={img.w}
+                height={img.h}
+                quality={90}
+                className="w-full h-auto object-cover"
+                draggable={false}
+              />
+            </div>
           </div>
         ))}
       </div>
@@ -76,14 +81,27 @@ function MarqueeColumn({
 
 export function ShowcaseCarousel() {
   return (
-    <section className="overflow-hidden flex-1 min-h-0">
+    <section className="overflow-hidden flex-1 min-h-[320px] md:min-h-0">
       <AnimateIn variant="fadeIn" className="h-full">
-        <div className="rounded-none md:rounded-t-3xl mx-0 md:mx-6 lg:mx-10 pt-3 px-3 h-full" style={{ background: 'var(--surface-carousel-bg)' }}>
-          <div className="flex gap-3 h-full carousel-hover-pause">
+        <div
+          className="border-t border-border mx-0 md:mx-6 lg:mx-10 pt-3 h-full"
+          style={{ background: 'var(--surface-carousel-bg)' }}
+        >
+          <div className="flex h-full carousel-hover-pause divide-x divide-border">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />
-            <MarqueeColumn images={col3} direction="up" duration={28} />
-            <MarqueeColumn images={col4} direction="down" duration={26} />
+            <MarqueeColumn
+              images={col3}
+              direction="up"
+              duration={28}
+              className="hidden md:block"
+            />
+            <MarqueeColumn
+              images={col4}
+              direction="down"
+              duration={26}
+              className="hidden md:block"
+            />
           </div>
         </div>
       </AnimateIn>

@@ -67,40 +67,44 @@ export default function GalleryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
-        <h1 className="text-display mt-8 mb-4 max-w-4xl mx-auto text-foreground">
-          <span style={{ color: 'var(--accent-brand)' }}>Gallery</span>
-        </h1>
-        <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground">
-          A visual tour of our product, dashboard, mobile, and web3 work.
-        </p>
+      <section className="pt-16 md:pt-24 pb-14 md:pb-16 border-b border-border">
+        <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-12 gap-6">
+          <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
+            <span className="accent-word">Gallery</span>
+          </h1>
+          <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
+            A visual tour of our product, dashboard, mobile, and web3 work.
+          </p>
+        </div>
       </section>
 
       {/* Uniform grid — every tile is the same aspect ratio & size */}
       <section className="py-16 md:py-20">
-        <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+        <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group overflow-hidden"
+              className="group rounded-md border border-border bg-secondary p-1.5"
             >
-              <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  quality={90}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                  style={getImageStyle(src)}
-                />
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[4px]">
+                <div className="absolute inset-0" style={getWrapperStyle(src)}>
+                  <Image
+                    src={src}
+                    alt=""
+                    fill
+                    quality={90}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                    style={getImageStyle(src)}
+                  />
+                </div>
               </div>
             </div>
           ))}
         </div>
       </section>
 
-      <FinalCTA />
+      <FinalCTA index={null} />
     </div>
   );
 }

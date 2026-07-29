@@ -1,135 +1,145 @@
 "use client";
 
-import React from "react";
 import Link from "next/link";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
-import { Card } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
-import { BookOpen, Clock } from "lucide-react";
 
 interface GlassBlogCardProps {
-  title?: string;
+  title: string;
   excerpt?: string;
   image?: string;
-  author?: {
-    name: string;
-    avatar: string;
-  };
+  author?: string;
+  authorRole?: string;
   date?: string;
   readTime?: string;
-  tags?: string[];
+  category?: string;
   className?: string;
   href?: string;
+  featured?: boolean;
 }
 
-const defaultPost = {
-  title: "The Future of UI Design",
-  excerpt:
-    "Exploring the latest trends in glassmorphism, 3D elements, and micro-interactions.",
-  image:
-    "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80",
-  author: {
-    name: "Moumen Soliman",
-    avatar: "https://github.com/shadcn.png",
-  },
-  date: "Dec 2, 2025",
-  readTime: "5 min read",
-  tags: ["Design", "UI/UX"],
-};
-
-export function GlassBlogCard({
-  title = defaultPost.title,
-  excerpt = defaultPost.excerpt,
-  image = defaultPost.image,
-  author = defaultPost.author,
-  date = defaultPost.date,
-  readTime = defaultPost.readTime,
-  tags = defaultPost.tags,
-  className,
-  href,
-}: GlassBlogCardProps) {
-  const cardContent = (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4 }}
-      className={cn("w-full max-w-[400px]", className)}
-    >
-      <Card className="group relative h-full overflow-hidden rounded-2xl border-border/50 bg-card/30 backdrop-blur-md transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
-        {/* Image Section */}
-        <div className="relative aspect-[16/9] overflow-hidden">
-          <motion.img
-            src={image}
-            alt={title}
-            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent opacity-60 transition-opacity duration-300 group-hover:opacity-40" />
-
-          <div className="absolute bottom-3 left-3 flex gap-2">
-            {tags?.map((tag, index) => (
-              <Badge
-                key={index}
-                variant="secondary"
-                className="bg-background/50 backdrop-blur-sm hover:bg-background/80"
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
-
-          {/* Hover Overlay Action */}
-          <div className="absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-[2px] opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-medium text-primary-foreground shadow-lg shadow-primary/25"
-            >
-              <BookOpen className="h-4 w-4" />
-              Read Article
-            </motion.button>
-          </div>
-        </div>
-
-        {/* Content Section */}
-        <div className="flex flex-col gap-4 p-5">
-          <div className="space-y-2">
-            <h3 className="text-xl font-semibold leading-tight tracking-tight text-foreground transition-colors group-hover:text-primary">
-              {title}
-            </h3>
-            <p className="line-clamp-2 text-sm text-muted-foreground">
-              {excerpt}
-            </p>
-          </div>
-
-          <div className="flex items-center justify-between border-t border-border/50 pt-4">
-            <div className="flex items-center gap-2">
-              <Avatar className="h-8 w-8 border border-border/50">
-                <AvatarImage src={author.avatar} alt={author.name} />
-                <AvatarFallback>{author.name[0]}</AvatarFallback>
-              </Avatar>
-              <div className="flex flex-col text-xs">
-                <span className="font-medium text-foreground">
-                  {author.name}
-                </span>
-                <span className="text-muted-foreground">{date}</span>
-              </div>
-            </div>
-
-            <div className="flex items-center gap-1 text-xs text-muted-foreground">
-              <Clock className="h-3 w-3" />
-              <span>{readTime}</span>
-            </div>
-          </div>
-        </div>
-      </Card>
-    </motion.div>
-  );
-
-  if (href) {
-    return <Link href={href} className="block h-full">{cardContent}</Link>;
+function CardPlate({
+  title,
+  image,
+  category,
+}: {
+  title: string;
+  image?: string;
+  category?: string;
+}) {
+  if (!image) {
+    return (
+      <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-border bg-secondary dark:bg-card p-8">
+        <p className="font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-foreground/15">
+          {title}
+        </p>
+        <p className="absolute bottom-4 left-8 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+          FIG. 00{category ? ` — ${category}` : ""}
+        </p>
+      </div>
+    );
   }
 
-  return cardContent;
+  return (
+    <div className="rounded-md border border-border bg-secondary p-1.5">
+      <div className="aspect-[16/9] overflow-hidden rounded-[4px]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+        />
+      </div>
+    </div>
+  );
+}
+
+export function GlassBlogCard({
+  title,
+  excerpt,
+  image,
+  author,
+  authorRole,
+  date,
+  readTime,
+  category,
+  className,
+  href,
+  featured = false,
+}: GlassBlogCardProps) {
+  const meta = (
+    <div className="flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+      <span className="truncate">
+        {[category, date, readTime].filter(Boolean).join(" · ")}
+      </span>
+      <span
+        aria-hidden
+        className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
+      />
+      <span
+        aria-hidden
+        className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
+      >
+        →
+      </span>
+    </div>
+  );
+
+  const titleEl = (
+    <span className="link-sweep group-hover:[background-size:100%_2px]">
+      {title}
+    </span>
+  );
+
+  const authorLine = author ? (
+    <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+      {author}
+      {authorRole ? ` — ${authorRole}` : ""}
+    </p>
+  ) : null;
+
+  const body = featured ? (
+    <div className="grid grid-cols-12 gap-6">
+      <div className="col-span-12 lg:col-span-7">
+        <CardPlate title={title} image={image} category={category} />
+      </div>
+      <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col gap-5 lg:pl-4 lg:self-end">
+        {meta}
+        <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.01em] text-foreground">
+          {titleEl}
+        </h2>
+        {excerpt && (
+          <p className="text-caption text-muted-foreground line-clamp-2 max-w-[480px]">
+            {excerpt}
+          </p>
+        )}
+        {authorLine}
+      </div>
+    </div>
+  ) : (
+    <div className="flex flex-col gap-5">
+      <CardPlate title={title} image={image} category={category} />
+      {meta}
+      <h3 className="font-display text-[26px] leading-[1.15] tracking-[-0.01em] text-foreground">
+        {titleEl}
+      </h3>
+      {excerpt && (
+        <p className="text-caption text-muted-foreground line-clamp-2">
+          {excerpt}
+        </p>
+      )}
+      {authorLine}
+    </div>
+  );
+
+  const cardClass = cn("group block border-t border-border pt-6", className);
+
+  if (href) {
+    return (
+      <Link href={href} className={cardClass}>
+        {body}
+      </Link>
+    );
+  }
+
+  return <div className={cardClass}>{body}</div>;
 }

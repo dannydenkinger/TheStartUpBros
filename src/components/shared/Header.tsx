@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
-import { ChevronDown, Menu, X, Home, FolderOpen, Briefcase, LayoutTemplate, Video } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 
 const industries = [
@@ -19,178 +19,212 @@ const industries = [
   { name: "Supply Chain", href: "/industries/b2b" },
 ];
 
+const navLinkClass =
+  "text-micro-label text-muted-foreground hover:text-foreground transition-colors duration-200";
+
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
 
   return (
-    <header className="fixed top-6 inset-x-0 z-50 flex justify-center pointer-events-none px-4">
-      {/* Theme Toggle — fixed top right */}
-      <div className="fixed top-6 right-6 pointer-events-auto z-50">
-        <ThemeToggle />
-      </div>
-
-      {/* Desktop Floating Navigation */}
-      <div className="hidden lg:flex items-center gap-3 w-full max-w-fit mx-auto pointer-events-auto">
-        
-        {/* Island 1: Logo */}
-        <Link 
-          href="/" 
-          aria-label="Home"
-          className="flex items-center justify-center w-[52px] h-[52px] rounded-full shadow-sm hover:scale-105 transition-transform border-4 border-border" style={{ background: 'var(--surface-logo-bg)' }}
-        >
-          <div className="flex flex-col items-center justify-center gap-[3px]">
-            {/* Simple Brick Logo Recreation */}
-            <div className="flex gap-[3px]">
-              <div className="w-[10px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-              <div className="w-[10px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-            </div>
-            <div className="flex gap-[3px]">
-              <div className="w-[14px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-              <div className="w-[6px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-            </div>
-             <div className="flex gap-[3px]">
-              <div className="w-[8px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-              <div className="w-[12px] h-[3px] rounded-[1px]" style={{ background: 'var(--surface-logo-mark)' }} />
-            </div>
-          </div>
+    <header className="fixed top-0 inset-x-0 z-50 h-20 border-b border-border">
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 -z-10"
+        style={{
+          background: "var(--surface-nav-bg)",
+          backdropFilter: "blur(12px)",
+          WebkitBackdropFilter: "blur(12px)",
+        }}
+      />
+      <div className="mx-auto flex h-full max-w-[1360px] items-center justify-between px-6 md:px-10">
+        {/* Wordmark */}
+        <Link href="/" className="flex items-baseline gap-3">
+          <span className="font-display text-[22px] leading-none text-foreground">
+            StartUpBros
+          </span>
+          <span className="hidden lg:inline font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
+            EST. 2026 — MVP STUDIO
+          </span>
         </Link>
 
-        {/* Island 2: Main Nav Links */}
-        <nav className="flex items-center gap-1 p-1.5 rounded-full bg-[--surface-nav-bg] backdrop-blur-xl border border-border shadow-lg shadow-black/10" style={{ background: 'var(--surface-nav-bg)' }}>
-           <Link href="/" className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors">
-             <Home strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Home
-           </Link>
+        {/* Desktop nav */}
+        <div className="hidden lg:flex items-center gap-8">
+          <nav className="flex items-center gap-7">
+            <Link href="/" className={navLinkClass}>
+              Home
+            </Link>
+            <Link href="/portfolio" className={navLinkClass}>
+              Case Studies
+            </Link>
 
-           <Link href="/portfolio" className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors">
-             <FolderOpen strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Case Studies
-           </Link>
+            {/* Industries dropdown */}
+            <div
+              className="relative flex items-center"
+              onMouseEnter={() => setIndustriesOpen(true)}
+              onMouseLeave={() => setIndustriesOpen(false)}
+            >
+              <button
+                type="button"
+                aria-expanded={industriesOpen}
+                className={`${navLinkClass} cursor-pointer`}
+              >
+                Industries
+              </button>
 
-           {/* Industries Dropdown Hover */}
-           <div
-             className="relative"
-             onMouseEnter={() => setIndustriesOpen(true)}
-             onMouseLeave={() => setIndustriesOpen(false)}
-           >
-             <button className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors">
-               <Briefcase strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Industries
-             </button>
-
-             {industriesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-2 pointer-events-auto">
-                  <div className="w-[300px] p-2 rounded-2xl shadow-xl grid grid-cols-2 gap-1 border border-border" style={{ background: 'var(--surface-dropdown-bg)' }}>
-                    {industries.map(item => (
-                      <Link key={item.name} href={item.href} className="px-4 py-2 text-[13px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-xl transition-colors">
+              {industriesOpen && (
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5">
+                  <div
+                    className="w-[380px] rounded-md border border-border p-2 shadow-(--shadow-plate) grid grid-cols-2"
+                    style={{ background: "var(--surface-dropdown-bg)" }}
+                  >
+                    {industries.map((item, i) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="flex items-baseline gap-3 rounded-[2px] px-3 py-2.5 font-mono text-xs font-medium uppercase tracking-[0.08em] text-foreground hover:bg-secondary transition-colors duration-200"
+                      >
+                        <span className="tabular-nums text-muted-foreground">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
                         {item.name}
                       </Link>
                     ))}
                   </div>
                 </div>
-             )}
-           </div>
+              )}
+            </div>
 
-           <Link href="/blog" className="group flex items-center gap-2 px-5 py-2.5 text-[14px] font-medium text-muted-foreground hover:text-foreground hover:bg-secondary rounded-full transition-colors">
-             <LayoutTemplate strokeWidth={2.5} className="w-4 h-4 opacity-60 group-hover:opacity-100 transition-opacity" /> Blog
-           </Link>
-        </nav>
+            <Link href="/blog" className={navLinkClass}>
+              Blog
+            </Link>
+          </nav>
 
-        {/* Island 3: CTAs */}
-        <div className="flex items-center gap-2">
-          {/* Main CTA */}
-          <Link
-            href="/strategy-call"
-            className="flex items-center gap-2.5 h-[52px] px-6 rounded-full bg-primary text-primary-foreground text-[15px] font-medium shadow-lg shadow-black/10 hover:opacity-90 transition-all"
-          >
-             <div className="flex items-center justify-center w-[22px] h-[22px] rounded-full bg-primary-foreground/20">
-                <Video className="w-3 h-3 text-[#4285F4]" />
-             </div>
-             Book a Call
+          <ThemeToggle />
+
+          <Link href="/strategy-call" className="btn-pill btn-pill-primary">
+            Book a Call
+            <span className="btn-arrow" aria-hidden="true">
+              →
+            </span>
           </Link>
+        </div>
 
+        {/* Mobile bar controls */}
+        <div className="flex items-center gap-3 lg:hidden">
+          <ThemeToggle />
+          <button
+            type="button"
+            aria-label="Open menu"
+            className="p-2 text-foreground"
+            onClick={() => setMobileMenuOpen(true)}
+          >
+            <Menu className="h-6 w-6" strokeWidth={1.5} />
+          </button>
         </div>
       </div>
 
-      {/* Mobile Floating Navigation Variant */}
-      <div className="flex lg:hidden items-center justify-between w-full pointer-events-auto backdrop-blur-xl px-4 py-3 rounded-2xl border border-border shadow-xl mt-4 max-w-[90vw] mx-auto" style={{ background: 'var(--surface-nav-bg)' }}>
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-full flex items-center justify-center border-2 border-border" style={{ background: 'var(--surface-logo-bg)' }}>
-            <div className="flex flex-col gap-[2px]">
-              <div className="flex gap-[2px]">
-                <div className="w-[6px] h-[2px] rounded-sm" style={{ background: 'var(--surface-logo-mark)' }} />
-                <div className="w-[6px] h-[2px] rounded-sm" style={{ background: 'var(--surface-logo-mark)' }} />
-              </div>
-              <div className="flex gap-[2px]">
-                <div className="w-[8px] h-[2px] rounded-sm" style={{ background: 'var(--surface-logo-mark)' }} />
-                <div className="w-[4px] h-[2px] rounded-sm" style={{ background: 'var(--surface-logo-mark)' }} />
-              </div>
-            </div>
-          </div>
-          <span className="font-semibold text-foreground tracking-tight">StartUpBros</span>
-        </Link>
-        <button
-          type="button"
-          className="p-2 text-foreground"
-          onClick={() => setMobileMenuOpen(true)}
-        >
-          <Menu className="h-6 w-6" />
-        </button>
-      </div>
-
-      {/* Mobile Full Screen Menu Overlay */}
+      {/* Mobile full-screen menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden pointer-events-auto" role="dialog" aria-modal="true">
-          <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm" onClick={() => setMobileMenuOpen(false)} />
-          <div className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-border shadow-2xl">
-            <div className="flex items-center justify-between">
-              <Link href="/" className="flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
-                 <span className="font-semibold text-lg tracking-tight text-foreground">StartUpBros</span>
+        <div className="lg:hidden" role="dialog" aria-modal="true">
+          <div
+            className="fixed inset-0 z-50 bg-black/40"
+            onClick={() => setMobileMenuOpen(false)}
+          />
+          <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background">
+            <div className="flex h-20 shrink-0 items-center justify-between border-b border-border px-6">
+              <Link
+                href="/"
+                className="font-display text-[22px] leading-none text-foreground"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                StartUpBros
               </Link>
               <button
                 type="button"
-                className="rounded-md p-2.5 text-foreground bg-secondary/50"
+                aria-label="Close menu"
+                className="p-2 text-foreground"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <X className="h-6 w-6" />
+                <X className="h-6 w-6" strokeWidth={1.5} />
               </button>
             </div>
-            
-            <div className="mt-8 flow-root">
-              <div className="-my-6 divide-y divide-border/50">
-                <div className="space-y-4 py-6">
-                  <Link href="/" className="flex items-center gap-4 py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl" onClick={() => setMobileMenuOpen(false)}>
-                    <Home strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Home
-                  </Link>
-                  <Link href="/portfolio" className="flex items-center gap-4 py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl" onClick={() => setMobileMenuOpen(false)}>
-                    <FolderOpen strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Case Studies
-                  </Link>
-                  <div className="flex flex-col gap-2">
-                    <button onClick={() => setIndustriesOpen(!industriesOpen)} className="flex items-center justify-between w-full py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl">
-                      <div className="flex items-center gap-4">
-                        <Briefcase strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Industries
-                      </div>
-                      <ChevronDown className={cn("w-5 h-5 transition-transform", industriesOpen && "rotate-180")} />
-                    </button>
-                    {industriesOpen && (
-                      <div className="pl-12 flex flex-col gap-3 pb-2">
-                        {industries.map(item => (
-                          <Link key={item.name} href={item.href} className="text-[15px] font-medium text-muted-foreground hover:text-foreground" onClick={() => setMobileMenuOpen(false)}>
-                            {item.name}
-                          </Link>
-                        ))}
-                      </div>
+
+            <nav className="flex flex-1 flex-col px-6 pt-2 pb-8">
+              <Link
+                href="/"
+                className="text-h1 border-b border-border py-5"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/portfolio"
+                className="text-h1 border-b border-border py-5"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Case Studies
+              </Link>
+
+              {/* Industries accordion */}
+              <div className="border-b border-border">
+                <button
+                  type="button"
+                  aria-expanded={industriesOpen}
+                  onClick={() => setIndustriesOpen(!industriesOpen)}
+                  className="flex w-full items-baseline justify-between py-5 text-left"
+                >
+                  <span className="text-h1">Industries</span>
+                  <span
+                    className={cn(
+                      "font-mono text-lg text-muted-foreground transition-transform duration-300",
+                      industriesOpen && "rotate-45 text-(--accent-brand)"
                     )}
+                    aria-hidden="true"
+                  >
+                    +
+                  </span>
+                </button>
+                {industriesOpen && (
+                  <div className="flex flex-col gap-1 pb-6">
+                    {industries.map((item, i) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="flex items-baseline gap-4 py-2 font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-200"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className="tabular-nums">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        {item.name}
+                      </Link>
+                    ))}
                   </div>
-                  <Link href="/blog" className="flex items-center gap-4 py-3 px-2 text-[17px] font-medium text-foreground hover:bg-secondary rounded-xl" onClick={() => setMobileMenuOpen(false)}>
-                    <LayoutTemplate strokeWidth={2} className="w-5 h-5 text-muted-foreground" /> Blog
-                  </Link>
-                </div>
-                <div className="py-6 flex flex-col gap-4">
-                  <Link href="/strategy-call" className="flex justify-center w-full btn-pill btn-pill-primary" onClick={() => setMobileMenuOpen(false)}>
-                    Book a Call
-                  </Link>
-                </div>
+                )}
               </div>
-            </div>
+
+              <Link
+                href="/blog"
+                className="text-h1 border-b border-border py-5"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Blog
+              </Link>
+
+              <div className="mt-auto pt-10">
+                <Link
+                  href="/strategy-call"
+                  className="btn-pill btn-pill-primary w-full"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Book a Call
+                  <span className="btn-arrow" aria-hidden="true">
+                    →
+                  </span>
+                </Link>
+              </div>
+            </nav>
           </div>
         </div>
       )}

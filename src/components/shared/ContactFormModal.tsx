@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { useContactModal } from "@/context/ContactModalContext";
+import { StatusStrip } from "@/components/shared/StatusStrip";
 
 const budgetOptions = [
   "Under $5,000",
@@ -21,10 +22,16 @@ const bulletPoints = [
 ];
 
 const stats = [
-  { icon: "🧭", value: "Scope", label: "Within 48 hours" },
-  { icon: "🎨", value: "Design", label: "Usable by week one" },
-  { icon: "🚀", value: "Ship", label: "MVP in 2–4 weeks" },
+  { label: "Scope", value: "Within 48 hours" },
+  { label: "Design", value: "Usable by week one" },
+  { label: "Ship", value: "MVP in 2–4 weeks" },
 ];
+
+const inputStyles =
+  "w-full h-12 rounded-[2px] border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200";
+
+const labelStyles =
+  "block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2";
 
 export function ContactFormModal() {
   const { isOpen, closeModal } = useContactModal();
@@ -63,7 +70,10 @@ export function ContactFormModal() {
       name: form.get("name"),
       email: form.get("email"),
       company: form.get("company"),
+      website: form.get("website"),
+      budget: form.get("budget"),
       description: form.get("description"),
+      referral: form.get("referral"),
     };
 
     try {
@@ -92,20 +102,20 @@ export function ContactFormModal() {
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-[960px] bg-popover rounded-2xl shadow-2xl shadow-black/20 overflow-hidden animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card border border-border rounded-lg shadow-(--shadow-plate) animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
         {/* Close button */}
         <button
           onClick={closeModal}
-          className="absolute top-5 right-5 w-8 h-8 rounded-full bg-neutral-200/80 hover:bg-neutral-300 flex items-center justify-center transition-colors z-10"
+          className="absolute top-5 right-5 flex size-8 items-center justify-center rounded-[2px] border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
         >
-          <X className="w-4 h-4 text-neutral-500" />
+          <X className="w-4 h-4" strokeWidth={1.5} />
         </button>
 
         <div className="flex flex-col lg:flex-row">
           {/* ─── Left Column: Persuasive Copy ─── */}
           <div className="flex-1 px-8 lg:px-10 py-10 lg:py-12">
             {/* Headline */}
-            <h2 className="text-[28px] lg:text-[32px] font-bold text-foreground leading-[1.15] tracking-[-0.02em] mb-6">
+            <h2 className="font-display text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.01em] text-foreground mb-6">
               Try Our SaaS Dev Team
               <br />
               For One Week.
@@ -113,46 +123,40 @@ export function ContactFormModal() {
               Zero Risk.
             </h2>
 
-            <p className="text-[14px] text-muted-foreground leading-relaxed mb-8">
+            <p className="text-caption leading-relaxed mb-8">
               No long-term contracts. No lock-in. Just great development work you can test in a week.
             </p>
 
             {/* Bullet points */}
-            <ul className="space-y-3.5 mb-10">
+            <ul className="mb-10">
               {bulletPoints.map((point, i) => (
-                <li key={i} className="flex items-start gap-3">
-                  <div className="mt-0.5 w-5 h-5 rounded-full bg-green-500 flex items-center justify-center shrink-0">
-                    <Check className="w-3 h-3 text-white" strokeWidth={3} />
-                  </div>
+                <li
+                  key={i}
+                  className="flex items-start gap-3 py-3 border-b border-border/60"
+                >
+                  <span
+                    aria-hidden
+                    className="mt-[6px] size-1.5 shrink-0 bg-(--accent-brand)"
+                  />
                   <span className="text-[13px] text-foreground leading-snug">{point}</span>
                 </li>
               ))}
             </ul>
 
             {/* Stats row */}
-            <div className="flex items-center gap-6 pt-6 border-t border-border">
-              {stats.map((stat, i) => (
-                <div key={i} className="text-center">
-                  <span className="text-xl mb-1 block">{stat.icon}</span>
-                  <p className="text-[22px] font-bold text-foreground">{stat.value}</p>
-                  <p className="text-[11px] text-muted-foreground font-medium">{stat.label}</p>
-                </div>
-              ))}
-            </div>
+            <StatusStrip items={stats} />
           </div>
 
           {/* ─── Right Column: Contact Form ─── */}
-          <div className="w-full lg:w-[420px] bg-secondary px-8 py-10 lg:py-12 lg:px-8 border-l border-border/50 shrink-0">
-            <h3 className="text-[20px] font-semibold text-foreground leading-tight mb-8">
+          <div className="w-full lg:w-[420px] px-8 py-10 lg:py-12 lg:px-8 border-t lg:border-t-0 lg:border-l border-border shrink-0">
+            <h3 className="text-h3 mb-8">
               See what Startup Bros can do for your product in 7 days.
             </h3>
 
             {submitted ? (
               <div className="py-16 text-center">
-                <div className="w-14 h-14 rounded-full bg-green-100 flex items-center justify-center mx-auto mb-4">
-                  <svg className="w-7 h-7 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-                  </svg>
+                <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
+                  <Check className="w-5 h-5" strokeWidth={2.5} />
                 </div>
                 <p className="text-[18px] font-semibold text-foreground">Thank you!</p>
                 <p className="text-[14px] text-muted-foreground mt-1">We&apos;ll be in touch within 24 hours.</p>
@@ -161,56 +165,70 @@ export function ContactFormModal() {
               <form onSubmit={handleSubmit} className="space-y-5">
                 {/* Name */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    Name<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    Name<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
                     name="name"
                     type="text"
                     required
+                    placeholder="Your name"
+                    className={inputStyles}
+                  />
+                </div>
+
+                {/* Email */}
+                <div>
+                  <label className={labelStyles}>
+                    Email<span className="text-(--accent-brand) ml-1">*</span>
+                  </label>
+                  <input
+                    name="email"
+                    type="email"
+                    required
                     placeholder="you@domain.com"
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className={inputStyles}
                   />
                 </div>
 
                 {/* Company Name */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    Company Name<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    Company Name<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
                     name="company"
                     type="text"
                     required
                     placeholder="Acme Inc."
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className={inputStyles}
                   />
                 </div>
 
                 {/* Website */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    Website<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    Website<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
                     name="website"
                     type="url"
                     required
                     placeholder="www.acme.com"
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className={inputStyles}
                   />
                 </div>
 
                 {/* Budget */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    Budget<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    Budget<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <select
                     name="budget"
                     required
                     defaultValue=""
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground appearance-none cursor-pointer focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className={`${inputStyles} appearance-none cursor-pointer invalid:text-muted-foreground/60`}
                   >
                     <option value="" disabled>Select your budget</option>
                     {budgetOptions.map((opt) => (
@@ -221,29 +239,29 @@ export function ContactFormModal() {
 
                 {/* Project description */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    Tell us about your project<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    Tell us about your project<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <textarea
                     name="description"
                     required
                     rows={3}
                     placeholder="Tell us about your product"
-                    className="w-full px-4 py-3 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 resize-y focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className="w-full min-h-[96px] rounded-[2px] border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground transition-colors duration-200"
                   />
                 </div>
 
                 {/* How did you find us */}
                 <div>
-                  <label className="block text-[13px] font-semibold text-foreground mb-1.5">
-                    How did you find us?<span className="text-red-500">*</span>
+                  <label className={labelStyles}>
+                    How did you find us?<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
                     name="referral"
                     type="text"
                     required
                     placeholder="Google, referral, social media..."
-                    className="w-full h-[44px] px-4 rounded-lg border border-border bg-secondary text-[14px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-foreground/10 focus:border-foreground/30 transition-all"
+                    className={inputStyles}
                   />
                 </div>
 
@@ -251,7 +269,7 @@ export function ContactFormModal() {
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full h-[48px] rounded-full bg-[#1e1e20] text-white text-[15px] font-medium hover:bg-black disabled:opacity-60 disabled:cursor-not-allowed transition-colors cursor-pointer"
+                  className="btn-pill btn-pill-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
                 >
                   {isSubmitting ? (
                     <span className="flex items-center justify-center gap-2">
@@ -262,7 +280,12 @@ export function ContactFormModal() {
                       Submitting...
                     </span>
                   ) : (
-                    "Book Strategy Call"
+                    <>
+                      Book Strategy Call
+                      <span aria-hidden className="btn-arrow">
+                        →
+                      </span>
+                    </>
                   )}
                 </button>
               </form>

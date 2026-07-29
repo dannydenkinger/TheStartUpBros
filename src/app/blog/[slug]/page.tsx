@@ -5,8 +5,6 @@ import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
-import { ArrowLeft, Clock, Calendar } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
 import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { BlogShareBar } from "@/components/blog/BlogShareBar";
 
@@ -78,37 +76,38 @@ export default async function BlogPostPage({
   return (
     <article className="min-h-screen">
       {/* Hero header */}
-      <header className="px-6 lg:px-10 pt-12 pb-8">
+      <header className="px-6 md:px-10 pt-12 pb-8">
         <div className="mx-auto max-w-[1080px]">
           {/* Back link */}
           <Link
             href="/blog"
-            className="inline-flex items-center gap-1.5 text-[13px] text-muted-foreground hover:text-foreground transition-colors duration-200 mb-8 group"
+            className="group inline-flex items-baseline gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10"
           >
-            <ArrowLeft className="w-3.5 h-3.5 group-hover:-translate-x-0.5 transition-transform duration-200" />
+            <span
+              aria-hidden
+              className="group-hover:-translate-x-0.5 transition-transform duration-200"
+            >
+              ←
+            </span>
             Blog
           </Link>
 
-          {/* Category badge */}
+          {/* Category tag */}
           {frontmatter.category && (
-            <Badge
-              variant="secondary"
-              className="text-[11px] rounded-full px-3 py-1 mb-4 font-medium"
-            >
-              {frontmatter.category}
-            </Badge>
+            <div className="mb-5">
+              <span className="badge-pill">{frontmatter.category}</span>
+            </div>
           )}
 
           {/* Title */}
-          <h1 className="text-[32px] md:text-[40px] lg:text-[48px] font-semibold leading-[1.1] tracking-[-0.03em] text-foreground max-w-[800px] mb-6">
+          <h1 className="text-h1 text-foreground max-w-[800px] mb-8">
             {frontmatter.title}
           </h1>
 
           {/* Author row */}
-          <div className="flex flex-wrap items-center gap-4 text-[13px] text-muted-foreground">
-            {/* Author avatar */}
+          <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-gradient-to-br from-neutral-200 to-neutral-300 flex items-center justify-center text-[14px] font-semibold text-neutral-600">
+              <div className="size-10 rounded-full border border-border bg-secondary flex items-center justify-center font-mono text-[12px] text-foreground">
                 {(frontmatter.author || "SB")
                   .split(" ")
                   .map((n: string) => n[0])
@@ -119,7 +118,7 @@ export default async function BlogPostPage({
                   {frontmatter.author || "StartUp Bros"}
                 </p>
                 {frontmatter.authorRole && (
-                  <p className="text-[12px] text-muted-foreground">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
                     {frontmatter.authorRole}
                   </p>
                 )}
@@ -128,18 +127,16 @@ export default async function BlogPostPage({
 
             <span className="w-px h-4 bg-border" />
 
-            <div className="flex items-center gap-1.5">
-              <Calendar className="w-3.5 h-3.5" />
+            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
               {formattedDate}
-            </div>
+            </p>
 
             {frontmatter.readTime && (
               <>
                 <span className="w-px h-4 bg-border" />
-                <div className="flex items-center gap-1.5">
-                  <Clock className="w-3.5 h-3.5" />
+                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
                   {frontmatter.readTime}
-                </div>
+                </p>
               </>
             )}
           </div>
@@ -148,50 +145,80 @@ export default async function BlogPostPage({
 
       {/* Description / intro */}
       {frontmatter.description && (
-        <div className="px-6 lg:px-10 pb-8">
+        <div className="px-6 md:px-10 pb-8">
           <div className="mx-auto max-w-[1080px]">
-            <p className="text-[17px] leading-relaxed text-muted-foreground max-w-[680px]">
+            <p className="text-body-lg text-muted-foreground max-w-[680px]">
               {frontmatter.description}
             </p>
           </div>
         </div>
       )}
 
-      {/* Hero image */}
-      {frontmatter.image && (
-        <div className="px-6 lg:px-10 pb-12">
-          <div className="mx-auto max-w-[1080px]">
-            <div className="rounded-2xl overflow-hidden border border-border">
-              <img
-                src={frontmatter.image}
-                alt={frontmatter.title}
-                className="w-full h-auto object-cover"
-              />
+      {/* Hero plate */}
+      <div className="px-6 md:px-10 pb-12">
+        <div className="mx-auto max-w-[1080px]">
+          {frontmatter.image ? (
+            <figure>
+              <div className="rounded-md border border-border bg-secondary p-1.5 shadow-(--shadow-plate)">
+                <div className="rounded-[4px] overflow-hidden">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={frontmatter.image}
+                    alt={frontmatter.title}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              </div>
+              <figcaption className="mt-2 flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                <span>{frontmatter.category || slug}</span>
+                <span
+                  aria-hidden
+                  className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
+                />
+                <span className="whitespace-nowrap">FIG. 01</span>
+              </figcaption>
+            </figure>
+          ) : (
+            <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-border bg-secondary dark:bg-card p-8">
+              <p className="font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-foreground/15 max-w-[720px]">
+                {frontmatter.title}
+              </p>
+              <p className="absolute bottom-6 left-8 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                FIG. 00{frontmatter.category ? ` — ${frontmatter.category}` : ""}
+              </p>
             </div>
-          </div>
+          )}
         </div>
-      )}
+      </div>
 
       {/* Two-column content */}
-      <div className="px-6 lg:px-10 pb-20">
+      <div className="px-6 md:px-10 pb-20">
         <div className="mx-auto max-w-[1080px]">
           <div className="flex gap-16">
             {/* Main content */}
             <div className="flex-1 min-w-0 max-w-[680px]" data-blog-content>
               <div
                 className="
-                  prose prose-neutral max-w-none
-                  prose-headings:font-semibold prose-headings:tracking-[-0.02em]
-                  prose-h2:text-[24px] prose-h2:mt-12 prose-h2:mb-4
-                  prose-h3:text-[18px] prose-h3:mt-8 prose-h3:mb-3
-                  prose-p:text-[15px] prose-p:leading-[1.8] prose-p:text-neutral-600
-                  prose-li:text-[15px] prose-li:leading-[1.8] prose-li:text-neutral-600
+                  prose max-w-none
+                  prose-headings:font-display prose-headings:font-normal prose-headings:tracking-[-0.01em] prose-headings:text-foreground
+                  prose-h2:text-[28px] prose-h2:leading-[1.2] prose-h2:mt-12 prose-h2:mb-4
+                  prose-h3:text-[22px] prose-h3:leading-[1.25] prose-h3:mt-8 prose-h3:mb-3
+                  prose-p:text-[17px] prose-p:leading-[1.7] prose-p:text-foreground/80
+                  prose-li:text-[17px] prose-li:leading-[1.7] prose-li:text-foreground/80
+                  prose-li:marker:text-muted-foreground
                   prose-strong:text-foreground prose-strong:font-semibold
-                  prose-a:text-foreground prose-a:underline prose-a:underline-offset-2 prose-a:decoration-border hover:prose-a:decoration-foreground
-                  prose-blockquote:border-l-foreground/20 prose-blockquote:text-muted-foreground prose-blockquote:not-italic
-                  prose-code:text-[13px] prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                  prose-a:text-foreground prose-a:font-medium prose-a:no-underline
+                  prose-a:[background-image:linear-gradient(var(--accent-brand),var(--accent-brand))]
+                  prose-a:[background-repeat:no-repeat]
+                  prose-a:[background-position:0_100%]
+                  prose-a:[background-size:0%_2px]
+                  prose-a:[transition:background-size_250ms_ease-out]
+                  hover:prose-a:[background-size:100%_2px]
+                  prose-blockquote:border-l prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-blockquote:font-display prose-blockquote:italic prose-blockquote:text-[19px] prose-blockquote:[quotes:none]
+                  prose-code:text-[13px] prose-code:text-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-[2px] prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border prose-pre:border-border prose-pre:rounded-[4px]
                   prose-hr:border-border prose-hr:my-10
-                  prose-img:rounded-xl prose-img:border prose-img:border-border
+                  prose-img:rounded-[4px] prose-img:border prose-img:border-border
                   prose-ol:pl-5 prose-ul:pl-5
                 "
               >
@@ -201,18 +228,14 @@ export default async function BlogPostPage({
               {/* Tags */}
               {frontmatter.tags && frontmatter.tags.length > 0 && (
                 <div className="mt-12 pt-8 border-t border-border">
-                  <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-3">
+                  <p className="text-micro-label text-muted-foreground mb-3">
                     Topics
                   </p>
                   <div className="flex flex-wrap gap-2">
                     {frontmatter.tags.map((tag: string) => (
-                      <Badge
-                        key={tag}
-                        variant="secondary"
-                        className="text-[12px] rounded-full px-3 py-1"
-                      >
+                      <span key={tag} className="badge-pill">
                         {tag}
-                      </Badge>
+                      </span>
                     ))}
                   </div>
                 </div>
@@ -236,33 +259,39 @@ export default async function BlogPostPage({
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 lg:px-10 py-16 border-t border-border bg-muted/30">
+        <section className="px-6 md:px-10 py-16 border-t border-border">
           <div className="mx-auto max-w-[1080px]">
-            <h2 className="text-[20px] font-semibold tracking-[-0.02em] text-foreground mb-8">
+            <h2 className="text-h2 text-foreground mb-10">
               Continue Reading
             </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-              {relatedPosts.map((related: any) => (
+            <div className="border-b border-border">
+              {relatedPosts.map((related: any, index: number) => (
                 <Link
                   key={related.slug}
                   href={`/blog/${related.slug}`}
-                  className="group block"
+                  className="group flex items-baseline gap-6 border-t border-border py-6"
                 >
-                  <div className="card-elevated p-6">
-                    <p className="text-[12px] text-muted-foreground mb-2">
-                      {new Date(related.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
-                    </p>
-                    <h3 className="text-[15px] font-semibold text-foreground group-hover:text-muted-foreground transition-colors duration-200 mb-2 line-clamp-2">
+                  <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <span className="flex-1 min-w-0 font-display text-[22px] leading-[1.25] tracking-[-0.01em] text-foreground">
+                    <span className="link-sweep group-hover:[background-size:100%_2px]">
                       {related.title}
-                    </h3>
-                    <p className="text-[13px] text-muted-foreground line-clamp-2">
-                      {related.description}
-                    </p>
-                  </div>
+                    </span>
+                  </span>
+                  <span className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+                    {new Date(related.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  </span>
+                  <span
+                    aria-hidden
+                    className="font-mono text-sm text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
+                  >
+                    →
+                  </span>
                 </Link>
               ))}
             </div>

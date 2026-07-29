@@ -10,23 +10,16 @@ interface SectionHeadingProps {
 export function SectionHeading({
   title,
   subtitle,
-  align = "center",
   className,
 }: SectionHeadingProps) {
   return (
-    <div
-      className={cn(
-        "mb-14",
-        align === "center" && "text-center",
-        className
-      )}
-    >
-      <h2 className="text-h2 text-foreground">{title}</h2>
+    <div className={cn("mb-16", className)}>
       {subtitle && (
-        <p className="text-body-lg mt-5 max-w-xl mx-auto">
+        <p className="mb-4 font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
           {subtitle}
         </p>
       )}
+      <h2 className="text-h2 text-foreground max-w-[720px]">{title}</h2>
     </div>
   );
 }

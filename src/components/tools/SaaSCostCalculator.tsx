@@ -83,24 +83,21 @@ const features: Feature[] = [
   },
 ];
 
-function getTier(days: number): { label: string; color: string; description: string } {
+function getTier(days: number): { label: string; description: string } {
   if (days <= 12) {
     return {
       label: "Simple",
-      color: "text-emerald-400",
       description: "A focused MVP with core features. Ideal for validation.",
     };
   }
   if (days <= 25) {
     return {
       label: "Standard",
-      color: "text-amber-400",
       description: "A well-rounded product with multiple integrated systems.",
     };
   }
   return {
     label: "Complex",
-    color: "text-rose-400",
     description: "A feature-rich platform requiring careful architecture.",
   };
 }
@@ -118,9 +115,8 @@ export function SaaSCostCalculator() {
     });
   };
 
-  const totalDays = features
-    .filter((f) => selected.has(f.id))
-    .reduce((sum, f) => sum + f.days, 0);
+  const selectedFeatures = features.filter((f) => selected.has(f.id));
+  const totalDays = selectedFeatures.reduce((sum, f) => sum + f.days, 0);
 
   const tier = getTier(totalDays);
 
@@ -128,14 +124,17 @@ export function SaaSCostCalculator() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <section className="px-6 lg:px-10 pt-[120px] pb-12">
-        <div className="mx-auto max-w-[900px] text-center">
+      <section className="px-6 md:px-10 pt-16 md:pt-20 pb-12">
+        <div className="mx-auto max-w-[1360px]">
           <AnimateIn variant="fadeUp">
-            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>Free Tool</span>
-            <h1 className="text-display text-foreground mb-4">
-              SaaS Cost <span style={{ color: 'var(--accent-brand)' }}>Calculator</span>
+            <div className="badge-pill mb-6">
+              <span aria-hidden className="size-1.5 shrink-0 bg-(--accent-brand)" />
+              <span>Free Tool</span>
+            </div>
+            <h1 className="text-display mb-4">
+              SaaS Cost <span className="accent-word">Calculator</span>
             </h1>
-            <p className="text-body-lg max-w-[600px] mx-auto">
+            <p className="text-body-lg max-w-[600px]">
               Toggle the features your MVP needs. We&apos;ll estimate the
               scope, timeline, and complexity tier.
             </p>
@@ -143,59 +142,86 @@ export function SaaSCostCalculator() {
         </div>
       </section>
 
-      <section className="px-6 lg:px-10 pb-24">
-        <div className="mx-auto max-w-[1000px]">
+      <section className="px-6 md:px-10 pb-24">
+        <div className="mx-auto max-w-[1360px]">
           {/* Feature Toggle Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-12">
-            {features.map((feature, i) => {
-              const isOn = selected.has(feature.id);
-              const Icon = feature.icon;
+          <AnimateIn variant="fadeUp" className="mb-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-md overflow-hidden">
+              {features.map((feature) => {
+                const isOn = selected.has(feature.id);
+                const Icon = feature.icon;
 
-              return (
-                <AnimateIn key={feature.id} delay={i * 0.05}>
+                return (
                   <button
+                    key={feature.id}
                     onClick={() => toggle(feature.id)}
-                    className={`w-full text-left p-5 rounded-2xl border transition-all duration-200 ${
-                      isOn
-                        ? "border-ring bg-muted shadow-lg shadow-ring"
-                        : "border-border bg-card hover:border-ring"
+                    aria-pressed={isOn}
+                    className={`w-full h-full text-left bg-background p-6 transition-colors duration-300 hover:bg-secondary/60 cursor-pointer ${
+                      isOn ? "shadow-[inset_0_0_0_1px_var(--foreground)]" : ""
                     }`}
                   >
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className={`w-9 h-9 rounded-xl flex items-center justify-center transition-colors ${
-                          isOn ? "bg-accent" : "bg-secondary"
-                        }`}
-                      >
-                        <Icon className="w-4.5 h-4.5 text-foreground" strokeWidth={1.5} />
-                      </div>
-                      <div
-                        className={`w-4 h-4 rounded-full border-2 transition-colors ml-auto ${
-                          isOn
-                            ? "bg-white border-white"
-                            : "border-ring bg-transparent"
-                        }`}
-                      />
+                    <div className="flex items-start justify-between gap-3 mb-5">
+                      <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
+                      <span className="flex items-center gap-2">
+                        <span
+                          aria-hidden
+                          className={`size-1.5 shrink-0 ${
+                            isOn
+                              ? "bg-(--accent-brand)"
+                              : "border border-border"
+                          }`}
+                        />
+                        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                          +{feature.days} days
+                        </span>
+                      </span>
                     </div>
-                    <p className="text-[14px] font-medium text-foreground mb-1">
+                    <p className="text-[15px] font-medium text-foreground mb-1">
                       {feature.label}
                     </p>
                     <p className="text-[12px] text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
-                    <p className="text-[11px] text-muted-foreground mt-2">
-                      ~{feature.days} dev days
-                    </p>
                   </button>
-                </AnimateIn>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          </AnimateIn>
 
           {/* Results Card */}
           <AnimatePresence mode="wait">
-            {selected.size > 0 && (
+            {selected.size === 0 ? (
               <Wrapper
+                key="empty"
+                {...(!prefersReducedMotion && {
+                  initial: { opacity: 0, y: 16 },
+                  animate: { opacity: 1, y: 0 },
+                  exit: { opacity: 0, y: -8 },
+                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                })}
+                className="card-elevated p-8 md:p-10"
+              >
+                <p className="text-micro-label text-muted-foreground mb-3">
+                  Estimated Scope
+                </p>
+                <div className="flex items-baseline gap-3 py-3 border-b border-border/60">
+                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                    Select features to estimate
+                  </span>
+                  <span className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]" />
+                </div>
+                <div className="flex items-baseline gap-3 pt-5">
+                  <span className="font-mono text-[4rem] leading-none tabular-nums text-foreground/30">
+                    0
+                  </span>
+                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                    dev days
+                  </span>
+                </div>
+              </Wrapper>
+            ) : (
+              <Wrapper
+                key="results"
                 {...(!prefersReducedMotion && {
                   layout: true,
                   initial: { opacity: 0, y: 16 },
@@ -203,36 +229,54 @@ export function SaaSCostCalculator() {
                   exit: { opacity: 0, y: -8 },
                   transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
                 })}
-                className="card-elevated p-8 md:p-10 text-center"
+                className="card-elevated p-8 md:p-10"
               >
-                <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-16 mb-8">
-                  <div>
-                    <p className="text-[13px] text-muted-foreground mb-1 uppercase tracking-wider">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                  <div className="lg:col-span-7">
+                    <p className="text-micro-label text-muted-foreground mb-3">
                       Estimated Scope
                     </p>
-                    <p className="text-[48px] font-semibold text-foreground leading-none">
-                      {totalDays}
-                    </p>
-                    <p className="text-[14px] text-muted-foreground mt-1">
-                      dev days
-                    </p>
+                    <div>
+                      {selectedFeatures.map((f) => (
+                        <div
+                          key={f.id}
+                          className="flex items-baseline gap-3 py-3 border-b border-border/60"
+                        >
+                          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                            {f.label}
+                          </span>
+                          <span className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]" />
+                          <span className="text-[15px] font-medium text-foreground tabular-nums">
+                            {f.days} days
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="flex items-baseline gap-3 pt-5">
+                      <span className="font-mono text-[4rem] leading-none tabular-nums text-foreground">
+                        {totalDays}
+                      </span>
+                      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                        dev days
+                      </span>
+                    </div>
                   </div>
-                  <div className="w-px h-16 bg-muted hidden md:block" />
-                  <div>
-                    <p className="text-[13px] text-muted-foreground mb-1 uppercase tracking-wider">
+
+                  <div className="lg:col-span-5 lg:border-l lg:border-border lg:pl-10">
+                    <p className="text-micro-label text-muted-foreground mb-3">
                       Complexity Tier
                     </p>
-                    <p className={`text-[32px] font-semibold leading-none ${tier.color}`}>
+                    <p className="accent-word text-[2.5rem] leading-none mb-3">
                       {tier.label}
                     </p>
-                    <p className="text-[13px] text-muted-foreground mt-2 max-w-[300px]">
+                    <p className="text-[14px] text-muted-foreground max-w-[300px]">
                       {tier.description}
                     </p>
                   </div>
                 </div>
 
-                <div className="pt-6 border-t border-border">
-                  <p className="text-body-lg mb-6">
+                <div className="mt-10 pt-6 border-t border-border flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
+                  <p className="text-body-lg">
                     Want an exact quote and timeline for your build?
                   </p>
                   <MagneticButton>

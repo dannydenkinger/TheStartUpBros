@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check, Briefcase, Layers, Rocket } from "lucide-react";
+import { Check } from "lucide-react";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { StatusStrip } from "@/components/shared/StatusStrip";
 
 const budgetOptions = [
   "Under $5,000",
@@ -23,9 +24,9 @@ const bulletPoints = [
 ];
 
 const stats = [
-  { icon: Briefcase, value: "Scope", label: "Within 48 hours" },
-  { icon: Layers, value: "Design", label: "Usable by week one" },
-  { icon: Rocket, value: "Ship", label: "MVP in 2–4 weeks" },
+  { label: "Scope", value: "Within 48 hours" },
+  { label: "Design", value: "Usable by week one" },
+  { label: "Ship", value: "MVP in 2–4 weeks" },
 ];
 
 export function StrategyCallContent() {
@@ -61,31 +62,26 @@ export function StrategyCallContent() {
   };
 
   const inputStyles =
-    "w-full h-[50px] px-4 rounded-lg border border-border bg-secondary text-[15px] text-foreground placeholder:text-muted-foreground/50 focus:outline-none focus:ring-2 focus:ring-ring focus:border-foreground/30 transition-all";
+    "w-full h-12 rounded-[2px] border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200";
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero — two-column split */}
-      <section className="px-6 lg:px-10 pt-[120px] pb-16 md:pb-20">
-        <div className="mx-auto max-w-[1200px]">
+      <section className="px-6 md:px-10 pt-16 md:pt-20 pb-16 md:pb-24">
+        <div className="mx-auto max-w-[1360px]">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* ─── Left: sales narrative ─── */}
             <div className="flex-1">
-              {/* Founder pill */}
               <AnimateIn variant="fadeUp">
-                <div className="inline-flex items-center gap-2 badge-pill mb-7">
-                  <span className="text-[11px] font-medium text-muted-foreground uppercase tracking-wide">
-                    Founded by
-                  </span>
-                  <span className="text-[13px] font-bold text-foreground tracking-tight">
-                    Anthony &amp; Danny Denkinger
-                  </span>
+                <div className="badge-pill mb-7">
+                  <span aria-hidden className="size-1.5 shrink-0 bg-(--accent-brand)" />
+                  <span>Founded by Anthony &amp; Danny Denkinger</span>
                 </div>
               </AnimateIn>
 
               <AnimateIn variant="fadeUp" delay={0.08}>
-                <h1 className="text-[40px] md:text-[56px] font-medium text-foreground leading-[1.05] tracking-[-0.03em] mb-6">
-                  Let&apos;s map out your <span style={{ color: 'var(--accent-brand)' }}>v1.0</span>
+                <h1 className="text-h1 mb-6">
+                  Let&apos;s map out your <span className="accent-word">v1.0</span>
                   <br className="hidden md:block" /> in the next 30 days.
                 </h1>
               </AnimateIn>
@@ -100,18 +96,19 @@ export function StrategyCallContent() {
 
               {/* Bullet points */}
               <AnimateIn variant="fadeUp" delay={0.24}>
-                <p className="text-[12px] font-semibold uppercase tracking-[0.18em] text-muted-foreground mb-5">
+                <p className="text-micro-label text-muted-foreground mb-2">
                   What you&apos;ll walk away with
                 </p>
-                <ul className="space-y-3.5 mb-12">
+                <ul className="mb-12">
                   {bulletPoints.map((point, i) => (
-                    <li key={i} className="flex items-start gap-3">
-                      <div className="mt-0.5 w-[22px] h-[22px] rounded-full bg-muted flex items-center justify-center shrink-0 border border-border">
-                        <Check
-                          className="w-3 h-3 text-emerald-400"
-                          strokeWidth={3}
-                        />
-                      </div>
+                    <li
+                      key={i}
+                      className="flex items-start gap-3 py-3 border-b border-border/60"
+                    >
+                      <span
+                        aria-hidden
+                        className="mt-[7px] size-1.5 shrink-0 bg-(--accent-brand)"
+                      />
                       <span className="text-[14px] text-foreground/85 leading-snug">
                         {point}
                       </span>
@@ -122,48 +119,23 @@ export function StrategyCallContent() {
 
               {/* Stats */}
               <AnimateIn variant="fadeUp" delay={0.32}>
-                <div className="grid grid-cols-3 gap-6 max-w-[500px]">
-                  {stats.map((stat) => {
-                    const Icon = stat.icon;
-                    return (
-                      <div key={stat.label}>
-                        <div className="w-10 h-10 rounded-xl bg-secondary border border-border flex items-center justify-center mb-3">
-                          <Icon
-                            className="w-4 h-4 text-foreground"
-                            strokeWidth={1.8}
-                          />
-                        </div>
-                        <p className="text-[26px] font-semibold text-foreground leading-none tracking-tight">
-                          {stat.value}
-                        </p>
-                        <p className="text-[12px] text-muted-foreground mt-1.5">
-                          {stat.label}
-                        </p>
-                      </div>
-                    );
-                  })}
-                </div>
+                <StatusStrip items={stats} />
               </AnimateIn>
             </div>
 
             {/* ─── Right: form card ─── */}
             <div className="w-full lg:w-[540px] shrink-0">
               <AnimateIn variant="fadeUp" delay={0.1}>
-                <div className="rounded-2xl border border-border bg-card p-8 shadow-lg shadow-black/5">
-                  <h2 className="text-[24px] font-semibold text-foreground leading-tight mb-2 tracking-tight">
-                    Book your strategy call
-                  </h2>
-                  <p className="text-[15px] text-muted-foreground mb-7">
+                <div className="bg-card border border-border rounded-md p-8 shadow-(--shadow-plate)">
+                  <h2 className="text-h3 mb-2">Book your strategy call</h2>
+                  <p className="text-caption mb-7">
                     We&apos;ll reply within 24 hours to schedule.
                   </p>
 
                   {submitted ? (
                     <div className="py-14 text-center">
-                      <div className="w-14 h-14 rounded-full bg-muted border border-border flex items-center justify-center mx-auto mb-4">
-                        <Check
-                          className="w-7 h-7 text-emerald-400"
-                          strokeWidth={2.5}
-                        />
+                      <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
+                        <Check className="w-5 h-5" strokeWidth={2.5} />
                       </div>
                       <p className="text-[18px] font-semibold text-foreground">
                         Thank you!
@@ -173,7 +145,7 @@ export function StrategyCallContent() {
                       </p>
                       <Link
                         href="/"
-                        className="inline-block mt-6 text-[13px] font-medium text-foreground underline underline-offset-2 hover:text-muted-foreground transition-colors"
+                        className="link-sweep inline-block mt-6 text-[13px] font-medium text-foreground"
                       >
                         Back to Homepage
                       </Link>
@@ -181,9 +153,9 @@ export function StrategyCallContent() {
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div>
-                        <label className="block text-[14px] font-semibold text-foreground mb-2">
+                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
                           Name
-                          <span className="text-muted-foreground ml-1">*</span>
+                          <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
                           name="name"
@@ -195,9 +167,9 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block text-[14px] font-semibold text-foreground mb-2">
+                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
                           Email
-                          <span className="text-muted-foreground ml-1">*</span>
+                          <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
                           name="email"
@@ -209,7 +181,7 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block text-[14px] font-semibold text-foreground mb-2">
+                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
                           Company
                         </label>
                         <input
@@ -221,15 +193,15 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block text-[14px] font-semibold text-foreground mb-2">
+                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
                           Budget
-                          <span className="text-muted-foreground ml-1">*</span>
+                          <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <select
                           name="budget"
                           required
                           defaultValue=""
-                          className={`${inputStyles} appearance-none cursor-pointer`}
+                          className={`${inputStyles} appearance-none cursor-pointer invalid:text-muted-foreground/60`}
                         >
                           <option value="" disabled>
                             Select your budget
@@ -243,24 +215,23 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block text-[14px] font-semibold text-foreground mb-2">
+                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
                           Tell us about your project
-                          <span className="text-muted-foreground ml-1">*</span>
+                          <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <textarea
                           name="description"
                           required
                           rows={4}
                           placeholder="What are you building? What's your timeline?"
-                          className="w-full px-4 py-3 rounded-lg border border-border bg-secondary text-[15px] text-foreground placeholder:text-muted-foreground/50 resize-y focus:outline-none focus:ring-2 focus:ring-ring focus:border-foreground/30 transition-all"
+                          className="w-full min-h-[120px] rounded-[2px] border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground transition-colors duration-200"
                         />
                       </div>
 
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn-pill btn-pill-primary w-full !py-3 disabled:opacity-60 disabled:cursor-not-allowed"
-                        style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
+                        className="btn-pill btn-pill-primary w-full group disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center gap-2">
@@ -286,11 +257,16 @@ export function StrategyCallContent() {
                             Submitting...
                           </span>
                         ) : (
-                          "Book Strategy Call"
+                          <>
+                            Book Strategy Call
+                            <span aria-hidden className="btn-arrow">
+                              →
+                            </span>
+                          </>
                         )}
                       </button>
 
-                      <p className="text-[12px] text-muted-foreground text-center pt-1">
+                      <p className="text-caption text-center pt-1">
                         No obligations. We&apos;ll reply within 24 hours.
                       </p>
                     </form>

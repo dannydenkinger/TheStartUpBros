@@ -126,20 +126,22 @@ const clients = [
 
 export function ClientLogos() {
   return (
-    <section className="px-6 lg:px-10 py-12 border-t border-border">
-      <div className="mx-auto max-w-[1100px]">
+    <section className="px-6 md:px-10 py-12 border-t border-border">
+      <div className="mx-auto max-w-[1360px]">
         <AnimateIn variant="fadeIn">
-          <p className="text-center text-[13px] font-medium text-muted-foreground mb-8">
+          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mb-8">
             Inspired by
           </p>
-          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+          <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
             {clients.map((client) => (
               <div
                 key={client.name}
-                className="flex items-center gap-2 text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 select-none cursor-default"
+                className="flex items-center gap-2.5 select-none cursor-default"
               >
-                {client.logo}
-                <span className="text-[13px] font-semibold tracking-wide uppercase">
+                <span className="inline-flex opacity-45 grayscale">
+                  {client.logo}
+                </span>
+                <span className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
                   {client.name}
                 </span>
               </div>
