@@ -50,6 +50,23 @@ export default function ServicesPage() {
                 Not sure which service fits? We&apos;ll scope the fastest path
                 to launch on a free call.
               </p>
+              <ul className="mb-8 space-y-3">
+                {[
+                  { label: "Scope", value: "Within 48 hours" },
+                  { label: "Design", value: "Usable by week one" },
+                  { label: "Ship", value: "MVP in 2–4 weeks" },
+                ].map((item) => (
+                  <li
+                    key={item.label}
+                    className="flex items-center gap-2.5 text-[13px] leading-snug text-muted-foreground"
+                  >
+                    <span aria-hidden className="label-dot" />
+                    <span>
+                      {item.label} — {item.value}
+                    </span>
+                  </li>
+                ))}
+              </ul>
               <span className="btn-pill btn-pill-primary mt-auto self-start">
                 Book Strategy Call
                 <span aria-hidden className="btn-arrow">

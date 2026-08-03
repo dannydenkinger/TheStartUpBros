@@ -156,9 +156,9 @@ export function SaaSCostCalculator() {
                     key={feature.id}
                     onClick={() => toggle(feature.id)}
                     aria-pressed={isOn}
-                    className={`w-full h-full text-left rounded-[20px] p-6 transition-all duration-300 cursor-pointer hover:-translate-y-0.5 ${
+                    className={`w-full h-full text-left rounded-[20px] p-6 transition-all duration-300 cursor-pointer select-none hover:-translate-y-0.5 ${
                       isOn
-                        ? "bg-(--accent-brand-soft) ring-2 ring-(--accent-brand)"
+                        ? "bg-white dark:bg-[#1c1c1c] ring-2 ring-(--accent-brand)"
                         : "bg-card hover:bg-(--surface-card-hover)"
                     }`}
                   >
@@ -168,9 +168,7 @@ export function SaaSCostCalculator() {
                         <span
                           aria-hidden
                           className={`size-1.5 shrink-0 rounded-full ${
-                            isOn
-                              ? "bg-(--accent-brand)"
-                              : "border border-border"
+                            isOn ? "bg-(--accent-brand)" : "bg-foreground/15"
                           }`}
                         />
                         <span className="text-xs tabular-nums text-muted-foreground">

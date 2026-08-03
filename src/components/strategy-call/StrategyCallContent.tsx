@@ -232,7 +232,7 @@ export function StrategyCallContent() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn-pill btn-pill-primary w-full group disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="btn-pill btn-pill-primary w-fit group disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center gap-2">
@@ -267,7 +267,7 @@ export function StrategyCallContent() {
                         )}
                       </button>
 
-                      <p className="text-caption text-center pt-1">
+                      <p className="text-caption pt-1">
                         No obligations. We&apos;ll reply within 24 hours.
                       </p>
                     </form>

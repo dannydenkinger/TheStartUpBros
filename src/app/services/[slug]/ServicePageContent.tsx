@@ -228,10 +228,10 @@ export function ServicePageContent({ service }: { service: Service }) {
       <section className="px-6 md:px-10 py-24 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="USE CASES" title="Use Cases" />
-          <div className="card-elevated max-w-[840px] divide-y divide-border/60">
+          <div className="grid md:grid-cols-2 gap-x-16">
             {service.useCases.map((useCase, i) => (
               <AnimateIn key={useCase} delay={Math.min(i, 3) * 0.06}>
-                <div className="flex items-baseline gap-6 py-4">
+                <div className="flex items-baseline gap-6 py-4 border-b border-border/60">
                   <span className="text-xs tabular-nums text-muted-foreground/80">
                     {String(i + 1).padStart(2, "0")}
                   </span>
@@ -245,10 +245,15 @@ export function ServicePageContent({ service }: { service: Service }) {
         </div>
       </section>
 
-      {/* ── Tech Stack ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      {/* ── Tech Stack — compact band ── */}
+      <section className="px-6 md:px-10 py-16 md:py-20">
         <div className="max-w-[1600px] mx-auto">
-          <SectionHeader index={idx()} label="TECH STACK" title="Tech Stack" />
+          <SectionHeader
+            index={idx()}
+            label="TECH STACK"
+            title="Tech Stack"
+            className="mb-8 md:mb-10"
+          />
           <AnimateIn delay={0.06}>
             <div className="flex flex-wrap gap-x-10 gap-y-5 max-w-[1100px]">
               {service.techStack.map((tech) => (

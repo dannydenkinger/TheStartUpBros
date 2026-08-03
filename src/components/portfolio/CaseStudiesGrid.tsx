@@ -3,8 +3,10 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { AnimateIn } from "@/components/shared/AnimateIn";
 import { projects } from "@/data/portfolio";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
+import { cn } from "@/lib/utils";
 
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
@@ -14,6 +16,89 @@ function splitTitle(title: string): [string, string | null] {
   const idx = title.indexOf(" — ");
   if (idx === -1) return [title, null];
   return [title.slice(0, idx), title.slice(idx + 3)];
+}
+
+/* Desses card — media on top, attached bg-card panel below. The first
+ * (featured) card runs full-width at 21/9; the rest sit in a 2-col grid. */
+function CaseCard({
+  project,
+  featured = false,
+  delay = 0,
+}: {
+  project: (typeof projects)[number];
+  featured?: boolean;
+  delay?: number;
+}) {
+  const [name, descriptor] = splitTitle(project.title);
+
+  return (
+    <AnimateIn delay={delay}>
+      <Link
+        href={`/portfolio/${project.slug}`}
+        className="group block overflow-hidden rounded-lg"
+      >
+        {/* Media — edge-to-edge, shares the card's radius */}
+        <div
+          className={cn(
+            "relative media-zoom",
+            featured
+              ? "aspect-[4/3] sm:aspect-[2/1] xl:aspect-[21/9]"
+              : "aspect-[4/3] sm:aspect-[16/10]",
+          )}
+        >
+          <div
+            className="absolute inset-0"
+            style={getWrapperStyle(project.image)}
+          >
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              quality={90}
+              priority={featured}
+              sizes={
+                featured
+                  ? "(min-width: 1024px) 1520px, 100vw"
+                  : "(min-width: 1024px) 750px, (min-width: 640px) 50vw, 100vw"
+              }
+              className="object-cover"
+              style={getImageStyle(project.image)}
+            />
+          </div>
+        </div>
+
+        {/* Attached content panel */}
+        <div className={cn("bg-card", featured ? "p-6 md:p-7" : "p-6")}>
+          <div className="flex items-start justify-between gap-4">
+            <span className="text-[13px] font-medium text-(--accent-brand)">
+              {project.tags.join(" · ")}
+            </span>
+            <span aria-hidden className="plus-btn">
+              +
+            </span>
+          </div>
+          <h2
+            className={cn(
+              "mt-2 font-semibold tracking-tight text-foreground",
+              featured ? "text-[30px] leading-[1.15]" : "text-2xl",
+            )}
+          >
+            {name}
+          </h2>
+          {descriptor && (
+            <p
+              className={cn(
+                "mt-1 text-muted-foreground",
+                featured ? "text-[17px] line-clamp-1" : "text-[16px] line-clamp-2",
+              )}
+            >
+              {descriptor}
+            </p>
+          )}
+        </div>
+      </Link>
+    </AnimateIn>
+  );
 }
 
 export function CaseStudiesGrid() {
@@ -33,112 +118,60 @@ export function CaseStudiesGrid() {
     });
   }, [search, category]);
 
+  const [first, ...rest] = filtered;
+
   return (
     <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 pb-24 md:pb-32">
-      {/* Toolbar */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 md:mb-16">
+      {/* Filter row — quiet text filters left, flat search right */}
+      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between border-b border-border pb-6 mb-10 md:mb-14">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+          {["all", ...allTags].map((tag) => {
+            const active = category === tag;
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => setCategory(tag)}
+                aria-pressed={active}
+                className={cn(
+                  "inline-flex items-center gap-1.5 text-[15px] cursor-pointer transition-colors duration-200",
+                  active
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                <span
+                  aria-hidden
+                  className={cn(
+                    "label-dot transition-opacity duration-200",
+                    !active && "opacity-0",
+                  )}
+                />
+                {tag === "all" ? "All" : tag}
+              </button>
+            );
+          })}
+        </div>
+
         <input
           type="text"
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-[300px] h-12 rounded-xl border border-transparent bg-(--surface-input) px-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200"
+          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none"
         />
+      </div>
 
-        <div className="flex items-center gap-3">
-          <span className="text-caption font-medium text-muted-foreground">
-            Category
-          </span>
-          <div className="relative">
-            <select
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              className="h-12 rounded-xl border border-transparent bg-(--surface-input) pl-4 pr-10 text-sm text-foreground focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200 cursor-pointer appearance-none"
-            >
-              <option value="all">All</option>
-              {allTags.map((tag) => (
-                <option key={tag} value={tag}>
-                  {tag}
-                </option>
-              ))}
-            </select>
-            <svg
-              className="pointer-events-none absolute right-3.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 9l-7 7-7-7"
-              />
-            </svg>
-          </div>
+      {/* First result full-width, the rest in a 2-col grid */}
+      {first && <CaseCard project={first} featured />}
+
+      {rest.length > 0 && (
+        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+          {rest.map((project, i) => (
+            <CaseCard key={project.slug} project={project} delay={i * 0.08} />
+          ))}
         </div>
-      </div>
-
-      {/* Project showcase — stacked media cards */}
-      <div className="flex flex-col gap-16 md:gap-24">
-        {filtered.map((project, i) => {
-          const [name, descriptor] = splitTitle(project.title);
-          return (
-          <Link
-            key={project.slug}
-            href={`/portfolio/${project.slug}`}
-            className="group block"
-          >
-            <div className="rounded-[24px] overflow-hidden bg-card transition-transform duration-300 group-hover:-translate-y-0.5">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[2/1] xl:aspect-[21/9] w-full overflow-hidden">
-                <div
-                  className="absolute inset-0"
-                  style={getWrapperStyle(project.image)}
-                >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    priority={i === 0}
-                    sizes="(max-width: 768px) 100vw, 1280px"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]"
-                    style={getImageStyle(project.image)}
-                  />
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
-              <span className="text-[13px] text-muted-foreground tabular-nums">
-                {String(i + 1).padStart(2, "0")}
-              </span>
-              <span className="text-[13px] font-medium text-(--accent-brand)">
-                {project.tags.join(" / ")}
-              </span>
-              {project.year && (
-                <span className="text-[13px] text-muted-foreground tabular-nums">
-                  {project.year}
-                </span>
-              )}
-              <span aria-hidden className="plus-btn ml-auto">
-                +
-              </span>
-            </div>
-            <h2 className="mt-3 text-h2 text-foreground max-w-[980px]">
-              {name}
-              {descriptor && (
-                <>
-                  <span className="sr-only"> — </span>
-                  <span className="block text-[1.25rem] md:text-[1.375rem] font-normal leading-[1.4] tracking-[-0.01em] text-muted-foreground mt-2">
-                    {descriptor}
-                  </span>
-                </>
-              )}
-            </h2>
-          </Link>
-          );
-        })}
-      </div>
+      )}
     </section>
   );
 }

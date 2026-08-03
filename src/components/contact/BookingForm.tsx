@@ -131,7 +131,7 @@ export function BookingForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="btn-pill btn-pill-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-pill btn-pill-primary w-fit disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "submitting" ? (
           "Sending..."

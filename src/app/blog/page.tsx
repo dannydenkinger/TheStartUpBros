@@ -81,6 +81,7 @@ export default function BlogPage() {
           {featured && (
             <GlassBlogCard
               featured
+              figIndex={1}
               title={featured.title}
               excerpt={featured.description}
               category={featured.category}
@@ -95,9 +96,10 @@ export default function BlogPage() {
 
           {rest.length > 0 && (
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-8">
-              {rest.map((post) => (
+              {rest.map((post, i) => (
                 <GlassBlogCard
                   key={post.slug}
+                  figIndex={i + 2}
                   title={post.title}
                   excerpt={post.description}
                   category={post.category}

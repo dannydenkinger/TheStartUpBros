@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import {
   TestimonialCard,
   TestimonialAuthor,
@@ -59,6 +60,14 @@ const testimonials = [
 const topRow = testimonials.slice(0, Math.ceil(testimonials.length / 2));
 const bottomRow = testimonials.slice(Math.ceil(testimonials.length / 2));
 
+// Edge fade — same mask used by components/shared/Marquee.tsx
+const edgeFadeMask: CSSProperties = {
+  maskImage:
+    "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+};
+
 export function Testimonials() {
   return (
     <section className="bg-background text-foreground py-20 md:py-28">
@@ -84,12 +93,15 @@ export function Testimonials() {
         </AnimateIn>
       </div>
 
-      <div className="flex flex-col">
+      <div className="flex flex-col gap-5">
         {/* Row 1 — scrolls left, seamless infinite.
             Content is rendered twice so -50% animation closes cleanly at a card boundary.
-            Vertical padding keeps card shadows inside the overflow clip. */}
-        <div className="relative flex w-full overflow-hidden">
-          <div className="flex animate-marquee py-5 [--duration:60s] [&>*]:mr-4">
+            Edge fade mask matches components/shared/Marquee.tsx. */}
+        <div
+          className="relative flex w-full overflow-hidden"
+          style={edgeFadeMask}
+        >
+          <div className="flex animate-marquee [--duration:60s] [&>*]:mr-4">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 topRow.map((testimonial, i) => (
@@ -103,14 +115,14 @@ export function Testimonials() {
               ),
             )}
           </div>
-
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-background sm:block z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-background sm:block z-10" />
         </div>
 
         {/* Row 2 — scrolls right, seamless infinite */}
-        <div className="relative flex w-full overflow-hidden">
-          <div className="flex animate-marquee-reverse py-5 [--duration:65s] [&>*]:mr-4">
+        <div
+          className="relative flex w-full overflow-hidden"
+          style={edgeFadeMask}
+        >
+          <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 bottomRow.map((testimonial, i) => (
@@ -124,9 +136,6 @@ export function Testimonials() {
               ),
             )}
           </div>
-
-          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-1/6 bg-gradient-to-r from-background sm:block z-10" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 hidden w-1/6 bg-gradient-to-l from-background sm:block z-10" />
         </div>
       </div>
     </section>

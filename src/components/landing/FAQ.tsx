@@ -194,19 +194,19 @@ export function FAQ({ index = "04" }: { index?: string }) {
                 </Link>
               </div>
 
-              {/* Founder strip */}
-              <div className="mt-6 grid grid-cols-2 gap-px rounded-xl overflow-hidden">
+              {/* Founder strip — grayscale to keep the pair tonally unified */}
+              <div className="mt-6 grid grid-cols-2 gap-1.5">
                 {teamAvatars.map((src) => (
                   <div
                     key={src}
-                    className="relative aspect-[4/5] bg-secondary"
+                    className="relative aspect-[4/5] rounded-lg overflow-hidden bg-secondary"
                   >
                     <Image
                       src={src}
                       alt=""
                       fill
                       sizes="260px"
-                      className="object-cover object-[50%_25%]"
+                      className="object-cover object-[50%_20%] grayscale contrast-[1.05]"
                     />
                   </div>
                 ))}
