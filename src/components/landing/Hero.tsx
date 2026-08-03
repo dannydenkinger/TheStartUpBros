@@ -124,14 +124,13 @@ export function Hero() {
   const prefersReducedMotion = useReducedMotion();
 
   return (
-    <section className="px-6 md:px-10 pt-4 md:pt-5 flex flex-col">
-      <div className="mx-auto w-full max-w-[1360px]">
-        {/* The hero screen — dark inset card on the light page */}
-        <div className="band grain relative flex flex-col overflow-hidden rounded-[24px] shadow-[0_24px_80px_-24px_rgba(14,14,16,0.4)] md:min-h-[min(calc(100vh-116px),860px)]">
-          <RibbonArt animate={!prefersReducedMotion} />
+    <section className="flex flex-col">
+      {/* The hero screen — full-bleed dark band */}
+      <div className="band grain relative flex flex-col overflow-hidden md:min-h-[min(calc(100vh-80px),860px)]">
+        <RibbonArt animate={!prefersReducedMotion} />
 
-          {/* Screen content */}
-          <div className="relative z-10 flex flex-1 flex-col justify-center px-6 py-16 sm:px-10 md:px-14 md:py-20">
+        {/* Screen content */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-center px-6 py-16 md:px-10 md:py-20">
             {/* Founder eyebrow */}
             <AnimateIn variant="fadeUp">
               <div>
@@ -194,28 +193,27 @@ export function Hero() {
                 />
               </div>
             </AnimateIn>
-          </div>
+        </div>
 
-          {/* Tech-trust ticker — screen's bottom edge.
-           * No AnimateIn here: at the bottom of a viewport-height screen it
-           * would sit outside useInView's -80px margin and never fade in. */}
-          <div className="relative z-10 border-t border-border flex items-stretch">
-            <p className="hidden md:flex items-center shrink-0 border-r border-border px-6 md:px-10 py-4 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
-              Built on the stack trusted by modern SaaS
-            </p>
-            <div
-              className="flex-1 overflow-hidden py-4"
-              style={{
-                maskImage:
-                  "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-              }}
-            >
-              <div className="flex w-max animate-marquee [--duration:40s]">
-                <TickerRow />
-                <TickerRow />
-              </div>
+        {/* Tech-trust ticker — screen's bottom edge.
+         * No AnimateIn here: at the bottom of a viewport-height screen it
+         * would sit outside useInView's -80px margin and never fade in. */}
+        <div className="relative z-10 border-t border-border flex items-stretch">
+          <p className="hidden md:flex items-center shrink-0 border-r border-border px-6 md:px-10 py-4 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+            Built on the stack trusted by modern SaaS
+          </p>
+          <div
+            className="flex-1 overflow-hidden py-4"
+            style={{
+              maskImage:
+                "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+              WebkitMaskImage:
+                "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+            }}
+          >
+            <div className="flex w-max animate-marquee [--duration:40s]">
+              <TickerRow />
+              <TickerRow />
             </div>
           </div>
         </div>
