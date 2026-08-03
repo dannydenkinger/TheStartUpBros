@@ -446,6 +446,29 @@
   }
 }
 
+/* Media zoom — slow image scale on card hover (desses hover language).
+ * Apply to the overflow container whose DIRECT child is the media element;
+ * direct-child targeting keeps imagePosition inline transforms untouched. */
+.media-zoom {
+  overflow: hidden;
+}
+.media-zoom > * {
+  transition: transform 0.7s cubic-bezier(0.44, 0, 0.56, 1);
+}
+.group:hover .media-zoom > *,
+a:hover > .media-zoom > * {
+  transform: scale(1.035);
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-zoom > * {
+    transition: none;
+  }
+  .group:hover .media-zoom > *,
+  a:hover > .media-zoom > * {
+    transform: none;
+  }
+}
+
 /* Scrollbar hide */
 .scrollbar-hide {
   -ms-overflow-style: none;

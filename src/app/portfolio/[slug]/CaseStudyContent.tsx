@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { CountUp } from "@/components/shared/CountUp";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { Plate } from "@/components/shared/Plate";
@@ -251,7 +252,7 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
                 <AnimateIn key={metric.label} delay={i * 0.08}>
                   <div>
                     <p className="text-[clamp(2.5rem,5vw,4.25rem)] font-semibold leading-none tracking-[-0.025em] tabular-nums text-(--accent-brand) mb-3 break-words">
-                      {metric.value}
+                      <CountUp value={metric.value} />
                     </p>
                     <p className="text-caption text-muted-foreground">
                       {metric.label}

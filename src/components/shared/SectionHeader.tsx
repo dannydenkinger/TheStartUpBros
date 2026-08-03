@@ -1,4 +1,9 @@
+"use client";
+
 import { cn } from "@/lib/utils";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { RevealText } from "@/components/shared/RevealText";
+import { WordColorReveal } from "@/components/shared/WordColorReveal";
 
 interface SectionHeaderProps {
   index: string;
@@ -17,7 +22,7 @@ export function SectionHeader({
 }: SectionHeaderProps) {
   return (
     <div className={cn("grid grid-cols-12 gap-x-6 gap-y-6 mb-16", className)}>
-      <div className="col-span-12">
+      <AnimateIn variant="fadeUp" className="col-span-12">
         <span className="badge-pill text-micro-label">
           <span className="text-muted-foreground">{index}</span>
           <span aria-hidden className="text-muted-foreground">
@@ -25,13 +30,19 @@ export function SectionHeader({
           </span>
           {label}
         </span>
-      </div>
+      </AnimateIn>
       <h2 className="col-span-12 lg:col-start-1 lg:col-span-7 text-h2">
-        {title}
+        <RevealText delay={0.08}>{title}</RevealText>
       </h2>
       {intro && (
         <div className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg">
-          {intro}
+          {typeof intro === "string" ? (
+            <WordColorReveal text={intro} className="text-body-lg" />
+          ) : (
+            <AnimateIn variant="fadeUp" delay={0.12}>
+              {intro}
+            </AnimateIn>
+          )}
         </div>
       )}
     </div>

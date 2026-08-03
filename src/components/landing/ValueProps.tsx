@@ -98,7 +98,7 @@ function ServiceCard({
   index,
 }: ServiceCell & { index: string }) {
   return (
-    <div className="card-elevated h-full flex flex-col">
+    <div className="card-elevated h-full flex flex-col group">
       <div className="flex items-center justify-between mb-6">
         <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
         <span className="text-[13px] font-medium tabular-nums text-muted-foreground/70">
@@ -106,7 +106,7 @@ function ServiceCard({
         </span>
       </div>
 
-      <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden bg-secondary mb-6">
+      <div className="media-zoom relative aspect-[16/10] rounded-[12px] overflow-hidden bg-secondary mb-6">
         <Image
           src={image}
           alt={title}

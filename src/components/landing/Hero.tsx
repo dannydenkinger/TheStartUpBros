@@ -1,12 +1,19 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { useReducedMotion } from "framer-motion";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { cn } from "@/lib/utils";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { StatusStrip } from "@/components/shared/StatusStrip";
+import { RevealText } from "@/components/shared/RevealText";
 
 const techStack = [
   "Next.js",
@@ -122,12 +129,24 @@ function RibbonArt({ animate }: { animate: boolean }) {
 
 export function Hero() {
   const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const ribbonY = useTransform(scrollYProgress, [0, 1], [0, 140]);
 
   return (
-    <section className="flex flex-col">
+    <section ref={sectionRef} className="flex flex-col">
       {/* The hero screen — full-bleed dark band */}
       <div className="band grain relative flex flex-col overflow-hidden md:min-h-[min(calc(100vh-80px),860px)]">
-        <RibbonArt animate={!prefersReducedMotion} />
+        <motion.div
+          aria-hidden
+          className="absolute inset-0"
+          style={prefersReducedMotion ? undefined : { y: ribbonY }}
+        >
+          <RibbonArt animate={!prefersReducedMotion} />
+        </motion.div>
 
         {/* Screen content */}
         <div className="relative z-10 mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-center px-6 py-16 md:px-10 md:py-20">
@@ -147,20 +166,19 @@ export function Hero() {
               </div>
             </AnimateIn>
 
-            {/* Headline — two-tone */}
-            <AnimateIn variant="fadeUp" delay={0.06}>
-              <h1 className="text-display max-w-[960px]">
-                Launch-Ready Products,{" "}
-                <span className="accent-word">Built In Weeks</span>
-                <span className="text-foreground/45 whitespace-nowrap">
-                  {" "}
-                  — Not Months
-                </span>
-              </h1>
-            </AnimateIn>
+            {/* Headline — two-tone, masked line cascade */}
+            <h1 className="text-display max-w-[960px]">
+              <RevealText delay={0.05}>Launch-Ready Products,</RevealText>
+              <RevealText delay={0.16}>
+                <span className="accent-word">Built In Weeks</span>{" "}
+              </RevealText>
+              <RevealText delay={0.27}>
+                <span className="text-foreground/45">— Not Months</span>
+              </RevealText>
+            </h1>
 
             {/* Subtitle */}
-            <AnimateIn variant="fadeUp" delay={0.12}>
+            <AnimateIn variant="fadeUp" delay={0.35}>
               <p className="text-body-lg mt-6 max-w-[560px]">
                 Full-stack design and development for startups that need to
                 move&nbsp;now.
@@ -168,7 +186,7 @@ export function Hero() {
             </AnimateIn>
 
             {/* CTAs */}
-            <AnimateIn variant="fadeUp" delay={0.18}>
+            <AnimateIn variant="fadeUp" delay={0.45}>
               <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
                 <MagneticButton>
                   <CTAButton href="/strategy-call" variant="primary">
@@ -182,7 +200,7 @@ export function Hero() {
             </AnimateIn>
 
             {/* Status line */}
-            <AnimateIn variant="fadeUp" delay={0.18}>
+            <AnimateIn variant="fadeUp" delay={0.55}>
               <div className="mt-9 max-w-[820px]">
                 <StatusStrip
                   items={[
