@@ -82,7 +82,7 @@ export function ServicePageContent({ service }: { service: Service }) {
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <AnimateIn variant="fadeUp">
             <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
               <span className="badge-pill">
@@ -98,14 +98,14 @@ export function ServicePageContent({ service }: { service: Service }) {
 
           <AnimateIn variant="fadeUp" delay={0.06}>
             <div className="grid grid-cols-12 gap-x-6">
-              <h1 className="col-span-12 lg:col-span-9 text-h1 text-foreground mb-6">
+              <h1 className="col-span-12 lg:col-span-10 text-display text-foreground mb-6">
                 {service.title}
               </h1>
             </div>
           </AnimateIn>
 
           <AnimateIn variant="fadeUp" delay={0.12}>
-            <p className="text-body-lg max-w-[680px] mb-10">
+            <p className="text-body-lg max-w-[840px] mb-10">
               {service.longDescription}
             </p>
           </AnimateIn>
@@ -131,7 +131,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       {/* ── Case Studies ── */}
       {caseStudies.length > 0 && (
         <section className="px-6 md:px-10 py-24 md:py-32">
-          <div className="max-w-[1360px] mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <SectionHeader
               index={idx()}
               label="CASE STUDIES"
@@ -186,7 +186,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       {/* ── Feature Highlights ── */}
       {service.featureHighlights && service.featureHighlights.length > 0 && (
         <section className="px-6 md:px-10 py-24 md:py-32">
-          <div className="max-w-[1360px] mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <SectionHeader
               index={idx()}
               label="WHAT'S INCLUDED"
@@ -226,7 +226,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Use Cases ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="USE CASES" title="Use Cases" />
           <div className="card-elevated max-w-[840px] divide-y divide-border/60">
             {service.useCases.map((useCase, i) => (
@@ -247,12 +247,16 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Tech Stack ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="TECH STACK" title="Tech Stack" />
           <AnimateIn delay={0.06}>
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap gap-x-10 gap-y-5 max-w-[1100px]">
               {service.techStack.map((tech) => (
-                <span key={tech} className="badge-pill">
+                <span
+                  key={tech}
+                  className="badge-pill text-[15px] font-medium text-foreground"
+                >
+                  <span aria-hidden className="label-dot" />
                   {tech}
                 </span>
               ))}
@@ -263,13 +267,13 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Deliverables ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="WHAT YOU GET" title="What You Get" />
-          <div className="max-w-[680px]">
+          <div className="max-w-[840px]">
             {service.deliverables.map((deliverable, i) => (
               <AnimateIn key={deliverable} delay={Math.min(i, 3) * 0.06}>
-                <div className="flex items-baseline justify-between gap-6 py-3 border-b border-border/60">
-                  <span className="text-sm font-medium text-foreground">
+                <div className="flex items-baseline justify-between gap-6 py-4 border-b border-border/60">
+                  <span className="text-[15px] font-medium text-foreground">
                     {deliverable}
                   </span>
                   <span className="text-xs tabular-nums text-muted-foreground/80">
@@ -285,7 +289,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       {/* ── Testimonial ── */}
       {service.testimonial && (
         <section className="px-6 md:px-10 py-24 md:py-32">
-          <div className="max-w-[1360px] mx-auto">
+          <div className="max-w-[1600px] mx-auto">
             <div className="mb-16">
               <span className="badge-pill text-micro-label">
                 <span aria-hidden className="label-dot" />
@@ -319,7 +323,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Explore Other Services ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
             label="OTHER SERVICES"
@@ -340,10 +344,10 @@ export function ServicePageContent({ service }: { service: Service }) {
                 <h3 className="text-h3 text-foreground md:w-[320px] shrink-0 transition-transform duration-300 lg:group-hover:translate-x-2">
                   {s.title}
                 </h3>
-                <p className="text-caption text-muted-foreground flex-1">
+                <p className="text-caption text-muted-foreground flex-1 max-w-[640px]">
                   {s.description}
                 </p>
-                <span className="text-[13px] font-medium text-(--accent-brand) whitespace-nowrap">
+                <span className="md:ml-auto text-[13px] font-medium text-(--accent-brand) whitespace-nowrap">
                   Explore →
                 </span>
               </Link>
@@ -354,7 +358,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Pricing CTA ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="mb-16">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />

@@ -65,7 +65,7 @@ export default function BlogPage() {
     <div className="flex flex-col min-h-screen">
       {/* Blog Hero */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16">
-        <div className="max-w-[1360px] mx-auto grid grid-cols-12 gap-6">
+        <div className="max-w-[1600px] mx-auto grid grid-cols-12 gap-6">
           <h1 className="col-span-12 lg:col-span-8 text-display text-foreground">
             Blog &amp; Case <span className="accent-word">Studies</span>
           </h1>
@@ -77,7 +77,7 @@ export default function BlogPage() {
 
       {/* Posts */}
       <section className="px-6 md:px-10 pb-24 md:pb-32 pt-8">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           {featured && (
             <GlassBlogCard
               featured
@@ -94,7 +94,7 @@ export default function BlogPage() {
           )}
 
           {rest.length > 0 && (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 mt-6 md:mt-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8 mt-6 md:mt-8">
               {rest.map((post) => (
                 <GlassBlogCard
                   key={post.slug}

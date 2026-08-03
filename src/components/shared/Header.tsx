@@ -109,9 +109,6 @@ export function Header() {
           )}
         >
           <nav className="flex items-center gap-6">
-            <Link href="/" className={navLinkClass}>
-              Home
-            </Link>
             <Link href="/portfolio" className={navLinkClass}>
               Case Studies
             </Link>
@@ -234,13 +231,6 @@ export function Header() {
             </div>
 
             <nav className="flex flex-1 flex-col px-6 pt-2 pb-8">
-              <Link
-                href="/"
-                className="text-h2 border-b border-border py-5"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Home
-              </Link>
               <Link
                 href="/portfolio"
                 className="text-h2 border-b border-border py-5"

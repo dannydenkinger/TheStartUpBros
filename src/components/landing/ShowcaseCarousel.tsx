@@ -81,12 +81,9 @@ function MarqueeColumn({
 
 export function ShowcaseCarousel() {
   return (
-    <section className="mt-6 px-4 md:px-6">
+    <section className="band grain relative -mt-px overflow-hidden rounded-b-[2rem] px-4 pb-4 md:px-6 md:pb-6">
       <AnimateIn variant="fadeIn">
-        <div
-          className="mx-auto h-[400px] max-w-[1600px] overflow-hidden rounded-[24px] p-2 md:h-[520px] md:p-3"
-          style={{ background: "var(--surface-carousel-bg)" }}
-        >
+        <div className="h-[400px] overflow-hidden md:h-[520px]">
           <div className="flex h-full carousel-hover-pause">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />

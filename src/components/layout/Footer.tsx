@@ -33,7 +33,7 @@ const columns = [
 export function Footer() {
   return (
     <footer className="band grain border-t border-border">
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         {/* Top zone — dot label / brand+contact / link columns */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-12 pt-20 md:pt-28 pb-16 md:pb-24">
           {/* (1) Dot label */}

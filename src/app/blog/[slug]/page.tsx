@@ -207,7 +207,7 @@ export default async function BlogPostPage({
                   hover:prose-a:[background-size:100%_2px]
                   prose-blockquote:border-l-2 prose-blockquote:border-(--accent-brand) prose-blockquote:text-muted-foreground prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-[19px] prose-blockquote:[quotes:none]
                   prose-code:text-[13px] prose-code:text-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
-                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border prose-pre:border-border prose-pre:rounded-xl
+                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border-0 prose-pre:rounded-xl
                   prose-hr:border-border prose-hr:my-10
                   prose-img:rounded-xl
                   prose-ol:pl-5 prose-ul:pl-5
@@ -222,10 +222,21 @@ export default async function BlogPostPage({
                   <p className="text-micro-label text-muted-foreground mb-3">
                     Topics
                   </p>
-                  <div className="flex flex-wrap gap-2">
-                    {frontmatter.tags.map((tag: string) => (
-                      <span key={tag} className="badge-pill">
+                  <div className="flex flex-wrap items-baseline gap-y-1">
+                    {frontmatter.tags.map((tag: string, i: number) => (
+                      <span
+                        key={tag}
+                        className="text-[13px] font-medium text-(--accent-brand)"
+                      >
                         {tag}
+                        {i < frontmatter.tags.length - 1 && (
+                          <span
+                            aria-hidden
+                            className="mx-2 font-normal text-muted-foreground"
+                          >
+                            ·
+                          </span>
+                        )}
                       </span>
                     ))}
                   </div>

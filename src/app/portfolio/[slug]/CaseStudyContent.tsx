@@ -22,7 +22,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
     <div className="flex flex-col min-h-screen bg-background">
       {/* ─── Hero ──────────────────────────────────────────────────── */}
       <section className="pt-16 md:pt-24 pb-12">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <AnimateIn variant="fadeUp">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
               {project.industry && (
@@ -48,7 +48,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
           </AnimateIn>
 
           <AnimateIn variant="fadeUp" delay={0.08}>
-            <h1 className="text-h1 text-foreground mb-8 max-w-[900px]">
+            <h1 className="text-display text-foreground mb-8 max-w-[1100px]">
               {project.title}
             </h1>
           </AnimateIn>
@@ -90,7 +90,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       {/* ─── Meta strip (Client | Services | Year) ─────────────────── */}
       {(project.client || project.services || project.year) && (
         <section className="pb-12">
-          <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <AnimateIn variant="fadeUp" delay={0.05}>
               <div className="flex flex-wrap gap-x-14 gap-y-8">
                 {project.client && (
@@ -110,7 +110,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       )}
 
       {/* ─── Hero plate ────────────────────────────────────────────── */}
-      <section className="mx-auto w-full max-w-[1360px] px-6 md:px-10 mb-20 md:mb-28">
+      <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-20 md:mb-28">
         <AnimateIn variant="scaleIn" delay={0.1}>
           <Plate caption={project.slug} fig="01">
             <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full overflow-hidden">
@@ -137,10 +137,11 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
 
       {/* ─── Next case study (ghost rail) ──────────────────────────── */}
       <section className="py-16 md:py-24">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <AnimateIn>
-            <p className="text-micro-label text-muted-foreground mb-6">
-              Next case study
+            <p className="badge-pill text-micro-label mb-6">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Next case study</span>
             </p>
           </AnimateIn>
           <AnimateIn delay={0.06}>
@@ -174,20 +175,20 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
         </div>
       </section>
 
-      {/* ─── Final CTA ─────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+      {/* ─── Final CTA — black grain band, landing language ────────── */}
+      <section className="band grain relative">
+        <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-24 md:py-32">
           <AnimateIn>
-            <div className="max-w-[680px]">
-              <h2 className="text-h1 text-foreground mb-5">
+            <div className="grid grid-cols-12 gap-6">
+              <h2 className="col-span-12 lg:col-span-7 text-display">
                 Ready to <span className="accent-word">Build</span> Something
                 Like This?
               </h2>
-              <p className="text-body-lg mb-10">
+              <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg">
                 Book a free strategy call. We&apos;ll scope your project and map
                 out the fastest path to launch.
               </p>
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
+              <div className="col-span-12 mt-8 flex flex-col sm:flex-row items-start sm:items-center gap-3">
                 <MagneticButton>
                   <CTAButton href="/strategy-call" variant="primary">
                     Book Strategy Call
@@ -212,11 +213,12 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       {/* Overview */}
       {project.overview && (
         <section className="pb-16 md:pb-24">
-          <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <div className="grid grid-cols-12 gap-6">
               <AnimateIn className="col-span-12 lg:col-span-3">
-                <p className="text-micro-label text-muted-foreground">
-                  Overview
+                <p className="badge-pill text-micro-label">
+                  <span aria-hidden className="label-dot" />
+                  <span className="lowercase">Overview</span>
                 </p>
               </AnimateIn>
               <AnimateIn delay={0.08} className="col-span-12 lg:col-span-8">
@@ -232,7 +234,7 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       {/* Gallery flow */}
       {project.gallery && (
         <section className="pb-16 md:pb-24">
-          <div className="mx-auto max-w-[1360px] px-6 md:px-10 flex flex-col gap-16 md:gap-24">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 flex flex-col gap-16 md:gap-24">
             {project.gallery.map((block, i) => (
               <GalleryBlockRenderer
                 key={i}
@@ -248,17 +250,18 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       {/* Metrics */}
       {project.metrics && project.metrics.length > 0 && (
         <section className="py-16 md:py-24">
-          <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <AnimateIn>
-              <p className="text-micro-label text-muted-foreground mb-12">
-                The Outcome in Numbers
+              <p className="badge-pill text-micro-label mb-12">
+                <span aria-hidden className="label-dot" />
+                <span className="lowercase">The Outcome in Numbers</span>
               </p>
             </AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
               {project.metrics.map((metric, i) => (
                 <AnimateIn key={metric.label} delay={i * 0.08}>
                   <div>
-                    <p className="text-[clamp(2.5rem,5vw,4.25rem)] font-semibold leading-none tracking-[-0.025em] tabular-nums text-(--accent-brand) mb-3 break-words">
+                    <p className="text-[clamp(2.5rem,5vw,4.25rem)] font-medium leading-none tracking-[-0.03em] tabular-nums text-foreground mb-3 break-words">
                       <CountUp value={metric.value} />
                     </p>
                     <p className="text-caption text-muted-foreground">
@@ -275,13 +278,10 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       {/* Quote */}
       {project.quote && (
         <section className="pb-16 md:pb-24">
-          <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <AnimateIn>
               <figure className="relative overflow-hidden rounded-[20px] bg-card p-8 md:p-12">
-                <span
-                  aria-hidden
-                  className="absolute left-0 top-0 h-full w-1 bg-(--accent-brand)"
-                />
+                <span aria-hidden className="label-dot mb-8 block" />
                 <blockquote className="text-[clamp(1.5rem,2.6vw,2.125rem)] font-medium leading-[1.35] tracking-[-0.02em] text-foreground max-w-[900px]">
                   &ldquo;{project.quote.text}&rdquo;
                 </blockquote>
@@ -300,10 +300,11 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
 
       {/* Tech stack + outcomes (compact) */}
       <section className="pb-16 md:pb-24">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <AnimateIn>
-            <p className="text-micro-label text-muted-foreground mb-6">
-              Tech Stack
+            <p className="badge-pill text-micro-label mb-6">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Tech Stack</span>
             </p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
@@ -314,8 +315,9 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
             </div>
           </AnimateIn>
           <AnimateIn delay={0.08}>
-            <p className="text-micro-label text-muted-foreground mb-3">
-              Highlights
+            <p className="badge-pill text-micro-label mb-3">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Highlights</span>
             </p>
             <ul>
               {project.outcomes.map((outcome, i) => (

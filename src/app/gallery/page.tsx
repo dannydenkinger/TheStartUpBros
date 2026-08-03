@@ -68,23 +68,29 @@ export default function GalleryPage() {
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-14 md:pb-16">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-12 gap-6">
-          <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
-            <span className="accent-word">Gallery</span>
-          </h1>
-          <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
-            A visual tour of our product, dashboard, mobile, and web3 work.
-          </p>
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <span className="badge-pill text-micro-label mb-8 inline-flex">
+            <span aria-hidden className="label-dot" />
+            <span className="lowercase">Gallery</span>
+          </span>
+          <div className="grid grid-cols-12 gap-6">
+            <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
+              Gallery
+            </h1>
+            <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
+              A visual tour of our product, dashboard, mobile, and web3 work.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Uniform grid — every tile is the same aspect ratio & size */}
-      <section className="py-16 md:py-20">
-        <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
+      <section className="pt-4 md:pt-6 pb-24 md:pb-32">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 isolate">
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="group rounded-[16px] overflow-hidden bg-card shadow-(--shadow-plate) transition-shadow duration-300 hover:shadow-(--shadow-plate-hover)"
+              className="group rounded-2xl overflow-hidden isolate bg-card shadow-none"
             >
               <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <div className="absolute inset-0" style={getWrapperStyle(src)}>
@@ -93,7 +99,7 @@ export default function GalleryPage() {
                     alt=""
                     fill
                     quality={90}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                     style={getImageStyle(src)}
                   />

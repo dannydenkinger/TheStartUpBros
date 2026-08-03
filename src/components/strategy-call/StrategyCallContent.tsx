@@ -70,17 +70,16 @@ export function StrategyCallContent() {
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero — two-column split */}
       <section className="px-6 md:px-10 pt-16 md:pt-20 pb-16 md:pb-24">
-        <div className="mx-auto max-w-[1360px]">
+        <div className="mx-auto max-w-[1600px]">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* ─── Left: sales narrative ─── */}
             <div className="flex-1">
               <AnimateIn variant="fadeUp">
-                <div className="badge-pill mb-7">
-                  <span
-                    aria-hidden
-                    className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
-                  />
-                  <span>Founded by Anthony &amp; Danny Denkinger</span>
+                <div className="badge-pill text-micro-label mb-7">
+                  <span aria-hidden className="label-dot" />
+                  <span className="lowercase">
+                    Founded by Anthony &amp; Danny Denkinger
+                  </span>
                 </div>
               </AnimateIn>
 
@@ -104,7 +103,7 @@ export function StrategyCallContent() {
                 <p className="text-micro-label text-muted-foreground mb-2">
                   What you&apos;ll walk away with
                 </p>
-                <ul className="mb-12">
+                <ul className="mb-12 max-w-[640px]">
                   {bulletPoints.map((point, i) => (
                     <li key={i} className="flex items-start gap-3 py-2.5">
                       <span
@@ -126,7 +125,7 @@ export function StrategyCallContent() {
             </div>
 
             {/* ─── Right: form card ─── */}
-            <div className="w-full lg:w-[540px] shrink-0">
+            <div className="w-full lg:w-[540px] 2xl:w-[620px] shrink-0">
               <AnimateIn variant="fadeUp" delay={0.1}>
                 <div className="bg-card rounded-[24px] p-8">
                   <h2 className="text-h3 mb-2">Book your strategy call</h2>

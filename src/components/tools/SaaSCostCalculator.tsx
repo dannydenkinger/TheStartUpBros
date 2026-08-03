@@ -125,14 +125,11 @@ export function SaaSCostCalculator() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       <section className="px-6 md:px-10 pt-16 md:pt-20 pb-12">
-        <div className="mx-auto max-w-[1360px]">
+        <div className="mx-auto max-w-[1600px]">
           <AnimateIn variant="fadeUp">
-            <div className="badge-pill mb-6">
-              <span
-                aria-hidden
-                className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
-              />
-              <span>Free Tool</span>
+            <div className="badge-pill text-micro-label mb-6">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Free Tool</span>
             </div>
             <h1 className="text-display mb-4">
               SaaS Cost <span className="accent-word">Calculator</span>
@@ -146,7 +143,7 @@ export function SaaSCostCalculator() {
       </section>
 
       <section className="px-6 md:px-10 pb-24">
-        <div className="mx-auto max-w-[1360px]">
+        <div className="mx-auto max-w-[1600px]">
           {/* Feature Toggle Grid */}
           <AnimateIn variant="fadeUp" className="mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
@@ -269,8 +266,12 @@ export function SaaSCostCalculator() {
                     <p className="text-micro-label text-muted-foreground mb-3">
                       Complexity Tier
                     </p>
-                    <p className="text-[2.5rem] font-semibold leading-none tracking-[-0.02em] text-(--accent-brand) mb-3">
+                    <p className="flex items-baseline gap-3 text-[2.5rem] font-medium leading-none tracking-[-0.02em] text-foreground mb-3">
                       {tier.label}
+                      <span
+                        aria-hidden
+                        className="size-2.5 shrink-0 rounded-full bg-(--accent-brand)"
+                      />
                     </p>
                     <p className="text-[14px] text-muted-foreground max-w-[300px]">
                       {tier.description}

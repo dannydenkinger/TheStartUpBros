@@ -7,8 +7,12 @@ export default function NotFound() {
         <span aria-hidden className="label-dot" />
         <span className="lowercase">ERROR / 404</span>
       </span>
-      <h1 className="font-display text-[10rem] leading-none tracking-[-0.03em] font-medium tabular-nums text-(--accent-brand) mb-4">
+      <h1 className="font-display text-[10rem] leading-none tracking-[-0.03em] font-medium tabular-nums text-foreground mb-4">
         404
+        <span
+          aria-hidden
+          className="ml-3 inline-block size-5 rounded-full bg-(--accent-brand)"
+        />
       </h1>
       <p className="text-body-lg text-muted-foreground mb-8">
         This page doesn&apos;t exist. Let&apos;s get you back on track.

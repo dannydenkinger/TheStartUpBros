@@ -8,6 +8,14 @@ import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
+/* Titles are stored as "Name — Descriptor"; render them with the same
+ * name-row + gray-subtitle anatomy the landing case cards use. */
+function splitTitle(title: string): [string, string | null] {
+  const idx = title.indexOf(" — ");
+  if (idx === -1) return [title, null];
+  return [title.slice(0, idx), title.slice(idx + 3)];
+}
+
 export function CaseStudiesGrid() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
@@ -26,7 +34,7 @@ export function CaseStudiesGrid() {
   }, [search, category]);
 
   return (
-    <section className="mx-auto w-full max-w-[1360px] px-6 md:px-10 pb-24 md:pb-32">
+    <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 pb-24 md:pb-32">
       {/* Toolbar */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-12 md:mb-16">
         <input
@@ -73,14 +81,16 @@ export function CaseStudiesGrid() {
 
       {/* Project showcase — stacked media cards */}
       <div className="flex flex-col gap-16 md:gap-24">
-        {filtered.map((project, i) => (
+        {filtered.map((project, i) => {
+          const [name, descriptor] = splitTitle(project.title);
+          return (
           <Link
             key={project.slug}
             href={`/portfolio/${project.slug}`}
             className="group block"
           >
             <div className="rounded-[24px] overflow-hidden bg-card transition-transform duration-300 group-hover:-translate-y-0.5">
-              <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] w-full overflow-hidden">
+              <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[2/1] xl:aspect-[21/9] w-full overflow-hidden">
                 <div
                   className="absolute inset-0"
                   style={getWrapperStyle(project.image)}
@@ -115,10 +125,19 @@ export function CaseStudiesGrid() {
               </span>
             </div>
             <h2 className="mt-3 text-h2 text-foreground max-w-[980px]">
-              {project.title}
+              {name}
+              {descriptor && (
+                <>
+                  <span className="sr-only"> — </span>
+                  <span className="block text-[1.25rem] md:text-[1.375rem] font-normal leading-[1.4] tracking-[-0.01em] text-muted-foreground mt-2">
+                    {descriptor}
+                  </span>
+                </>
+              )}
             </h2>
           </Link>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

@@ -340,7 +340,7 @@ export default async function IndustryPage({
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
             <span className="badge-pill">
               <span aria-hidden className="label-dot" />
@@ -353,11 +353,11 @@ export default async function IndustryPage({
           </div>
 
           <div className="grid grid-cols-12 gap-x-6">
-            <h1 className="col-span-12 lg:col-span-9 text-h1 text-foreground mb-6">
+            <h1 className="col-span-12 lg:col-span-10 text-display text-foreground mb-6">
               {data.headline}
             </h1>
           </div>
-          <p className="text-body-lg max-w-[680px] mb-10">{data.subtitle}</p>
+          <p className="text-body-lg max-w-[840px] mb-10">{data.subtitle}</p>
 
           <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12">
             <CTAButton href="/strategy-call" variant="primary">
@@ -385,7 +385,7 @@ export default async function IndustryPage({
 
       {/* ── Case Studies ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
             label="DESIGN STUDIES"
@@ -435,7 +435,7 @@ export default async function IndustryPage({
 
       {/* ── Features Grid ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
             label="CAPABILITIES"
@@ -467,7 +467,7 @@ export default async function IndustryPage({
 
       {/* ── Testimonial Quote ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="mb-16">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />
@@ -498,7 +498,7 @@ export default async function IndustryPage({
 
       {/* ── Explore Other Industries ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
             label="INDUSTRIES"
@@ -522,10 +522,10 @@ export default async function IndustryPage({
                   <h3 className="text-h3 text-foreground md:w-[280px] shrink-0 transition-transform duration-300 lg:group-hover:translate-x-2">
                     {ind.name}
                   </h3>
-                  <p className="text-caption text-muted-foreground flex-1">
+                  <p className="text-caption text-muted-foreground flex-1 max-w-[640px]">
                     {ind.description}
                   </p>
-                  <span className="text-[13px] font-medium text-(--accent-brand) whitespace-nowrap">
+                  <span className="md:ml-auto text-[13px] font-medium text-(--accent-brand) whitespace-nowrap">
                     Explore {ind.name} →
                   </span>
                 </Link>
@@ -536,7 +536,7 @@ export default async function IndustryPage({
 
       {/* ── Pricing CTA ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
-        <div className="max-w-[1360px] mx-auto">
+        <div className="max-w-[1600px] mx-auto">
           <div className="mb-16">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />

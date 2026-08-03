@@ -111,7 +111,7 @@ export function Hero() {
       {/* The hero screen — full-bleed dark card, rounded bottom corners so it
        * reads as a dark card ending on the light page. Starts at viewport top
        * behind the floating pill nav. */}
-      <div className="band grain relative flex min-h-svh flex-col overflow-hidden rounded-b-[2rem]">
+      <div className="band grain relative flex min-h-svh flex-col overflow-hidden">
         <motion.div
           aria-hidden
           className="absolute inset-0"

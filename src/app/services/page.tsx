@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <section className="px-6 md:px-10 py-24 md:py-32">
-      <div className="mx-auto max-w-[1360px]">
+      <div className="mx-auto max-w-[1600px]">
         <SectionHeader
           index="01"
           label="CAPABILITIES"
@@ -32,7 +32,7 @@ export default function ServicesPage() {
           >
             <Link
               href="/strategy-call"
-              className="card-elevated group flex h-full flex-col bg-(--accent-brand-soft)"
+              className="card-elevated group flex h-full flex-col"
             >
               <div className="mb-6 flex items-start justify-between">
                 <Calendar
