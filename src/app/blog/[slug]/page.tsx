@@ -8,6 +8,10 @@ import Link from "next/link";
 import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { BlogShareBar } from "@/components/blog/BlogShareBar";
 import { Plate } from "@/components/shared/Plate";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { RevealText } from "@/components/shared/RevealText";
+import { GlassBlogCard } from "@/components/shared/GlassBlogCard";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 
 const contentDir = path.join(process.cwd(), "src/content/blog");
 
@@ -51,6 +55,26 @@ export async function generateMetadata({
   };
 }
 
+function initials(name: string) {
+  return name
+    .split(" ")
+    .map((n: string) => n[0])
+    .join("");
+}
+
+/* Pull-quotes as flat tonal panels with a blurple label-dot — the system's
+ * card language instead of the classic left-border blockquote. */
+const mdxComponents = {
+  blockquote: ({ children }: { children?: React.ReactNode }) => (
+    <blockquote className="not-prose my-5 rounded-2xl bg-card px-6 py-5 md:px-7 md:py-6">
+      <span aria-hidden className="label-dot block mb-4" />
+      <div className="[&_p]:m-0 [&_p]:text-[17px] [&_p]:leading-[1.65] [&_p]:text-foreground/80 [&_p+p]:mt-3">
+        {children}
+      </div>
+    </blockquote>
+  ),
+};
+
 export default async function BlogPostPage({
   params,
 }: {
@@ -76,126 +100,155 @@ export default async function BlogPostPage({
 
   return (
     <article className="min-h-screen">
-      {/* Hero header */}
-      <header className="px-6 md:px-10 pt-12 pb-8">
-        <div className="mx-auto max-w-[1080px]">
+      {/* Post hero — editorial opening on the shared 1600 container */}
+      <header className="px-6 md:px-10 pt-8 md:pt-12">
+        <div className="mx-auto max-w-[1600px]">
           {/* Back link */}
-          <Link
-            href="/blog"
-            className="group inline-flex items-baseline gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10"
-          >
-            <span
-              aria-hidden
-              className="group-hover:-translate-x-0.5 transition-transform duration-200"
+          <AnimateIn variant="fadeUp">
+            <Link
+              href="/blog"
+              className="group inline-flex items-baseline gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
-              ←
-            </span>
-            Blog
-          </Link>
-
-          {/* Category tag */}
-          {frontmatter.category && (
-            <div className="mb-5">
-              <span className="text-[13px] font-medium text-(--accent-brand)">
-                {frontmatter.category}
+              <span
+                aria-hidden
+                className="group-hover:-translate-x-0.5 transition-transform duration-200"
+              >
+                ←
               </span>
-            </div>
-          )}
+              Blog
+            </Link>
+          </AnimateIn>
 
-          {/* Title */}
-          <h1 className="text-h1 text-foreground max-w-[800px] mb-8">
-            {frontmatter.title}
-          </h1>
+          <div className="mt-12 md:mt-16 grid grid-cols-12 gap-x-6 gap-y-8">
+            {/* Category — borderless dot label */}
+            {frontmatter.category && (
+              <AnimateIn variant="fadeUp" className="col-span-12">
+                <span className="badge-pill text-micro-label">
+                  <span aria-hidden className="label-dot" />
+                  <span className="lowercase">{frontmatter.category}</span>
+                </span>
+              </AnimateIn>
+            )}
 
-          {/* Author row */}
-          <div className="flex flex-wrap items-center gap-4">
-            <div className="flex items-center gap-3">
-              <div className="size-10 rounded-full bg-card flex items-center justify-center text-[12px] font-medium text-foreground">
-                {(frontmatter.author || "SB")
-                  .split(" ")
-                  .map((n: string) => n[0])
-                  .join("")}
-              </div>
-              <div>
+            {/* Title */}
+            <h1 className="col-span-12 lg:col-span-8 text-display text-balance">
+              <RevealText delay={0.08}>{frontmatter.title}</RevealText>
+            </h1>
+
+            {/* Standfirst */}
+            {frontmatter.description && (
+              <AnimateIn
+                variant="fadeUp"
+                delay={0.14}
+                className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end"
+              >
+                <p className="text-body-lg text-muted-foreground max-w-[480px]">
+                  {frontmatter.description}
+                </p>
+              </AnimateIn>
+            )}
+          </div>
+
+          {/* Meta — one quiet line */}
+          <AnimateIn variant="fadeUp" delay={0.18}>
+            <div className="mt-8 md:mt-10 flex flex-wrap items-center gap-x-3 gap-y-2">
+              <span className="flex items-center gap-3">
+                <span className="size-8 rounded-full bg-card grid place-items-center text-[11px] font-medium text-foreground">
+                  {initials(frontmatter.author || "SB")}
+                </span>
                 <p className="text-[14px] font-medium text-foreground">
                   {frontmatter.author || "StartUp Bros"}
                 </p>
                 {frontmatter.authorRole && (
-                  <p className="text-[12px] text-muted-foreground">
-                    {frontmatter.authorRole}
-                  </p>
+                  <>
+                    <span
+                      aria-hidden
+                      className="text-[13px] text-muted-foreground/60"
+                    >
+                      ·
+                    </span>
+                    <p className="text-[13px] text-muted-foreground">
+                      {frontmatter.authorRole}
+                    </p>
+                  </>
                 )}
-              </div>
-            </div>
-
-            <span className="w-px h-4 bg-border" />
-
-            <p className="text-[13px] text-muted-foreground">
-              {formattedDate}
-            </p>
-
-            {frontmatter.readTime && (
-              <>
-                <span className="w-px h-4 bg-border" />
+              </span>
+              <span
+                aria-hidden
+                className="hidden sm:block text-[13px] text-muted-foreground/60"
+              >
+                ·
+              </span>
+              <span className="flex items-center gap-3">
                 <p className="text-[13px] text-muted-foreground">
-                  {frontmatter.readTime}
+                  {formattedDate}
                 </p>
-              </>
-            )}
-          </div>
+                {frontmatter.readTime && (
+                  <>
+                    <span
+                      aria-hidden
+                      className="text-[13px] text-muted-foreground/60"
+                    >
+                      ·
+                    </span>
+                    <p className="text-[13px] text-muted-foreground">
+                      {frontmatter.readTime}
+                    </p>
+                  </>
+                )}
+              </span>
+            </div>
+          </AnimateIn>
         </div>
       </header>
 
-      {/* Description / intro */}
-      {frontmatter.description && (
-        <div className="px-6 md:px-10 pb-8">
-          <div className="mx-auto max-w-[1080px]">
-            <p className="text-body-lg text-muted-foreground max-w-[680px]">
-              {frontmatter.description}
-            </p>
-          </div>
-        </div>
-      )}
-
-      {/* Hero plate */}
-      <div className="px-6 md:px-10 pb-12">
-        <div className="mx-auto max-w-[1080px]">
-          {frontmatter.image ? (
-            <Plate caption={frontmatter.category || slug} fig="01">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={frontmatter.image}
-                alt={frontmatter.title}
-                className="w-full h-auto object-cover"
-              />
-            </Plate>
-          ) : (
-            <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-secondary dark:bg-card p-8">
-              <p className="text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.12] tracking-[-0.025em] text-foreground/10 max-w-[720px]">
-                {frontmatter.title}
-              </p>
-              <p className="absolute bottom-6 left-8 text-xs text-muted-foreground">
-                FIG. 00{frontmatter.category ? ` — ${frontmatter.category}` : ""}
-              </p>
-            </div>
-          )}
+      {/* Hero plate — full-container editorial media */}
+      <div className="px-6 md:px-10 mt-12 md:mt-16">
+        <div className="mx-auto max-w-[1600px]">
+          <AnimateIn variant="fadeUp" delay={0.1}>
+            {frontmatter.image ? (
+              <Plate caption={frontmatter.category || slug} fig="01">
+                <div className="aspect-[16/10] md:aspect-[21/9]">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src={frontmatter.image}
+                    alt={frontmatter.title}
+                    className="h-full w-full object-cover"
+                  />
+                </div>
+              </Plate>
+            ) : (
+              <div className="relative aspect-[16/10] md:aspect-[21/9] overflow-hidden rounded-[20px] bg-card p-8">
+                <p
+                  aria-hidden
+                  className="select-none text-[clamp(4rem,10vw,9rem)] font-medium leading-[1.05] tracking-[-0.025em] text-foreground/[0.06] -translate-x-2 translate-y-2"
+                >
+                  {frontmatter.title}
+                </p>
+                <p className="absolute bottom-6 left-8 text-xs text-muted-foreground">
+                  FIG. 00{frontmatter.category ? ` — ${frontmatter.category}` : ""}
+                </p>
+              </div>
+            )}
+          </AnimateIn>
         </div>
       </div>
 
-      {/* Two-column content */}
-      <div className="px-6 md:px-10 pb-20">
+      {/* Reading measure — 680px prose with anchored ToC rail */}
+      <div className="px-6 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28">
         <div className="mx-auto max-w-[1080px]">
-          <div className="flex gap-16">
+          <div className="lg:flex lg:justify-between lg:gap-16">
             {/* Main content */}
             <div className="flex-1 min-w-0 max-w-[680px]" data-blog-content>
               <div
                 className="
                   prose max-w-none
-                  prose-headings:font-sans prose-headings:font-medium prose-headings:tracking-[-0.02em] prose-headings:text-foreground
-                  prose-h2:text-[28px] prose-h2:leading-[1.2] prose-h2:mt-12 prose-h2:mb-4
-                  prose-h3:text-[22px] prose-h3:leading-[1.25] prose-h3:mt-8 prose-h3:mb-3
-                  prose-p:text-[17px] prose-p:leading-[1.7] prose-p:text-foreground/80
+                  prose-headings:font-sans prose-headings:font-medium prose-headings:tracking-[-0.025em] prose-headings:text-foreground
+                  prose-h2:text-[28px] prose-h2:leading-[1.2] prose-h2:mt-14 prose-h2:mb-5
+                  prose-h3:text-[21px] prose-h3:leading-[1.3] prose-h3:mt-10 prose-h3:mb-3
+                  prose-p:text-[17px] prose-p:leading-[1.75] prose-p:text-foreground/80
                   prose-li:text-[17px] prose-li:leading-[1.7] prose-li:text-foreground/80
+                  prose-li:my-1.5
                   prose-li:marker:text-muted-foreground
                   prose-strong:text-foreground prose-strong:font-semibold
                   prose-a:text-(--accent-brand) prose-a:font-medium prose-a:no-underline
@@ -205,20 +258,19 @@ export default async function BlogPostPage({
                   prose-a:[background-size:0%_2px]
                   prose-a:[transition:background-size_250ms_ease-out]
                   hover:prose-a:[background-size:100%_2px]
-                  prose-blockquote:border-l-2 prose-blockquote:border-(--accent-brand) prose-blockquote:text-muted-foreground prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-[19px] prose-blockquote:[quotes:none]
-                  prose-code:text-[13px] prose-code:text-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
-                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border-0 prose-pre:rounded-xl
-                  prose-hr:border-border prose-hr:my-10
-                  prose-img:rounded-xl
+                  prose-code:text-[13px] prose-code:text-foreground prose-code:bg-card prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                  prose-pre:bg-card prose-pre:text-foreground prose-pre:border-0 prose-pre:rounded-2xl prose-pre:px-6 prose-pre:py-5
+                  prose-hr:border-border prose-hr:my-12
+                  prose-img:rounded-2xl
                   prose-ol:pl-5 prose-ul:pl-5
                 "
               >
-                <MDXRemote source={content} />
+                <MDXRemote source={content} components={mdxComponents} />
               </div>
 
               {/* Tags */}
               {frontmatter.tags && frontmatter.tags.length > 0 && (
-                <div className="mt-12 pt-8 border-t border-border">
+                <div className="mt-14 pt-8 border-t border-border/60">
                   <p className="text-micro-label text-muted-foreground mb-3">
                     Topics
                   </p>
@@ -243,16 +295,37 @@ export default async function BlogPostPage({
                 </div>
               )}
 
-              {/* Share */}
-              <div className="mt-8">
-                <BlogShareBar title={frontmatter.title} />
+              {/* Author sign-off */}
+              <div className="mt-10 pt-8 border-t border-border/60 flex flex-wrap items-center justify-between gap-x-6 gap-y-6">
+                <div className="flex items-center gap-4">
+                  <span className="size-11 rounded-full bg-card grid place-items-center text-[13px] font-medium text-foreground">
+                    {initials(frontmatter.author || "SB")}
+                  </span>
+                  <span>
+                    <p className="text-[15px] font-medium text-foreground leading-tight">
+                      {frontmatter.author || "StartUp Bros"}
+                    </p>
+                    {frontmatter.authorRole && (
+                      <p className="text-[13px] text-muted-foreground mt-0.5">
+                        {frontmatter.authorRole}
+                      </p>
+                    )}
+                  </span>
+                </div>
+                {/* Share — mobile / tablet (desktop lives in the rail) */}
+                <div className="lg:hidden">
+                  <BlogShareBar title={frontmatter.title} />
+                </div>
               </div>
             </div>
 
-            {/* Sticky sidebar */}
+            {/* Anchored rail — ToC + share */}
             <aside className="hidden lg:block w-[240px] shrink-0">
-              <div className="sticky top-[120px]">
+              <div className="sticky top-28">
                 <BlogTableOfContents />
+                <div className="mt-10 pt-8 border-t border-border/60 pl-4">
+                  <BlogShareBar title={frontmatter.title} variant="rail" />
+                </div>
               </div>
             </aside>
           </div>
@@ -261,45 +334,35 @@ export default async function BlogPostPage({
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 md:px-10 py-16">
-          <div className="mx-auto max-w-[1080px]">
-            <h2 className="text-h2 text-foreground mb-10">
-              Continue Reading
+        <section className="px-6 md:px-10 pb-24 md:pb-32">
+          <div className="mx-auto max-w-[1600px]">
+            <h2 className="text-h2 text-foreground mb-10 md:mb-14">
+              <RevealText>Continue Reading</RevealText>
             </h2>
-            <div className="border-b border-border/60">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
               {relatedPosts.map((related: any, index: number) => (
-                <Link
+                <GlassBlogCard
                   key={related.slug}
+                  figIndex={index + 1}
+                  title={related.title}
+                  excerpt={related.description}
+                  category={related.category}
+                  image={related.image}
                   href={`/blog/${related.slug}`}
-                  className="group flex items-baseline gap-6 border-t border-border/60 py-6"
-                >
-                  <span className="text-sm tabular-nums text-muted-foreground">
-                    {String(index + 1).padStart(2, "0")}
-                  </span>
-                  <span className="flex-1 min-w-0 text-[22px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground">
-                    <span className="link-sweep group-hover:[background-size:100%_2px]">
-                      {related.title}
-                    </span>
-                  </span>
-                  <span className="hidden sm:block text-[13px] text-muted-foreground whitespace-nowrap">
-                    {new Date(related.date).toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                  <span
-                    aria-hidden
-                    className="text-sm text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
-                  >
-                    →
-                  </span>
-                </Link>
+                  readTime={related.readTime}
+                  date={new Date(related.date).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })}
+                />
               ))}
             </div>
           </div>
         </section>
       )}
+
+      <FinalCTA index={null} />
     </article>
   );
 }

@@ -4,6 +4,7 @@ import { Calendar } from "lucide-react";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { ServiceCard } from "@/components/services/ServiceCard";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
@@ -14,7 +15,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32">
+    <>
+    <section className="px-6 md:px-10 pt-16 md:pt-24 pb-24 md:pb-32">
       <div className="mx-auto max-w-[1600px]">
         <SectionHeader
           index="01"
@@ -78,5 +80,7 @@ export default function ServicesPage() {
         </div>
       </div>
     </section>
+    <FinalCTA index={null} />
+    </>
   );
 }

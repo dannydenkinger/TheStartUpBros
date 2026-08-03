@@ -40,26 +40,33 @@ export function BlogTableOfContents() {
   useEffect(() => {
     if (headings.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first heading that is currently intersecting
-        const visibleEntries = entries.filter((e) => e.isIntersecting);
-        if (visibleEntries.length > 0) {
-          setActiveId(visibleEntries[0].target.id);
+    // Position-based tracking — the last heading above the reading line wins.
+    // (IntersectionObserver misreports on programmatic / fast scrolls.)
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const readingLine = 140;
+      let current = "";
+      for (const heading of headings) {
+        const el = document.getElementById(heading.id);
+        if (el && el.getBoundingClientRect().top <= readingLine) {
+          current = heading.id;
         }
-      },
-      {
-        rootMargin: "-80px 0px -60% 0px",
-        threshold: 0,
       }
-    );
+      setActiveId(current);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
 
-    headings.forEach((heading) => {
-      const el = document.getElementById(heading.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [headings]);
 
   const scrollToTop = () => {
@@ -69,9 +76,9 @@ export function BlogTableOfContents() {
   if (headings.length === 0) return null;
 
   return (
-    <nav className="space-y-1">
-      <p className="text-xs font-medium text-muted-foreground mb-4">
-        On this page
+    <nav>
+      <p className="text-micro-label text-muted-foreground pl-4 mb-4">
+        <span className="lowercase">On this page</span>
       </p>
       <ul className="space-y-0.5">
         {headings.map((heading) => (
@@ -88,8 +95,8 @@ export function BlogTableOfContents() {
                 }
               }}
               className={`
-                relative block py-1.5 text-[13px] leading-snug transition-colors duration-200
-                ${heading.level === 3 ? "pl-7" : "pl-4"}
+                relative block py-[5px] text-[13px] leading-snug transition-colors duration-200
+                ${heading.level === 3 ? "pl-8" : "pl-4"}
                 ${
                   activeId === heading.id
                     ? "text-foreground font-medium"
@@ -110,9 +117,14 @@ export function BlogTableOfContents() {
       </ul>
       <button
         onClick={scrollToTop}
-        className="flex items-baseline gap-1.5 mt-6 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
+        className="group flex items-baseline gap-1.5 mt-7 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
       >
-        <span aria-hidden>↑</span>
+        <span
+          aria-hidden
+          className="group-hover:-translate-y-0.5 transition-transform duration-200"
+        >
+          ↑
+        </span>
         Back to top
       </button>
     </nav>

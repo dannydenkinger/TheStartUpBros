@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 export const metadata = {
@@ -63,50 +65,102 @@ const galleryImages = [
   "/images/portfolio/fintech-transactions.webp",   // light
 ];
 
+// Derived meta — count is computed from the data, never hand-typed.
+const imageCount = String(galleryImages.length).padStart(2, "0");
+
+// ── Editorial grid rhythm ────────────────────────────────────────────────
+// A repeating 10-tile cycle on desktop keeps the grid calm but not uniform:
+//   row 1 → wide + single      row 2 → single ×3
+//   row 3 → single + wide      row 4 → single ×3
+// The final tile stretches full-width when it would otherwise sit alone.
+type TileSize = "single" | "wide" | "full";
+
+function tileSize(i: number, total: number): TileSize {
+  const pos = i % 10;
+  const isWide = pos === 0 || pos === 6;
+  if (i === total - 1 && pos === 0) return "full";
+  return isWide ? "wide" : "single";
+}
+
+const tileSpan: Record<TileSize, string> = {
+  single: "",
+  wide: "lg:col-span-2",
+  full: "lg:col-span-3",
+};
+
+const tileAspect: Record<TileSize, string> = {
+  single: "aspect-[4/3]",
+  wide: "aspect-[4/3] lg:aspect-[41/15]",
+  full: "aspect-[4/3] lg:aspect-[21/5]",
+};
+
 export default function GalleryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
       <section className="pt-16 md:pt-24 pb-14 md:pb-16">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
-          <span className="badge-pill text-micro-label mb-8 inline-flex">
-            <span aria-hidden className="label-dot" />
-            <span className="lowercase">Gallery</span>
-          </span>
-          <div className="grid grid-cols-12 gap-6">
+          <AnimateIn variant="fadeUp">
+            <span className="badge-pill text-micro-label mb-8 inline-flex">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Gallery</span>
+            </span>
+          </AnimateIn>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8">
             <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
-              Gallery
+              <RevealText delay={0.08}>Gallery</RevealText>
             </h1>
-            <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
-              A visual tour of our product, dashboard, mobile, and web3 work.
-            </p>
+            <div className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end">
+              <AnimateIn variant="fadeUp" delay={0.12}>
+                <p className="text-body-lg text-muted-foreground max-w-[440px]">
+                  A visual tour of our product, dashboard, mobile, and web3
+                  work.
+                </p>
+                <p className="mt-5 text-[13px] text-muted-foreground/80 tabular-nums">
+                  {imageCount} images
+                </p>
+              </AnimateIn>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Uniform grid — every tile is the same aspect ratio & size */}
+      {/* Editorial grid — repeating wide/single rhythm, every image kept */}
       <section className="pt-4 md:pt-6 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 isolate">
-          {galleryImages.map((src) => (
-            <div
-              key={src}
-              className="group rounded-2xl overflow-hidden isolate bg-card shadow-none"
-            >
-              <div className="relative aspect-[4/3] w-full overflow-hidden">
-                <div className="absolute inset-0" style={getWrapperStyle(src)}>
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    quality={90}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                    style={getImageStyle(src)}
-                  />
+          {galleryImages.map((src, i) => {
+            const size = tileSize(i, galleryImages.length);
+            return (
+              <AnimateIn
+                key={src}
+                variant="fadeUp"
+                delay={(i % 3) * 0.06}
+                className={tileSpan[size]}
+              >
+                <div className="group rounded-2xl overflow-hidden isolate bg-card shadow-none">
+                  <div
+                    className={`relative w-full overflow-hidden ${tileAspect[size]}`}
+                  >
+                    <div className="absolute inset-0" style={getWrapperStyle(src)}>
+                      <Image
+                        src={src}
+                        alt=""
+                        fill
+                        quality={90}
+                        sizes={
+                          size === "single"
+                            ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
+                        }
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                        style={getImageStyle(src)}
+                      />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          ))}
+              </AnimateIn>
+            );
+          })}
         </div>
       </section>
 

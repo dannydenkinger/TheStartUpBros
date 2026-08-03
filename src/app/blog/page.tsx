@@ -65,13 +65,19 @@ export default function BlogPage() {
     <div className="flex flex-col min-h-screen">
       {/* Blog Hero */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16">
-        <div className="max-w-[1600px] mx-auto grid grid-cols-12 gap-6">
+        <div className="max-w-[1600px] mx-auto">
+          <span className="badge-pill text-micro-label mb-8 inline-flex">
+            <span aria-hidden className="label-dot" />
+            <span className="lowercase">Blog</span>
+          </span>
+          <div className="grid grid-cols-12 gap-6">
           <h1 className="col-span-12 lg:col-span-8 text-display text-foreground">
             Blog &amp; Case <span className="accent-word">Studies</span>
           </h1>
           <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg text-muted-foreground">
             Lessons from the trenches of rapid product development.
           </p>
+          </div>
         </div>
       </section>
 

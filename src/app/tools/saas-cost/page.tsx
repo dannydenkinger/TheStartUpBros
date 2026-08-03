@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SaaSCostCalculator } from "@/components/tools/SaaSCostCalculator";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata: Metadata = {
   title: "SaaS Cost Calculator | StartUpBros",
@@ -39,6 +40,7 @@ export default function SaaSCostPage() {
     <>
       <JsonLd data={webAppJsonLd} />
       <SaaSCostCalculator />
+      <FinalCTA index={null} />
     </>
   );
 }

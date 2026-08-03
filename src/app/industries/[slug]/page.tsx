@@ -22,7 +22,9 @@ import {
   Zap,
   type LucideIcon,
 } from "lucide-react";
+import { AnimateIn } from "@/components/shared/AnimateIn";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { RevealText } from "@/components/shared/RevealText";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
@@ -341,42 +343,52 @@ export default async function IndustryPage({
       {/* ── Hero ── */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
         <div className="max-w-[1600px] mx-auto">
-          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
-            <span className="badge-pill">
-              <span aria-hidden className="label-dot" />
-              Founded by Denkinger Bros
-            </span>
-            <span className="badge-pill">
-              <span aria-hidden className="label-dot" />
-              Trial Week Included
-            </span>
-          </div>
+          <AnimateIn variant="fadeUp">
+            <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
+              <span className="badge-pill">
+                <span aria-hidden className="label-dot" />
+                Founded by Denkinger Bros
+              </span>
+              <span className="badge-pill">
+                <span aria-hidden className="label-dot" />
+                Trial Week Included
+              </span>
+            </div>
+          </AnimateIn>
 
-          <div className="grid grid-cols-12 gap-x-6">
-            <h1 className="col-span-12 lg:col-span-10 text-display text-foreground mb-6">
-              {data.headline}
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+            <h1 className="col-span-12 lg:col-span-8 text-display text-foreground">
+              <RevealText delay={0.08}>{data.headline}</RevealText>
             </h1>
-          </div>
-          <p className="text-body-lg max-w-[840px] mb-10">{data.subtitle}</p>
-
-          <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-12">
-            <CTAButton href="/strategy-call" variant="primary">
-              Book Strategy Call
-            </CTAButton>
-            <CTAButton href="/portfolio" variant="secondary">
-              View Our Work
-            </CTAButton>
+            <div className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end">
+              <AnimateIn variant="fadeUp" delay={0.12}>
+                <p className="text-body-lg text-muted-foreground max-w-[440px]">
+                  {data.subtitle}
+                </p>
+              </AnimateIn>
+            </div>
           </div>
 
-          <div className="max-w-[840px]">
-            <StatusStrip
-              items={[
-                { label: "Scope", value: "Within 48 hours" },
-                { label: "Design", value: "Usable by week one" },
-                { label: "Ship", value: "MVP in 2–4 weeks" },
-              ]}
-            />
-          </div>
+          <AnimateIn variant="fadeUp" delay={0.18}>
+            <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-3">
+              <CTAButton href="/strategy-call" variant="primary">
+                Book Strategy Call
+              </CTAButton>
+              <CTAButton href="/portfolio" variant="secondary">
+                View Our Work
+              </CTAButton>
+            </div>
+
+            <div className="mt-12 md:mt-14">
+              <StatusStrip
+                items={[
+                  { label: "Scope", value: "Within 48 hours" },
+                  { label: "Design", value: "Usable by week one" },
+                  { label: "Ship", value: "MVP in 2–4 weeks" },
+                ]}
+              />
+            </div>
+          </AnimateIn>
         </div>
       </section>
 
@@ -392,42 +404,45 @@ export default async function IndustryPage({
             title={`${data.label} Design Studies`}
           />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {data.caseStudies.map((cs) => (
-              <Link
-                key={cs.title}
-                href={cs.href}
-                className="group block overflow-hidden rounded-[20px] bg-card transition-colors duration-300 hover:bg-(--surface-card-hover)"
-              >
-                <div className="relative aspect-[16/10] overflow-hidden isolate">
-                  <div
-                    className="absolute inset-0 overflow-hidden"
-                    style={getWrapperStyle(cs.image)}
-                  >
-                    <Image
-                      src={cs.image}
-                      alt={cs.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                      style={getImageStyle(cs.image)}
-                    />
+            {data.caseStudies.map((cs, i) => (
+              <AnimateIn key={cs.title} variant="fadeUp" delay={i * 0.08}>
+                <Link
+                  href={cs.href}
+                  className="group flex h-full flex-col overflow-hidden rounded-[20px] bg-card transition-colors duration-300 hover:bg-(--surface-card-hover)"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden isolate">
+                    <div
+                      className="absolute inset-0 overflow-hidden"
+                      style={getWrapperStyle(cs.image)}
+                    >
+                      <Image
+                        src={cs.image}
+                        alt={cs.title}
+                        fill
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                        style={getImageStyle(cs.image)}
+                      />
+                    </div>
                   </div>
-                </div>
-                <div className="p-6">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <p className="text-[13px] font-medium text-(--accent-brand)">
-                      {cs.tag} — {cs.location}
-                    </p>
-                    <span aria-hidden className="plus-btn">
-                      +
+                  <div className="flex flex-1 flex-col p-6 md:p-7">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <p className="text-[13px] font-medium text-(--accent-brand) mb-3">
+                          {cs.tag} — {cs.location}
+                        </p>
+                        <h3 className="text-h3 text-foreground">{cs.title}</h3>
+                      </div>
+                      <span aria-hidden className="plus-btn shrink-0">
+                        +
+                      </span>
+                    </div>
+                    <span className="mt-auto pt-5 text-[13px] font-medium text-(--accent-brand)">
+                      → View Case Study
                     </span>
                   </div>
-                  <h3 className="text-h3 text-foreground mb-4">{cs.title}</h3>
-                  <span className="text-[13px] font-medium text-(--accent-brand)">
-                    → View Case Study
-                  </span>
-                </div>
-              </Link>
+                </Link>
+              </AnimateIn>
             ))}
           </div>
         </div>
@@ -445,20 +460,29 @@ export default async function IndustryPage({
             {data.features.map((feature, i) => {
               const Icon = iconMap[feature.icon] ?? Sparkles;
               return (
-                <div key={feature.title} className="card-elevated">
-                  <div className="flex items-start justify-between mb-6">
-                    <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    <span className="text-xs tabular-nums text-muted-foreground/80">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+                <AnimateIn
+                  key={feature.title}
+                  variant="fadeUp"
+                  delay={(i % 3) * 0.06}
+                >
+                  <div className="card-elevated flex h-full flex-col">
+                    <div className="flex items-start justify-between mb-10">
+                      <Icon
+                        className="w-5 h-5 text-foreground"
+                        strokeWidth={1.5}
+                      />
+                      <span className="text-xs tabular-nums text-muted-foreground/80">
+                        {String(i + 1).padStart(2, "0")}
+                      </span>
+                    </div>
+                    <h3 className="text-h3 text-foreground mb-3">
+                      {feature.title}
+                    </h3>
+                    <p className="text-caption text-muted-foreground max-w-[400px]">
+                      {feature.description}
+                    </p>
                   </div>
-                  <h3 className="text-h3 text-foreground mb-3">
-                    {feature.title}
-                  </h3>
-                  <p className="text-caption text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </div>
+                </AnimateIn>
               );
             })}
           </div>
@@ -468,31 +492,42 @@ export default async function IndustryPage({
       {/* ── Testimonial Quote ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
         <div className="max-w-[1600px] mx-auto">
-          <div className="mb-16">
-            <span className="badge-pill text-micro-label">
-              <span aria-hidden className="label-dot" />
-              <span className="sr-only">{idx()} · </span>
-              <span className="lowercase">TESTIMONIAL</span>
-            </span>
-          </div>
-          <div className="card-elevated p-8 md:p-12">
-            <div className="grid grid-cols-12 gap-x-6">
-              <div className="col-span-12 lg:col-span-10">
-                <p className="text-xs text-muted-foreground mb-8">
-                  Denkinger Bros · Design Study
-                </p>
-                <blockquote className="text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.25] tracking-[-0.02em] font-medium text-foreground mb-8">
-                  &ldquo;{data.testimonial.quote}&rdquo;
-                </blockquote>
-                <p className="text-sm font-medium text-foreground">
-                  {data.testimonial.name}
-                </p>
-                <p className="text-xs text-muted-foreground mt-1">
-                  {data.testimonial.role}
-                </p>
+          <AnimateIn variant="fadeUp">
+            <div className="mb-12 md:mb-16">
+              <span className="badge-pill text-micro-label">
+                <span aria-hidden className="label-dot" />
+                <span className="sr-only">{idx()} · </span>
+                <span className="lowercase">TESTIMONIAL</span>
+              </span>
+            </div>
+          </AnimateIn>
+          <AnimateIn variant="fadeUp" delay={0.08}>
+            <div className="card-elevated p-8 md:p-14">
+              <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+                <div className="col-span-12 lg:col-span-9">
+                  <blockquote className="text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.25] tracking-[-0.02em] font-medium text-foreground">
+                    &ldquo;{data.testimonial.quote}&rdquo;
+                  </blockquote>
+                </div>
+                <div className="col-span-12 flex flex-wrap items-end justify-between gap-x-6 gap-y-4">
+                  <div className="flex items-center gap-3">
+                    <span aria-hidden className="label-dot" />
+                    <div>
+                      <p className="text-sm font-medium text-foreground">
+                        {data.testimonial.name}
+                      </p>
+                      <p className="text-xs text-muted-foreground mt-1">
+                        {data.testimonial.role}
+                      </p>
+                    </div>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Denkinger Bros · Design Study
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          </AnimateIn>
         </div>
       </section>
 
@@ -537,30 +572,36 @@ export default async function IndustryPage({
       {/* ── Pricing CTA ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
         <div className="max-w-[1600px] mx-auto">
-          <div className="mb-16">
-            <span className="badge-pill text-micro-label">
-              <span aria-hidden className="label-dot" />
-              <span className="sr-only">{idx()} · </span>
-              <span className="lowercase">PRICING</span>
-            </span>
-          </div>
-          <div className="card-elevated p-8 md:p-12">
-            <div className="grid grid-cols-12 gap-x-6">
-              <div className="col-span-12 lg:col-span-7">
-                <h2 className="text-h2 text-foreground mb-5">
-                  So much value at such a{" "}
-                  <span className="accent-word">flexible</span> price
-                </h2>
-                <p className="text-body-lg max-w-[560px] mb-10">
-                  Consultation-based custom pricing. We scope every project to the
-                  fastest path to launch, no retainers, no bloat.
-                </p>
-                <CTAButton href="/strategy-call" variant="primary">
-                  Book a Call
-                </CTAButton>
+          <AnimateIn variant="fadeUp">
+            <div className="mb-12 md:mb-16">
+              <span className="badge-pill text-micro-label">
+                <span aria-hidden className="label-dot" />
+                <span className="sr-only">{idx()} · </span>
+                <span className="lowercase">PRICING</span>
+              </span>
+            </div>
+          </AnimateIn>
+          <AnimateIn variant="fadeUp" delay={0.08}>
+            <div className="card-elevated p-8 md:p-14">
+              <div className="grid grid-cols-12 gap-x-6 gap-y-10 items-end">
+                <div className="col-span-12 lg:col-span-8">
+                  <h2 className="text-h2 text-foreground mb-5 text-balance">
+                    So much value at such a{" "}
+                    <span className="accent-word">flexible</span> price
+                  </h2>
+                  <p className="text-body-lg max-w-[560px]">
+                    Consultation-based custom pricing. We scope every project to
+                    the fastest path to launch, no retainers, no bloat.
+                  </p>
+                </div>
+                <div className="col-span-12 lg:col-span-4 flex lg:justify-end">
+                  <CTAButton href="/strategy-call" variant="primary">
+                    Book a Call
+                  </CTAButton>
+                </div>
               </div>
             </div>
-          </div>
+          </AnimateIn>
         </div>
       </section>
 

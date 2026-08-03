@@ -195,7 +195,7 @@ export function Hero() {
             {statusItems.map((item) => (
               <span
                 key={item.label}
-                className="inline-flex items-center gap-2.5 text-[13px] text-neutral-500 whitespace-nowrap"
+                className="inline-flex items-center gap-2.5 text-[13px] text-neutral-400 whitespace-nowrap"
               >
                 <span
                   aria-hidden
