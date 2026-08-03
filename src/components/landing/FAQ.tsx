@@ -105,15 +105,15 @@ function FAQItem({
   onToggle: () => void;
 }) {
   return (
-    <div className="border-b border-border">
+    <div className="mb-3 rounded-[16px] bg-card shadow-(--shadow-plate)">
       <button
         onClick={onToggle}
-        className="flex w-full items-baseline gap-6 py-6 text-left"
+        className="flex w-full items-baseline gap-5 px-6 py-5 text-left"
       >
         <span
           className={cn(
-            "font-mono text-sm tracking-[0.04em] w-8 shrink-0 transition-colors duration-200",
-            isOpen ? "text-(--accent-brand)" : "text-muted-foreground",
+            "text-[13px] font-medium tabular-nums w-7 shrink-0 transition-colors duration-200",
+            isOpen ? "text-(--accent-brand)" : "text-muted-foreground/70",
           )}
         >
           {index}
@@ -122,7 +122,7 @@ function FAQItem({
         <span
           aria-hidden
           className={cn(
-            "font-mono text-lg leading-none shrink-0 text-muted-foreground transition-transform duration-300",
+            "text-xl leading-none shrink-0 font-light text-muted-foreground transition-transform duration-300",
             isOpen && "rotate-45 text-foreground",
           )}
         >
@@ -136,7 +136,7 @@ function FAQItem({
         )}
       >
         <div className="overflow-hidden">
-          <p className="pb-6 ml-14 max-w-[560px] text-muted-foreground">
+          <p className="px-6 pb-6 ml-12 max-w-[560px] text-muted-foreground">
             {answer}
           </p>
         </div>
@@ -149,7 +149,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32 bg-background">
+    <section className="px-6 md:px-10 py-20 md:py-28 bg-background">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
           <SectionHeader
@@ -167,13 +167,13 @@ export function FAQ({ index = "04" }: { index?: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
           {/* ─── Left: sticky CTA card ─────────────────────────────── */}
           <div className="lg:sticky lg:top-[120px] lg:self-start">
-            <div className="rounded-md border border-border bg-card p-6">
+            <div className="rounded-[20px] bg-card shadow-(--shadow-plate) p-7">
               {/* Overlapping avatars */}
               <div className="flex -space-x-3 mb-5">
                 {teamAvatars.map((src, i) => (
                   <div
                     key={src}
-                    className="relative w-11 h-11 rounded-full border-2 border-background overflow-hidden bg-secondary"
+                    className="relative w-11 h-11 rounded-full border-2 border-card overflow-hidden bg-secondary"
                     style={{ zIndex: teamAvatars.length - i }}
                   >
                     <Image

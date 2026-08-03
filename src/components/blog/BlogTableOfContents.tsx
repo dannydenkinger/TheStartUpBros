@@ -70,7 +70,7 @@ export function BlogTableOfContents() {
 
   return (
     <nav className="space-y-1">
-      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mb-4">
+      <p className="text-xs font-medium text-muted-foreground mb-4">
         On this page
       </p>
       <ul className="space-y-0.5">
@@ -100,7 +100,7 @@ export function BlogTableOfContents() {
               {activeId === heading.id && (
                 <span
                   aria-hidden
-                  className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 bg-(--accent-brand)"
+                  className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-(--accent-brand)"
                 />
               )}
               {heading.text}
@@ -112,7 +112,7 @@ export function BlogTableOfContents() {
         onClick={scrollToTop}
         className="flex items-baseline gap-1.5 mt-6 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
       >
-        <span aria-hidden className="font-mono">↑</span>
+        <span aria-hidden>↑</span>
         Back to top
       </button>
     </nav>

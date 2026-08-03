@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { BlogShareBar } from "@/components/blog/BlogShareBar";
+import { Plate } from "@/components/shared/Plate";
 
 const contentDir = path.join(process.cwd(), "src/content/blog");
 
@@ -81,7 +82,7 @@ export default async function BlogPostPage({
           {/* Back link */}
           <Link
             href="/blog"
-            className="group inline-flex items-baseline gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10"
+            className="group inline-flex items-baseline gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 mb-10"
           >
             <span
               aria-hidden
@@ -107,7 +108,7 @@ export default async function BlogPostPage({
           {/* Author row */}
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="size-10 rounded-full border border-border bg-secondary flex items-center justify-center font-mono text-[12px] text-foreground">
+              <div className="size-10 rounded-full bg-card shadow-(--shadow-plate) flex items-center justify-center text-[12px] font-medium text-foreground">
                 {(frontmatter.author || "SB")
                   .split(" ")
                   .map((n: string) => n[0])
@@ -118,7 +119,7 @@ export default async function BlogPostPage({
                   {frontmatter.author || "StartUp Bros"}
                 </p>
                 {frontmatter.authorRole && (
-                  <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                  <p className="text-[12px] text-muted-foreground">
                     {frontmatter.authorRole}
                   </p>
                 )}
@@ -127,14 +128,14 @@ export default async function BlogPostPage({
 
             <span className="w-px h-4 bg-border" />
 
-            <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+            <p className="text-[13px] text-muted-foreground">
               {formattedDate}
             </p>
 
             {frontmatter.readTime && (
               <>
                 <span className="w-px h-4 bg-border" />
-                <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                <p className="text-[13px] text-muted-foreground">
                   {frontmatter.readTime}
                 </p>
               </>
@@ -158,32 +159,20 @@ export default async function BlogPostPage({
       <div className="px-6 md:px-10 pb-12">
         <div className="mx-auto max-w-[1080px]">
           {frontmatter.image ? (
-            <figure>
-              <div className="rounded-md border border-border bg-secondary p-1.5 shadow-(--shadow-plate)">
-                <div className="rounded-[4px] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={frontmatter.image}
-                    alt={frontmatter.title}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              </div>
-              <figcaption className="mt-2 flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-                <span>{frontmatter.category || slug}</span>
-                <span
-                  aria-hidden
-                  className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
-                />
-                <span className="whitespace-nowrap">FIG. 01</span>
-              </figcaption>
-            </figure>
+            <Plate caption={frontmatter.category || slug} fig="01" shadow>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={frontmatter.image}
+                alt={frontmatter.title}
+                className="w-full h-auto object-cover"
+              />
+            </Plate>
           ) : (
-            <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-border bg-secondary dark:bg-card p-8">
-              <p className="font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-foreground/15 max-w-[720px]">
+            <div className="relative aspect-[16/9] overflow-hidden rounded-[20px] bg-secondary dark:bg-card p-8">
+              <p className="text-[clamp(1.75rem,4vw,3rem)] font-medium leading-[1.12] tracking-[-0.025em] text-foreground/10 max-w-[720px]">
                 {frontmatter.title}
               </p>
-              <p className="absolute bottom-6 left-8 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+              <p className="absolute bottom-6 left-8 text-xs text-muted-foreground">
                 FIG. 00{frontmatter.category ? ` — ${frontmatter.category}` : ""}
               </p>
             </div>
@@ -200,25 +189,25 @@ export default async function BlogPostPage({
               <div
                 className="
                   prose max-w-none
-                  prose-headings:font-display prose-headings:font-normal prose-headings:tracking-[-0.01em] prose-headings:text-foreground
+                  prose-headings:font-sans prose-headings:font-medium prose-headings:tracking-[-0.02em] prose-headings:text-foreground
                   prose-h2:text-[28px] prose-h2:leading-[1.2] prose-h2:mt-12 prose-h2:mb-4
                   prose-h3:text-[22px] prose-h3:leading-[1.25] prose-h3:mt-8 prose-h3:mb-3
                   prose-p:text-[17px] prose-p:leading-[1.7] prose-p:text-foreground/80
                   prose-li:text-[17px] prose-li:leading-[1.7] prose-li:text-foreground/80
                   prose-li:marker:text-muted-foreground
                   prose-strong:text-foreground prose-strong:font-semibold
-                  prose-a:text-foreground prose-a:font-medium prose-a:no-underline
+                  prose-a:text-(--accent-brand) prose-a:font-medium prose-a:no-underline
                   prose-a:[background-image:linear-gradient(var(--accent-brand),var(--accent-brand))]
                   prose-a:[background-repeat:no-repeat]
                   prose-a:[background-position:0_100%]
                   prose-a:[background-size:0%_2px]
                   prose-a:[transition:background-size_250ms_ease-out]
                   hover:prose-a:[background-size:100%_2px]
-                  prose-blockquote:border-l prose-blockquote:border-border prose-blockquote:text-muted-foreground prose-blockquote:font-display prose-blockquote:italic prose-blockquote:text-[19px] prose-blockquote:[quotes:none]
-                  prose-code:text-[13px] prose-code:text-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-[2px] prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
-                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border prose-pre:border-border prose-pre:rounded-[4px]
+                  prose-blockquote:border-l-2 prose-blockquote:border-(--accent-brand) prose-blockquote:text-muted-foreground prose-blockquote:not-italic prose-blockquote:font-normal prose-blockquote:text-[19px] prose-blockquote:[quotes:none]
+                  prose-code:text-[13px] prose-code:text-foreground prose-code:bg-muted prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:font-normal prose-code:before:content-none prose-code:after:content-none
+                  prose-pre:bg-secondary prose-pre:text-foreground prose-pre:border prose-pre:border-border prose-pre:rounded-xl
                   prose-hr:border-border prose-hr:my-10
-                  prose-img:rounded-[4px] prose-img:border prose-img:border-border
+                  prose-img:rounded-xl
                   prose-ol:pl-5 prose-ul:pl-5
                 "
               >
@@ -259,27 +248,27 @@ export default async function BlogPostPage({
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 md:px-10 py-16 border-t border-border">
+        <section className="px-6 md:px-10 py-16">
           <div className="mx-auto max-w-[1080px]">
             <h2 className="text-h2 text-foreground mb-10">
               Continue Reading
             </h2>
-            <div className="border-b border-border">
+            <div className="border-b border-border/60">
               {relatedPosts.map((related: any, index: number) => (
                 <Link
                   key={related.slug}
                   href={`/blog/${related.slug}`}
-                  className="group flex items-baseline gap-6 border-t border-border py-6"
+                  className="group flex items-baseline gap-6 border-t border-border/60 py-6"
                 >
-                  <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                  <span className="text-sm tabular-nums text-muted-foreground">
                     {String(index + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1 min-w-0 font-display text-[22px] leading-[1.25] tracking-[-0.01em] text-foreground">
+                  <span className="flex-1 min-w-0 text-[22px] font-medium leading-[1.3] tracking-[-0.02em] text-foreground">
                     <span className="link-sweep group-hover:[background-size:100%_2px]">
                       {related.title}
                     </span>
                   </span>
-                  <span className="hidden sm:block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+                  <span className="hidden sm:block text-[13px] text-muted-foreground whitespace-nowrap">
                     {new Date(related.date).toLocaleDateString("en-US", {
                       year: "numeric",
                       month: "short",
@@ -288,7 +277,7 @@ export default async function BlogPostPage({
                   </span>
                   <span
                     aria-hidden
-                    className="font-mono text-sm text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
+                    className="text-sm text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
                   >
                     →
                   </span>

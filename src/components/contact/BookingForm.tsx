@@ -6,10 +6,9 @@ import { Check } from "lucide-react";
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
 const inputStyles =
-  "w-full h-12 rounded-[2px] border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200";
+  "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200";
 
-const labelStyles =
-  "block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2";
+const labelStyles = "block text-caption font-medium mb-2";
 
 export function BookingForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -125,7 +124,7 @@ export function BookingForm() {
           required
           rows={5}
           placeholder="What are you building? What's your timeline?"
-          className="w-full min-h-[120px] rounded-[2px] border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground transition-colors duration-200"
+          className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200"
         />
       </div>
 

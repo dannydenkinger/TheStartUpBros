@@ -28,10 +28,9 @@ const stats = [
 ];
 
 const inputStyles =
-  "w-full h-12 rounded-[2px] border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200";
+  "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200";
 
-const labelStyles =
-  "block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2";
+const labelStyles = "block text-caption font-medium mb-2";
 
 export function ContactFormModal() {
   const { isOpen, closeModal } = useContactModal();
@@ -102,11 +101,11 @@ export function ContactFormModal() {
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card border border-border rounded-lg shadow-(--shadow-plate) animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card rounded-[24px] shadow-(--shadow-plate) animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
         {/* Close button */}
         <button
           onClick={closeModal}
-          className="absolute top-5 right-5 flex size-8 items-center justify-center rounded-[2px] border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
+          className="absolute top-5 right-5 flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
         >
           <X className="w-4 h-4" strokeWidth={1.5} />
         </button>
@@ -115,7 +114,7 @@ export function ContactFormModal() {
           {/* ─── Left Column: Persuasive Copy ─── */}
           <div className="flex-1 px-8 lg:px-10 py-10 lg:py-12">
             {/* Headline */}
-            <h2 className="font-display text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.01em] text-foreground mb-6">
+            <h2 className="text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.12] tracking-[-0.025em] font-medium text-foreground mb-6">
               Try Our SaaS Dev Team
               <br />
               For One Week.
@@ -130,13 +129,10 @@ export function ContactFormModal() {
             {/* Bullet points */}
             <ul className="mb-10">
               {bulletPoints.map((point, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-3 py-3 border-b border-border/60"
-                >
+                <li key={i} className="flex items-start gap-3 py-2.5">
                   <span
                     aria-hidden
-                    className="mt-[6px] size-1.5 shrink-0 bg-(--accent-brand)"
+                    className="mt-[6px] size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
                   />
                   <span className="text-[13px] text-foreground leading-snug">{point}</span>
                 </li>
@@ -247,7 +243,7 @@ export function ContactFormModal() {
                     required
                     rows={3}
                     placeholder="Tell us about your product"
-                    className="w-full min-h-[96px] rounded-[2px] border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground transition-colors duration-200"
+                    className="w-full min-h-[96px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200"
                   />
                 </div>
 

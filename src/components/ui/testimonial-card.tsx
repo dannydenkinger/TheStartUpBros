@@ -13,6 +13,8 @@ interface TestimonialCardProps {
   index?: string;
   href?: string;
   className?: string;
+  /** "dark" renders the card as a small band-black tile for texture. */
+  tone?: "light" | "dark";
 }
 
 export function TestimonialCard({
@@ -21,26 +23,30 @@ export function TestimonialCard({
   index,
   href,
   className,
+  tone = "light",
 }: TestimonialCardProps) {
   const content = (
     <div
       className={cn(
-        "flex w-[400px] shrink-0 flex-col gap-5 rounded-md border border-border bg-card p-7 text-left",
+        "flex w-[400px] shrink-0 flex-col gap-5 rounded-[16px] p-7 text-left shadow-(--shadow-plate)",
+        tone === "dark" ? "on-band bg-(--band-card)" : "bg-card",
         className,
       )}
     >
-      {/* Mono eyebrow */}
-      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-        Principle{index ? ` — ${index}` : ""}
+      {/* Chip */}
+      <p>
+        <span className="badge-pill">
+          Principle{index ? ` ${index}` : ""}
+        </span>
       </p>
 
       {/* Quote */}
-      <p className="font-display text-[20px] leading-[1.4] text-foreground flex-1">
+      <p className="text-[19px] leading-[1.45] tracking-[-0.015em] font-medium text-foreground flex-1">
         &ldquo;{text}&rdquo;
       </p>
 
       {/* Footer */}
-      <div className="pt-4 border-t border-border flex flex-col gap-3">
+      <div className="flex flex-col gap-3 pt-1">
         <div className="flex items-center gap-3">
           <div className="relative w-8 h-8 rounded-full overflow-hidden bg-secondary shrink-0">
             <Image
@@ -54,12 +60,12 @@ export function TestimonialCard({
             <p className="text-[14px] font-medium text-foreground leading-tight">
               {author.name}
             </p>
-            <p className="font-mono text-[11px] text-muted-foreground leading-tight mt-0.5">
+            <p className="text-[13px] text-muted-foreground leading-tight mt-0.5">
               {author.role}
             </p>
           </div>
         </div>
-        <p className="font-mono text-[11px] text-muted-foreground">
+        <p className="text-xs text-muted-foreground/80">
           How we work at Startup Bros
         </p>
       </div>

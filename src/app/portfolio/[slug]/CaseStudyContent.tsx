@@ -84,17 +84,17 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
         <section className="pb-12">
           <div className="mx-auto max-w-[1360px] px-6 md:px-10">
             <AnimateIn variant="fadeUp" delay={0.05}>
-              <div className="max-w-[680px]">
+              <div className="flex flex-wrap gap-x-14 gap-y-8">
                 {project.client && (
-                  <SpecRow label="Client" value={project.client} />
+                  <SpecItem label="Client" value={project.client} />
                 )}
                 {project.services && (
-                  <SpecRow
+                  <SpecItem
                     label="Services"
                     value={project.services.join(" · ")}
                   />
                 )}
-                {project.year && <SpecRow label="Year" value={project.year} />}
+                {project.year && <SpecItem label="Year" value={project.year} />}
               </div>
             </AnimateIn>
           </div>
@@ -105,7 +105,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <section className="mx-auto w-full max-w-[1360px] px-6 md:px-10 mb-20 md:mb-28">
         <AnimateIn variant="scaleIn" delay={0.1}>
           <Plate caption={project.slug} fig="01" shadow>
-            <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full rounded-[4px] overflow-hidden">
+            <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full overflow-hidden">
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(project.image)}
@@ -128,7 +128,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <GalleryStyleBody project={project} />
 
       {/* ─── Next case study (ghost rail) ──────────────────────────── */}
-      <section className="py-16 md:py-24 border-t border-border">
+      <section className="py-16 md:py-24">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10">
           <AnimateIn>
             <p className="text-micro-label text-muted-foreground mb-6">
@@ -140,13 +140,13 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               href={`/portfolio/${nextProject.slug}`}
               className="group flex items-center gap-6 border-y border-border py-6"
             >
-              <span className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+              <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap">
                 NEXT / {pad(nextIndex + 1)}
               </span>
-              <h3 className="flex-1 font-display text-[clamp(1.75rem,3.5vw,3rem)] leading-[1.1] tracking-[-0.01em] text-foreground/20 group-hover:text-foreground transition-colors duration-300">
+              <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 group-hover:text-foreground transition-colors duration-300">
                 {nextProject.title}
               </h3>
-              <div className="hidden md:block w-[180px] shrink-0 aspect-[4/3] rounded-md border border-border overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="hidden md:block w-[180px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden shadow-(--shadow-plate) opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div
                   className="relative w-full h-full"
                   style={getWrapperStyle(nextProject.image)}
@@ -167,7 +167,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       </section>
 
       {/* ─── Final CTA ─────────────────────────────────────────────── */}
-      <section className="py-24 md:py-32 border-t border-border">
+      <section className="py-24 md:py-32">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10">
           <AnimateIn>
             <div className="max-w-[680px]">
@@ -242,20 +242,18 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
         <section className="py-16 md:py-24">
           <div className="mx-auto max-w-[1360px] px-6 md:px-10">
             <AnimateIn>
-              <div className="border-t border-border pt-6 mb-12">
-                <p className="text-micro-label text-muted-foreground">
-                  The Outcome in Numbers
-                </p>
-              </div>
+              <p className="text-micro-label text-muted-foreground mb-12">
+                The Outcome in Numbers
+              </p>
             </AnimateIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-6">
               {project.metrics.map((metric, i) => (
                 <AnimateIn key={metric.label} delay={i * 0.08}>
-                  <div className="border-t border-border pt-6">
-                    <p className="font-display text-[clamp(3rem,6.5vw,5.5rem)] leading-none tracking-[-0.015em] tabular-nums text-foreground mb-3 break-words">
+                  <div>
+                    <p className="text-[clamp(2.5rem,5vw,4.25rem)] font-semibold leading-none tracking-[-0.025em] tabular-nums text-(--accent-brand) mb-3 break-words">
                       {metric.value}
                     </p>
-                    <p className="font-mono text-xs uppercase tracking-[0.08em] text-muted-foreground">
+                    <p className="text-caption text-muted-foreground">
                       {metric.label}
                     </p>
                   </div>
@@ -271,12 +269,16 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-[1360px] px-6 md:px-10">
             <AnimateIn>
-              <figure className="border-y border-border py-12 md:py-16">
-                <blockquote className="font-display italic text-[clamp(2rem,3.2vw,2.5rem)] leading-[1.25] tracking-[-0.01em] text-foreground max-w-[900px]">
+              <figure className="relative overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) p-8 md:p-12">
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-0 h-full w-1 bg-(--accent-brand)"
+                />
+                <blockquote className="text-[clamp(1.5rem,2.6vw,2.125rem)] font-medium leading-[1.35] tracking-[-0.02em] text-foreground max-w-[900px]">
                   &ldquo;{project.quote.text}&rdquo;
                 </blockquote>
                 {(project.quote.author || project.quote.role) && (
-                  <figcaption className="mt-8 font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+                  <figcaption className="mt-8 text-caption font-medium text-muted-foreground">
                     {project.quote.author}
                     {project.quote.author && project.quote.role && " — "}
                     {project.quote.role}
@@ -292,11 +294,9 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       <section className="pb-16 md:pb-24">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20">
           <AnimateIn>
-            <div className="border-t border-border pt-6 mb-6">
-              <p className="text-micro-label text-muted-foreground">
-                Tech Stack
-              </p>
-            </div>
+            <p className="text-micro-label text-muted-foreground mb-6">
+              Tech Stack
+            </p>
             <div className="flex flex-wrap gap-2">
               {project.techStack.map((tech) => (
                 <span key={tech} className="badge-pill">
@@ -306,18 +306,16 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
             </div>
           </AnimateIn>
           <AnimateIn delay={0.08}>
-            <div className="border-t border-border pt-6 mb-3">
-              <p className="text-micro-label text-muted-foreground">
-                Highlights
-              </p>
-            </div>
+            <p className="text-micro-label text-muted-foreground mb-3">
+              Highlights
+            </p>
             <ul>
               {project.outcomes.map((outcome, i) => (
                 <li
                   key={outcome}
-                  className="flex items-baseline gap-3 py-3 border-b border-border/60"
+                  className="flex items-baseline gap-3 py-3 border-b border-border/60 last:border-b-0"
                 >
-                  <span className="font-mono text-xs tracking-[0.04em] text-muted-foreground">
+                  <span className="text-xs font-medium tabular-nums text-muted-foreground">
                     {pad(i + 1)}
                   </span>
                   <span className="flex-1 text-[15px] text-foreground leading-relaxed">
@@ -350,7 +348,7 @@ function GalleryBlockRenderer({
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col gap-3">
           <Plate caption={slug} fig={fig} shadow>
-            <div className="relative aspect-[16/10] w-full rounded-[4px] overflow-hidden">
+            <div className="relative aspect-[16/10] w-full overflow-hidden">
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(block.image)}
@@ -385,7 +383,7 @@ function GalleryBlockRenderer({
               {block.images.map((img, i) => (
                 <div
                   key={`${img.src}-${i}`}
-                  className="relative aspect-[4/3] w-full rounded-[4px] overflow-hidden"
+                  className="relative aspect-[4/3] w-full overflow-hidden"
                 >
                   <div
                     className="absolute inset-0"
@@ -425,7 +423,7 @@ function GalleryBlockRenderer({
       >
         <div className="md:col-span-7">
           <Plate caption={slug} fig={fig} shadow>
-            <div className="relative aspect-[4/3] w-full rounded-[4px] overflow-hidden">
+            <div className="relative aspect-[4/3] w-full overflow-hidden">
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(block.image)}
@@ -444,7 +442,7 @@ function GalleryBlockRenderer({
         </div>
         <div className="md:col-span-5">
           {block.heading && (
-            <h3 className="font-display text-[1.75rem] md:text-[2.25rem] leading-[1.15] tracking-[-0.01em] text-foreground mb-5">
+            <h3 className="text-[1.5rem] md:text-[1.875rem] font-medium leading-[1.2] tracking-[-0.02em] text-foreground mb-5">
               {block.heading}
             </h3>
           )}
@@ -457,20 +455,14 @@ function GalleryBlockRenderer({
   );
 }
 
-// ─── Spec row (dot-leader meta) ───────────────────────────────────────────
-function SpecRow({ label, value }: { label: string; value: string }) {
+// ─── Spec item (quiet stacked meta) ──────────────────────────────────────
+function SpecItem({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-baseline gap-3 py-3 border-b border-border/60">
-      <p className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
+    <div className="max-w-[420px]">
+      <p className="text-caption font-medium text-muted-foreground mb-1.5">
         {label}
       </p>
-      <span
-        aria-hidden
-        className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
-      />
-      <p className="text-[15px] font-medium text-foreground text-right">
-        {value}
-      </p>
+      <p className="text-[15px] font-medium text-foreground">{value}</p>
     </div>
   );
 }

@@ -128,7 +128,10 @@ export function SaaSCostCalculator() {
         <div className="mx-auto max-w-[1360px]">
           <AnimateIn variant="fadeUp">
             <div className="badge-pill mb-6">
-              <span aria-hidden className="size-1.5 shrink-0 bg-(--accent-brand)" />
+              <span
+                aria-hidden
+                className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
+              />
               <span>Free Tool</span>
             </div>
             <h1 className="text-display mb-4">
@@ -146,7 +149,7 @@ export function SaaSCostCalculator() {
         <div className="mx-auto max-w-[1360px]">
           {/* Feature Toggle Grid */}
           <AnimateIn variant="fadeUp" className="mb-12">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-border border border-border rounded-md overflow-hidden">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {features.map((feature) => {
                 const isOn = selected.has(feature.id);
                 const Icon = feature.icon;
@@ -156,8 +159,10 @@ export function SaaSCostCalculator() {
                     key={feature.id}
                     onClick={() => toggle(feature.id)}
                     aria-pressed={isOn}
-                    className={`w-full h-full text-left bg-background p-6 transition-colors duration-300 hover:bg-secondary/60 cursor-pointer ${
-                      isOn ? "shadow-[inset_0_0_0_1px_var(--foreground)]" : ""
+                    className={`w-full h-full text-left rounded-[20px] p-6 shadow-(--shadow-plate) transition-all duration-300 cursor-pointer hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover) ${
+                      isOn
+                        ? "bg-(--accent-brand-soft) ring-2 ring-(--accent-brand)"
+                        : "bg-card"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3 mb-5">
@@ -165,13 +170,13 @@ export function SaaSCostCalculator() {
                       <span className="flex items-center gap-2">
                         <span
                           aria-hidden
-                          className={`size-1.5 shrink-0 ${
+                          className={`size-1.5 shrink-0 rounded-full ${
                             isOn
                               ? "bg-(--accent-brand)"
                               : "border border-border"
                           }`}
                         />
-                        <span className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+                        <span className="text-xs tabular-nums text-muted-foreground">
                           +{feature.days} days
                         </span>
                       </span>
@@ -204,17 +209,16 @@ export function SaaSCostCalculator() {
                 <p className="text-micro-label text-muted-foreground mb-3">
                   Estimated Scope
                 </p>
-                <div className="flex items-baseline gap-3 py-3 border-b border-border/60">
-                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                <div className="py-3 border-b border-border/60">
+                  <span className="text-sm text-muted-foreground">
                     Select features to estimate
                   </span>
-                  <span className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]" />
                 </div>
                 <div className="flex items-baseline gap-3 pt-5">
-                  <span className="font-mono text-[4rem] leading-none tabular-nums text-foreground/30">
+                  <span className="text-[4rem] font-medium leading-none tracking-[-0.02em] tabular-nums text-foreground/30">
                     0
                   </span>
-                  <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                  <span className="text-xs text-muted-foreground">
                     dev days
                   </span>
                 </div>
@@ -240,12 +244,11 @@ export function SaaSCostCalculator() {
                       {selectedFeatures.map((f) => (
                         <div
                           key={f.id}
-                          className="flex items-baseline gap-3 py-3 border-b border-border/60"
+                          className="flex items-baseline justify-between gap-6 py-3 border-b border-border/60"
                         >
-                          <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                          <span className="text-sm text-muted-foreground">
                             {f.label}
                           </span>
-                          <span className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]" />
                           <span className="text-[15px] font-medium text-foreground tabular-nums">
                             {f.days} days
                           </span>
@@ -253,10 +256,10 @@ export function SaaSCostCalculator() {
                       ))}
                     </div>
                     <div className="flex items-baseline gap-3 pt-5">
-                      <span className="font-mono text-[4rem] leading-none tabular-nums text-foreground">
+                      <span className="text-[4rem] font-medium leading-none tracking-[-0.02em] tabular-nums text-foreground">
                         {totalDays}
                       </span>
-                      <span className="font-mono text-[12px] uppercase tracking-[0.08em] text-muted-foreground">
+                      <span className="text-xs text-muted-foreground">
                         dev days
                       </span>
                     </div>
@@ -266,7 +269,7 @@ export function SaaSCostCalculator() {
                     <p className="text-micro-label text-muted-foreground mb-3">
                       Complexity Tier
                     </p>
-                    <p className="accent-word text-[2.5rem] leading-none mb-3">
+                    <p className="text-[2.5rem] font-semibold leading-none tracking-[-0.02em] text-(--accent-brand) mb-3">
                       {tier.label}
                     </p>
                     <p className="text-[14px] text-muted-foreground max-w-[300px]">

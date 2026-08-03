@@ -6,6 +6,7 @@ interface PlateProps {
   fig?: string;
   shadow?: boolean;
   className?: string;
+  mat?: boolean;
 }
 
 export function Plate({
@@ -14,25 +15,29 @@ export function Plate({
   fig,
   shadow = false,
   className,
+  mat = false,
 }: PlateProps) {
   return (
     <figure className={className}>
       <div
         className={cn(
-          "rounded-md border border-border bg-secondary p-1.5",
+          "overflow-hidden rounded-[20px] bg-card",
+          mat && "p-2",
           shadow && "shadow-(--shadow-plate)"
         )}
       >
-        {children}
+        {mat ? (
+          <div className="overflow-hidden rounded-[13px]">{children}</div>
+        ) : (
+          children
+        )}
       </div>
       {(caption || fig) && (
-        <figcaption className="mt-2 flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-          {caption && <span>{caption}</span>}
-          <span
-            aria-hidden
-            className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
-          />
-          {fig && <span className="whitespace-nowrap">FIG. {fig}</span>}
+        <figcaption className="mt-3 flex items-baseline justify-between gap-3 text-xs text-muted-foreground">
+          {caption && <span className="min-w-0 truncate">{caption}</span>}
+          {fig && (
+            <span className="ml-auto whitespace-nowrap">FIG. {fig}</span>
+          )}
         </figcaption>
       )}
     </figure>

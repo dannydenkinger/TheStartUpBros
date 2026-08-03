@@ -1,21 +1,14 @@
 import type { Metadata } from "next";
-import { Instrument_Serif, Instrument_Sans, JetBrains_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/shared/Providers";
 import { siteMetadata } from "@/lib/metadata";
 import "./globals.css";
 
-const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  style: ["normal", "italic"],
+const interTight = Inter_Tight({
   subsets: ["latin"],
-  variable: "--font-instrument-serif",
-});
-
-const instrumentSans = Instrument_Sans({
-  subsets: ["latin"],
-  variable: "--font-instrument-sans",
+  variable: "--font-inter-tight",
 });
 
 const jetbrainsMono = JetBrains_Mono({
@@ -34,7 +27,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${instrumentSerif.variable} ${instrumentSans.variable} ${jetbrainsMono.variable}`}
+      className={`${interTight.variable} ${jetbrainsMono.variable}`}
       suppressHydrationWarning
     >
       <body className="antialiased">

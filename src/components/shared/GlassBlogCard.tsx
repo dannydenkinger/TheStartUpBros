@@ -17,22 +17,30 @@ interface GlassBlogCardProps {
   featured?: boolean;
 }
 
-function CardPlate({
+function CardMedia({
   title,
   image,
   category,
+  fill = false,
 }: {
   title: string;
   image?: string;
   category?: string;
+  fill?: boolean;
 }) {
   if (!image) {
+    // Generated cover — soft gray block with a large low-opacity title
     return (
-      <div className="relative aspect-[16/9] overflow-hidden rounded-md border border-border bg-secondary dark:bg-card p-8">
-        <p className="font-display text-[clamp(1.75rem,4vw,3rem)] leading-[1.1] tracking-[-0.01em] text-foreground/15">
+      <div
+        className={cn(
+          "relative w-full overflow-hidden bg-secondary p-7 md:p-8",
+          fill ? "aspect-[16/9] lg:aspect-auto lg:h-full" : "aspect-[16/9]"
+        )}
+      >
+        <p className="text-[clamp(1.75rem,3.5vw,2.5rem)] font-medium leading-[1.12] tracking-[-0.025em] text-foreground/10">
           {title}
         </p>
-        <p className="absolute bottom-4 left-8 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+        <p className="absolute bottom-5 left-7 md:left-8 text-xs text-muted-foreground">
           FIG. 00{category ? ` — ${category}` : ""}
         </p>
       </div>
@@ -40,15 +48,18 @@ function CardPlate({
   }
 
   return (
-    <div className="rounded-md border border-border bg-secondary p-1.5">
-      <div className="aspect-[16/9] overflow-hidden rounded-[4px]">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={image}
-          alt={title}
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-        />
-      </div>
+    <div
+      className={cn(
+        "w-full overflow-hidden",
+        fill ? "aspect-[16/9] lg:aspect-auto lg:h-full" : "aspect-[16/9]"
+      )}
+    >
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={image}
+        alt={title}
+        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+      />
     </div>
   );
 }
@@ -67,17 +78,14 @@ export function GlassBlogCard({
   featured = false,
 }: GlassBlogCardProps) {
   const meta = (
-    <div className="flex items-baseline gap-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
-      <span className="truncate">
-        {[category, date, readTime].filter(Boolean).join(" · ")}
+    <div className="flex items-center gap-3 min-w-0">
+      {category && <span className="badge-pill shrink-0">{category}</span>}
+      <span className="text-[13px] text-muted-foreground truncate">
+        {[date, readTime].filter(Boolean).join(" · ")}
       </span>
       <span
         aria-hidden
-        className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
-      />
-      <span
-        aria-hidden
-        className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
+        className="ml-auto shrink-0 text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
       >
         →
       </span>
@@ -91,24 +99,24 @@ export function GlassBlogCard({
   );
 
   const authorLine = author ? (
-    <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground">
+    <p className="text-[13px] text-muted-foreground">
       {author}
       {authorRole ? ` — ${authorRole}` : ""}
     </p>
   ) : null;
 
   const body = featured ? (
-    <div className="grid grid-cols-12 gap-6">
-      <div className="col-span-12 lg:col-span-7">
-        <CardPlate title={title} image={image} category={category} />
+    <div className="grid grid-cols-1 lg:grid-cols-12">
+      <div className="lg:col-span-7 min-h-0">
+        <CardMedia title={title} image={image} category={category} fill />
       </div>
-      <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col gap-5 lg:pl-4 lg:self-end">
+      <div className="lg:col-span-5 flex flex-col gap-5 p-7 md:p-9 lg:justify-end">
         {meta}
-        <h2 className="font-display text-[clamp(1.75rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.01em] text-foreground">
+        <h2 className="text-[clamp(1.75rem,3vw,2.5rem)] font-medium leading-[1.12] tracking-[-0.025em] text-foreground">
           {titleEl}
         </h2>
         {excerpt && (
-          <p className="text-caption text-muted-foreground line-clamp-2 max-w-[480px]">
+          <p className="text-[15px] leading-[1.6] text-muted-foreground line-clamp-2 max-w-[480px]">
             {excerpt}
           </p>
         )}
@@ -116,22 +124,28 @@ export function GlassBlogCard({
       </div>
     </div>
   ) : (
-    <div className="flex flex-col gap-5">
-      <CardPlate title={title} image={image} category={category} />
-      {meta}
-      <h3 className="font-display text-[26px] leading-[1.15] tracking-[-0.01em] text-foreground">
-        {titleEl}
-      </h3>
-      {excerpt && (
-        <p className="text-caption text-muted-foreground line-clamp-2">
-          {excerpt}
-        </p>
-      )}
-      {authorLine}
+    <div className="flex h-full flex-col">
+      <CardMedia title={title} image={image} category={category} />
+      <div className="flex flex-1 flex-col gap-4 p-7">
+        {meta}
+        <h3 className="text-[24px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground">
+          {titleEl}
+        </h3>
+        {excerpt && (
+          <p className="text-[15px] leading-[1.6] text-muted-foreground line-clamp-2">
+            {excerpt}
+          </p>
+        )}
+        {authorLine && <div className="mt-auto pt-1">{authorLine}</div>}
+      </div>
     </div>
   );
 
-  const cardClass = cn("group block border-t border-border pt-6", className);
+  const cardClass = cn(
+    "group block h-full overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) transition-[transform,box-shadow] duration-300",
+    href && "hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover)",
+    className
+  );
 
   if (href) {
     return (

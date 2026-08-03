@@ -90,7 +90,7 @@ const services: ServiceCell[] = [
   },
 ];
 
-function ServiceTableCell({
+function ServiceCard({
   title,
   description,
   icon: Icon,
@@ -98,24 +98,22 @@ function ServiceTableCell({
   index,
 }: ServiceCell & { index: string }) {
   return (
-    <div className="bg-background p-8 hover:bg-secondary/60 transition-colors duration-300 h-full flex flex-col">
+    <div className="card-elevated h-full flex flex-col">
       <div className="flex items-center justify-between mb-6">
         <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-        <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+        <span className="text-[13px] font-medium tabular-nums text-muted-foreground/70">
           {index}
         </span>
       </div>
 
-      <div className="rounded-md border border-border bg-secondary p-1.5 mb-6">
-        <div className="relative aspect-[16/10] rounded-[4px] overflow-hidden">
-          <Image
-            src={image}
-            alt={title}
-            fill
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            className="object-cover"
-          />
-        </div>
+      <div className="relative aspect-[16/10] rounded-[12px] overflow-hidden bg-secondary mb-6">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover"
+        />
       </div>
 
       <h3 className="text-h3 text-foreground mb-2">{title}</h3>
@@ -128,7 +126,7 @@ function ServiceTableCell({
 
 export function ValueProps() {
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32">
+    <section className="px-6 md:px-10 py-20 md:py-28">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
           <SectionHeader
@@ -144,17 +142,20 @@ export function ValueProps() {
           />
         </AnimateIn>
 
-        <AnimateIn delay={0.06}>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
-            {services.map((service, i) => (
-              <ServiceTableCell
-                key={service.title}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
+          {services.map((service, i) => (
+            <AnimateIn
+              key={service.title}
+              delay={(i % 3) * 0.06}
+              className="h-full"
+            >
+              <ServiceCard
                 {...service}
                 index={String(i + 1).padStart(2, "0")}
               />
-            ))}
-          </div>
-        </AnimateIn>
+            </AnimateIn>
+          ))}
+        </div>
 
         <AnimateIn delay={0.12}>
           <div className="mt-12">

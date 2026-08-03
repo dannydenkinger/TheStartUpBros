@@ -47,7 +47,9 @@ function MarqueeColumn({
   const doubled = [...images, ...images];
 
   return (
-    <div className={cn("relative flex-1 overflow-hidden h-full px-3", className)}>
+    <div
+      className={cn("relative flex-1 overflow-hidden h-full px-1.5", className)}
+    >
       <div
         className={`flex flex-col gap-3 ${
           direction === "up" ? "animate-marquee-up" : "animate-marquee-down"
@@ -59,19 +61,17 @@ function MarqueeColumn({
         {doubled.map((img, i) => (
           <div
             key={`${img.src}-${i}`}
-            className="shrink-0 rounded-md border border-border bg-secondary p-1.5"
+            className="shrink-0 overflow-hidden rounded-xl bg-white/[0.04]"
           >
-            <div className="rounded-[4px] overflow-hidden">
-              <Image
-                src={img.src}
-                alt=""
-                width={img.w}
-                height={img.h}
-                quality={90}
-                className="w-full h-auto object-cover"
-                draggable={false}
-              />
-            </div>
+            <Image
+              src={img.src}
+              alt=""
+              width={img.w}
+              height={img.h}
+              quality={90}
+              className="w-full h-auto object-cover"
+              draggable={false}
+            />
           </div>
         ))}
       </div>
@@ -81,13 +81,13 @@ function MarqueeColumn({
 
 export function ShowcaseCarousel() {
   return (
-    <section className="overflow-hidden flex-1 min-h-[320px] md:min-h-0">
+    <section className="overflow-hidden px-6 md:px-10 pt-3 h-[400px] md:h-[520px]">
       <AnimateIn variant="fadeIn" className="h-full">
         <div
-          className="border-t border-border mx-0 md:mx-6 lg:mx-10 pt-3 h-full"
-          style={{ background: 'var(--surface-carousel-bg)' }}
+          className="mx-auto h-full max-w-[1360px] overflow-hidden rounded-[24px] p-2 md:p-3"
+          style={{ background: "var(--surface-carousel-bg)" }}
         >
-          <div className="flex h-full carousel-hover-pause divide-x divide-border">
+          <div className="flex h-full carousel-hover-pause">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />
             <MarqueeColumn

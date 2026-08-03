@@ -67,7 +67,7 @@ export default function GalleryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="pt-16 md:pt-24 pb-14 md:pb-16 border-b border-border">
+      <section className="pt-16 md:pt-24 pb-14 md:pb-16">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10 grid grid-cols-12 gap-6">
           <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
             <span className="accent-word">Gallery</span>
@@ -84,9 +84,9 @@ export default function GalleryPage() {
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="group rounded-md border border-border bg-secondary p-1.5"
+              className="group rounded-[16px] overflow-hidden bg-card shadow-(--shadow-plate) transition-shadow duration-300 hover:shadow-(--shadow-plate-hover)"
             >
-              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[4px]">
+              <div className="relative aspect-[4/3] w-full overflow-hidden">
                 <div className="absolute inset-0" style={getWrapperStyle(src)}>
                   <Image
                     src={src}

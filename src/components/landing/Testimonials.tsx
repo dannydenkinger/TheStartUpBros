@@ -62,7 +62,7 @@ const bottomRow = testimonials.slice(Math.ceil(testimonials.length / 2));
 
 export function Testimonials() {
   return (
-    <section className="bg-background text-foreground py-24 md:py-32">
+    <section className="bg-background text-foreground py-20 md:py-28">
       <div className="mx-auto max-w-[1360px] px-6 md:px-10">
         <AnimateIn>
           <SectionHeader
@@ -78,17 +78,19 @@ export function Testimonials() {
         </AnimateIn>
       </div>
 
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col">
         {/* Row 1 — scrolls left, seamless infinite.
-            Content is rendered twice so -50% animation closes cleanly at a card boundary. */}
+            Content is rendered twice so -50% animation closes cleanly at a card boundary.
+            Vertical padding keeps card shadows inside the overflow clip. */}
         <div className="relative flex w-full overflow-hidden">
-          <div className="flex animate-marquee [--duration:60s] [&>*]:mr-4">
+          <div className="flex animate-marquee py-5 [--duration:60s] [&>*]:mr-4">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 topRow.map((testimonial, i) => (
                   <TestimonialCard
                     key={`top-${groupIdx}-${setIndex}-${i}`}
                     index={String(i + 1).padStart(2, "0")}
+                    tone={i === 2 ? "dark" : "light"}
                     {...testimonial}
                   />
                 )),
@@ -102,13 +104,14 @@ export function Testimonials() {
 
         {/* Row 2 — scrolls right, seamless infinite */}
         <div className="relative flex w-full overflow-hidden">
-          <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4">
+          <div className="flex animate-marquee-reverse py-5 [--duration:65s] [&>*]:mr-4">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 bottomRow.map((testimonial, i) => (
                   <TestimonialCard
                     key={`bottom-${groupIdx}-${setIndex}-${i}`}
                     index={String(topRow.length + i + 1).padStart(2, "0")}
+                    tone={i === 0 ? "dark" : "light"}
                     {...testimonial}
                   />
                 )),

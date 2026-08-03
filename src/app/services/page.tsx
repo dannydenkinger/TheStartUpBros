@@ -22,21 +22,24 @@ export default function ServicesPage() {
           title="Our Services"
           intro="Everything a lean startup needs to go from idea to launched product."
         />
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {services.map((service, i) => (
             <ServiceCard key={service.title} service={service} index={i} />
           ))}
           <AnimateIn
             delay={services.length * 0.08}
-            className="h-full bg-background"
+            className="h-full"
           >
             <Link
               href="/strategy-call"
-              className="group flex h-full flex-col bg-background p-8 hover:bg-secondary/60 transition-colors duration-300"
+              className="card-elevated group flex h-full flex-col bg-(--accent-brand-soft)"
             >
-              <div className="flex items-start justify-between mb-6">
-                <Calendar className="h-5 w-5 text-foreground" strokeWidth={1.5} />
-                <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+              <div className="mb-6 flex items-start justify-between">
+                <Calendar
+                  className="h-5 w-5 text-(--accent-brand)"
+                  strokeWidth={1.5}
+                />
+                <span className="text-xs tabular-nums text-muted-foreground/80">
                   {String(services.length + 1).padStart(2, "0")}
                 </span>
               </div>
@@ -47,7 +50,7 @@ export default function ServicesPage() {
                 Not sure which service fits? We&apos;ll scope the fastest path
                 to launch on a free call.
               </p>
-              <span className="mt-auto text-micro-label text-foreground group-hover:text-(--accent-brand) transition-colors duration-200">
+              <span className="btn-pill btn-pill-primary mt-auto self-start">
                 Book Strategy Call →
               </span>
             </Link>

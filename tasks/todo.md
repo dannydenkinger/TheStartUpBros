@@ -1,5 +1,38 @@
 # StartUpBros — Build Progress
 
+## Phase 19: Redesign v3 — "VIOLET SIGNAL" (2026-08-03, branch: redesign-v3)
+
+### Goal
+Owner-directed pivot from the v2 editorial "INK & INDEX" system to a modern product-studio
+language modeled on desses.co (owner reference): dark grainy violet-gradient hero screen
+inset on a light studio-gray page, white rounded-[20px] shadow cards, black full-bleed
+bands (principles context, FinalCTA, footer), electric blurple #5B4DFF accent, Inter Tight
+type, pill buttons and chips. Branched from redesign-v2 so both designs remain comparable;
+all v2 preservation rules and bug fixes carried forward.
+
+### What changed
+- globals.css: full token rewrite (light "STUDIO GRAY" default / dark "SIGNAL BLACK",
+  --band-* vars), same legacy class names remapped (pills back, chips, lifted cards),
+  .band/.on-band/.grain utilities, hero-float keyframes
+- layout.tsx: Inter Tight replaces Instrument Serif/Sans (JetBrains Mono kept, de-emphasized)
+- Hero: dark rounded-[24px] inset screen with pure-CSS blurred violet ribbon + film grain,
+  two-tone headline, StatusStrip, stack ticker at screen bottom
+- Header/Footer: light translucent bar + pills; black band footer with giant baseline-cropped
+  "StartUpBros." wordmark (blurple period)
+- SectionHeader/StatusStrip/Plate restyled in place (same props — v2 numbering survives
+  inside chips as "01 · LABEL")
+- Every page re-skinned: services card grids, portfolio ledger → desses-style stacked
+  showcase media cards, case-study monograph with blurple metrics, white-card FAQ,
+  black-band FinalCTA, v3 form fields (rounded-xl, blurple focus ring)
+
+### Verification
+Production build clean (29 routes, tsc clean); screenshot sweep 11 light + 5 dark + 3
+mobile; dark theme reads as its own designed theme; mobile DOM verified clean at 390px
+(the "duplicated content" in tall full-page captures is the known >16384px capture
+artifact — see lessons.md). Known pre-existing issues from v2 remain flagged unchanged
+(/portfolio/k-project dead link, blog date UTC off-by-one, "StartUp Bros Blog" spelling,
+/contact empty dir + unmounted BookingForm/ContactFormModal).
+
 ## Phase 18: Redesign v2 — Full Visual Overhaul (2026-07-28, branch: redesign-v2)
 
 ### Goal

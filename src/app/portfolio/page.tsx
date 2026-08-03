@@ -13,7 +13,7 @@ export default function PortfolioPage() {
       <section className="pt-16 md:pt-24 pb-14 md:pb-16">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10">
           <span className="badge-pill mb-8 inline-flex">
-            <span aria-hidden className="size-1.5 bg-(--accent-brand)" />
+            <span aria-hidden className="size-1.5 rounded-full bg-(--accent-brand)" />
             Case Studies
           </span>
           <div className="grid grid-cols-12 gap-6">

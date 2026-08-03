@@ -347,7 +347,7 @@ export default async function IndustryPage({
           </div>
 
           <div className="grid grid-cols-12 gap-x-6">
-            <h1 className="col-span-12 lg:col-span-9 text-display text-foreground mb-6">
+            <h1 className="col-span-12 lg:col-span-9 text-h1 text-foreground mb-6">
               {data.headline}
             </h1>
           </div>
@@ -390,10 +390,10 @@ export default async function IndustryPage({
               <Link
                 key={cs.title}
                 href={cs.href}
-                className="group block border border-border rounded-md overflow-hidden bg-card hover:border-foreground/40 transition-colors duration-300"
+                className="group block overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover)"
               >
-                <div className="border-b border-border bg-secondary p-1.5">
-                  <div className="relative aspect-[16/10] rounded-[4px] overflow-hidden isolate">
+                <div className="p-2 pb-0">
+                  <div className="relative aspect-[16/10] rounded-[13px] overflow-hidden isolate">
                     <div
                       className="absolute inset-0 overflow-hidden"
                       style={getWrapperStyle(cs.image)}
@@ -410,11 +410,11 @@ export default async function IndustryPage({
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-3">
+                  <p className="text-xs text-muted-foreground mb-3">
                     {cs.tag} — {cs.location}
                   </p>
                   <h3 className="text-h3 text-foreground mb-4">{cs.title}</h3>
-                  <span className="text-micro-label text-foreground group-hover:text-(--accent-brand) transition-colors duration-200">
+                  <span className="text-sm font-medium text-(--accent-brand)">
                     → View Case Study
                   </span>
                 </div>
@@ -432,17 +432,14 @@ export default async function IndustryPage({
             label="CAPABILITIES"
             title={`Built For ${data.label} Teams`}
           />
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-border border border-border rounded-md overflow-hidden">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
             {data.features.map((feature, i) => {
               const Icon = iconMap[feature.icon] ?? Sparkles;
               return (
-                <div
-                  key={feature.title}
-                  className="bg-background p-8 hover:bg-secondary/60 transition-colors duration-300"
-                >
+                <div key={feature.title} className="card-elevated">
                   <div className="flex items-start justify-between mb-6">
                     <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-                    <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                    <span className="text-xs tabular-nums text-muted-foreground/80">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -462,25 +459,31 @@ export default async function IndustryPage({
       {/* ── Testimonial Quote ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
         <div className="max-w-[1360px] mx-auto">
-          <div className="border-t border-border pt-6 mb-16">
-            <p className="text-micro-label text-muted-foreground">
-              {idx()} / TESTIMONIAL
-            </p>
+          <div className="mb-16">
+            <span className="badge-pill text-micro-label">
+              <span className="text-muted-foreground">{idx()}</span>
+              <span aria-hidden className="text-muted-foreground">
+                ·
+              </span>
+              TESTIMONIAL
+            </span>
           </div>
-          <div className="grid grid-cols-12 gap-x-6">
-            <div className="col-span-12 lg:col-span-9">
-              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-8">
-                Denkinger Bros · Design Study
-              </p>
-              <blockquote className="font-display italic text-[clamp(1.75rem,3.5vw,2.5rem)] leading-[1.3] text-foreground mb-8">
-                &ldquo;{data.testimonial.quote}&rdquo;
-              </blockquote>
-              <p className="text-micro-label text-foreground">
-                {data.testimonial.name}
-              </p>
-              <p className="font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mt-2">
-                {data.testimonial.role}
-              </p>
+          <div className="card-elevated p-8 md:p-12">
+            <div className="grid grid-cols-12 gap-x-6">
+              <div className="col-span-12 lg:col-span-10">
+                <p className="text-xs text-muted-foreground mb-8">
+                  Denkinger Bros · Design Study
+                </p>
+                <blockquote className="text-[clamp(1.5rem,3vw,2.25rem)] leading-[1.25] tracking-[-0.02em] font-medium text-foreground mb-8">
+                  &ldquo;{data.testimonial.quote}&rdquo;
+                </blockquote>
+                <p className="text-sm font-medium text-foreground">
+                  {data.testimonial.name}
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">
+                  {data.testimonial.role}
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -506,7 +509,7 @@ export default async function IndustryPage({
                     i === arr.length - 1 ? " border-b" : ""
                   }`}
                 >
-                  <span className="font-mono text-sm tracking-[0.04em] text-muted-foreground">
+                  <span className="text-xs tabular-nums text-muted-foreground/80">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="text-h3 text-foreground md:w-[280px] shrink-0 transition-transform duration-300 lg:group-hover:translate-x-2">
@@ -515,7 +518,7 @@ export default async function IndustryPage({
                   <p className="text-caption text-muted-foreground flex-1">
                     {ind.description}
                   </p>
-                  <span className="text-micro-label text-foreground group-hover:text-(--accent-brand) transition-colors duration-200 whitespace-nowrap">
+                  <span className="text-sm font-medium text-(--accent-brand) whitespace-nowrap">
                     Explore {ind.name} →
                   </span>
                 </Link>
@@ -527,24 +530,30 @@ export default async function IndustryPage({
       {/* ── Pricing CTA ── */}
       <section className="px-6 md:px-10 py-24 md:py-32">
         <div className="max-w-[1360px] mx-auto">
-          <div className="border-t border-border pt-6 mb-16">
-            <p className="text-micro-label text-muted-foreground">
-              {idx()} / PRICING
-            </p>
+          <div className="mb-16">
+            <span className="badge-pill text-micro-label">
+              <span className="text-muted-foreground">{idx()}</span>
+              <span aria-hidden className="text-muted-foreground">
+                ·
+              </span>
+              PRICING
+            </span>
           </div>
-          <div className="grid grid-cols-12 gap-x-6">
-            <div className="col-span-12 lg:col-span-7">
-              <h2 className="text-h2 text-foreground mb-5">
-                So much value at such a{" "}
-                <span className="accent-word">flexible</span> price
-              </h2>
-              <p className="text-body-lg max-w-[560px] mb-10">
-                Consultation-based custom pricing. We scope every project to the
-                fastest path to launch, no retainers, no bloat.
-              </p>
-              <CTAButton href="/strategy-call" variant="primary">
-                Book a Call
-              </CTAButton>
+          <div className="card-elevated p-8 md:p-12">
+            <div className="grid grid-cols-12 gap-x-6">
+              <div className="col-span-12 lg:col-span-7">
+                <h2 className="text-h2 text-foreground mb-5">
+                  So much value at such a{" "}
+                  <span className="accent-word">flexible</span> price
+                </h2>
+                <p className="text-body-lg max-w-[560px] mb-10">
+                  Consultation-based custom pricing. We scope every project to the
+                  fastest path to launch, no retainers, no bloat.
+                </p>
+                <CTAButton href="/strategy-call" variant="primary">
+                  Book a Call
+                </CTAButton>
+              </div>
             </div>
           </div>
         </div>

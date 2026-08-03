@@ -126,13 +126,13 @@ const clients = [
 
 export function ClientLogos() {
   return (
-    <section className="px-6 md:px-10 py-12 border-t border-border">
+    <section className="px-6 md:px-10 py-14 md:py-16">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn variant="fadeIn">
-          <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mb-8">
+          <p className="text-[13px] text-muted-foreground/80 mb-9">
             Inspired by
           </p>
-          <div className="flex flex-wrap items-center gap-x-10 gap-y-5">
+          <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
             {clients.map((client) => (
               <div
                 key={client.name}
@@ -141,7 +141,7 @@ export function ClientLogos() {
                 <span className="inline-flex opacity-45 grayscale">
                   {client.logo}
                 </span>
-                <span className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+                <span className="text-[14px] font-medium text-foreground/45">
                   {client.name}
                 </span>
               </div>

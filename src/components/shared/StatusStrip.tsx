@@ -4,15 +4,16 @@ interface StatusStripProps {
 
 export function StatusStrip({ items }: StatusStripProps) {
   return (
-    <div className="border border-border rounded-[2px] grid grid-cols-1 divide-y divide-border sm:grid-cols-3 sm:divide-y-0 sm:divide-x">
-      {items.map((item, i) => (
+    <div className="grid grid-cols-1 divide-y divide-border overflow-hidden rounded-3xl border border-border bg-(--surface-badge-bg) sm:grid-cols-3 sm:divide-y-0 sm:divide-x sm:rounded-full">
+      {items.map((item) => (
         <div
           key={item.label}
-          className="flex items-center justify-center gap-2 px-4 py-3 font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground text-center whitespace-nowrap"
+          className="flex items-center justify-center gap-2.5 px-4 py-3 text-xs font-medium uppercase tracking-[0.06em] text-muted-foreground text-center whitespace-nowrap"
         >
-          {i === 0 && (
-            <span aria-hidden className="size-1.5 shrink-0 bg-(--accent-brand)" />
-          )}
+          <span
+            aria-hidden
+            className="size-[3px] shrink-0 rounded-full bg-(--accent-brand)"
+          />
           <span>
             {item.label} — {item.value}
           </span>

@@ -62,7 +62,9 @@ export function StrategyCallContent() {
   };
 
   const inputStyles =
-    "w-full h-12 rounded-[2px] border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground transition-colors duration-200";
+    "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200";
+
+  const labelStyles = "block text-caption font-medium mb-2";
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -74,7 +76,10 @@ export function StrategyCallContent() {
             <div className="flex-1">
               <AnimateIn variant="fadeUp">
                 <div className="badge-pill mb-7">
-                  <span aria-hidden className="size-1.5 shrink-0 bg-(--accent-brand)" />
+                  <span
+                    aria-hidden
+                    className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
+                  />
                   <span>Founded by Anthony &amp; Danny Denkinger</span>
                 </div>
               </AnimateIn>
@@ -101,13 +106,10 @@ export function StrategyCallContent() {
                 </p>
                 <ul className="mb-12">
                   {bulletPoints.map((point, i) => (
-                    <li
-                      key={i}
-                      className="flex items-start gap-3 py-3 border-b border-border/60"
-                    >
+                    <li key={i} className="flex items-start gap-3 py-2.5">
                       <span
                         aria-hidden
-                        className="mt-[7px] size-1.5 shrink-0 bg-(--accent-brand)"
+                        className="mt-[7px] size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
                       />
                       <span className="text-[14px] text-foreground/85 leading-snug">
                         {point}
@@ -126,7 +128,7 @@ export function StrategyCallContent() {
             {/* ─── Right: form card ─── */}
             <div className="w-full lg:w-[540px] shrink-0">
               <AnimateIn variant="fadeUp" delay={0.1}>
-                <div className="bg-card border border-border rounded-md p-8 shadow-(--shadow-plate)">
+                <div className="bg-card rounded-[24px] p-8 shadow-(--shadow-plate)">
                   <h2 className="text-h3 mb-2">Book your strategy call</h2>
                   <p className="text-caption mb-7">
                     We&apos;ll reply within 24 hours to schedule.
@@ -153,7 +155,7 @@ export function StrategyCallContent() {
                   ) : (
                     <form onSubmit={handleSubmit} className="space-y-5">
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                        <label className={labelStyles}>
                           Name
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
@@ -167,7 +169,7 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                        <label className={labelStyles}>
                           Email
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
@@ -181,7 +183,7 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                        <label className={labelStyles}>
                           Company
                         </label>
                         <input
@@ -193,7 +195,7 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                        <label className={labelStyles}>
                           Budget
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
@@ -215,7 +217,7 @@ export function StrategyCallContent() {
                       </div>
 
                       <div>
-                        <label className="block font-mono text-[11px] uppercase tracking-[0.08em] text-muted-foreground mb-2">
+                        <label className={labelStyles}>
                           Tell us about your project
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
@@ -224,7 +226,7 @@ export function StrategyCallContent() {
                           required
                           rows={4}
                           placeholder="What are you building? What's your timeline?"
-                          className="w-full min-h-[120px] rounded-[2px] border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground transition-colors duration-200"
+                          className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200"
                         />
                       </div>
 

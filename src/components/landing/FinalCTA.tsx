@@ -6,14 +6,24 @@ import { MagneticButton } from "@/components/shared/MagneticButton";
 
 export function FinalCTA({ index = "06" }: { index?: string | null }) {
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32">
-      <div className="mx-auto max-w-[1360px]">
+    <section className="band grain relative">
+      <div className="relative z-10 mx-auto max-w-[1360px] px-6 md:px-10 py-24 md:py-32">
         <AnimateIn>
-          <div className="border-t border-border pt-6 grid grid-cols-12 gap-6">
-            <p className="col-span-12 text-micro-label text-muted-foreground">
-              {index === null ? "Work With Us" : `${index} / Work With Us`}
-            </p>
-            <h2 className="col-span-12 lg:col-span-7 text-display text-foreground mt-8">
+          <div className="grid grid-cols-12 gap-6">
+            <div className="col-span-12">
+              <span className="badge-pill text-micro-label">
+                {index !== null && (
+                  <>
+                    <span className="text-muted-foreground">{index}</span>
+                    <span aria-hidden className="text-muted-foreground">
+                      ·
+                    </span>
+                  </>
+                )}
+                Work With Us
+              </span>
+            </div>
+            <h2 className="col-span-12 lg:col-span-7 text-display mt-6">
               Ready to <span className="accent-word">Build</span>?
             </h2>
             <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg">

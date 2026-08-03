@@ -27,7 +27,7 @@ const galleryImages = [
 
 export function WorkSamples() {
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32 bg-background">
+    <section className="px-6 md:px-10 py-20 md:py-28 bg-background">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
           <SectionHeader
@@ -46,20 +46,18 @@ export function WorkSamples() {
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="rounded-md border border-border bg-secondary p-1.5 group"
+              className="group relative aspect-[4/3] rounded-[16px] overflow-hidden isolate bg-card shadow-(--shadow-plate)"
             >
-              <div className="relative aspect-[4/3] rounded-[4px] overflow-hidden isolate">
-                <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
-                  <Image
-                    src={src}
-                    alt=""
-                    fill
-                    quality={90}
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                    style={getImageStyle(src)}
-                  />
-                </div>
+              <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
+                <Image
+                  src={src}
+                  alt=""
+                  fill
+                  quality={90}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+                  style={getImageStyle(src)}
+                />
               </div>
             </div>
           ))}

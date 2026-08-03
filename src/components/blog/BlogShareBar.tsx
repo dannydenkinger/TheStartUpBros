@@ -35,12 +35,12 @@ export function BlogShareBar({ title }: BlogShareBarProps) {
 
   return (
     <div className="flex items-center gap-3">
-      <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mr-1">
+      <p className="text-[13px] font-medium text-muted-foreground mr-1">
         Share
       </p>
       <button
         onClick={copyLink}
-        className="size-8 rounded-[2px] border border-border hover:border-foreground flex items-center justify-center transition-colors duration-200 cursor-pointer"
+        className="size-9 rounded-full border border-border bg-(--surface-card) shadow-sm hover:border-foreground/35 flex items-center justify-center transition-colors duration-200 cursor-pointer"
         title="Copy link"
       >
         {copied ? (
@@ -51,14 +51,14 @@ export function BlogShareBar({ title }: BlogShareBarProps) {
       </button>
       <button
         onClick={shareToTwitter}
-        className="size-8 rounded-[2px] border border-border hover:border-foreground flex items-center justify-center transition-colors duration-200 cursor-pointer"
+        className="size-9 rounded-full border border-border bg-(--surface-card) shadow-sm hover:border-foreground/35 flex items-center justify-center transition-colors duration-200 cursor-pointer"
         title="Share on X"
       >
         <Twitter className="w-3.5 h-3.5 text-muted-foreground" />
       </button>
       <button
         onClick={shareToLinkedin}
-        className="size-8 rounded-[2px] border border-border hover:border-foreground flex items-center justify-center transition-colors duration-200 cursor-pointer"
+        className="size-9 rounded-full border border-border bg-(--surface-card) shadow-sm hover:border-foreground/35 flex items-center justify-center transition-colors duration-200 cursor-pointer"
         title="Share on LinkedIn"
       >
         <Linkedin className="w-3.5 h-3.5 text-muted-foreground" />

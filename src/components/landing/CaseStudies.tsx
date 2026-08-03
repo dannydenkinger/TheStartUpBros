@@ -9,7 +9,7 @@ import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 function StudyLabel() {
   return (
-    <div className="flex items-center gap-2 font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
+    <div className="flex items-center gap-2 text-[13px] text-muted-foreground">
       <span>Denkinger Bros</span>
       <span aria-hidden>·</span>
       <span>Design Study</span>
@@ -61,7 +61,7 @@ const cases = [
 
 export function CaseStudies() {
   return (
-    <section className="px-6 md:px-10 py-24 md:py-32">
+    <section className="px-6 md:px-10 py-20 md:py-28">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
           <SectionHeader
@@ -88,34 +88,48 @@ export function CaseStudies() {
               >
                 {/* Left — sticks from the top of the row until the last image scrolls past */}
                 <div className="lg:w-[540px] shrink-0 lg:sticky lg:top-[120px] lg:self-start">
-                  <p className="font-mono text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground mb-6">
-                    {c.tags.join(" / ")}
-                  </p>
+                  <div className="flex flex-wrap gap-2 mb-7">
+                    {c.tags.map((tag) => (
+                      <span key={tag} className="badge-pill">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
 
                   <h3 className="text-h1 text-foreground mb-6">{c.title}</h3>
 
                   <StudyLabel />
 
-                  <p className="font-display italic text-[21px] leading-[1.45] text-foreground mt-6 mb-8 max-w-[480px]">
+                  <p className="text-[19px] leading-[1.55] tracking-[-0.01em] text-muted-foreground mt-5 mb-8 max-w-[480px]">
                     &ldquo;{c.testimonial}&rdquo;
                   </p>
 
                   {/* Author */}
-                  <div className="flex items-baseline gap-3 py-3 border-b border-border/60">
-                    <span className="font-mono text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
-                      {c.author.name}
-                    </span>
-                    <span
-                      aria-hidden
-                      className="flex-1 border-b border-dotted border-muted-foreground/40 -translate-y-[3px]"
-                    />
-                    <span className="text-[15px] font-medium text-foreground">
-                      {c.author.role}
-                    </span>
+                  <div className="flex items-center gap-3">
+                    <div className="relative w-10 h-10 rounded-full overflow-hidden bg-secondary shrink-0">
+                      <Image
+                        src={c.author.image}
+                        alt=""
+                        fill
+                        sizes="40px"
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[14px] font-medium text-foreground leading-tight">
+                        {c.author.name}
+                      </p>
+                      <p className="text-[13px] text-muted-foreground leading-tight mt-0.5">
+                        {c.author.role}
+                      </p>
+                    </div>
                   </div>
 
                   <div className="mt-8">
-                    <Link href={c.href} className="btn-pill btn-pill-primary">
+                    <Link
+                      href={c.href}
+                      className="btn-pill btn-pill-primary h-10 px-5 text-sm"
+                    >
                       View Case Study{" "}
                       <span aria-hidden className="btn-arrow">
                         →
@@ -134,7 +148,7 @@ export function CaseStudies() {
                           fig={String(caseIdx * 3 + imgIdx + 1).padStart(2, "0")}
                           shadow
                         >
-                          <div className="relative aspect-[16/10] rounded-[4px] overflow-hidden">
+                          <div className="relative aspect-[16/10] overflow-hidden">
                             <div className="absolute inset-0" style={getWrapperStyle(src)}>
                               <Image
                                 src={src}
@@ -145,12 +159,10 @@ export function CaseStudies() {
                                 style={getImageStyle(src)}
                               />
                             </div>
-                            <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-3 px-4 py-3 bg-background border-t border-border opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <span className="text-micro-label text-foreground">
+                            <div className="absolute bottom-4 left-4 opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                              <span className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-[13px] font-medium text-[#0e0e10] shadow-[0_4px_16px_rgba(0,0,0,0.18)]">
                                 View Case Study
-                              </span>
-                              <span aria-hidden className="text-micro-label text-foreground">
-                                →
+                                <span aria-hidden>→</span>
                               </span>
                             </div>
                           </div>
