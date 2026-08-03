@@ -13,15 +13,7 @@ import { ArrowRight } from "lucide-react";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { RevealText } from "@/components/shared/RevealText";
-
-const techStack = [
-  "Next.js",
-  "Stripe",
-  "Vercel",
-  "OpenAI",
-  "Supabase",
-  "Tailwind",
-];
+import { ClientLogos } from "@/components/landing/ClientLogos";
 
 const statusItems = [
   { label: "Scope", value: "Within 48 hours" },
@@ -129,7 +121,7 @@ export function Hero() {
         </motion.div>
 
         {/* Screen content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-center px-6 pt-28 pb-12 md:px-10 md:pt-32">
+        <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-6 pt-28 pb-12 md:px-10 md:pt-32">
           {/* Founder eyebrow — borderless dot label */}
           <AnimateIn variant="fadeUp">
             <div>
@@ -214,18 +206,8 @@ export function Hero() {
             ))}
           </div>
 
-          {/* Tech-trust row — static, edge-to-edge */}
-          <p className="sr-only">Built on the stack trusted by modern SaaS</p>
-          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
-            {techStack.map((name) => (
-              <span
-                key={name}
-                className="text-sm font-semibold uppercase tracking-widest text-neutral-500/60 whitespace-nowrap"
-              >
-                {name}
-              </span>
-            ))}
-          </div>
+          {/* Inspired-by tape — the one logo strip on the landing page */}
+          <ClientLogos />
         </div>
       </div>
     </section>

@@ -62,7 +62,7 @@ const bottomRow = testimonials.slice(Math.ceil(testimonials.length / 2));
 export function Testimonials() {
   return (
     <section className="bg-background text-foreground py-20 md:py-28">
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         <AnimateIn>
           {/* Divider row — dot label over a full-width hairline (desses) */}
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">

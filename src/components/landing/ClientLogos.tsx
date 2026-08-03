@@ -1,7 +1,5 @@
 "use client";
 
-import { AnimateIn } from "@/components/shared/AnimateIn";
-
 const clients = [
   {
     name: "Linear",
@@ -124,31 +122,48 @@ const clients = [
   },
 ];
 
+function LogoRow() {
+  return (
+    <div className="flex items-center shrink-0">
+      {clients.map((client) => (
+        <div
+          key={client.name}
+          className="mx-7 flex items-center gap-2.5 select-none cursor-default"
+        >
+          <span className="inline-flex opacity-45 grayscale invert">
+            {client.logo}
+          </span>
+          <span className="text-[14px] font-medium text-white/40 whitespace-nowrap">
+            {client.name}
+          </span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+/* Horizontally scrolling "Inspired by" tape — lives at the hero's bottom
+ * edge (dark surface), the only logo strip on the landing page. */
 export function ClientLogos() {
   return (
-    <section className="px-6 md:px-10 py-14 md:py-16">
-      <div className="mx-auto max-w-[1360px]">
-        <AnimateIn variant="fadeIn">
-          <p className="text-[13px] text-muted-foreground/80 mb-9">
-            Inspired by
-          </p>
-          <div className="flex flex-wrap items-center gap-x-12 gap-y-6">
-            {clients.map((client) => (
-              <div
-                key={client.name}
-                className="flex items-center gap-2.5 select-none cursor-default"
-              >
-                <span className="inline-flex opacity-45 grayscale">
-                  {client.logo}
-                </span>
-                <span className="text-[14px] font-medium text-foreground/45">
-                  {client.name}
-                </span>
-              </div>
-            ))}
-          </div>
-        </AnimateIn>
+    <div className="flex items-center gap-6">
+      <p className="shrink-0 text-[13px] text-neutral-500 whitespace-nowrap">
+        Inspired by
+      </p>
+      <div
+        className="flex-1 overflow-hidden"
+        style={{
+          maskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+          WebkitMaskImage:
+            "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+        }}
+      >
+        <div className="flex w-max animate-marquee [--duration:55s]">
+          <LogoRow />
+          <LogoRow />
+        </div>
       </div>
-    </section>
+    </div>
   );
 }

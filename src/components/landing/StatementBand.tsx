@@ -36,7 +36,7 @@ const quotes = [
 export function StatementBand() {
   return (
     <section className="band grain py-32">
-      <div className="mx-auto max-w-[1360px] px-6 md:px-10">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         {/* Statement — scroll-linked word reveal, gray → white */}
         <div className="grid grid-cols-12 gap-x-6">
           <div className="col-span-12 lg:col-span-7">

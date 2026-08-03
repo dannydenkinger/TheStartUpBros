@@ -144,7 +144,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
 
   return (
     <section className="px-6 md:px-10 py-20 md:py-28 bg-(--muted) dark:bg-background">
-      <div className="mx-auto max-w-[1360px]">
+      <div className="mx-auto max-w-[1600px]">
         <AnimateIn>
           <SectionHeader
             index={index}
@@ -195,18 +195,18 @@ export function FAQ({ index = "04" }: { index?: string }) {
               </div>
 
               {/* Founder strip */}
-              <div className="mt-6 flex rounded-xl overflow-hidden">
+              <div className="mt-6 grid grid-cols-2 gap-px rounded-xl overflow-hidden">
                 {teamAvatars.map((src) => (
                   <div
                     key={src}
-                    className="relative h-[110px] flex-1 bg-secondary"
+                    className="relative aspect-[4/5] bg-secondary"
                   >
                     <Image
                       src={src}
                       alt=""
                       fill
-                      sizes="200px"
-                      className="object-cover"
+                      sizes="260px"
+                      className="object-cover object-[50%_25%]"
                     />
                   </div>
                 ))}

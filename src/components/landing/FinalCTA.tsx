@@ -7,7 +7,7 @@ import { MagneticButton } from "@/components/shared/MagneticButton";
 export function FinalCTA({ index = "06" }: { index?: string | null }) {
   return (
     <section className="band grain relative">
-      <div className="relative z-10 mx-auto max-w-[1360px] px-6 md:px-10 py-24 md:py-32">
+      <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-24 md:py-32">
         <AnimateIn>
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">

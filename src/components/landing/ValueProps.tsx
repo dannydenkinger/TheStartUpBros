@@ -127,7 +127,7 @@ function ServiceCard({
 export function ValueProps() {
   return (
     <section className="px-6 md:px-10 py-20 md:py-28">
-      <div className="mx-auto max-w-[1360px]">
+      <div className="mx-auto max-w-[1600px]">
         <AnimateIn>
           <SectionHeader
             index="01"

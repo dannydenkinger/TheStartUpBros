@@ -84,7 +84,7 @@ export function ShowcaseCarousel() {
     <section className="mt-6 px-4 md:px-6">
       <AnimateIn variant="fadeIn">
         <div
-          className="mx-auto h-[400px] max-w-[1360px] overflow-hidden rounded-[24px] p-2 md:h-[520px] md:p-3"
+          className="mx-auto h-[400px] max-w-[1600px] overflow-hidden rounded-[24px] p-2 md:h-[520px] md:p-3"
           style={{ background: "var(--surface-carousel-bg)" }}
         >
           <div className="flex h-full carousel-hover-pause">
