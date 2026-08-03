@@ -12,15 +12,11 @@ export function FinalCTA({ index = "06" }: { index?: string | null }) {
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">
               <span className="badge-pill text-micro-label">
+                <span aria-hidden className="label-dot" />
                 {index !== null && (
-                  <>
-                    <span className="text-muted-foreground">{index}</span>
-                    <span aria-hidden className="text-muted-foreground">
-                      ·
-                    </span>
-                  </>
+                  <span className="sr-only">{index} · </span>
                 )}
-                Work With Us
+                <span className="lowercase">Work With Us</span>
               </span>
             </div>
             <h2 className="col-span-12 lg:col-span-7 text-display mt-6">

@@ -41,12 +41,12 @@ export function WorkSamples() {
           />
         </AnimateIn>
 
-        {/* Uniform 4:3 grid — matches /gallery layout */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 isolate">
+        {/* Uniform 4:3 grid — larger flat tiles, desses card language */}
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 isolate">
           {galleryImages.map((src) => (
             <div
               key={src}
-              className="group relative aspect-[4/3] rounded-[16px] overflow-hidden isolate bg-card shadow-(--shadow-plate)"
+              className="group relative aspect-[4/3] rounded-2xl overflow-hidden isolate bg-card shadow-none"
             >
               <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
                 <Image
@@ -54,7 +54,7 @@ export function WorkSamples() {
                   alt=""
                   fill
                   quality={90}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                  sizes="(max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
                   style={getImageStyle(src)}
                 />

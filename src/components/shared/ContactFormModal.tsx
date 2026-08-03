@@ -101,7 +101,7 @@ export function ContactFormModal() {
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card rounded-[24px] shadow-(--shadow-plate) animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card rounded-[24px] animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
         {/* Close button */}
         <button
           onClick={closeModal}

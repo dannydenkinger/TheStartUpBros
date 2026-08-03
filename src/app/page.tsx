@@ -2,6 +2,7 @@ import { Hero } from "@/components/landing/Hero";
 import { ShowcaseCarousel } from "@/components/landing/ShowcaseCarousel";
 import { ValueProps } from "@/components/landing/ValueProps";
 import { CaseStudies } from "@/components/landing/CaseStudies";
+import { StatementBand } from "@/components/landing/StatementBand";
 import { ClientLogos } from "@/components/landing/ClientLogos";
 import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
@@ -35,6 +36,7 @@ export default function HomePage() {
       <ClientLogos />
       <ValueProps />
       <CaseStudies />
+      <StatementBand />
       <Testimonials />
       <FAQ />
       <WorkSamples />

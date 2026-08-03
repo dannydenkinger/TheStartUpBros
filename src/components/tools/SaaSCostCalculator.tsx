@@ -159,10 +159,10 @@ export function SaaSCostCalculator() {
                     key={feature.id}
                     onClick={() => toggle(feature.id)}
                     aria-pressed={isOn}
-                    className={`w-full h-full text-left rounded-[20px] p-6 shadow-(--shadow-plate) transition-all duration-300 cursor-pointer hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover) ${
+                    className={`w-full h-full text-left rounded-[20px] p-6 transition-all duration-300 cursor-pointer hover:-translate-y-0.5 ${
                       isOn
                         ? "bg-(--accent-brand-soft) ring-2 ring-(--accent-brand)"
-                        : "bg-card"
+                        : "bg-card hover:bg-(--surface-card-hover)"
                     }`}
                   >
                     <div className="flex items-start justify-between gap-3 mb-5">

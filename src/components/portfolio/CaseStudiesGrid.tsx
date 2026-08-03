@@ -34,7 +34,7 @@ export function CaseStudiesGrid() {
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:w-[300px] h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200"
+          className="w-full sm:w-[300px] h-12 rounded-xl border border-transparent bg-(--surface-input) px-4 text-sm text-foreground placeholder:text-muted-foreground/70 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200"
         />
 
         <div className="flex items-center gap-3">
@@ -45,7 +45,7 @@ export function CaseStudiesGrid() {
             <select
               value={category}
               onChange={(e) => setCategory(e.target.value)}
-              className="h-12 rounded-xl border border-input bg-(--surface-input) pl-4 pr-10 text-sm text-foreground focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200 cursor-pointer appearance-none"
+              className="h-12 rounded-xl border border-transparent bg-(--surface-input) pl-4 pr-10 text-sm text-foreground focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-[border-color,box-shadow] duration-200 cursor-pointer appearance-none"
             >
               <option value="all">All</option>
               {allTags.map((tag) => (
@@ -79,7 +79,7 @@ export function CaseStudiesGrid() {
             href={`/portfolio/${project.slug}`}
             className="group block"
           >
-            <div className="rounded-[24px] overflow-hidden bg-card shadow-(--shadow-plate) transition-[transform,box-shadow] duration-300 group-hover:-translate-y-0.5 group-hover:shadow-(--shadow-plate-hover)">
+            <div className="rounded-[24px] overflow-hidden bg-card transition-transform duration-300 group-hover:-translate-y-0.5">
               <div className="relative aspect-[4/3] sm:aspect-[16/10] md:aspect-[16/9] w-full overflow-hidden">
                 <div
                   className="absolute inset-0"
@@ -99,25 +99,19 @@ export function CaseStudiesGrid() {
             </div>
 
             <div className="mt-6 flex flex-wrap items-center gap-x-4 gap-y-3">
-              <span className="badge-pill">
-                <span className="text-muted-foreground tabular-nums">
-                  {String(i + 1).padStart(2, "0")}
-                </span>
-                <span aria-hidden className="text-muted-foreground">
-                  ·
-                </span>
+              <span className="text-[13px] text-muted-foreground tabular-nums">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[13px] font-medium text-(--accent-brand)">
                 {project.tags.join(" / ")}
               </span>
               {project.year && (
-                <span className="text-sm text-muted-foreground tabular-nums">
+                <span className="text-[13px] text-muted-foreground tabular-nums">
                   {project.year}
                 </span>
               )}
-              <span
-                aria-hidden
-                className="ml-auto text-lg leading-none text-muted-foreground transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-(--accent-brand)"
-              >
-                ↗
+              <span aria-hidden className="plus-btn ml-auto">
+                +
               </span>
             </div>
             <h2 className="mt-3 text-h2 text-foreground max-w-[980px]">

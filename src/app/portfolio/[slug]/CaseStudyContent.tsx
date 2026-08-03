@@ -24,16 +24,23 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <section className="pt-16 md:pt-24 pb-12">
         <div className="mx-auto max-w-[1360px] px-6 md:px-10">
           <AnimateIn variant="fadeUp">
-            <div className="flex flex-wrap gap-2 mb-8">
+            <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
               {project.industry && (
-                <span className="badge-pill">{project.industry}</span>
+                <span className="text-[13px] font-medium text-(--accent-brand)">
+                  {project.industry}
+                </span>
               )}
               {project.year && (
-                <span className="badge-pill">{project.year}</span>
+                <span className="text-[13px] text-muted-foreground tabular-nums">
+                  {project.year}
+                </span>
               )}
               {!project.industry &&
                 project.tags.slice(0, 3).map((tag) => (
-                  <span key={tag} className="badge-pill">
+                  <span
+                    key={tag}
+                    className="text-[13px] font-medium text-(--accent-brand)"
+                  >
                     {tag}
                   </span>
                 ))}
@@ -105,7 +112,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       {/* ─── Hero plate ────────────────────────────────────────────── */}
       <section className="mx-auto w-full max-w-[1360px] px-6 md:px-10 mb-20 md:mb-28">
         <AnimateIn variant="scaleIn" delay={0.1}>
-          <Plate caption={project.slug} fig="01" shadow>
+          <Plate caption={project.slug} fig="01">
             <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full overflow-hidden">
               <div
                 className="absolute inset-0"
@@ -141,13 +148,13 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               href={`/portfolio/${nextProject.slug}`}
               className="group flex items-center gap-6 border-y border-border py-6"
             >
-              <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap">
+              <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap lowercase">
                 NEXT / {pad(nextIndex + 1)}
               </span>
               <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 group-hover:text-foreground transition-colors duration-300">
                 {nextProject.title}
               </h3>
-              <div className="hidden md:block w-[180px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden shadow-(--shadow-plate) opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="hidden md:block w-[180px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                 <div
                   className="relative w-full h-full"
                   style={getWrapperStyle(nextProject.image)}
@@ -270,7 +277,7 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
         <section className="pb-16 md:pb-24">
           <div className="mx-auto max-w-[1360px] px-6 md:px-10">
             <AnimateIn>
-              <figure className="relative overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) p-8 md:p-12">
+              <figure className="relative overflow-hidden rounded-[20px] bg-card p-8 md:p-12">
                 <span
                   aria-hidden
                   className="absolute left-0 top-0 h-full w-1 bg-(--accent-brand)"
@@ -348,7 +355,7 @@ function GalleryBlockRenderer({
     return (
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col gap-3">
-          <Plate caption={slug} fig={fig} shadow>
+          <Plate caption={slug} fig={fig}>
             <div className="relative aspect-[16/10] w-full overflow-hidden">
               <div
                 className="absolute inset-0"
@@ -379,7 +386,7 @@ function GalleryBlockRenderer({
     return (
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col gap-3">
-          <Plate caption={slug} fig={fig} shadow>
+          <Plate caption={slug} fig={fig}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
               {block.images.map((img, i) => (
                 <div
@@ -423,7 +430,7 @@ function GalleryBlockRenderer({
         }`}
       >
         <div className="md:col-span-7">
-          <Plate caption={slug} fig={fig} shadow>
+          <Plate caption={slug} fig={fig}>
             <div className="relative aspect-[4/3] w-full overflow-hidden">
               <div
                 className="absolute inset-0"

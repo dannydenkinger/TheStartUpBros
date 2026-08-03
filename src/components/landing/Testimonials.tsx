@@ -3,7 +3,6 @@ import {
   TestimonialAuthor,
 } from "@/components/ui/testimonial-card";
 import { AnimateIn } from "@/components/shared/AnimateIn";
-import { SectionHeader } from "@/components/shared/SectionHeader";
 
 const testimonials = [
   {
@@ -65,16 +64,23 @@ export function Testimonials() {
     <section className="bg-background text-foreground py-20 md:py-28">
       <div className="mx-auto max-w-[1360px] px-6 md:px-10">
         <AnimateIn>
-          <SectionHeader
-            index="03"
-            label="PRINCIPLES"
-            title={
-              <>
-                How We <span className="accent-word">Work</span>
-              </>
-            }
-            intro="The principles behind every project we ship."
-          />
+          {/* Divider row — dot label over a full-width hairline (desses) */}
+          <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+            <span className="badge-pill text-micro-label">
+              <span aria-hidden className="label-dot" />
+              <span className="sr-only">03 · </span>
+              <span className="lowercase">PRINCIPLES</span>
+            </span>
+          </div>
+
+          <div className="grid grid-cols-12 gap-x-6 gap-y-6 mt-14 mb-20 md:mb-28">
+            <h2 className="col-span-12 lg:col-span-7 text-h2">
+              How We <span className="accent-word">Work</span>
+            </h2>
+            <p className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end text-body-lg">
+              The principles behind every project we ship.
+            </p>
+          </div>
         </AnimateIn>
       </div>
 

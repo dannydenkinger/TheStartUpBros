@@ -47,7 +47,7 @@ export function ServiceCard({ service, index }: ServiceCardProps) {
             </li>
           ))}
         </ul>
-        <span className="mt-auto text-sm font-medium text-(--accent-brand)">
+        <span className="mt-auto text-[13px] font-medium text-(--accent-brand)">
           Explore →
         </span>
       </Link>

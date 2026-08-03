@@ -128,7 +128,7 @@ export function StrategyCallContent() {
             {/* ─── Right: form card ─── */}
             <div className="w-full lg:w-[540px] shrink-0">
               <AnimateIn variant="fadeUp" delay={0.1}>
-                <div className="bg-card rounded-[24px] p-8 shadow-(--shadow-plate)">
+                <div className="bg-card rounded-[24px] p-8">
                   <h2 className="text-h3 mb-2">Book your strategy call</h2>
                   <p className="text-caption mb-7">
                     We&apos;ll reply within 24 hours to schedule.

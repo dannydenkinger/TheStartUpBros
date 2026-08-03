@@ -341,9 +341,15 @@ export default async function IndustryPage({
       {/* ── Hero ── */}
       <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
         <div className="max-w-[1360px] mx-auto">
-          <div className="flex flex-wrap gap-3 mb-8">
-            <span className="badge-pill">Founded by Denkinger Bros</span>
-            <span className="badge-pill">Trial Week Included</span>
+          <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
+            <span className="badge-pill">
+              <span aria-hidden className="label-dot" />
+              Founded by Denkinger Bros
+            </span>
+            <span className="badge-pill">
+              <span aria-hidden className="label-dot" />
+              Trial Week Included
+            </span>
           </div>
 
           <div className="grid grid-cols-12 gap-x-6">
@@ -390,31 +396,34 @@ export default async function IndustryPage({
               <Link
                 key={cs.title}
                 href={cs.href}
-                className="group block overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) transition-all duration-300 hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover)"
+                className="group block overflow-hidden rounded-[20px] bg-card transition-colors duration-300 hover:bg-(--surface-card-hover)"
               >
-                <div className="p-2 pb-0">
-                  <div className="relative aspect-[16/10] rounded-[13px] overflow-hidden isolate">
-                    <div
-                      className="absolute inset-0 overflow-hidden"
-                      style={getWrapperStyle(cs.image)}
-                    >
-                      <Image
-                        src={cs.image}
-                        alt={cs.title}
-                        fill
-                        sizes="(max-width: 768px) 100vw, 50vw"
-                        className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
-                        style={getImageStyle(cs.image)}
-                      />
-                    </div>
+                <div className="relative aspect-[16/10] overflow-hidden isolate">
+                  <div
+                    className="absolute inset-0 overflow-hidden"
+                    style={getWrapperStyle(cs.image)}
+                  >
+                    <Image
+                      src={cs.image}
+                      alt={cs.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                      style={getImageStyle(cs.image)}
+                    />
                   </div>
                 </div>
                 <div className="p-6">
-                  <p className="text-xs text-muted-foreground mb-3">
-                    {cs.tag} — {cs.location}
-                  </p>
+                  <div className="flex items-start justify-between gap-4 mb-3">
+                    <p className="text-[13px] font-medium text-(--accent-brand)">
+                      {cs.tag} — {cs.location}
+                    </p>
+                    <span aria-hidden className="plus-btn">
+                      +
+                    </span>
+                  </div>
                   <h3 className="text-h3 text-foreground mb-4">{cs.title}</h3>
-                  <span className="text-sm font-medium text-(--accent-brand)">
+                  <span className="text-[13px] font-medium text-(--accent-brand)">
                     → View Case Study
                   </span>
                 </div>
@@ -461,11 +470,9 @@ export default async function IndustryPage({
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-16">
             <span className="badge-pill text-micro-label">
-              <span className="text-muted-foreground">{idx()}</span>
-              <span aria-hidden className="text-muted-foreground">
-                ·
-              </span>
-              TESTIMONIAL
+              <span aria-hidden className="label-dot" />
+              <span className="sr-only">{idx()} · </span>
+              <span className="lowercase">TESTIMONIAL</span>
             </span>
           </div>
           <div className="card-elevated p-8 md:p-12">
@@ -518,7 +525,7 @@ export default async function IndustryPage({
                   <p className="text-caption text-muted-foreground flex-1">
                     {ind.description}
                   </p>
-                  <span className="text-sm font-medium text-(--accent-brand) whitespace-nowrap">
+                  <span className="text-[13px] font-medium text-(--accent-brand) whitespace-nowrap">
                     Explore {ind.name} →
                   </span>
                 </Link>
@@ -532,11 +539,9 @@ export default async function IndustryPage({
         <div className="max-w-[1360px] mx-auto">
           <div className="mb-16">
             <span className="badge-pill text-micro-label">
-              <span className="text-muted-foreground">{idx()}</span>
-              <span aria-hidden className="text-muted-foreground">
-                ·
-              </span>
-              PRICING
+              <span aria-hidden className="label-dot" />
+              <span className="sr-only">{idx()} · </span>
+              <span className="lowercase">PRICING</span>
             </span>
           </div>
           <div className="card-elevated p-8 md:p-12">

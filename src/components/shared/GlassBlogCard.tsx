@@ -79,7 +79,11 @@ export function GlassBlogCard({
 }: GlassBlogCardProps) {
   const meta = (
     <div className="flex items-center gap-3 min-w-0">
-      {category && <span className="badge-pill shrink-0">{category}</span>}
+      {category && (
+        <span className="shrink-0 text-[13px] font-medium text-(--accent-brand)">
+          {category}
+        </span>
+      )}
       <span className="text-[13px] text-muted-foreground truncate">
         {[date, readTime].filter(Boolean).join(" · ")}
       </span>
@@ -142,8 +146,8 @@ export function GlassBlogCard({
   );
 
   const cardClass = cn(
-    "group block h-full overflow-hidden rounded-[20px] bg-card shadow-(--shadow-plate) transition-[transform,box-shadow] duration-300",
-    href && "hover:-translate-y-0.5 hover:shadow-(--shadow-plate-hover)",
+    "group block h-full overflow-hidden rounded-[20px] bg-card transition-[transform,background-color] duration-300",
+    href && "hover:-translate-y-0.5 hover:bg-(--surface-card-hover)",
     className
   );
 

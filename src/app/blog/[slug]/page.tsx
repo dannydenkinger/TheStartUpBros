@@ -96,7 +96,9 @@ export default async function BlogPostPage({
           {/* Category tag */}
           {frontmatter.category && (
             <div className="mb-5">
-              <span className="badge-pill">{frontmatter.category}</span>
+              <span className="text-[13px] font-medium text-(--accent-brand)">
+                {frontmatter.category}
+              </span>
             </div>
           )}
 
@@ -108,7 +110,7 @@ export default async function BlogPostPage({
           {/* Author row */}
           <div className="flex flex-wrap items-center gap-4">
             <div className="flex items-center gap-3">
-              <div className="size-10 rounded-full bg-card shadow-(--shadow-plate) flex items-center justify-center text-[12px] font-medium text-foreground">
+              <div className="size-10 rounded-full bg-card flex items-center justify-center text-[12px] font-medium text-foreground">
                 {(frontmatter.author || "SB")
                   .split(" ")
                   .map((n: string) => n[0])
@@ -159,7 +161,7 @@ export default async function BlogPostPage({
       <div className="px-6 md:px-10 pb-12">
         <div className="mx-auto max-w-[1080px]">
           {frontmatter.image ? (
-            <Plate caption={frontmatter.category || slug} fig="01" shadow>
+            <Plate caption={frontmatter.category || slug} fig="01">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={frontmatter.image}

@@ -3,7 +3,10 @@ import { CTAButton } from "@/components/shared/CTAButton";
 export default function NotFound() {
   return (
     <section className="flex flex-col items-center justify-center min-h-[60vh] px-6 text-center">
-      <span className="badge-pill text-micro-label mb-6">ERROR / 404</span>
+      <span className="badge-pill text-micro-label mb-6">
+        <span aria-hidden className="label-dot" />
+        <span className="lowercase">ERROR / 404</span>
+      </span>
       <h1 className="font-display text-[10rem] leading-none tracking-[-0.03em] font-medium tabular-nums text-(--accent-brand) mb-4">
         404
       </h1>

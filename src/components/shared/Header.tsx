@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
-import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { Menu, Moon, Sun, X } from "lucide-react";
 
 const industries = [
   { name: "AI", href: "/industries/ai" },
@@ -19,38 +20,95 @@ const industries = [
   { name: "Supply Chain", href: "/industries/b2b" },
 ];
 
-const navLinkClass =
-  "text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200";
+/* Icon-only theme switch for the pill nav (mounted-guarded, like ThemeToggle). */
+function IconThemeToggle({ className }: { className?: string }) {
+  const { resolvedTheme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+
+  if (!mounted) {
+    return <div className={cn("size-8", className)} />;
+  }
+
+  const isDark = resolvedTheme === "dark";
+
+  return (
+    <button
+      type="button"
+      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      className={cn(
+        "flex size-8 cursor-pointer items-center justify-center rounded-full transition-colors duration-200",
+        className
+      )}
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+    >
+      {isDark ? (
+        <Sun className="size-4" strokeWidth={1.5} />
+      ) : (
+        <Moon className="size-4" strokeWidth={1.5} />
+      )}
+    </button>
+  );
+}
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 600);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Over the home hero the pill floats on dark artwork; past it (or on any
+  // other route) it swaps to a dark-on-light treatment (theme-aware).
+  const overArt = pathname === "/" && !scrolled;
+
+  const navLinkClass = cn(
+    "text-sm font-medium transition-colors duration-200",
+    "text-neutral-600 hover:text-neutral-900",
+    !overArt && "dark:text-neutral-300 dark:hover:text-white"
+  );
 
   return (
-    <header className="fixed top-0 inset-x-0 z-50 h-20">
+    <header className="fixed top-4 left-1/2 z-50 -translate-x-1/2">
       <div
-        aria-hidden="true"
-        className="absolute inset-0 -z-10"
-        style={{
-          background: "var(--surface-nav-bg)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-        }}
-      />
-      <div className="mx-auto flex h-full max-w-[1360px] items-center justify-between px-6 md:px-10">
-        {/* Wordmark */}
-        <Link href="/" className="flex items-baseline gap-3">
-          <span className="text-[20px] font-semibold leading-none tracking-[-0.02em] text-foreground">
+        className={cn(
+          "flex h-14 items-stretch rounded-2xl border backdrop-blur-md transition-colors duration-300",
+          overArt
+            ? "border-white/10 bg-white/10"
+            : "border-black/5 bg-white/40 dark:border-white/10 dark:bg-neutral-900/40"
+        )}
+      >
+        {/* Brand segment — translucent, picks up the artwork behind it */}
+        <Link
+          href="/"
+          className={cn(
+            "flex items-center rounded-l-2xl px-5 transition-colors duration-300",
+            overArt ? "text-white" : "text-neutral-900 dark:text-white"
+          )}
+        >
+          <span className="text-[17px] font-semibold leading-none tracking-[-0.02em]">
             StartUpBros
           </span>
-          <span className="hidden lg:inline text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            EST. 2026 — MVP STUDIO
-          </span>
+          <span className="sr-only">EST. 2026 — MVP STUDIO</span>
         </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden lg:flex items-center gap-8">
-          <nav className="flex items-center gap-7">
+        {/* Links segment — lighter/whiter capsule half */}
+        <div
+          className={cn(
+            "hidden items-center gap-6 rounded-r-2xl px-5 transition-colors duration-300 lg:flex",
+            overArt
+              ? "bg-white/85 text-neutral-900"
+              : "bg-white/80 text-neutral-900 dark:bg-white/10 dark:text-white"
+          )}
+        >
+          <nav className="flex items-center gap-6">
             <Link href="/" className={navLinkClass}>
               Home
             </Link>
@@ -58,9 +116,9 @@ export function Header() {
               Case Studies
             </Link>
 
-            {/* Industries dropdown */}
+            {/* Industries dropdown — floats from the pill */}
             <div
-              className="relative flex items-center"
+              className="relative flex h-14 items-center"
               onMouseEnter={() => setIndustriesOpen(true)}
               onMouseLeave={() => setIndustriesOpen(false)}
             >
@@ -73,9 +131,9 @@ export function Header() {
               </button>
 
               {industriesOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-5">
+                <div className="absolute top-full left-1/2 -translate-x-1/2 pt-3">
                   <div
-                    className="w-[380px] rounded-2xl border border-border p-2 shadow-(--shadow-plate) grid grid-cols-2"
+                    className="grid w-[380px] grid-cols-2 rounded-2xl border border-border p-2 shadow-(--shadow-plate)"
                     style={{ background: "var(--surface-dropdown-bg)" }}
                   >
                     {industries.map((item, i) => (
@@ -100,30 +158,52 @@ export function Header() {
             </Link>
           </nav>
 
-          <ThemeToggle />
-
           <Link
             href="/strategy-call"
-            className="btn-pill btn-pill-primary h-10 px-5 text-sm"
+            className={cn(
+              "text-sm font-semibold transition-colors duration-200",
+              overArt
+                ? "text-neutral-900 hover:text-neutral-600"
+                : "text-neutral-900 hover:text-neutral-600 dark:text-white dark:hover:text-neutral-300"
+            )}
           >
             Book a Call
-            <span className="btn-arrow" aria-hidden="true">
-              →
-            </span>
           </Link>
+
+          <IconThemeToggle
+            className={cn(
+              "text-neutral-600 hover:bg-black/5 hover:text-neutral-900",
+              !overArt &&
+                "dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white"
+            )}
+          />
         </div>
 
-        {/* Mobile bar controls */}
-        <div className="flex items-center gap-3 lg:hidden">
-          <ThemeToggle />
+        {/* Mobile segment — links collapse into a Menu trigger */}
+        <div
+          className={cn(
+            "flex items-center gap-1 rounded-r-2xl pl-3 pr-2 transition-colors duration-300 lg:hidden",
+            overArt
+              ? "bg-white/85 text-neutral-900"
+              : "bg-white/80 text-neutral-900 dark:bg-white/10 dark:text-white"
+          )}
+        >
           <button
             type="button"
             aria-label="Open menu"
-            className="p-2 text-foreground"
+            className="flex cursor-pointer items-center gap-2 px-2 py-2 text-sm font-medium"
             onClick={() => setMobileMenuOpen(true)}
           >
-            <Menu className="h-6 w-6" strokeWidth={1.5} />
+            <Menu className="size-4" strokeWidth={1.5} />
+            Menu
           </button>
+          <IconThemeToggle
+            className={cn(
+              "text-neutral-600 hover:bg-black/5 hover:text-neutral-900",
+              !overArt &&
+                "dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white"
+            )}
+          />
         </div>
       </div>
 

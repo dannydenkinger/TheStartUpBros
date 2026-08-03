@@ -21,14 +21,14 @@ export function SectionHeader({
   className,
 }: SectionHeaderProps) {
   return (
-    <div className={cn("grid grid-cols-12 gap-x-6 gap-y-6 mb-16", className)}>
+    <div
+      className={cn("grid grid-cols-12 gap-x-6 gap-y-6 mb-20 md:mb-28", className)}
+    >
       <AnimateIn variant="fadeUp" className="col-span-12">
         <span className="badge-pill text-micro-label">
-          <span className="text-muted-foreground">{index}</span>
-          <span aria-hidden className="text-muted-foreground">
-            ·
-          </span>
-          {label}
+          <span aria-hidden className="label-dot" />
+          <span className="sr-only">{index} · </span>
+          <span className="lowercase">{label}</span>
         </span>
       </AnimateIn>
       <h2 className="col-span-12 lg:col-start-1 lg:col-span-7 text-h2">

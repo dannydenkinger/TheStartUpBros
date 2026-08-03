@@ -32,25 +32,31 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="band grain">
+    <footer className="band grain border-t border-border">
       <div className="mx-auto max-w-[1360px] px-6 md:px-10">
-        {/* Link columns */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-10 pt-16 md:pt-20 pb-12">
-          <p className="text-caption col-span-12 max-w-xs lg:col-span-4">
-            Full-stack development for startups. We build apps, websites, and
-            software — from idea to launch.
-          </p>
+        {/* Top zone — dot label / brand+contact / link columns */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12 pt-20 md:pt-28 pb-16 md:pb-24">
+          {/* (1) Dot label */}
+          <div className="col-span-12 lg:col-span-2">
+            <span className="badge-pill text-micro-label">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">MVP STUDIO</span>
+            </span>
+          </div>
 
-          {columns.map((col, i) => (
-            <div
-              key={col.title}
-              className={
-                i === 0
-                  ? "col-span-6 sm:col-span-4 lg:col-start-7 lg:col-span-2"
-                  : "col-span-6 sm:col-span-4 lg:col-span-2"
-              }
-            >
-              <p className="mb-4 text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+          {/* (2) Brand / contact block */}
+          <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+            <p className="text-[17px] text-white">StartUpBros</p>
+            <p className="mt-3 max-w-xs text-[17px] leading-[1.5] text-white">
+              Full-stack development for startups. We build apps, websites, and
+              software — from idea to launch.
+            </p>
+          </div>
+
+          {/* (3+4) Link columns */}
+          {columns.map((col) => (
+            <div key={col.title} className="col-span-6 sm:col-span-4 lg:col-span-2">
+              <p className="mb-4 text-[17px] text-muted-foreground">
                 {col.title}
               </p>
               <ul className="space-y-2.5">
@@ -58,7 +64,7 @@ export function Footer() {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-sm text-muted-foreground hover:text-foreground transition-colors duration-200"
+                      className="text-[17px] text-white hover:text-white/70 transition-colors duration-200"
                     >
                       {link.label}
                     </Link>
@@ -69,24 +75,21 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Legal bar */}
-        <div className="flex flex-col gap-2 border-t border-border py-5 sm:flex-row sm:items-center sm:justify-between">
-          <p className="text-xs text-muted-foreground">
-            &copy; {new Date().getFullYear()} StartUpBros. All rights reserved.
-          </p>
-          <p className="text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground">
-            BUILT IN WEEKS, NOT MONTHS
-          </p>
-        </div>
-
-        {/* Giant wordmark, baseline-cropped into the band edge */}
-        <div className="overflow-hidden pt-6 md:pt-10">
+        {/* Bottom row — giant wordmark left, legal stack right */}
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-10 pb-10 md:pb-12">
           <Link
             href="/"
-            className="-mb-[0.155em] block text-[clamp(4rem,12vw,10rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-white whitespace-nowrap"
+            className="block text-[clamp(4rem,9vw,8.5rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-white whitespace-nowrap"
           >
             StartUpBros<span className="text-(--accent-brand)">.</span>
           </Link>
+          <div className="shrink-0 space-y-1 pb-2 text-xs text-muted-foreground md:text-right">
+            <p>
+              &copy; {new Date().getFullYear()} StartUpBros. All rights
+              reserved.
+            </p>
+            <p className="lowercase">BUILT IN WEEKS, NOT MONTHS</p>
+          </div>
         </div>
       </div>
     </footer>

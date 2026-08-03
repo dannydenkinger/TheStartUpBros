@@ -51,7 +51,10 @@ export default function ServicesPage() {
                 to launch on a free call.
               </p>
               <span className="btn-pill btn-pill-primary mt-auto self-start">
-                Book Strategy Call →
+                Book Strategy Call
+                <span aria-hidden className="btn-arrow">
+                  →
+                </span>
               </span>
             </Link>
           </AnimateIn>

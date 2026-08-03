@@ -9,10 +9,9 @@ import {
   useTransform,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { CTAButton } from "@/components/shared/CTAButton";
+import { ArrowRight } from "lucide-react";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { MagneticButton } from "@/components/shared/MagneticButton";
-import { StatusStrip } from "@/components/shared/StatusStrip";
 import { RevealText } from "@/components/shared/RevealText";
 
 const techStack = [
@@ -24,43 +23,22 @@ const techStack = [
   "Tailwind",
 ];
 
-// Ticker needs enough width for a seamless -50% loop
-const tickerItems = [...techStack, ...techStack];
+const statusItems = [
+  { label: "Scope", value: "Within 48 hours" },
+  { label: "Design", value: "Usable by week one" },
+  { label: "Ship", value: "MVP in 2–4 weeks" },
+];
 
-function TickerRow() {
-  return (
-    <div className="flex items-center shrink-0">
-      {tickerItems.map((name, i) => (
-        <span
-          key={`${name}-${i}`}
-          className="flex items-center text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap"
-        >
-          {i % 4 === 0 && (
-            <span
-              aria-hidden
-              className="size-1.5 shrink-0 rounded-full bg-(--accent-brand) mr-6"
-            />
-          )}
-          {name}
-          <span aria-hidden className="mx-6">
-            —
-          </span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
-/* Pure-CSS gradient ribbon — a giant blurred ring centered far left of the
- * screen so its right-hand arc reads as a near-vertical luminous band on the
- * right third, plus a faint second arc over the headline and soft radial
- * washes. Layered under .grain. */
+/* Pure-CSS gradient ribbon — one broad electric-blurple arc over black.
+ * A giant blurred ring centered at the hero's bottom-left corner: its
+ * visible arc enters the top edge ~40% across, bows right, and exits the
+ * bottom edge ~75% across, reading as a wide curved beam sweeping from
+ * top-center to bottom-right. Layered under .grain. */
 function RibbonArt({ animate }: { animate: boolean }) {
-  // All rings share this geometry: circle centered at (5% W, 85% H),
-  // radius 75% of screen width — the visible arc enters the top edge around
-  // x 55%, bows right to ~x 80% near the bottom: a diagonal curved sweep.
+  // All rings share this geometry: circle centered at (-8% W, 100% H),
+  // radius ~77% of the band width.
   const ring =
-    "absolute left-[5%] top-[85%] aspect-square w-[150%] rounded-full";
+    "absolute left-[-8%] top-full aspect-square w-[155%] rounded-full";
 
   return (
     <div
@@ -68,12 +46,12 @@ function RibbonArt({ animate }: { animate: boolean }) {
       className="pointer-events-none absolute inset-0 overflow-hidden"
     >
       <div className={cn("absolute inset-0", animate && "animate-hero-float")}>
-        {/* Ambient wash behind the ribbon's upper reach */}
+        {/* Ambient wash where the beam enters, top-center */}
         <div
-          className="absolute -top-[22%] right-[4%] h-[70%] w-[36%] rounded-full"
+          className="absolute -top-[24%] right-[28%] h-[70%] w-[38%] rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(61,43,255,0.24), transparent 74%)",
+              "radial-gradient(closest-side, rgba(82,39,255,0.26), transparent 74%)",
             filter: "blur(90px)",
           }}
         />
@@ -81,8 +59,8 @@ function RibbonArt({ animate }: { animate: boolean }) {
         <div
           className={ring}
           style={{
-            border: "140px solid rgba(70,52,255,0.45)",
-            filter: "blur(90px)",
+            border: "230px solid rgba(82,39,255,0.5)",
+            filter: "blur(100px)",
             transform: "translate(-50%, -50%)",
           }}
         />
@@ -90,35 +68,35 @@ function RibbonArt({ animate }: { animate: boolean }) {
         <div
           className={ring}
           style={{
-            border: "90px solid rgba(99,84,255,0.95)",
-            filter: "blur(62px)",
+            border: "150px solid rgba(98,58,255,0.95)",
+            filter: "blur(64px)",
             transform: "translate(-50%, -50%) scale(0.99)",
           }}
         />
-        {/* Ribbon — luminous core */}
+        {/* Ribbon — hot edge highlight */}
         <div
           className={ring}
           style={{
-            border: "26px solid rgba(186,178,255,1)",
-            filter: "blur(60px)",
-            transform: "translate(-50%, -50%) scale(0.982)",
+            border: "42px solid rgba(178,150,255,1)",
+            filter: "blur(54px)",
+            transform: "translate(-50%, -50%) scale(0.984)",
           }}
         />
-        {/* Faint second arc sweeping over the headline zone */}
+        {/* Faint second arc grazing the upper-left, desses-style */}
         <div
           className="absolute left-[10%] top-[-70%] aspect-square w-[130%] rounded-full"
           style={{
-            border: "70px solid rgba(91,77,255,0.22)",
+            border: "70px solid rgba(82,39,255,0.2)",
             filter: "blur(80px)",
             transform: "translate(-50%, -50%)",
           }}
         />
         {/* Counter-glow where the ribbon exits, bottom right */}
         <div
-          className="absolute -bottom-[30%] right-[-10%] h-[70%] w-[38%] rounded-full"
+          className="absolute -bottom-[28%] right-[-8%] h-[70%] w-[40%] rounded-full"
           style={{
             background:
-              "radial-gradient(closest-side, rgba(91,77,255,0.3), transparent 72%)",
+              "radial-gradient(closest-side, rgba(98,58,255,0.32), transparent 72%)",
             filter: "blur(90px)",
           }}
         />
@@ -137,9 +115,11 @@ export function Hero() {
   const ribbonY = useTransform(scrollYProgress, [0, 1], [0, 140]);
 
   return (
-    <section ref={sectionRef} className="flex flex-col">
-      {/* The hero screen — full-bleed dark band */}
-      <div className="band grain relative flex flex-col overflow-hidden md:min-h-[min(calc(100vh-80px),860px)]">
+    <section ref={sectionRef} className="-mt-[80px] flex flex-col">
+      {/* The hero screen — full-bleed dark card, rounded bottom corners so it
+       * reads as a dark card ending on the light page. Starts at viewport top
+       * behind the floating pill nav. */}
+      <div className="band grain relative flex min-h-svh flex-col overflow-hidden rounded-b-[2rem]">
         <motion.div
           aria-hidden
           className="absolute inset-0"
@@ -149,90 +129,102 @@ export function Hero() {
         </motion.div>
 
         {/* Screen content */}
-        <div className="relative z-10 mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-center px-6 py-16 md:px-10 md:py-20">
-            {/* Founder eyebrow */}
-            <AnimateIn variant="fadeUp">
-              <div>
+        <div className="relative z-10 mx-auto flex w-full max-w-[1360px] flex-1 flex-col justify-center px-6 pt-28 pb-12 md:px-10 md:pt-32">
+          {/* Founder eyebrow — borderless dot label */}
+          <AnimateIn variant="fadeUp">
+            <div>
+              <Link
+                href="/strategy-call"
+                className="mb-8 inline-flex items-center gap-2 text-[13px] text-neutral-400 transition-colors hover:text-white"
+              >
+                <span
+                  aria-hidden
+                  className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
+                />
+                Founded by the Denkinger brothers — taking first clients
+              </Link>
+            </div>
+          </AnimateIn>
+
+          {/* Headline — white base, one muted-gray inline emphasis */}
+          <h1 className="text-display max-w-[880px]">
+            <RevealText delay={0.05}>Launch-Ready Products,</RevealText>
+            <RevealText delay={0.16}>Built In Weeks</RevealText>
+            <RevealText delay={0.27}>
+              <span className="text-white/55">— Not Months</span>
+            </RevealText>
+          </h1>
+
+          {/* Subtitle */}
+          <AnimateIn variant="fadeUp" delay={0.35}>
+            <p className="mt-10 max-w-[36rem] text-base leading-relaxed text-white/85">
+              Full-stack design and development for startups that need to
+              move&nbsp;now.
+            </p>
+          </AnimateIn>
+
+          {/* CTAs — one white capsule + one plain text link */}
+          <AnimateIn variant="fadeUp" delay={0.45}>
+            <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+              <MagneticButton>
                 <Link
                   href="/strategy-call"
-                  className="badge-pill mb-7 hover:border-white/40 transition-colors"
+                  className="group inline-flex h-12 items-center gap-3 rounded-full bg-white pl-1.5 pr-6 text-sm font-medium text-neutral-900 shadow-lg transition-transform duration-200 hover:scale-[1.02]"
                 >
-                  <span
-                    aria-hidden
-                    className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
-                  />
-                  Founded by the Denkinger brothers — taking first clients
+                  <span className="grid size-9 place-items-center rounded-full bg-(--accent-brand) text-white transition-transform duration-200 group-hover:translate-x-0.5">
+                    <ArrowRight className="size-4" strokeWidth={2} />
+                  </span>
+                  Book A Call
                 </Link>
-              </div>
-            </AnimateIn>
-
-            {/* Headline — two-tone, masked line cascade */}
-            <h1 className="text-display max-w-[960px]">
-              <RevealText delay={0.05}>Launch-Ready Products,</RevealText>
-              <RevealText delay={0.16}>
-                <span className="accent-word">Built In Weeks</span>{" "}
-              </RevealText>
-              <RevealText delay={0.27}>
-                <span className="text-foreground/45">— Not Months</span>
-              </RevealText>
-            </h1>
-
-            {/* Subtitle */}
-            <AnimateIn variant="fadeUp" delay={0.35}>
-              <p className="text-body-lg mt-6 max-w-[560px]">
-                Full-stack design and development for startups that need to
-                move&nbsp;now.
-              </p>
-            </AnimateIn>
-
-            {/* CTAs */}
-            <AnimateIn variant="fadeUp" delay={0.45}>
-              <div className="mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
-                <MagneticButton>
-                  <CTAButton href="/strategy-call" variant="primary">
-                    Book A Call
-                  </CTAButton>
-                </MagneticButton>
-                <CTAButton href="/portfolio" variant="secondary">
-                  See Design Gallery
-                </CTAButton>
-              </div>
-            </AnimateIn>
-
-            {/* Status line */}
-            <AnimateIn variant="fadeUp" delay={0.55}>
-              <div className="mt-9 max-w-[820px]">
-                <StatusStrip
-                  items={[
-                    { label: "Scope", value: "Within 48 hours" },
-                    { label: "Design", value: "Usable by week one" },
-                    { label: "Ship", value: "MVP in 2–4 weeks" },
-                  ]}
-                />
-              </div>
-            </AnimateIn>
+              </MagneticButton>
+              <Link
+                href="/portfolio"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
+              >
+                See Design Gallery
+                <span
+                  aria-hidden
+                  className="transition-transform duration-200 group-hover:translate-x-0.5"
+                >
+                  →
+                </span>
+              </Link>
+            </div>
+          </AnimateIn>
         </div>
 
-        {/* Tech-trust ticker — screen's bottom edge.
-         * No AnimateIn here: at the bottom of a viewport-height screen it
-         * would sit outside useInView's -80px margin and never fade in. */}
-        <div className="relative z-10 border-t border-border flex items-stretch">
-          <p className="hidden md:flex items-center shrink-0 border-r border-border px-6 md:px-10 py-4 text-[11px] font-medium uppercase tracking-[0.08em] text-muted-foreground whitespace-nowrap">
-            Built on the stack trusted by modern SaaS
-          </p>
-          <div
-            className="flex-1 overflow-hidden py-4"
-            style={{
-              maskImage:
-                "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-              WebkitMaskImage:
-                "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
-            }}
-          >
-            <div className="flex w-max animate-marquee [--duration:40s]">
-              <TickerRow />
-              <TickerRow />
-            </div>
+        {/* Bottom block — status line + static logo row, pinned near the
+         * hero's bottom edge. No AnimateIn here: at the bottom of a
+         * viewport-height screen it would sit outside useInView's -80px
+         * margin and never fade in. */}
+        <div className="relative z-10 w-full px-6 pb-12 md:px-12">
+          {/* Status line — borderless dot items */}
+          <div className="mb-10 flex flex-wrap items-center gap-x-8 gap-y-2">
+            {statusItems.map((item) => (
+              <span
+                key={item.label}
+                className="inline-flex items-center gap-2.5 text-[13px] text-neutral-500 whitespace-nowrap"
+              >
+                <span
+                  aria-hidden
+                  className="size-1 shrink-0 rounded-full bg-(--accent-brand)"
+                />
+                {item.label} — {item.value}
+              </span>
+            ))}
+          </div>
+
+          {/* Tech-trust row — static, edge-to-edge */}
+          <p className="sr-only">Built on the stack trusted by modern SaaS</p>
+          <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+            {techStack.map((name) => (
+              <span
+                key={name}
+                className="text-sm font-semibold uppercase tracking-widest text-neutral-500/60 whitespace-nowrap"
+              >
+                {name}
+              </span>
+            ))}
           </div>
         </div>
       </div>

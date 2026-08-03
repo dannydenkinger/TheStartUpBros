@@ -92,38 +92,30 @@ const teamAvatars = [
 ];
 
 function FAQItem({
-  index,
   question,
   answer,
   isOpen,
   onToggle,
 }: {
-  index: string;
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
 }) {
   return (
-    <div className="mb-3 rounded-[16px] bg-card shadow-(--shadow-plate)">
+    <div className="rounded-xl bg-card shadow-none">
       <button
         onClick={onToggle}
-        className="flex w-full items-baseline gap-5 px-6 py-5 text-left"
+        className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
       >
-        <span
-          className={cn(
-            "text-[13px] font-medium tabular-nums w-7 shrink-0 transition-colors duration-200",
-            isOpen ? "text-(--accent-brand)" : "text-muted-foreground/70",
-          )}
-        >
-          {index}
+        <span className="flex-1 text-[17px] font-semibold leading-snug text-foreground">
+          {question}
         </span>
-        <span className="text-h3 flex-1">{question}</span>
         <span
           aria-hidden
           className={cn(
-            "text-xl leading-none shrink-0 font-light text-muted-foreground transition-transform duration-300",
-            isOpen && "rotate-45 text-foreground",
+            "plus-btn transition-transform duration-300",
+            isOpen && "rotate-45",
           )}
         >
           +
@@ -136,9 +128,11 @@ function FAQItem({
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 ml-12 max-w-[560px] text-muted-foreground">
-            {answer}
-          </p>
+          <div className="mx-6 border-t border-border">
+            <p className="max-w-[560px] pt-4 pb-5 text-sm leading-relaxed text-muted-foreground">
+              {answer}
+            </p>
+          </div>
         </div>
       </div>
     </div>
@@ -149,7 +143,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="px-6 md:px-10 py-20 md:py-28 bg-background">
+    <section className="px-6 md:px-10 py-20 md:py-28 bg-(--muted) dark:bg-background">
       <div className="mx-auto max-w-[1360px]">
         <AnimateIn>
           <SectionHeader
@@ -164,62 +158,60 @@ export function FAQ({ index = "04" }: { index?: string }) {
           />
         </AnimateIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10">
-          {/* ─── Left: sticky CTA card ─────────────────────────────── */}
-          <div className="lg:sticky lg:top-[120px] lg:self-start">
-            <div className="rounded-[20px] bg-card shadow-(--shadow-plate) p-7">
-              {/* Overlapping avatars */}
-              <div className="flex -space-x-3 mb-5">
-                {teamAvatars.map((src, i) => (
-                  <div
-                    key={src}
-                    className="relative w-11 h-11 rounded-full border-2 border-card overflow-hidden bg-secondary"
-                    style={{ zIndex: teamAvatars.length - i }}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-[15px] leading-[1.45] text-foreground mb-5">
-                FAQs can only do so much. For the rest, there&apos;s us.
-              </p>
-
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/strategy-call"
-                  className="btn-pill btn-pill-primary w-full"
-                >
-                  Book Strategy Call
-                </Link>
-                <Link
-                  href="/strategy-call"
-                  className="btn-pill btn-pill-secondary w-full"
-                >
-                  Chat with Us
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* ─── Right: FAQ stack ──────────────────────────────────── */}
-          <div className="lg:col-span-2 flex flex-col">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10">
+          {/* ─── Left: FAQ stack ───────────────────────────────────── */}
+          <div className="space-y-3">
             {faqs.map((faq, i) => (
               <FAQItem
                 key={i}
-                index={String(i + 1).padStart(2, "0")}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
               />
             ))}
+          </div>
+
+          {/* ─── Right: sticky CTA card ────────────────────────────── */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <div className="rounded-2xl bg-card p-7">
+              <p className="text-[17px] leading-snug text-muted-foreground mb-6">
+                FAQs can only do so much. For the rest, there&apos;s us.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-5">
+                <Link
+                  href="/strategy-call"
+                  className="btn-pill btn-pill-primary bg-(--background) dark:bg-[#f0f0f2]"
+                >
+                  Book Strategy Call
+                </Link>
+                <Link
+                  href="/strategy-call"
+                  className="text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  Chat with Us
+                </Link>
+              </div>
+
+              {/* Founder strip */}
+              <div className="mt-6 flex rounded-xl overflow-hidden">
+                {teamAvatars.map((src) => (
+                  <div
+                    key={src}
+                    className="relative h-[110px] flex-1 bg-secondary"
+                  >
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      sizes="200px"
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
