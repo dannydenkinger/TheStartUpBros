@@ -139,8 +139,13 @@ function FAQItem({
   );
 }
 
+// How many questions show before the quiet "show all" toggle
+const VISIBLE_COUNT = 6;
+
 export function FAQ({ index = "04" }: { index?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [showAll, setShowAll] = useState(false);
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, VISIBLE_COUNT);
 
   return (
     <section className="px-6 md:px-10 py-14 md:py-28 bg-(--muted) dark:bg-background">
@@ -161,7 +166,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-10">
           {/* ─── Left: FAQ stack ───────────────────────────────────── */}
           <div className="space-y-3">
-            {faqs.map((faq, i) => (
+            {visibleFaqs.map((faq, i) => (
               <FAQItem
                 key={i}
                 question={faq.question}
@@ -170,6 +175,22 @@ export function FAQ({ index = "04" }: { index?: string }) {
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
               />
             ))}
+
+            {!showAll && (
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="flex w-full cursor-pointer items-center justify-between gap-6 rounded-xl px-6 py-4 text-left transition-colors duration-200 hover:bg-card"
+              >
+                <span className="text-[15px] font-medium text-muted-foreground">
+                  Show all questions{" "}
+                  <span className="tabular-nums">({faqs.length})</span>
+                </span>
+                <span aria-hidden className="plus-btn">
+                  +
+                </span>
+              </button>
+            )}
           </div>
 
           {/* ─── Right: sticky CTA card ────────────────────────────── */}
