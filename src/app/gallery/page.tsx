@@ -127,19 +127,24 @@ export default function GalleryPage() {
 
       {/* Editorial grid — repeating wide/single rhythm, every image kept */}
       <section className="pt-2 md:pt-6 pb-16 md:pb-32">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 isolate">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 isolate">
           {galleryImages.map((src, i) => {
             const size = tileSize(i, galleryImages.length);
+            // Mobile rhythm: every 5th tile takes the full row as a
+            // cinematic beat between pairs of smaller tiles.
+            const mobileFull = i % 5 === 0;
             return (
               <AnimateIn
                 key={src}
                 variant="fadeUp"
                 delay={(i % 3) * 0.06}
-                className={tileSpan[size]}
+                className={`${tileSpan[size]} ${mobileFull ? "max-sm:col-span-2" : ""}`}
               >
                 <div className="group rounded-2xl overflow-hidden isolate bg-card shadow-none">
                   <div
-                    className={`relative w-full overflow-hidden ${tileAspect[size]}`}
+                    className={`relative w-full overflow-hidden ${tileAspect[size]} ${
+                      mobileFull ? "max-sm:aspect-[16/10]" : "max-sm:aspect-square"
+                    }`}
                   >
                     <div className="absolute inset-0" style={getWrapperStyle(src)}>
                       <Image

@@ -79,26 +79,54 @@ function MarqueeColumn({
   );
 }
 
+// Mobile film strip — one horizontal marquee row of full tiles at a legible
+// height, instead of squeezing the vertical columns into a phone viewport.
+const stripImages = [...col1, ...col2, ...col3, ...col4];
+
+function MobileFilmStrip() {
+  // Duplicate images for seamless -50% loop
+  const doubled = [...stripImages, ...stripImages];
+
+  return (
+    <div className="overflow-hidden carousel-hover-pause">
+      <div className="flex w-max animate-marquee [--duration:70s]">
+        {doubled.map((img, i) => (
+          <div
+            key={`${img.src}-${i}`}
+            className="mr-3 shrink-0 overflow-hidden rounded-xl bg-white/[0.04]"
+          >
+            <Image
+              src={img.src}
+              alt=""
+              width={img.w}
+              height={img.h}
+              quality={90}
+              className="h-[220px] w-auto object-cover"
+              draggable={false}
+            />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
 export function ShowcaseCarousel() {
   return (
     <section className="band grain relative -mt-px overflow-hidden rounded-b-[2rem] px-4 pb-4 md:px-6 md:pb-6">
       <AnimateIn variant="fadeIn">
-        <div className="h-[400px] overflow-hidden md:h-[520px]">
+        {/* Mobile — horizontal film strip */}
+        <div className="md:hidden">
+          <MobileFilmStrip />
+        </div>
+
+        {/* Desktop — four vertical marquee columns */}
+        <div className="hidden md:block h-[520px] overflow-hidden">
           <div className="flex h-full carousel-hover-pause">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />
-            <MarqueeColumn
-              images={col3}
-              direction="up"
-              duration={28}
-              className="hidden md:block"
-            />
-            <MarqueeColumn
-              images={col4}
-              direction="down"
-              duration={26}
-              className="hidden md:block"
-            />
+            <MarqueeColumn images={col3} direction="up" duration={28} />
+            <MarqueeColumn images={col4} direction="down" duration={26} />
           </div>
         </div>
       </AnimateIn>

@@ -93,7 +93,21 @@ export function Testimonials() {
         </AnimateIn>
       </div>
 
-      <div className="flex flex-col gap-5">
+      {/* Mobile — swipeable snap rail: all six cards once, user-controlled,
+          compact width so a peek of the next card invites the swipe. */}
+      <div className="md:hidden flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-6 scroll-pl-6">
+        {testimonials.map((testimonial, i) => (
+          <TestimonialCard
+            key={`rail-${i}`}
+            index={String(i + 1).padStart(2, "0")}
+            tone={i === 2 || i === 3 ? "dark" : "light"}
+            className="w-[76vw] snap-start"
+            {...testimonial}
+          />
+        ))}
+      </div>
+
+      <div className="hidden md:flex flex-col gap-5">
         {/* Row 1 — scrolls left, seamless infinite.
             Content is rendered twice so -50% animation closes cleanly at a card boundary.
             Edge fade mask matches components/shared/Marquee.tsx. */}
