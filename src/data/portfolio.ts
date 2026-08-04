@@ -31,57 +31,70 @@ export const projects: PortfolioProject[] = [
     outcomes: [
       "Five connected apps operating from one account and one source of truth",
       "Cross-app grounding — an aircraft marked NO-GO is unbookable everywhere at once",
-      "Currency and qualification tracking verified against every booking",
-      "Self-serve flat pricing with no sales call and a free first aircraft",
+      "Currency and qualification tracking verified before dispatch, not after the flight",
+      "Scheduled time flows into member billing with no re-keying",
+      "Multi-tenant workspaces with role-based access for owners, instructors, and students",
+      "Every surface shipped in both light and dark themes",
     ],
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/airsync-home.webp",
-        alt: "AirSync marketing homepage hero",
+        image: "/images/portfolio/airsync-app-dashboard-dark.webp",
+        alt: "AirSync operations dashboard showing today's board, fleet status, and revenue",
+        caption:
+          "The morning board — every reservation, every tail number, and the one aircraft that is down, on a single screen.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/airsync-flight-schedule.webp",
-        alt: "AirSync flight scheduling application",
-        heading: "The whole operation on one screen",
-        body: "Flight Schedule is the operational core — dispatch, aircraft availability, and instructor assignment in one view. Because aircraft status is shared across the suite, a grounded tail number disappears from the schedule the instant maintenance flags it.",
+        image: "/images/portfolio/airsync-app-schedule-light.webp",
+        alt: "AirSync flight schedule with aircraft and instructor resource rows",
+        heading: "Dispatch is the operational core",
+        body: "Aircraft and instructors share one resource timeline, so a double-booking is impossible to create. Grounded tail numbers are struck through in red the moment maintenance flags them — the schedule cannot offer an aircraft that is not airworthy.",
       },
       {
         type: "twoUp",
         images: [
           {
-            src: "/images/portfolio/airsync-pilot-debrief.webp",
-            alt: "AirSync pilot debrief application",
+            src: "/images/portfolio/airsync-app-fleet-dark.webp",
+            alt: "AirSync fleet view with per-aircraft airworthiness status",
           },
           {
-            src: "/images/portfolio/airsync-academy.webp",
-            alt: "AirSync academy training records",
+            src: "/images/portfolio/airsync-app-maintenance-dark.webp",
+            alt: "AirSync maintenance tracking and squawks",
           },
         ],
-        caption: "Pilot Debrief and Academy — training records that stay attached to the flight that produced them.",
+        caption:
+          "Fleet and Maintenance are the same record seen from two angles — a squawk raised here is what grounds the aircraft everywhere else.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/airsync-marketplace.webp",
-        alt: "AirSync marketplace for aviation gear",
-        heading: "Powerful alone, unstoppable connected",
-        body: "Marketplace and PlaneBnB extend the platform outward — pilot-to-pilot gear sales and aircraft sharing — while inheriting the same identity, permissions, and billing rails as the operational apps.",
+        image: "/images/portfolio/airsync-app-roster-dark.webp",
+        alt: "AirSync roster showing owners, instructors, students and their hours",
+        heading: "One roster, four roles",
+        body: "Owners, staff, instructors, and students share a single roster, each with their own permissions, logged hours, and account balance. Currency and endorsements live against the pilot rather than in a binder — so the schedule can refuse a dispatch before the flight instead of discovering the problem after it.",
         align: "right",
       },
       {
+        type: "full",
+        image: "/images/portfolio/airsync-app-billing-dark.webp",
+        alt: "AirSync member billing and invoicing",
+        caption:
+          "Billing closes the loop — flight time booked on the schedule becomes an invoice without anyone re-keying it.",
+      },
+      {
         type: "twoUp",
         images: [
           {
-            src: "/images/portfolio/airsync-features.webp",
-            alt: "AirSync features overview",
+            src: "/images/portfolio/airsync-app-aircraft-detail-light.webp",
+            alt: "AirSync aircraft detail view, light theme",
           },
           {
-            src: "/images/portfolio/airsync-pricing.webp",
-            alt: "AirSync flat pricing page",
+            src: "/images/portfolio/airsync-app-aircraft-detail-dark.webp",
+            alt: "AirSync aircraft detail view, dark theme",
           },
         ],
-        caption: "One flat price, every feature — pricing designed to remove the enterprise sales motion entirely.",
+        caption:
+          "Every surface ships in both themes — daylight on the ramp, dark in the panel at night.",
       },
     ],
   },
