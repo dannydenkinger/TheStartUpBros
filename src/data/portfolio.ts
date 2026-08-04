@@ -3,6 +3,103 @@ import type { PortfolioProject } from "@/types";
 // Real work from the founders — projects Anthony Denkinger has led or built.
 export const projects: PortfolioProject[] = [
   {
+    title: "VetClaim Pro — VA Disability Claim Builder",
+    slug: "vetclaim-pro",
+    description:
+      "A guided eight-step tool that reads a veteran's service and medical records, finds every condition they could claim, and rewrites their own words in the language the VA actually rates on.",
+    image: "/images/portfolio/vetclaim-landing-hero.webp",
+    tags: ["AI", "GovTech", "Full-Stack"],
+    deviceType: "both",
+    client: "VetClaim Pro",
+    year: "2026",
+    industry: "Veteran Services",
+    services: [
+      "Product Design",
+      "Full-Stack Development",
+      "AI Integration",
+      "Brand & Identity",
+    ],
+    overview:
+      "Veterans lose ratings they earned because a claim is a translation problem: the VA rates on the specific language of 38 CFR Part 4, and almost nobody writes that way about their own body. VetClaim Pro closes that gap. It reads uploaded service and medical records, surfaces every condition the evidence supports — direct, secondary, and presumptive — interviews the veteran condition by condition, shows exactly where their answers land against the rating criteria, and exports a Statement in Support of Claim written in the VA's own terms. Nothing is invented: every line traces back to the veteran's answers or their records.",
+    challenge:
+      "A disability claim asks a veteran to be their own medical historian, records clerk, and regulatory analyst at once. Conditions that qualify get missed entirely — secondaries that flow from an existing injury, presumptives tied to a service era. And when a condition is claimed, it is usually described in ordinary language that the rating schedule cannot score, so the veteran is rated below what their evidence supports. The tool had to do serious analytical work while remaining trustworthy about its own limits — it is not a lawyer, not VA-accredited, and it files nothing.",
+    solution:
+      "An eight-step flow that never asks for something it can infer. Service history establishes the era and its presumptives; uploaded records are scanned and every finding is shown with its source — sick call entries, profiles, MRI findings — so the veteran can untick anything they do not want to claim. An anatomical body map covers conditions the records missed, grouped by system and filtered to the veteran's service era. A structured interview then asks only what the rating criteria actually turn on. The review board shows each condition's diagnostic code, the estimated rating, and the specific evidence gaps standing between the veteran and the next rung. Export produces a PDF in VA language, alongside a combined-rating estimate — and a plain warning that software wrote it and every line should be read.",
+    timeline: "Ongoing — shipped and in active development",
+    techStack: ["Next.js", "React", "TypeScript", "AI / LLM", "Tailwind CSS", "Vercel"],
+    outcomes: [
+      "Records scanned and every condition surfaced with its supporting evidence cited",
+      "Direct, secondary, and presumptive service connection classified automatically",
+      "Service-era presumptives applied, including PACT Act and burn-pit conditions",
+      "Rating estimates shown with the specific evidence gaps to the next rating level",
+      "Export produces a Statement in Support of Claim in 38 CFR Part 4 language",
+      "Full flow works on mobile — no account required to start",
+    ],
+    gallery: [
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/vetclaim-discovery.webp",
+        alt: "VetClaim Pro discovery step listing conditions found across uploaded records",
+        heading: "Everything the records support",
+        body: "The scan reports what it found and why — each condition carries its evidence strength, its service-connection type, and a link to the exact records behind it. The default is opt-out, not opt-in: nothing a veteran unticks is written into their documents.",
+        align: "left",
+      },
+      {
+        type: "full",
+        image: "/images/portfolio/vetclaim-body-map.webp",
+        alt: "VetClaim Pro anatomical body map for selecting additional conditions",
+        caption:
+          "The body map catches what the paperwork missed — conditions grouped by system, with the veteran's service-era presumptives listed alongside.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/vetclaim-interview-question.webp",
+            alt: "VetClaim Pro structured interview question",
+          },
+          {
+            src: "/images/portfolio/vetclaim-interview-transcript.webp",
+            alt: "VetClaim Pro interview transcript",
+          },
+        ],
+        caption:
+          "The interview asks only what the rating criteria turn on, and keeps the veteran's own words as the record of record.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/vetclaim-claim-board.webp",
+        alt: "VetClaim Pro review board showing rating estimates and evidence gaps",
+        heading: "The gap between you and the higher rung",
+        body: "Each condition shows its diagnostic code, the range the code carries, and where the veteran's answers currently land — then names the specific gaps holding the rating down. The reasoning is stated plainly rather than hidden, and the tool is explicit that the VA assigns the real percentage after a C and P exam.",
+        align: "right",
+      },
+      {
+        type: "full",
+        image: "/images/portfolio/vetclaim-export-letter.webp",
+        alt: "VetClaim Pro exported statement in support of claim",
+        caption:
+          "The export — the veteran's facts, rewritten in the language the VA rates on, with a combined-rating estimate and an honest warning that software wrote it.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/vetclaim-mobile-discovery.webp",
+            alt: "VetClaim Pro discovery step on mobile",
+          },
+          {
+            src: "/images/portfolio/vetclaim-mobile-claim-board.webp",
+            alt: "VetClaim Pro review board on mobile",
+          },
+        ],
+        portrait: true,
+        caption:
+          "The entire eight-step flow works on a phone — where most veterans will actually start it.",
+      },
+    ],
+  },
+  {
     title: "AirSync — Aviation Operations Platform",
     slug: "airsync",
     description:

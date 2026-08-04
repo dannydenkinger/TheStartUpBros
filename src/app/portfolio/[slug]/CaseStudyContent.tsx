@@ -486,7 +486,14 @@ function GalleryBlockRenderer({
   if (block.type === "twoUp") {
     return (
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
-        <div className="flex flex-col">
+        {/* Phone pairs are capped — at container width a 3:5 frame renders
+         * taller than the viewport and swamps the page. */}
+        <div
+          className={cn(
+            "flex flex-col",
+            block.portrait && "mx-auto w-full max-w-[860px]",
+          )}
+        >
           <Plate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
               {/* Paired plates drift by slightly different amounts so the
@@ -494,7 +501,7 @@ function GalleryBlockRenderer({
               {block.images.map((img, i) => (
                 <ParallaxFrame
                   key={`${img.src}-${i}`}
-                  className="aspect-[4/3]"
+                  className={block.portrait ? "aspect-[3/5]" : "aspect-[4/3]"}
                   amount={i % 2 === 0 ? 2.4 : 3.6}
                 >
                   <div

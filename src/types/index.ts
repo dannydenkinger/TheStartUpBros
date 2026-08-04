@@ -27,6 +27,8 @@ export type GalleryBlock =
       type: "twoUp";
       images: { src: string; alt?: string }[];
       caption?: string;
+      /** Frame the pair for phone screenshots instead of the default landscape. */
+      portrait?: boolean;
     }
   | {
       type: "imageWithCaption";
