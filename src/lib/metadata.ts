@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 
-const siteUrl = "https://startupbros.dev";
+/* Canonical origin — the single source of truth for every absolute URL
+ * (metadata, OG/twitter cards, JSON-LD, sitemap). Change it here when a
+ * custom domain is connected; nothing else hardcodes the host. */
+export const siteUrl = "https://the-start-up-bros.vercel.app";
 
 /* Social share card — 1200x630 declared, shipped at 2x for retina unfurls.
  * Exported because Next REPLACES (never merges) a parent openGraph block, so

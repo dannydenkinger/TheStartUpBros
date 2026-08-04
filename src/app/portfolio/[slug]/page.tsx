@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { projects } from "@/data/portfolio";
+import { siteUrl } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { CaseStudyContent } from "./CaseStudyContent";
 
@@ -22,7 +23,7 @@ export function generateMetadata({
       openGraph: {
         title: `${project.title} — Case Study | StartUpBros`,
         description: project.description,
-        url: `https://startupbros.dev/portfolio/${slug}`,
+        url: `${siteUrl}/portfolio/${slug}`,
         images: [{ url: project.image }],
       },
     };
@@ -46,9 +47,9 @@ export default async function CaseStudyPage({
     creator: {
       "@type": "Organization",
       name: "StartUpBros",
-      url: "https://startupbros.dev",
+      url: siteUrl,
     },
-    url: `https://startupbros.dev/portfolio/${slug}`,
+    url: `${siteUrl}/portfolio/${slug}`,
   };
 
   return (

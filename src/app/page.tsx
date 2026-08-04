@@ -7,20 +7,21 @@ import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
 import { WorkSamples } from "@/components/landing/WorkSamples";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { siteUrl } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 
 const organizationJsonLd = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "StartUpBros",
-  url: "https://startupbros.dev",
+  url: siteUrl,
   description:
     "Full-stack development for startups. We build apps, websites, and software — from idea to launch.",
   sameAs: [],
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "sales",
-    url: "https://startupbros.dev/strategy-call",
+    url: `${siteUrl}/strategy-call`,
   },
 };
 

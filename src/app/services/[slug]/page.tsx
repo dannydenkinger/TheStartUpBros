@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { services } from "@/data/services";
-import { ogImage } from "@/lib/metadata";
+import { ogImage, siteUrl } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { ServicePageContent } from "./ServicePageContent";
 
@@ -23,7 +23,7 @@ export function generateMetadata({
       openGraph: {
         title: `${service.title} | StartUpBros`,
         description: service.longDescription,
-        url: `https://startupbros.dev/services/${slug}`,
+        url: `${siteUrl}/services/${slug}`,
         images: [ogImage],
       },
     };
@@ -47,10 +47,10 @@ export default async function ServicePage({
     provider: {
       "@type": "Organization",
       name: "StartUpBros",
-      url: "https://startupbros.dev",
+      url: siteUrl,
     },
     areaServed: "Worldwide",
-    url: `https://startupbros.dev/services/${slug}`,
+    url: `${siteUrl}/services/${slug}`,
   };
 
   return (

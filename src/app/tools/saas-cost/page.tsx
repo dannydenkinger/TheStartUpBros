@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ogImage } from "@/lib/metadata";
+import { ogImage, siteUrl } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SaaSCostCalculator } from "@/components/tools/SaaSCostCalculator";
 import { FinalCTA } from "@/components/landing/FinalCTA";
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     title: "SaaS Cost Calculator | StartUpBros",
     description:
       "Estimate the cost and timeline for your SaaS MVP. Toggle features, see complexity tiers, and get a ballpark scope — free.",
-    url: "https://startupbros.dev/tools/saas-cost",
+    url: `${siteUrl}/tools/saas-cost`,
     images: [ogImage],
   },
 };
@@ -23,7 +23,7 @@ const webAppJsonLd = {
   name: "SaaS Cost Calculator",
   description:
     "Free tool to estimate the scope, timeline, and complexity of a SaaS MVP build.",
-  url: "https://startupbros.dev/tools/saas-cost",
+  url: `${siteUrl}/tools/saas-cost`,
   applicationCategory: "BusinessApplication",
   offers: {
     "@type": "Offer",
@@ -33,7 +33,7 @@ const webAppJsonLd = {
   provider: {
     "@type": "Organization",
     name: "StartUpBros",
-    url: "https://startupbros.dev",
+    url: siteUrl,
   },
 };
 
