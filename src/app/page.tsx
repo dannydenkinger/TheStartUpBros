@@ -2,7 +2,7 @@ import { Hero } from "@/components/landing/Hero";
 import { ShowcaseCarousel } from "@/components/landing/ShowcaseCarousel";
 import { ValueProps } from "@/components/landing/ValueProps";
 import { CaseStudies } from "@/components/landing/CaseStudies";
-import { ClientLogos } from "@/components/landing/ClientLogos";
+import { StatementBand } from "@/components/landing/StatementBand";
 import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
 import { WorkSamples } from "@/components/landing/WorkSamples";
@@ -28,13 +28,13 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={organizationJsonLd} />
-      <div className="h-[calc(100vh-80px)] flex flex-col">
+      <div className="flex flex-col">
         <Hero />
         <ShowcaseCarousel />
       </div>
-      <ClientLogos />
       <ValueProps />
       <CaseStudies />
+      <StatementBand />
       <Testimonials />
       <FAQ />
       <WorkSamples />

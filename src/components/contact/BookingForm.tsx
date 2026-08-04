@@ -1,10 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { Check } from "lucide-react";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
+
+const inputStyles =
+  "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200";
+
+const labelStyles = "block text-caption font-medium mb-2";
 
 export function BookingForm() {
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -39,6 +43,9 @@ export function BookingForm() {
   if (status === "success") {
     return (
       <div className="card-elevated p-10 text-center">
+        <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
+          <Check className="w-5 h-5" strokeWidth={2.5} />
+        </div>
         <h3 className="text-h3 text-foreground mb-2">Thank you!</h3>
         <p className="text-[13px] text-muted-foreground">
           We&apos;ll be in touch within 24 hours to schedule your consultation.
@@ -48,68 +55,56 @@ export function BookingForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-elevated p-8 md:p-10 space-y-6">
+    <form onSubmit={handleSubmit} className="card-elevated p-6 sm:p-8 md:p-10 space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label
-            htmlFor="name"
-            className="block text-[13px] font-medium text-foreground mb-2"
-          >
+          <label htmlFor="name" className={labelStyles}>
             Name
           </label>
-          <Input
+          <input
             id="name"
             name="name"
             required
             placeholder="Your name"
-            className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
+            className={inputStyles}
           />
         </div>
         <div>
-          <label
-            htmlFor="email"
-            className="block text-[13px] font-medium text-foreground mb-2"
-          >
+          <label htmlFor="email" className={labelStyles}>
             Email
           </label>
-          <Input
+          <input
             id="email"
             name="email"
             type="email"
             required
             placeholder="you@company.com"
-            className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
+            className={inputStyles}
           />
         </div>
       </div>
 
       <div>
-        <label
-          htmlFor="company"
-          className="block text-[13px] font-medium text-foreground mb-2"
-        >
+        <label htmlFor="company" className={labelStyles}>
           Company / Project Name
         </label>
-        <Input
+        <input
           id="company"
           name="company"
           placeholder="Your company or project"
-          className="bg-secondary border-input rounded-xl h-11 text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
+          className={inputStyles}
         />
       </div>
 
       <div>
-        <label
-          htmlFor="budget"
-          className="block text-[13px] font-medium text-foreground mb-2"
-        >
+        <label htmlFor="budget" className={labelStyles}>
           Budget Range
         </label>
         <select
           id="budget"
           name="budget"
           required
-          className="w-full rounded-xl bg-secondary border border-input px-4 py-2.5 text-[14px] text-foreground h-11 focus:outline-none focus:border-[#09f] focus:ring-1 focus:ring-[#09f]"
+          className={`${inputStyles} appearance-none cursor-pointer invalid:text-muted-foreground/60`}
         >
           <option value="">Select a range</option>
           <option value="5k-10k">$5,000 - $10,000</option>
@@ -120,28 +115,34 @@ export function BookingForm() {
       </div>
 
       <div>
-        <label
-          htmlFor="description"
-          className="block text-[13px] font-medium text-foreground mb-2"
-        >
+        <label htmlFor="description" className={labelStyles}>
           Tell Us About Your Project
         </label>
-        <Textarea
+        <textarea
           id="description"
           name="description"
           required
           rows={5}
           placeholder="What are you building? What's your timeline?"
-          className="bg-secondary border-input rounded-xl text-[14px] placeholder:text-muted-foreground/50 focus:border-[#09f]"
+          className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200"
         />
       </div>
 
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="btn-pill btn-pill-primary w-full !py-3"
+        className="btn-pill btn-pill-primary w-full sm:w-fit disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {status === "submitting" ? "Sending..." : "Request Consultation"}
+        {status === "submitting" ? (
+          "Sending..."
+        ) : (
+          <>
+            Request Consultation
+            <span aria-hidden className="btn-arrow">
+              →
+            </span>
+          </>
+        )}
       </button>
     </form>
   );

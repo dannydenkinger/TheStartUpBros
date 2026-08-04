@@ -3,51 +3,152 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
+import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
+import { projects } from "@/data/portfolio";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
+import { cn } from "@/lib/utils";
 
-const cases = [
-  {
-    slug: "said",
-    title: "SAID Technology — Offline-First Medical Translation",
-    tags: ["AI", "Healthcare"],
-    image: "/images/portfolio/said-hero-brand.webp",
-  },
-  {
-    slug: "zonex",
-    title: "ZoneX — AI Sports Analytics Platform",
-    tags: ["AI", "Sports"],
-    image: "/images/portfolio/zonex-dashboard.webp",
-  },
-  {
-    slug: "loot8",
-    title: "LOOT8 — Web3 Content & Commerce Platform",
-    tags: ["Web3", "Mobile"],
-    image: "/images/portfolio/defi-landing.webp",
-  },
-  {
-    slug: "vesta-crm",
-    title: "Vesta CRM — Complete CRM Platform Built From Scratch",
-    tags: ["CRM", "Full-Stack"],
-    image: "/images/portfolio/vesta-hero.png",
-  },
-  {
-    slug: "estateflow",
-    title: "EstateFlow — Property Management Platform",
-    tags: ["PropTech", "Full-Stack"],
-    image: "/images/portfolio/estateflow-dashboard.png",
-  },
-];
+const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
 
-const allTags = Array.from(new Set(cases.flatMap((c) => c.tags))).sort();
+/* Card choreography — cards arrive from y28/scale .98 and leave by shrinking
+ * back into the grain. Exit is deliberately faster than entrance (0.34 vs
+ * 0.7) so a filter change reads as "clear, then deal" rather than a crossfade
+ * mush. Transform + opacity only. */
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: REVEAL_EASE, delay },
+  }),
+  exit: {
+    opacity: 0,
+    scale: 0.97,
+    transition: { duration: 0.34, ease: EXIT_EASE },
+  },
+};
+
+/* Titles are stored as "Name — Descriptor"; render them with the same
+ * name-row + gray-subtitle anatomy the landing case cards use. */
+function splitTitle(title: string): [string, string | null] {
+  const idx = title.indexOf(" — ");
+  if (idx === -1) return [title, null];
+  return [title.slice(0, idx), title.slice(idx + 3)];
+}
+
+/* Desses card — media on top, attached bg-card panel below. The first
+ * (featured) card runs full-width at 21/9; the rest sit in a 2-col grid. */
+function CaseCard({
+  project,
+  featured = false,
+  delay = 0,
+}: {
+  project: (typeof projects)[number];
+  featured?: boolean;
+  delay?: number;
+}) {
+  const [name, descriptor] = splitTitle(project.title);
+  const prefersReducedMotion = useReducedMotion();
+
+  const inner = (
+    <Link
+      href={`/portfolio/${project.slug}`}
+      className="group block overflow-hidden rounded-lg"
+    >
+      {/* Media — edge-to-edge, shares the card's radius */}
+      <div
+        className={cn(
+          "relative media-zoom",
+          featured
+            ? "aspect-[4/3] sm:aspect-[2/1] xl:aspect-[21/9]"
+            : "aspect-[4/3] sm:aspect-[16/10]",
+        )}
+      >
+        <div
+          className="absolute inset-0"
+          style={getWrapperStyle(project.image)}
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            quality={90}
+            priority={featured}
+            sizes={
+              featured
+                ? "(min-width: 1024px) 1520px, 100vw"
+                : "(min-width: 1024px) 750px, (min-width: 640px) 50vw, 100vw"
+            }
+            className="object-cover"
+            style={getImageStyle(project.image)}
+          />
+        </div>
+      </div>
+
+      {/* Attached content panel */}
+      <div className={cn("bg-card", featured ? "p-6 md:p-7" : "p-6")}>
+        <div className="flex items-start justify-between gap-4">
+          <span className="text-[13px] font-medium text-(--accent-brand)">
+            {project.tags.join(" · ")}
+          </span>
+          <span aria-hidden className="plus-btn">
+            +
+          </span>
+        </div>
+        <h2
+          className={cn(
+            "mt-2 font-semibold tracking-tight text-foreground",
+            featured ? "text-[30px] leading-[1.15]" : "text-2xl",
+          )}
+        >
+          {name}
+        </h2>
+        {descriptor && (
+          <p
+            className={cn(
+              "mt-1 text-muted-foreground",
+              featured ? "text-[17px] line-clamp-1" : "text-[16px] line-clamp-2",
+            )}
+          >
+            {descriptor}
+          </p>
+        )}
+      </div>
+    </Link>
+  );
+
+  if (prefersReducedMotion) return <div>{inner}</div>;
+
+  return (
+    <motion.div
+      layout="position"
+      custom={delay}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true, margin: "-80px" }}
+    >
+      {inner}
+    </motion.div>
+  );
+}
 
 export function CaseStudiesGrid() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
+  const prefersReducedMotion = useReducedMotion();
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
-    return cases.filter((project) => {
+    return projects.filter((project) => {
       const matchesCategory =
         category === "all" || project.tags.includes(category);
       const matchesSearch =
@@ -58,77 +159,79 @@ export function CaseStudiesGrid() {
     });
   }, [search, category]);
 
+  const [first, ...rest] = filtered;
+
   return (
-    <section className="px-6 md:px-0 pb-20 md:pb-28 w-[90vw] max-w-none mx-auto">
-      {/* Filter Bar */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-12 gap-4">
-        <div className="w-full sm:w-auto relative">
-          <input
-            type="text"
-            placeholder="Search..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="w-full sm:w-[300px] px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none focus:ring-1 focus:ring-accent"
-          />
-          <svg className="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
+    <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 pb-16 md:pb-32">
+      {/* Filter row — quiet text filters left, flat search right.
+       * Mobile: one horizontal snap-scroll rank with edge fades; desktop wraps. */}
+      <div className="flex flex-col gap-4 lg:gap-5 lg:flex-row lg:items-center lg:justify-between border-b border-border pb-5 lg:pb-6 mb-8 md:mb-14">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 scrollbar-hide max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-proximity max-lg:-mx-6 max-lg:px-6 max-lg:scroll-pl-6 max-lg:[mask-image:linear-gradient(to_right,transparent,black_20px,black_calc(100%-24px),transparent)]">
+          {["all", ...allTags].map((tag) => {
+            const active = category === tag;
+            return (
+              <button
+                key={tag}
+                type="button"
+                onClick={() => setCategory(tag)}
+                aria-pressed={active}
+                className={cn(
+                  "inline-flex items-center gap-1.5 text-[15px] cursor-pointer transition-colors duration-200 whitespace-nowrap max-lg:h-11 max-lg:shrink-0 max-lg:snap-start",
+                  active
+                    ? "text-foreground"
+                    : "text-muted-foreground hover:text-foreground",
+                )}
+              >
+                {/* The dot doesn't fade in — it pops from nothing, so the
+                 * filter feels switched rather than cross-dissolved. */}
+                <span
+                  aria-hidden
+                  className={cn(
+                    "label-dot origin-center transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                    active ? "opacity-100 scale-100" : "opacity-0 scale-0",
+                  )}
+                />
+                {tag === "all" ? "All" : tag}
+              </button>
+            );
+          })}
         </div>
 
-        <div className="w-full sm:w-auto flex items-center gap-3">
-          <span className="text-sm font-medium text-muted-foreground">Category</span>
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="px-4 py-2 rounded-lg border border-border bg-transparent text-sm text-foreground focus:outline-none hover:bg-secondary cursor-pointer appearance-none pr-8 relative"
-          >
-            <option value="all">All</option>
-            {allTags.map((tag) => (
-              <option key={tag} value={tag}>{tag}</option>
-            ))}
-          </select>
-          <div className="absolute right-4 pointer-events-none sm:relative sm:right-auto sm:-ml-8">
-            <svg className="w-4 h-4 text-foreground/50" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </div>
-        </div>
+        <input
+          type="text"
+          placeholder="Search..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[16px] lg:text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none transition-[background-color,box-shadow] duration-300 focus:bg-(--surface-card-hover) focus:shadow-[0_0_0_2px_var(--accent-brand-soft)] motion-reduce:transition-none"
+        />
       </div>
 
-      {/* Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-[80px]">
-        {filtered.map((project) => (
-          <Link key={project.slug} href={`/portfolio/${project.slug}`} className="group flex flex-col gap-4">
-            <div className="relative aspect-[1.3/1] w-full overflow-hidden rounded-[24px] border border-border/50 shadow-sm bg-card">
-              <div className="absolute inset-0" style={getWrapperStyle(project.image)}>
-                <Image
-                  src={project.image}
-                  alt={project.title}
-                  fill
-                  quality={90}
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:scale-105"
-                  style={getImageStyle(project.image)}
-                />
-              </div>
-            </div>
-            <div className="flex flex-col items-start gap-2 pt-2 px-1">
-              <div className="flex flex-wrap gap-2">
-                {project.tags.map((tag) => (
-                  <Badge
-                    key={tag}
-                    variant="secondary"
-                    className="font-medium text-xs bg-secondary hover:bg-muted text-foreground/70"
-                  >
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-              <h4 className="text-[24px] md:text-[32px] font-medium leading-[1.2] tracking-[-0.02em] text-foreground mt-1 group-hover:text-foreground/70 transition-colors">
-                {project.title}
-              </h4>
-            </div>
-          </Link>
-        ))}
+      {/* First result full-width, the rest in a 2-col grid.
+       * Keys carry the slug so AnimatePresence tracks identity across filter
+       * changes; the featured slot is keyed separately because a project
+       * moving in/out of it changes aspect ratio — that should read as an
+       * exit + enter, not a morph. */}
+      <AnimatePresence mode="wait">
+        {first && (
+          <CaseCard key={`featured-${first.slug}`} project={first} featured />
+        )}
+      </AnimatePresence>
+
+      <div
+        className={cn(
+          "grid gap-6 sm:grid-cols-2",
+          rest.length > 0 && "mt-6",
+        )}
+      >
+        <AnimatePresence mode="popLayout">
+          {rest.map((project, i) => (
+            <CaseCard
+              key={project.slug}
+              project={project}
+              delay={prefersReducedMotion ? 0 : Math.min(i, 5) * 0.06}
+            />
+          ))}
+        </AnimatePresence>
       </div>
     </section>
   );

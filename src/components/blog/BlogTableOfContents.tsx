@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { ArrowUp } from "lucide-react";
 
 interface TocItem {
   id: string;
@@ -9,7 +8,14 @@ interface TocItem {
   level: number;
 }
 
-export function BlogTableOfContents() {
+interface BlogTableOfContentsProps {
+  /** "rail" — desktop sidebar with label + back-to-top; "inline" — bare list for the mobile collapsible card. */
+  variant?: "rail" | "inline";
+}
+
+export function BlogTableOfContents({
+  variant = "rail",
+}: BlogTableOfContentsProps) {
   const [headings, setHeadings] = useState<TocItem[]>([]);
   const [activeId, setActiveId] = useState<string>("");
 
@@ -41,26 +47,33 @@ export function BlogTableOfContents() {
   useEffect(() => {
     if (headings.length === 0) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        // Find the first heading that is currently intersecting
-        const visibleEntries = entries.filter((e) => e.isIntersecting);
-        if (visibleEntries.length > 0) {
-          setActiveId(visibleEntries[0].target.id);
+    // Position-based tracking — the last heading above the reading line wins.
+    // (IntersectionObserver misreports on programmatic / fast scrolls.)
+    let raf = 0;
+    const update = () => {
+      raf = 0;
+      const readingLine = 140;
+      let current = "";
+      for (const heading of headings) {
+        const el = document.getElementById(heading.id);
+        if (el && el.getBoundingClientRect().top <= readingLine) {
+          current = heading.id;
         }
-      },
-      {
-        rootMargin: "-80px 0px -60% 0px",
-        threshold: 0,
       }
-    );
+      setActiveId(current);
+    };
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(update);
+    };
 
-    headings.forEach((heading) => {
-      const el = document.getElementById(heading.id);
-      if (el) observer.observe(el);
-    });
-
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll, { passive: true });
+    return () => {
+      if (raf) cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, [headings]);
 
   const scrollToTop = () => {
@@ -69,18 +82,24 @@ export function BlogTableOfContents() {
 
   if (headings.length === 0) return null;
 
+  const inline = variant === "inline";
+
   return (
-    <nav className="space-y-1">
-      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-muted-foreground mb-4">
-        On this page
-      </p>
-      <ul className="space-y-0.5">
+    <nav>
+      {!inline && (
+        <p className="text-micro-label text-muted-foreground pl-4 mb-4">
+          <span className="lowercase">On this page</span>
+        </p>
+      )}
+      <ul className={inline ? undefined : "space-y-0.5"}>
         {headings.map((heading) => (
           <li key={heading.id}>
             <a
               href={`#${heading.id}`}
               onClick={(e) => {
                 e.preventDefault();
+                // Inside the mobile collapsible card — fold it before jumping.
+                e.currentTarget.closest("details")?.removeAttribute("open");
                 const el = document.getElementById(heading.id);
                 if (el) {
                   const y =
@@ -89,27 +108,45 @@ export function BlogTableOfContents() {
                 }
               }}
               className={`
-                block py-1.5 text-[13px] leading-snug transition-all duration-200 border-l-2
-                ${heading.level === 3 ? "pl-6" : "pl-4"}
+                relative block leading-snug transition-colors duration-200
+                ${
+                  inline
+                    ? "flex min-h-11 items-center py-1.5 text-[14px]"
+                    : "py-[5px] text-[13px]"
+                }
+                ${heading.level === 3 ? "pl-8" : "pl-4"}
                 ${
                   activeId === heading.id
-                    ? "border-foreground text-foreground font-medium"
-                    : "border-transparent text-muted-foreground hover:text-foreground hover:border-muted-foreground/40"
+                    ? "text-foreground font-medium"
+                    : "text-muted-foreground hover:text-foreground"
                 }
               `}
             >
+              {activeId === heading.id && (
+                <span
+                  aria-hidden
+                  className="absolute left-0 top-1/2 -translate-y-1/2 size-1.5 rounded-full bg-(--accent-brand)"
+                />
+              )}
               {heading.text}
             </a>
           </li>
         ))}
       </ul>
-      <button
-        onClick={scrollToTop}
-        className="flex items-center gap-1.5 mt-6 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200"
-      >
-        <ArrowUp className="w-3 h-3" />
-        Back to top
-      </button>
+      {!inline && (
+        <button
+          onClick={scrollToTop}
+          className="group flex items-baseline gap-1.5 mt-7 pl-4 text-[12px] text-muted-foreground hover:text-foreground transition-colors duration-200 cursor-pointer"
+        >
+          <span
+            aria-hidden
+            className="group-hover:-translate-y-0.5 transition-transform duration-200"
+          >
+            ↑
+          </span>
+          Back to top
+        </button>
+      )}
     </nav>
   );
 }

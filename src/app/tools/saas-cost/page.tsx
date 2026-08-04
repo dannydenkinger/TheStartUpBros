@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
+import { ogImage } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SaaSCostCalculator } from "@/components/tools/SaaSCostCalculator";
+import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata: Metadata = {
   title: "SaaS Cost Calculator | StartUpBros",
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
     description:
       "Estimate the cost and timeline for your SaaS MVP. Toggle features, see complexity tiers, and get a ballpark scope — free.",
     url: "https://startupbros.dev/tools/saas-cost",
+    images: [ogImage],
   },
 };
 
@@ -39,6 +42,7 @@ export default function SaaSCostPage() {
     <>
       <JsonLd data={webAppJsonLd} />
       <SaaSCostCalculator />
+      <FinalCTA index={null} />
     </>
   );
 }

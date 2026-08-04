@@ -1,5 +1,8 @@
 import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { Parallax } from "@/components/shared/Parallax";
+import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 export const metadata = {
@@ -63,44 +66,126 @@ const galleryImages = [
   "/images/portfolio/fintech-transactions.webp",   // light
 ];
 
+// Derived meta — count is computed from the data, never hand-typed.
+const imageCount = String(galleryImages.length).padStart(2, "0");
+
+// ── Editorial grid rhythm ────────────────────────────────────────────────
+// A repeating 10-tile cycle on desktop keeps the grid calm but not uniform:
+//   row 1 → wide + single      row 2 → single ×3
+//   row 3 → single + wide      row 4 → single ×3
+// The final tile stretches full-width when it would otherwise sit alone.
+type TileSize = "single" | "wide" | "full";
+
+function tileSize(i: number, total: number): TileSize {
+  const pos = i % 10;
+  const isWide = pos === 0 || pos === 6;
+  if (i === total - 1 && pos === 0) return "full";
+  return isWide ? "wide" : "single";
+}
+
+const tileSpan: Record<TileSize, string> = {
+  single: "",
+  wide: "lg:col-span-2",
+  full: "lg:col-span-3",
+};
+
+const tileAspect: Record<TileSize, string> = {
+  single: "aspect-[4/3]",
+  wide: "aspect-[4/3] lg:aspect-[41/15]",
+  full: "aspect-[4/3] lg:aspect-[21/5]",
+};
+
 export default function GalleryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="px-6 lg:px-10 pt-[140px] pb-[60px] text-center flex flex-col items-center justify-center border-b border-border/40">
-        <h1 className="text-display mt-8 mb-4 max-w-4xl mx-auto text-foreground">
-          <span style={{ color: 'var(--accent-brand)' }}>Gallery</span>
-        </h1>
-        <p className="text-body-lg max-w-2xl mx-auto text-muted-foreground">
-          A visual tour of our product, dashboard, mobile, and web3 work.
-        </p>
-      </section>
-
-      {/* Uniform grid — every tile is the same aspect ratio & size */}
-      <section className="py-16 md:py-20">
-        <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6">
-          {galleryImages.map((src) => (
-            <div
-              key={src}
-              className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm p-4 group overflow-hidden"
-            >
-              <div className="relative w-full h-full overflow-hidden rounded-xl" style={getWrapperStyle(src)}>
-                <Image
-                  src={src}
-                  alt=""
-                  fill
-                  quality={90}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                  style={getImageStyle(src)}
-                />
-              </div>
+      <section className="pt-12 md:pt-24 pb-10 md:pb-16">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+          <AnimateIn variant="fadeUp">
+            <span className="badge-pill text-micro-label mb-8 inline-flex">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">Gallery</span>
+            </span>
+          </AnimateIn>
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8">
+            <h1 className="col-span-12 lg:col-span-7 text-display text-foreground">
+              <RevealText delay={0.08}>Gallery</RevealText>
+            </h1>
+            <div className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end">
+              <AnimateIn variant="fadeUp" delay={0.12}>
+                <p className="text-body-lg text-muted-foreground max-w-[440px]">
+                  A visual tour of our product, dashboard, mobile, and web3
+                  work.
+                </p>
+                <p className="mt-5 text-[13px] text-muted-foreground/80 tabular-nums">
+                  {imageCount} images
+                </p>
+              </AnimateIn>
             </div>
-          ))}
+          </div>
         </div>
       </section>
 
-      <FinalCTA />
+      {/* Editorial grid — repeating wide/single rhythm, every image kept */}
+      <section className="pt-2 md:pt-6 pb-16 md:pb-32">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-6 isolate">
+          {galleryImages.map((src, i) => {
+            const size = tileSize(i, galleryImages.length);
+            // Mobile rhythm: every 5th tile takes the full row as a
+            // cinematic beat between pairs of smaller tiles.
+            const mobileFull = i % 5 === 0;
+            // Only the wide/full beats drift. Ten drifting tiles out of fifty
+            // is enough for the grid to breathe while keeping the scroll-linked
+            // work off the other forty (and off every mobile tile).
+            const drifts = size !== "single";
+            const tile = (
+              <div className="group rounded-2xl overflow-hidden isolate bg-card shadow-none">
+                <div
+                  className={`relative w-full overflow-hidden ${tileAspect[size]} ${
+                    mobileFull ? "max-sm:aspect-[16/10]" : "max-sm:aspect-square"
+                  }`}
+                >
+                  <div className="absolute inset-0" style={getWrapperStyle(src)}>
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      quality={90}
+                      sizes={
+                        size === "single"
+                          ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
+                      }
+                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      style={getImageStyle(src)}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+            return (
+              // Tiles arrive scaling up from 0.96 rather than sliding — a wall
+              // of 50 sliding tiles reads as noise; a wall of 50 settling into
+              // focus reads as a contact sheet being laid down. Column index
+              // gives the left→right sweep inside each row.
+              <AnimateIn
+                key={src}
+                variant="scaleIn"
+                delay={(i % 3) * 0.07}
+                className={`${tileSpan[size]} ${mobileFull ? "max-sm:col-span-2" : ""}`}
+              >
+                {drifts ? (
+                  <Parallax amount={10}>{tile}</Parallax>
+                ) : (
+                  tile
+                )}
+              </AnimateIn>
+            );
+          })}
+        </div>
+      </section>
+
+      <FinalCTA index={null} />
     </div>
   );
 }

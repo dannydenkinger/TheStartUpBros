@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { AnimateIn } from "@/components/shared/AnimateIn";
@@ -24,58 +25,102 @@ const galleryImages = [
   "/images/portfolio/cms-tablet.webp",
 ];
 
-export function WorkSamples() {
-  return (
-    <section className="py-24 md:py-32 bg-background">
-      <AnimateIn>
-        <div className="text-center mb-16 px-6 lg:px-10">
-          <h2 className="text-display mb-4">Work <span style={{ color: 'var(--accent-brand)' }}>Samples</span></h2>
-        </div>
-      </AnimateIn>
+// Two counter-scrolling rows
+const topRow = galleryImages.slice(0, galleryImages.length / 2);
+const bottomRow = galleryImages.slice(galleryImages.length / 2);
 
-      {/* Uniform 4:3 grid — matches /gallery layout */}
-      <div className="px-4 md:px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 isolate">
-        {galleryImages.map((src) => (
-          <div
-            key={src}
-            className="relative aspect-[4/3] rounded-2xl border border-border bg-card shadow-sm group overflow-hidden isolate"
-          >
-            <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
-              <Image
-                src={src}
-                alt=""
-                fill
-                quality={90}
-                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                style={getImageStyle(src)}
-              />
-            </div>
-          </div>
+// Edge fade — same mask used by Testimonials / components/shared/Marquee.tsx
+const edgeFadeMask: CSSProperties = {
+  maskImage:
+    "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+  WebkitMaskImage:
+    "linear-gradient(to right, transparent 0%, black 8%, black 92%, transparent 100%)",
+};
+
+function Tile({ src }: { src: string }) {
+  return (
+    <div className="group relative aspect-[4/3] w-[260px] md:w-[400px] shrink-0 rounded-2xl overflow-hidden isolate bg-card">
+      <div className="absolute inset-0 overflow-hidden" style={getWrapperStyle(src)}>
+        <Image
+          src={src}
+          alt=""
+          fill
+          quality={90}
+          sizes="(max-width: 768px) 260px, 400px"
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+          style={getImageStyle(src)}
+        />
+      </div>
+    </div>
+  );
+}
+
+function MarqueeRow({
+  images,
+  reverse,
+  duration,
+}: {
+  images: string[];
+  reverse?: boolean;
+  duration: number;
+}) {
+  return (
+    <div className="relative flex w-full overflow-hidden" style={edgeFadeMask}>
+      {/* Parks on hover so the tile you're looking at — and its slow zoom —
+       * holds still instead of sliding away mid-gesture. */}
+      <div
+        className={`flex w-max [&>*]:mr-3 md:[&>*]:mr-4 hover:[animation-play-state:paused] ${
+          reverse ? "animate-marquee-reverse" : "animate-marquee"
+        }`}
+        style={{ ["--duration" as string]: `${duration}s` }}
+      >
+        {[...images, ...images].map((src, i) => (
+          <Tile key={`${src}-${i}`} src={src} />
         ))}
       </div>
+    </div>
+  );
+}
 
-      {/* View More CTA → /gallery */}
-      <AnimateIn delay={0.15}>
-        <div className="text-center mt-14 px-6 lg:px-10">
-          <Link href="/gallery" className="btn-pill btn-pill-primary">
-            View Full Gallery
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+export function WorkSamples() {
+  return (
+    <section className="py-14 md:py-28 bg-background">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+        <AnimateIn>
+          {/* Divider row — dot label left, gallery link right (desses) */}
+          <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
+            <span className="badge-pill text-micro-label">
+              <span aria-hidden className="label-dot" />
+              <span className="sr-only">05 · </span>
+              <span className="lowercase">WORK SAMPLES</span>
+            </span>
+            <Link
+              href="/gallery"
+              className="group inline-flex items-center gap-2 text-[15px] font-medium text-foreground transition-colors duration-200 hover:text-muted-foreground"
             >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </Link>
-        </div>
-      </AnimateIn>
+              View Full Gallery
+              <span
+                aria-hidden
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              >
+                →
+              </span>
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-12 gap-x-6 gap-y-6 mt-10 md:mt-14 mb-10 md:mb-16">
+            <h2 className="col-span-12 lg:col-span-7 text-h2">
+              Work <span className="accent-word">Samples</span>
+            </h2>
+          </div>
+        </AnimateIn>
+      </div>
+
+      {/* Full-bleed marquee wall — two counter-scrolling rows */}
+      <div className="flex flex-col gap-3 md:gap-4">
+        <MarqueeRow images={topRow} duration={55} />
+        <MarqueeRow images={bottomRow} reverse duration={62} />
+      </div>
     </section>
   );
 }

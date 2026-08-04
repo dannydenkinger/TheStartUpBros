@@ -1,5 +1,99 @@
 # StartUpBros — Build Progress
 
+## Phase 19: Redesign v3 — "VIOLET SIGNAL" (2026-08-03, branch: redesign-v3)
+
+### Goal
+Owner-directed pivot from the v2 editorial "INK & INDEX" system to a modern product-studio
+language modeled on desses.co (owner reference): dark grainy violet-gradient hero screen
+inset on a light studio-gray page, white rounded-[20px] shadow cards, black full-bleed
+bands (principles context, FinalCTA, footer), electric blurple #5B4DFF accent, Inter Tight
+type, pill buttons and chips. Branched from redesign-v2 so both designs remain comparable;
+all v2 preservation rules and bug fixes carried forward.
+
+### What changed
+- globals.css: full token rewrite (light "STUDIO GRAY" default / dark "SIGNAL BLACK",
+  --band-* vars), same legacy class names remapped (pills back, chips, lifted cards),
+  .band/.on-band/.grain utilities, hero-float keyframes
+- layout.tsx: Inter Tight replaces Instrument Serif/Sans (JetBrains Mono kept, de-emphasized)
+- Hero: dark rounded-[24px] inset screen with pure-CSS blurred violet ribbon + film grain,
+  two-tone headline, StatusStrip, stack ticker at screen bottom
+- Header/Footer: light translucent bar + pills; black band footer with giant baseline-cropped
+  "StartUpBros." wordmark (blurple period)
+- SectionHeader/StatusStrip/Plate restyled in place (same props — v2 numbering survives
+  inside chips as "01 · LABEL")
+- Every page re-skinned: services card grids, portfolio ledger → desses-style stacked
+  showcase media cards, case-study monograph with blurple metrics, white-card FAQ,
+  black-band FinalCTA, v3 form fields (rounded-xl, blurple focus ring)
+
+### Verification
+Production build clean (29 routes, tsc clean); screenshot sweep 11 light + 5 dark + 3
+mobile; dark theme reads as its own designed theme; mobile DOM verified clean at 390px
+(the "duplicated content" in tall full-page captures is the known >16384px capture
+artifact — see lessons.md). Known pre-existing issues from v2 remain flagged unchanged
+(/portfolio/k-project dead link, blog date UTC off-by-one, "StartUp Bros Blog" spelling,
+/contact empty dir + unmounted BookingForm/ContactFormModal).
+
+## Phase 18: Redesign v2 — Full Visual Overhaul (2026-07-28, branch: redesign-v2)
+
+### Goal
+Overhaul the visual design to a distinctly premium, editorial-grade level while preserving all
+meaning: copy, routes, SEO/metadata, forms, MDX blog pipeline, data files, and functionality.
+
+### Plan
+- [x] Create `redesign-v2` branch off main
+- [ ] Map the current site (parallel readers: landing, services, portfolio, blog, contact/tools, chrome)
+- [ ] Screenshot current site for before/after reference
+- [ ] Design direction: 3 candidate directions → judge panel → synthesized design spec
+- [ ] Foundation pass: tokens/globals.css, typography scale, Header, Footer, shared primitives
+- [ ] Parallel page passes: landing sections, services, portfolio/gallery, blog, contact/tools/misc
+- [ ] Verify: `next build` clean, screenshot every route, fix regressions
+- [ ] Review section
+
+### Constraints
+- Keep all copy verbatim unless a design pattern requires trivial truncation
+- Keep routes, sitemap, JsonLd, metadata, API contract of /api/contact untouched
+- Keep dark + light themes working (next-themes)
+- Tailwind v4 CSS-first tokens; framer-motion for motion
+- Simplicity first: restyle components in place, don't fork parallel component trees
+
+### Review (completed 2026-07-29)
+
+**Direction: INK & INDEX** — editorial-studio system chosen by a 3-judge panel over
+technical-luxe and warm-product-studio candidates. The site is typeset, not decorated:
+Instrument Serif voice + Instrument Sans body (16px) + JetBrains Mono index apparatus
+(numbered section spines 01–0N, dot leaders, FIG. captions, micro-labels), warm bone-paper
+light theme / warm ink dark theme, one signal-orange accent rendered as serif-italic
+accent words. Pills, glassmorphism, glows, hover lifts, and centered layouts abolished;
+2px radii, hairline rules, asymmetric 12-col grid. Full spec: DESIGN_SPEC.md (session scratchpad).
+
+**What changed** (~45 files): globals.css token+class rewrite (legacy class names kept,
+bodies rewritten); fonts swapped Geist→Instrument Serif/Sans+JetBrains Mono; Header (one
+full-width bar), Footer (giant baseline-cropped wordmark); new shared primitives
+SectionHeader / StatusStrip / Plate; MagneticButton neutered; every page restyled —
+portfolio is now a full-width ledger with hover reveal plates, case studies are editorial
+monographs with FIG-captioned plates + giant serif metrics, services render as ruled
+tables, blog cards are border-top list items with underline-sweep titles.
+
+**Deliberate fixes shipped**: service cells now link to detail pages; ContactFormModal
+email bug fixed (collected no email → every submission 400'd while showing "Thank you";
+now has an email field and sends all collected fields — source values unchanged); blog
+cards use frontmatter authors (fake-persona defaults removed); Unsplash fallback replaced
+with generated serif cover; button-in-anchor removed; portfolio ledger derives from
+data/portfolio.ts (duplicated array deleted); prose neutral-* colors → tokens (dark-mode
+blog fixed); numbered spine made continuous per page via props/counters.
+
+**Verification**: production build clean (29 routes); all routes 200; 3-critic screenshot
+review (art direction, dark parity, mobile QA) → 3 blockers + 8 polish items found, all
+fixed and re-verified light+dark, desktop+mobile. Critic verdicts: "legitimately
+godly.website material", dark mode "a genuinely designed theme".
+
+**Known issues left as-is (pre-existing, flagged not changed)**: /industries/ai and
+services data link to /portfolio/k-project which 404s; "StartUp Bros Blog" spelling in
+post metadata; blog dates render one day early (UTC-midnight parse); legacy text-style
+portfolio fallback pages restyled only lightly. Dead code (unused ui components,
+navigation.ts, ProcessSteps, ServicesPreview, BlogCard deleted where safe) mostly left
+untouched for a follow-up cleanup.
+
 ## Phase 16: Gallery-Style Case Study Pages (2026-04-16)
 
 ### Goal

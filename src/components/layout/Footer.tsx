@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { FooterWordmark } from "@/components/shared/FooterWordmark";
 
 const columns = [
   {
@@ -32,51 +34,79 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-border bg-background">
-      <div className="mx-auto max-w-[1400px] px-6 lg:px-10 py-16">
-        <div className="flex flex-col md:flex-row md:justify-between gap-12">
-          {/* Brand */}
-          <div className="max-w-xs">
-            <Link
-              href="/"
-              className="text-[15px] font-semibold tracking-[-0.02em] text-foreground"
-            >
-              StartUpBros
-            </Link>
-            <p className="mt-3 text-[13px] leading-relaxed text-muted-foreground">
+    <footer className="band grain border-t border-border">
+      <div className="mx-auto max-w-[1600px] px-6 md:px-10">
+        {/* Top zone — dot label / brand+contact / link columns */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-y-12 pt-14 md:pt-28 pb-12 md:pb-24">
+          {/* (1) Dot label */}
+          <AnimateIn className="col-span-12 lg:col-span-2">
+            <span className="badge-pill text-micro-label">
+              <span aria-hidden className="label-dot" />
+              <span className="lowercase">MVP STUDIO</span>
+            </span>
+          </AnimateIn>
+
+          {/* (2) Brand / contact block */}
+          <AnimateIn
+            delay={0.06}
+            className="col-span-12 sm:col-span-6 lg:col-span-4"
+          >
+            <p className="text-[17px] text-white">StartUpBros</p>
+            <p className="mt-3 max-w-xs text-[17px] leading-[1.5] text-white">
               Full-stack development for startups. We build apps, websites, and
               software — from idea to launch.
             </p>
-          </div>
+          </AnimateIn>
 
-          {/* Link columns */}
-          <div className="flex gap-16">
-            {columns.map((col) => (
-              <div key={col.title}>
-                <p className="text-[12px] font-semibold text-foreground uppercase tracking-[0.08em] mb-4">
-                  {col.title}
-                </p>
-                <ul className="space-y-2.5">
-                  {col.links.map((link) => (
-                    <li key={link.label}>
-                      <Link
-                        href={link.href}
-                        className="text-[13px] text-muted-foreground hover:text-foreground transition-colors duration-200"
-                      >
-                        {link.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+          {/* (3+4) Link columns — each column staggers its own rows, and the
+           * columns themselves step in left-to-right. */}
+          {columns.map((col, ci) => (
+            <AnimateIn
+              key={col.title}
+              delay={0.12 + ci * 0.07}
+              className="col-span-6 sm:col-span-4 lg:col-span-2"
+            >
+              <p className="mb-4 text-[17px] text-muted-foreground">
+                {col.title}
+              </p>
+              <AnimateIn
+                as="ul"
+                itemAs="li"
+                stagger={0.05}
+                delay={0.06}
+                margin="-40px"
+                className="space-y-2.5"
+              >
+                {col.links.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-[17px] text-white hover:text-white/70 transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </AnimateIn>
+            </AnimateIn>
+          ))}
         </div>
 
-        <div className="mt-12 pt-8 border-t border-border">
-          <p className="text-[12px] text-muted-foreground">
-            &copy; {new Date().getFullYear()} StartUpBros. All rights reserved.
-          </p>
+        {/* Bottom row — giant wordmark left, legal stack right */}
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-6 md:pt-10 pb-10 md:pb-12">
+          <FooterWordmark />
+          {/* margin 0: this block never clears the last 80px of the viewport,
+           * so the default inset trigger would leave it hidden at page end. */}
+          <AnimateIn
+            delay={0.3}
+            margin="0px"
+            className="shrink-0 space-y-1 pb-2 text-xs text-muted-foreground md:text-right"
+          >
+            <p>
+              &copy; {new Date().getFullYear()} StartUpBros. All rights
+              reserved.
+            </p>
+            <p className="lowercase">BUILT IN WEEKS, NOT MONTHS</p>
+          </AnimateIn>
         </div>
       </div>
     </footer>

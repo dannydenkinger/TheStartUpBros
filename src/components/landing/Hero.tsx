@@ -1,186 +1,341 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { CTAButton } from "@/components/shared/CTAButton";
-import { AnimateIn } from "@/components/shared/AnimateIn";
+import {
+  motion,
+  useMotionValue,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { cn } from "@/lib/utils";
+import { ArrowRight } from "lucide-react";
+import { REVEAL_EASE } from "@/lib/animations";
 import { MagneticButton } from "@/components/shared/MagneticButton";
+import { RevealText } from "@/components/shared/RevealText";
+import { ClientLogos } from "@/components/landing/ClientLogos";
 
-const techStack = [
-  {
-    name: "Next.js",
-    mono: true,
-    logo: (
-      <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5">
-        <circle cx="12" cy="12" r="11" fill="currentColor" />
-        <path d="M8 16V8l8.5 10.5V8" stroke="var(--background)" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
-  },
-  {
-    name: "Stripe",
-    logo: (
-      <svg viewBox="0 0 60 25" fill="#635BFF" className="h-5 w-auto">
-        <path d="M5 10.2c0-.7.6-1 1.5-1 1.4 0 3.1.4 4.5 1.2V6.3C9.5 5.7 8 5.3 6.5 5.3 2.6 5.3 0 7.4 0 10.5c0 4.8 6.6 4 6.6 6.1 0 .8-.7 1.1-1.7 1.1-1.5 0-3.4-.6-4.9-1.4v4.2c1.7.7 3.3 1 4.9 1 4 0 6.8-2 6.8-5.1C11.7 11.2 5 12.2 5 10.2zm14.3-2.8l-.2-1.9h-4v15h4.6v-10c1.1-1.4 2.9-1.1 3.5-.9V5.5c-.6-.2-2.8-.6-3.9 1.9zm9.7-1.9l-4.6.9v3.5l4.6-1V5.5zm-4.6 5h4.6v10h-4.6v-10zm11.5-5.1c-1.3 0-2.2.6-2.7 1l-.2-.8h-4v19.5l4.6-1v-4.7c.5.4 1.3.9 2.5.9 2.5 0 4.8-2 4.8-6.5-.1-4.1-2.4-6.4-5-6.4zm-.9 9.9c-.8 0-1.3-.3-1.7-.7V9.8c.4-.4.9-.8 1.7-.8 1.3 0 2.2 1.5 2.2 3.1 0 1.8-.9 3.2-2.2 3.2zm14.5-3.1c0-3.7-1.8-6.7-5.2-6.7-3.5 0-5.5 3-5.5 6.7 0 4.4 2.4 6.6 5.9 6.6 1.7 0 3-.4 4-1v-3.4c-1 .5-2.1.8-3.5.8-1.4 0-2.6-.5-2.8-2.1h6.9c0-.2.2-1 .2-1.9zm-7-1.4c0-1.6 1-2.2 1.8-2.2.9 0 1.8.6 1.8 2.2h-3.6z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Vercel",
-    mono: true,
-    logo: (
-      <svg viewBox="0 0 76 65" fill="currentColor" className="w-5 h-5">
-        <path d="M37.5274 0L75.0548 65H0L37.5274 0Z" />
-      </svg>
-    ),
-  },
-  {
-    name: "OpenAI",
-    mono: true,
-    logo: (
-      <svg viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-        <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.998 5.998 0 0 0-3.998 2.9 6.042 6.042 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.772-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.369v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.407-.667zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.23V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.164a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L8.704 5.46a.795.795 0 0 0-.393.681zm1.097-2.365l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z" />
-      </svg>
-    ),
-  },
-  {
-    name: "Supabase",
-    logo: (
-      <svg viewBox="0 0 109 113" fill="none" className="w-5 h-5">
-        <path d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874l-43.151 54.347z" fill="url(#sb-a)" />
-        <path d="M63.708 110.284c-2.86 3.601-8.658 1.628-8.727-2.97l-1.007-67.251h45.22c8.19 0 12.758 9.46 7.665 15.874l-43.151 54.347z" fill="url(#sb-b)" fillOpacity=".2" />
-        <path d="M45.317 2.071c2.86-3.601 8.657-1.628 8.726 2.97l.442 67.251H9.83c-8.19 0-12.759-9.46-7.665-15.875L45.317 2.072z" fill="#3ECF8E" />
-        <defs>
-          <linearGradient id="sb-a" x1="53.974" y1="54.974" x2="94.163" y2="71.829" gradientUnits="userSpaceOnUse">
-            <stop stopColor="#249361" /><stop offset="1" stopColor="#3ECF8E" />
-          </linearGradient>
-          <linearGradient id="sb-b" x1="36.156" y1="30.578" x2="54.484" y2="65.081" gradientUnits="userSpaceOnUse">
-            <stop /><stop offset="1" stopOpacity="0" />
-          </linearGradient>
-        </defs>
-      </svg>
-    ),
-  },
-  {
-    name: "Tailwind",
-    logo: (
-      <svg viewBox="0 0 54 33" fill="none" className="w-6 h-5">
-        <path fillRule="evenodd" clipRule="evenodd" d="M27 0c-7.2 0-11.7 3.6-13.5 10.8 2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C30.744 13.09 33.808 16.2 40.5 16.2c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.514-3.522-2.004-5.147-3.653C36.756 3.11 33.692 0 27 0zM13.5 16.2C6.3 16.2 1.8 19.8 0 27c2.7-3.6 5.85-4.95 9.45-4.05 2.054.514 3.522 2.004 5.147 3.653C17.244 29.29 20.308 32.4 27 32.4c7.2 0 11.7-3.6 13.5-10.8-2.7 3.6-5.85 4.95-9.45 4.05-2.054-.514-3.522-2.004-5.147-3.653C23.256 19.31 20.192 16.2 13.5 16.2z" fill="#38BDF8" />
-      </svg>
-    ),
-  },
+const statusItems = [
+  { label: "Scope", value: "Within 48 hours" },
+  { label: "Design", value: "Usable by week one" },
+  { label: "Ship", value: "MVP in 2–4 weeks" },
 ];
 
-function StudioIcon() {
+/* Hero entrances run off MOUNT, not whileInView — the hero is above the fold,
+ * so a scroll-triggered reveal would be a lie. One ladder, one easing, so the
+ * screen assembles in a deliberate order instead of arriving all at once. */
+function Rise({
+  children,
+  delay = 0,
+  y = 22,
+  className,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  y?: number;
+  className?: string;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <span className="inline-flex items-center justify-center w-[18px] h-[18px] rounded-[4px] shrink-0" style={{ background: 'var(--accent-brand)' }}>
-      <span className="text-white text-[10px] font-bold leading-none tracking-tighter">
-        SB
-      </span>
-    </span>
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: REVEAL_EASE, delay }}
+    >
+      {children}
+    </motion.div>
   );
 }
 
-function GoogleMeetIcon() {
+/* Pure-CSS gradient ribbon — one broad electric-blurple arc over black.
+ * A giant blurred ring centered at the hero's bottom-left corner: its
+ * visible arc enters the top edge ~40% across, bows right, and exits the
+ * bottom edge ~75% across, reading as a wide curved beam sweeping from
+ * top-center to bottom-right. Layered under .grain. */
+function RibbonArt({ animate }: { animate: boolean }) {
+  // All rings share this geometry: circle centered at (-8% W, 100% H),
+  // radius ~77% of the band width.
+  const ring =
+    "absolute left-[-8%] top-full aspect-square w-[155%] rounded-full";
+
   return (
-    <span className="inline-flex items-center justify-center w-[20px] h-[20px] rounded-[4px] bg-white shrink-0 shadow-sm">
-      <svg width="12" height="12" viewBox="0 0 48 48" fill="none">
-        <path d="M31 24l8 6.5v-13L31 24z" fill="#00832d" />
-        <path d="M9 14v20a4 4 0 004 4h18V10H13a4 4 0 00-4 4z" fill="#0066da" />
-        <path d="M31 10v14l8 6.5V14a4 4 0 00-4-4h-4z" fill="#e94235" />
-        <path d="M31 38h4a4 4 0 004-4v-3.5L31 24v14z" fill="#ffba00" />
-        <path d="M39 17.5L31 24l8 6.5v-13z" fill="#00ac47" />
-      </svg>
-    </span>
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 overflow-hidden"
+    >
+      <div className={cn("absolute inset-0", animate && "animate-hero-float")}>
+        {/* Ambient wash where the beam enters, top-center */}
+        <div
+          className="absolute -top-[24%] right-[28%] h-[70%] w-[38%] rounded-full"
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(82,39,255,0.26), transparent 74%)",
+            filter: "blur(90px)",
+          }}
+        />
+        {/* Ribbon — outer soft band */}
+        <div
+          className={ring}
+          style={{
+            border: "230px solid rgba(82,39,255,0.5)",
+            filter: "blur(100px)",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+        {/* Ribbon — main band */}
+        <div
+          className={ring}
+          style={{
+            border: "150px solid rgba(98,58,255,0.95)",
+            filter: "blur(64px)",
+            transform: "translate(-50%, -50%) scale(0.99)",
+          }}
+        />
+        {/* Ribbon — hot edge highlight */}
+        <div
+          className={ring}
+          style={{
+            border: "42px solid rgba(178,150,255,1)",
+            filter: "blur(54px)",
+            transform: "translate(-50%, -50%) scale(0.984)",
+          }}
+        />
+        {/* Faint second arc grazing the upper-left, desses-style */}
+        <div
+          className="absolute left-[10%] top-[-70%] aspect-square w-[130%] rounded-full"
+          style={{
+            border: "70px solid rgba(82,39,255,0.2)",
+            filter: "blur(80px)",
+            transform: "translate(-50%, -50%)",
+          }}
+        />
+        {/* Counter-glow where the ribbon exits, bottom right */}
+        <div
+          className="absolute -bottom-[28%] right-[-8%] h-[70%] w-[40%] rounded-full"
+          style={{
+            background:
+              "radial-gradient(closest-side, rgba(98,58,255,0.32), transparent 72%)",
+            filter: "blur(90px)",
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
 export function Hero() {
+  const prefersReducedMotion = useReducedMotion();
+  const sectionRef = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"],
+  });
+  const ribbonY = useTransform(scrollYProgress, [0, 1], [0, 140]);
+
+  /* Pointer drift — the light source leans toward the cursor. Fine pointers
+   * only (no phantom drift on touch), and the springs make it lag the cursor
+   * so it reads as a heavy volume of light, not a cursor-follower. */
+  const [pointerFine, setPointerFine] = useState(false);
+  const pointerX = useMotionValue(0);
+  const pointerY = useMotionValue(0);
+  const driftX = useSpring(pointerX, {
+    stiffness: 42,
+    damping: 22,
+    mass: 1.1,
+  });
+  const driftY = useSpring(pointerY, {
+    stiffness: 42,
+    damping: 22,
+    mass: 1.1,
+  });
+
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    const mq = window.matchMedia("(pointer: fine)");
+    const sync = () => setPointerFine(mq.matches);
+    sync();
+    mq.addEventListener("change", sync);
+    return () => mq.removeEventListener("change", sync);
+  }, [prefersReducedMotion]);
+
+  const pointerActive = pointerFine && !prefersReducedMotion;
+
+  useEffect(() => {
+    if (!pointerActive) return;
+    // Viewport size is cached and only re-read on resize — the move handler
+    // itself never touches layout.
+    let vw = window.innerWidth;
+    let vh = window.innerHeight;
+    const onResize = () => {
+      vw = window.innerWidth;
+      vh = window.innerHeight;
+    };
+    const onMove = (e: PointerEvent) => {
+      // Once the hero has scrolled away there is nothing to light — bail
+      // before touching the springs. Reading the motion value costs no DOM.
+      if (scrollYProgress.get() > 0.9) return;
+      pointerX.set((e.clientX / vw - 0.5) * 44);
+      pointerY.set((e.clientY / vh - 0.5) * 26);
+    };
+    window.addEventListener("resize", onResize);
+    window.addEventListener("pointermove", onMove, { passive: true });
+    return () => {
+      window.removeEventListener("resize", onResize);
+      window.removeEventListener("pointermove", onMove);
+    };
+  }, [pointerActive, pointerX, pointerY, scrollYProgress]);
+
+  /* Hover choreography is transform-based, so it has to be switched off in JS
+   * (a `motion-reduce:` utility can't cancel a `translate`/`scale` utility). */
+  const hoverSwap = prefersReducedMotion
+    ? ""
+    : "transition-transform duration-[450ms] ease-[cubic-bezier(0.44,0,0.56,1)]";
+
   return (
-    <section className="bg-background px-6 lg:px-10 pt-[60px] md:pt-[84px] pb-12 flex-1 flex flex-col justify-center">
-      <div className="mx-auto max-w-[1020px] text-center">
-        {/* Founder pill */}
-        <AnimateIn variant="fadeUp">
-          <Link
-            href="/strategy-call"
-            className="inline-flex items-center gap-2 badge-pill mb-10 hover:bg-muted transition-colors"
+    <section ref={sectionRef} className="-mt-[80px] flex flex-col">
+      {/* The hero screen — full-bleed dark card, rounded bottom corners so it
+       * reads as a dark card ending on the light page. Starts at viewport top
+       * behind the floating pill nav. */}
+      <div className="band grain relative flex min-h-svh flex-col overflow-hidden max-md:rounded-b-[2rem]">
+        <motion.div
+          aria-hidden
+          className="absolute inset-0"
+          style={prefersReducedMotion ? undefined : { y: ribbonY }}
+        >
+          <motion.div
+            className="absolute inset-0"
+            style={pointerActive ? { x: driftX, y: driftY } : undefined}
           >
-            <StudioIcon />
-            <span className="text-[13px] font-medium text-foreground">
-              Founded by the Denkinger brothers — taking first clients
-            </span>
-            <svg
-              width="13"
-              height="13"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2.2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="text-foreground/70"
-            >
-              <line x1="5" y1="12" x2="19" y2="12" />
-              <polyline points="12 5 19 12 12 19" />
-            </svg>
-          </Link>
-        </AnimateIn>
+            <RibbonArt animate={!prefersReducedMotion} />
+          </motion.div>
+        </motion.div>
 
-        {/* Headline */}
-        <AnimateIn variant="fadeUp" delay={0.08}>
-          <h1 className="text-display text-foreground">
-            Launch-Ready Products,{" "}
-            <br className="hidden md:block" />
-            <span style={{ color: 'var(--accent-brand)' }}>Built In Weeks</span> — Not Months
-          </h1>
-        </AnimateIn>
-
-        {/* Subtitle */}
-        <AnimateIn variant="fadeUp" delay={0.16}>
-          <p className="text-body-lg mt-6 mx-auto max-w-[560px]">
-            Full-stack design and development for startups that need to move now.
-          </p>
-        </AnimateIn>
-
-        {/* CTAs */}
-        <AnimateIn variant="fadeUp" delay={0.24}>
-          <div className="mt-9 flex flex-col sm:flex-row items-center justify-center gap-3">
-            <MagneticButton>
+        {/* Screen content */}
+        <div className="relative z-10 mx-auto flex w-full max-w-[1600px] flex-1 flex-col justify-center px-6 pt-28 pb-12 md:px-10 md:pt-32">
+          {/* Founder eyebrow — borderless dot label */}
+          <Rise>
+            <div>
               <Link
                 href="/strategy-call"
-                className="btn-pill btn-pill-primary inline-flex items-center gap-2.5 !pl-3"
-                style={{ boxShadow: '0 0 20px var(--accent-brand-glow), 0 0 60px var(--accent-brand-soft)' }}
+                className="mb-8 inline-flex items-center gap-2 text-[13px] text-neutral-400 transition-colors hover:text-white"
               >
-                <GoogleMeetIcon />
-                Book A Call
+                <span
+                  aria-hidden
+                  className="size-1.5 shrink-0 rounded-full bg-(--accent-brand)"
+                />
+                Founded by the Denkinger brothers — taking first clients
               </Link>
-            </MagneticButton>
-            <CTAButton href="/portfolio" variant="secondary">
-              See Design Gallery
-            </CTAButton>
-          </div>
-        </AnimateIn>
-
-        {/* Trust line + VC logos inline */}
-        <AnimateIn variant="fadeUp" delay={0.32}>
-          <div className="mt-14">
-            <p className="text-[13px] text-muted-foreground font-medium mb-6">
-              Built on the stack trusted by modern SaaS
-            </p>
-            <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-4">
-              {techStack.map((item) => (
-                <div
-                  key={item.name}
-                  className={`flex items-center gap-2 ${item.mono ? "text-foreground/80" : ""}`}
-                >
-                  {item.logo}
-                  <span className="text-[14px] font-medium tracking-tight text-muted-foreground/60">
-                    {item.name}
-                  </span>
-                </div>
-              ))}
             </div>
+          </Rise>
+
+          {/* Headline — white base, one muted-gray inline emphasis */}
+          <h1 className="text-display max-w-[880px]">
+            <RevealText delay={0.06}>Launch-Ready Products,</RevealText>
+            <RevealText delay={0.14}>Built In Weeks</RevealText>
+            <RevealText delay={0.22}>
+              <span className="text-white/55">— Not Months</span>
+            </RevealText>
+          </h1>
+
+          {/* Subtitle */}
+          <Rise delay={0.30}>
+            <p className="mt-10 max-w-[36rem] text-base leading-relaxed text-white/85">
+              Full-stack design and development for startups that need to
+              move&nbsp;now.
+            </p>
+          </Rise>
+
+          {/* CTAs — one white capsule + one plain text link */}
+          <Rise delay={0.38}>
+            <div className="mt-10 flex flex-col gap-5 sm:flex-row sm:items-center sm:gap-8">
+              <MagneticButton>
+                <Link
+                  href="/strategy-call"
+                  className={cn(
+                    "group inline-flex h-12 items-center gap-3 rounded-full bg-white pl-1.5 pr-6 text-sm font-medium text-neutral-900 shadow-lg",
+                    !prefersReducedMotion &&
+                      "transition-transform duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] hover:scale-[1.02]",
+                  )}
+                >
+                  {/* Arrow swap — the resting arrow exits right while a second
+                   * one enters from the left, so the capsule reads as "go". */}
+                  <span className="grid size-9 place-items-center overflow-hidden rounded-full bg-(--accent-brand) text-white">
+                    <ArrowRight
+                      className={cn(
+                        "col-start-1 row-start-1 size-4",
+                        hoverSwap,
+                        !prefersReducedMotion &&
+                          "group-hover:translate-x-[170%]",
+                      )}
+                      strokeWidth={2}
+                    />
+                    {!prefersReducedMotion && (
+                      <ArrowRight
+                        aria-hidden
+                        className={cn(
+                          "col-start-1 row-start-1 size-4 -translate-x-[170%] group-hover:translate-x-0",
+                          hoverSwap,
+                        )}
+                        strokeWidth={2}
+                      />
+                    )}
+                  </span>
+                  Book A Call
+                </Link>
+              </MagneticButton>
+              <Link
+                href="/portfolio"
+                className="group inline-flex items-center gap-2 text-sm font-medium text-neutral-400 transition-colors hover:text-white"
+              >
+                See Design Gallery
+                <span
+                  aria-hidden
+                  className={cn(
+                    !prefersReducedMotion &&
+                      "transition-transform duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:translate-x-1",
+                  )}
+                >
+                  →
+                </span>
+              </Link>
+            </div>
+          </Rise>
+        </div>
+
+        {/* Bottom block — status line + logo row, pinned near the hero's
+         * bottom edge. These run off the same mount ladder as the headline
+         * (a whileInView reveal would never fire here: at the bottom of a
+         * viewport-height screen it sits outside useInView's -80px margin). */}
+        <div className="relative z-10 w-full px-6 pb-12 md:px-12">
+          {/* Status line — borderless dot items, wiping in left to right */}
+          <div className="mb-10 flex flex-wrap items-center gap-x-8 gap-y-2">
+            {statusItems.map((item, i) => (
+              <Rise key={item.label} delay={0.46 + i * 0.06} y={14}>
+                <span className="inline-flex items-center gap-2.5 text-[13px] text-neutral-400 whitespace-nowrap">
+                  <span
+                    aria-hidden
+                    className="size-1 shrink-0 rounded-full bg-(--accent-brand)"
+                  />
+                  {item.label} — {item.value}
+                </span>
+              </Rise>
+            ))}
           </div>
-        </AnimateIn>
+
+          {/* Inspired-by tape — the one logo strip on the landing page.
+           * Fades rather than rises: it is already in horizontal motion. */}
+          <Rise delay={0.62} y={0}>
+            <ClientLogos />
+          </Rise>
+        </div>
       </div>
     </section>
   );

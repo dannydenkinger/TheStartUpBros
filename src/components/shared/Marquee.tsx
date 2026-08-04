@@ -27,114 +27,77 @@ export function Marquee({
   const items = React.Children.toArray(children);
   const isVertical = direction === "up" || direction === "down";
 
+  /* Direction maps onto the four shared keyframes in globals.css; the rail
+   * itself (.marquee-scroller) is defined there once and reads these two
+   * custom properties, so several marquees can coexist on one page. */
+  const animationName = isVertical
+    ? direction === "up"
+      ? "marquee-up"
+      : "marquee-down"
+    : direction === "left"
+      ? "marquee"
+      : "marquee-reverse";
+
   return (
-    <>
-      <style>
-        {`
-        @keyframes scroll {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-50%);
-          }
-        }
-
-        @keyframes scroll-reverse {
-          from {
-            transform: translateX(-50%);
-          }
-          to {
-            transform: translateX(0);
-          }
-        }
-
-        @keyframes scroll-y {
-          from {
-            transform: translateY(0);
-          }
-          to {
-            transform: translateY(-50%);
-          }
-        }
-
-        @keyframes scroll-y-reverse {
-          from {
-            transform: translateY(-50%);
-          }
-          to {
-            transform: translateY(0);
-          }
-        }
-
-        .marquee-scroller {
-          display: flex;
-          animation: ${
-          isVertical
-            ? (direction === "up" ? "scroll-y" : "scroll-y-reverse")
-            : (direction === "left" ? "scroll" : "scroll-reverse")
-        } ${duration}s linear infinite;
-        }
-
-        .marquee-scroller.paused {
-          animation-play-state: paused;
-        }
-      `}
-      </style>
+    <div
+      ref={containerRef}
+      className={cn(
+        "flex w-full overflow-hidden",
+        isVertical && "flex-col",
+        className,
+      )}
+      style={{
+        ...(fade && {
+          maskImage: isVertical
+            ? `linear-gradient(to bottom, transparent 0%, black ${fadeAmount}%, black ${
+              100 - fadeAmount
+            }%, transparent 100%)`
+            : `linear-gradient(to right, transparent 0%, black ${fadeAmount}%, black ${
+              100 - fadeAmount
+            }%, transparent 100%)`,
+          WebkitMaskImage: isVertical
+            ? `linear-gradient(to bottom, transparent 0%, black ${fadeAmount}%, black ${
+              100 - fadeAmount
+            }%, transparent 100%)`
+            : `linear-gradient(to right, transparent 0%, black ${fadeAmount}%, black ${
+              100 - fadeAmount
+            }%, transparent 100%)`,
+        }),
+      }}
+      onMouseEnter={() => pauseOnHover && setIsPaused(true)}
+      onMouseLeave={() => pauseOnHover && setIsPaused(false)}
+      {...props}
+    >
       <div
-        ref={containerRef}
         className={cn(
-          "flex w-full overflow-hidden",
+          "marquee-scroller flex shrink-0",
           isVertical && "flex-col",
-          className,
+          isPaused && "paused",
         )}
-        style={{
-          ...(fade && {
-            maskImage: isVertical
-              ? `linear-gradient(to bottom, transparent 0%, black ${fadeAmount}%, black ${
-                100 - fadeAmount
-              }%, transparent 100%)`
-              : `linear-gradient(to right, transparent 0%, black ${fadeAmount}%, black ${
-                100 - fadeAmount
-              }%, transparent 100%)`,
-            WebkitMaskImage: isVertical
-              ? `linear-gradient(to bottom, transparent 0%, black ${fadeAmount}%, black ${
-                100 - fadeAmount
-              }%, transparent 100%)`
-              : `linear-gradient(to right, transparent 0%, black ${fadeAmount}%, black ${
-                100 - fadeAmount
-              }%, transparent 100%)`,
-          }),
-        }}
-        onMouseEnter={() => pauseOnHover && setIsPaused(true)}
-        onMouseLeave={() => pauseOnHover && setIsPaused(false)}
-        {...props}
+        style={
+          {
+            "--marquee-name": animationName,
+            "--marquee-duration": `${duration}s`,
+          } as React.CSSProperties
+        }
       >
-        <div
-          className={cn(
-            "marquee-scroller flex shrink-0",
-            isVertical && "flex-col",
-            isPaused && "paused",
-          )}
-        >
-          {items.map((item, index) => (
-            <div
-              key={`first-${index}`}
-              className={cn("flex shrink-0", isVertical && "w-full")}
-            >
-              {item}
-            </div>
-          ))}
-          {items.map((item, index) => (
-            <div
-              key={`second-${index}`}
-              className={cn("flex shrink-0", isVertical && "w-full")}
-            >
-              {item}
-            </div>
-          ))}
-        </div>
+        {items.map((item, index) => (
+          <div
+            key={`first-${index}`}
+            className={cn("flex shrink-0", isVertical && "w-full")}
+          >
+            {item}
+          </div>
+        ))}
+        {items.map((item, index) => (
+          <div
+            key={`second-${index}`}
+            className={cn("flex shrink-0", isVertical && "w-full")}
+          >
+            {item}
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }

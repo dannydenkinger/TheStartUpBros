@@ -3,9 +3,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { ChevronDown, MessageCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { REVEAL_EASE } from "@/lib/animations";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { SectionHeader } from "@/components/shared/SectionHeader";
 
 const faqs = [
   {
@@ -87,8 +89,8 @@ const faqs = [
 ];
 
 const teamAvatars = [
-  "/images/avatars/anthony-denkinger.png",
-  "/images/avatars/danny-denkinger.png",
+  { src: "/images/avatars/anthony-denkinger.png", name: "Anthony Denkinger" },
+  { src: "/images/avatars/danny-denkinger.png", name: "Danny Denkinger" },
 ];
 
 function FAQItem({
@@ -96,123 +98,183 @@ function FAQItem({
   answer,
   isOpen,
   onToggle,
+  delay,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
+  delay: number;
 }) {
-  return (
-    <div
-      className={cn(
-        "rounded-xl border bg-card transition-all duration-300",
-        isOpen
-          ? "border-l-2 border-l-[var(--accent-brand)] border-border"
-          : "border-border",
-      )}
-    >
+  const prefersReducedMotion = useReducedMotion();
+
+  const body = (
+    <div className="rounded-xl bg-card shadow-none">
       <button
         onClick={onToggle}
         className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
       >
-        <span className="text-[15px] font-medium text-foreground leading-[1.4]">
+        <span className="flex-1 text-[17px] font-semibold leading-snug text-foreground">
           {question}
         </span>
-        <ChevronDown
+        <span
+          aria-hidden
           className={cn(
-            "h-5 w-5 shrink-0 text-muted-foreground transition-transform duration-300",
-            isOpen && "rotate-180",
+            "plus-btn",
+            !prefersReducedMotion &&
+              "transition-[transform,background-color] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+            isOpen && "rotate-45",
           )}
-        />
+        >
+          +
+        </span>
       </button>
+      {/* Answer reveal stays on grid-rows (the only technique that animates to
+       * intrinsic height without a measurement pass); easing is the house
+       * REVEAL_EASE so it decelerates like everything else on the page. The
+       * copy itself rides in on a transform, which is what gives the reveal
+       * its weight — the row alone reads mechanical. */}
       <div
         className={cn(
-          "grid transition-all duration-300 ease-in-out",
+          "grid motion-reduce:transition-none",
+          "transition-[grid-template-rows,opacity] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
         )}
       >
         <div className="overflow-hidden">
-          <p className="px-6 pb-6 text-[14px] leading-[1.7] text-muted-foreground">
-            {answer}
-          </p>
+          <div className="mx-6 border-t border-border">
+            <p
+              className={cn(
+                "max-w-[560px] pt-4 pb-5 text-sm leading-relaxed text-muted-foreground",
+                !prefersReducedMotion &&
+                  "transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                !prefersReducedMotion &&
+                  (isOpen ? "translate-y-0" : "-translate-y-1.5"),
+              )}
+            >
+              {answer}
+            </p>
+          </div>
         </div>
       </div>
     </div>
   );
-}
 
-export function FAQ() {
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  if (prefersReducedMotion) return body;
 
   return (
-    <section className="px-6 lg:px-10 py-24 md:py-32 bg-background">
-      <div className="mx-auto max-w-[1200px]">
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: REVEAL_EASE, delay }}
+    >
+      {body}
+    </motion.div>
+  );
+}
+
+// How many questions show before the quiet "show all" toggle
+const VISIBLE_COUNT = 6;
+
+export function FAQ({ index = "04" }: { index?: string }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [showAll, setShowAll] = useState(false);
+  const visibleFaqs = showAll ? faqs : faqs.slice(0, VISIBLE_COUNT);
+
+  return (
+    <section className="px-6 md:px-10 py-14 md:py-28 bg-(--muted) dark:bg-background">
+      <div className="mx-auto max-w-[1600px]">
         <AnimateIn>
-          <div className="text-center mb-14">
-            <span className="badge-pill mb-6 inline-block" style={{ borderColor: 'var(--accent-brand-glow)', background: 'var(--accent-brand-soft)' }}>FAQs</span>
-            <h2 className="text-display mb-4">All your Questions, <span style={{ color: 'var(--accent-brand)' }}>Answered.</span></h2>
-          </div>
+          <SectionHeader
+            index={index}
+            label="FAQ"
+            title={
+              <>
+                All your Questions,{" "}
+                <span className="accent-word">Answered.</span>
+              </>
+            }
+          />
         </AnimateIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* ─── Left: sticky CTA card ─────────────────────────────── */}
-          <div className="lg:sticky lg:top-[120px] lg:self-start">
-            <div className="rounded-2xl border border-border bg-card p-6 shadow-sm">
-              {/* Overlapping avatars */}
-              <div className="flex -space-x-3 mb-5">
-                {teamAvatars.map((src, i) => (
-                  <div
-                    key={src}
-                    className="relative w-11 h-11 rounded-full border-2 border-background overflow-hidden bg-secondary"
-                    style={{ zIndex: teamAvatars.length - i }}
-                  >
-                    <Image
-                      src={src}
-                      alt=""
-                      fill
-                      sizes="44px"
-                      className="object-cover"
-                    />
-                  </div>
-                ))}
-              </div>
-
-              <p className="text-[15px] leading-[1.45] text-foreground mb-5">
-                FAQs can only do so much. For the rest, there&apos;s us.
-              </p>
-
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/strategy-call"
-                  className="btn-pill btn-pill-primary w-full !py-3"
-                >
-                  Book Strategy Call
-                </Link>
-                <Link
-                  href="/strategy-call"
-                  className="btn-pill btn-pill-secondary w-full !py-3 flex items-center justify-center gap-2"
-                >
-                  <MessageCircle
-                    className="w-4 h-4 text-emerald-500"
-                    strokeWidth={2.2}
-                  />
-                  Chat with Us
-                </Link>
-              </div>
-            </div>
-          </div>
-
-          {/* ─── Right: FAQ stack ──────────────────────────────────── */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
-            {faqs.map((faq, i) => (
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-10">
+          {/* ─── Left: FAQ stack ───────────────────────────────────── */}
+          <div className="space-y-3">
+            {visibleFaqs.map((faq, i) => (
               <FAQItem
                 key={i}
                 question={faq.question}
                 answer={faq.answer}
                 isOpen={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                /* First screenful cascades; anything revealed by "show all"
+                 * lands almost immediately — the user asked for it. */
+                delay={
+                  i < VISIBLE_COUNT
+                    ? i * 0.05
+                    : Math.min(i - VISIBLE_COUNT, 4) * 0.03
+                }
               />
             ))}
+
+            {!showAll && (
+              <button
+                type="button"
+                onClick={() => setShowAll(true)}
+                className="flex w-full cursor-pointer items-center justify-between gap-6 rounded-xl px-6 py-4 text-left transition-colors duration-200 hover:bg-card"
+              >
+                <span className="text-[15px] font-medium text-muted-foreground">
+                  Show all questions{" "}
+                  <span className="tabular-nums">({faqs.length})</span>
+                </span>
+                <span aria-hidden className="plus-btn">
+                  +
+                </span>
+              </button>
+            )}
+          </div>
+
+          {/* ─── Right: sticky CTA card ────────────────────────────── */}
+          <div className="lg:sticky lg:top-28 lg:self-start">
+            <div className="rounded-2xl bg-card p-7">
+              <p className="text-[17px] leading-snug text-muted-foreground mb-6">
+                FAQs can only do so much. For the rest, there&apos;s us.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-5">
+                <Link
+                  href="/strategy-call"
+                  className="btn-pill btn-pill-primary bg-(--background) dark:bg-[#f0f0f2]"
+                >
+                  Book Strategy Call
+                </Link>
+                <Link
+                  href="/strategy-call"
+                  className="text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                >
+                  Chat with Us
+                </Link>
+              </div>
+
+              {/* Founder strip — grayscale to keep the pair tonally unified */}
+              <div className="mt-6 grid grid-cols-2 gap-1.5">
+                {teamAvatars.map((member) => (
+                  <div
+                    key={member.src}
+                    className="relative aspect-[4/5] rounded-lg overflow-hidden bg-secondary"
+                  >
+                    <Image
+                      src={member.src}
+                      alt={member.name}
+                      fill
+                      sizes="260px"
+                      className="object-cover object-[50%_20%] grayscale contrast-[1.05]"
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>

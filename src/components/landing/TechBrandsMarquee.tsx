@@ -18,21 +18,23 @@ const brands = [
 
 export function TechBrandsMarquee() {
   return (
-    <section className="py-12 bg-background border-b border-border/40 overflow-hidden">
+    <section className="bg-background overflow-hidden py-4 md:py-5">
       <AnimateIn variant="fadeIn">
-        <p className="text-center text-[13px] font-medium text-muted-foreground mb-8">
-          Tools we build with
-        </p>
-        <Marquee pauseOnHover={false} direction="right" className="[--duration:25s]">
-          {brands.map((brand) => (
-            <div
-              key={brand}
-              className="text-lg md:text-xl font-bold text-muted-foreground/50 hover:text-muted-foreground transition-colors duration-300 select-none cursor-default tracking-wide uppercase mx-12"
-            >
-              {brand}
-            </div>
-          ))}
-        </Marquee>
+        <div className="flex flex-col md:flex-row md:items-center">
+          <p className="shrink-0 px-6 md:px-10 py-3 md:py-4 text-micro-label text-muted-foreground/80 whitespace-nowrap">
+            Tools we build with
+          </p>
+          <Marquee pauseOnHover={false} direction="right" className="flex-1 py-4">
+            {brands.map((brand) => (
+              <span
+                key={brand}
+                className="mx-8 md:mx-10 text-[15px] font-medium tracking-[-0.01em] text-muted-foreground/70 select-none cursor-default whitespace-nowrap"
+              >
+                {brand}
+              </span>
+            ))}
+          </Marquee>
+        </div>
       </AnimateIn>
     </section>
   );

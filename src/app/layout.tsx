@@ -1,19 +1,20 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/shared/Providers";
 import { siteMetadata } from "@/lib/metadata";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const interTight = Inter_Tight({
   subsets: ["latin"],
+  variable: "--font-inter-tight",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
+  weight: ["400", "500"],
+  variable: "--font-jetbrains-mono",
 });
 
 export const metadata: Metadata = siteMetadata;
@@ -24,7 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      className={`${interTight.variable} ${jetbrainsMono.variable}`}
+      suppressHydrationWarning
+    >
       <body className="antialiased">
         <Providers>
           <Header />

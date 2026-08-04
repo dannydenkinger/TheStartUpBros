@@ -8,10 +8,10 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-body: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+  --font-sans: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -50,116 +50,191 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Theme — StartUpBros */
+/* Theme — StartUpBros · ELECTRIC BLURPLE */
+/* :root — dark "SIGNAL BLACK" */
 :root {
-  --background: #0a0a0b;
-  --foreground: #ededed;
-  --card: rgba(255, 255, 255, 0.05);
-  --card-foreground: #ededed;
-  --popover: #141416;
-  --popover-foreground: #ededed;
-  --primary: #ffffff;
-  --primary-foreground: #0a0a0b;
-  --secondary: rgba(255, 255, 255, 0.06);
-  --secondary-foreground: #ededed;
-  --muted: rgba(255, 255, 255, 0.08);
-  --muted-foreground: #8a8a8a;
-  --accent: rgba(255, 255, 255, 0.08);
-  --accent-foreground: #ededed;
-  --destructive: #ef4444;
-  --border: rgba(255, 255, 255, 0.1);
-  --input: rgba(255, 255, 255, 0.1);
-  --ring: rgba(255, 255, 255, 0.2);
-  --chart-1: #ededed;
-  --chart-2: #b0b0b0;
-  --chart-3: #8a8a8a;
-  --chart-4: #666666;
-  --chart-5: #444444;
-  --radius: 1.125rem;
-  --sidebar: #0a0a0b;
-  --sidebar-foreground: #ededed;
-  --sidebar-primary: #ffffff;
-  --sidebar-primary-foreground: #0a0a0b;
-  --sidebar-accent: rgba(255, 255, 255, 0.06);
-  --sidebar-accent-foreground: #ededed;
-  --sidebar-border: rgba(255, 255, 255, 0.1);
-  --sidebar-ring: rgba(255, 255, 255, 0.2);
+  --background: #0a0a0a;
+  --foreground: #f5f5f7;
+  --card: #151515;
+  --card-foreground: #f5f5f7;
+  --popover: #171717;
+  --popover-foreground: #f5f5f7;
+  --primary: #f5f5f7;
+  --primary-foreground: #0a0a0a;
+  --secondary: #1a1a1a;
+  --secondary-foreground: #f5f5f7;
+  --muted: #1a1a1a;
+  --muted-foreground: #b9b9be;
+  --accent: #1b1b1f;
+  --accent-foreground: #f5f5f7;
+  --destructive: #f87171;
+  --border: rgba(245, 245, 247, 0.12);
+  --input: rgba(245, 245, 247, 0.12);
+  --ring: rgba(245, 245, 247, 0.5);
+  --chart-1: #f5f5f7;
+  --chart-2: #c9c9ce;
+  --chart-3: #9a9aa3;
+  --chart-4: #6e6e76;
+  --chart-5: #3a3a40;
+  --radius: 1rem;
+  --sidebar: #0b0b0d;
+  --sidebar-foreground: #f5f5f7;
+  --sidebar-primary: #f5f5f7;
+  --sidebar-primary-foreground: #0b0b0d;
+  --sidebar-accent: #1b1b1f;
+  --sidebar-accent-foreground: #f5f5f7;
+  --sidebar-border: rgba(245, 245, 247, 0.12);
+  --sidebar-ring: rgba(245, 245, 247, 0.5);
 
-  /* Brand accent — used sparingly on homepage for visual interest */
-  --accent-brand: #6366f1;
-  --accent-brand-soft: rgba(99, 102, 241, 0.15);
-  --accent-brand-glow: rgba(99, 102, 241, 0.25);
+  --accent-brand: #6a4dff;
+  --accent-brand-soft: rgba(106, 77, 255, 0.16);
+  --accent-brand-glow: rgba(106, 77, 255, 0.35);
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.14);
+  --shadow-plate: 0 1px 2px rgba(0, 0, 0, 0.5), 0 20px 48px -20px rgba(0, 0, 0, 0.7);
+  --shadow-plate-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 28px 64px -24px rgba(0, 0, 0, 0.8);
 
-  /* Theme-aware surface colors */
-  --surface-bg: #0a0a0b;
-  --surface-card: rgba(255, 255, 255, 0.03);
-  --surface-card-hover: rgba(255, 255, 255, 0.06);
-  --surface-border: rgba(255, 255, 255, 0.1);
-  --surface-input: rgba(255, 255, 255, 0.06);
-  --surface-badge-bg: rgba(255, 255, 255, 0.06);
-  --surface-badge-text: #ededed;
-  --surface-nav-bg: rgba(10, 10, 11, 0.8);
-  --surface-dropdown-bg: #141416;
-  --surface-text-primary: #ededed;
-  --surface-text-muted: #8a8a8a;
-  --surface-gradient-from: #0a0a0b;
-  --surface-logo-bg: #ffffff;
-  --surface-logo-mark: #0a0a0b;
-  --surface-carousel-bg: #0a0a0b;
+  --band: #0a0a0a;
+  --band-foreground: #f5f5f7;
+  --band-muted: rgba(245, 245, 247, 0.55);
+  --band-card: #161616;
+  --band-border: rgba(245, 245, 247, 0.12);
+
+  --surface-bg: #0a0a0a;
+  --surface-card: #151515;
+  --surface-card-hover: #1a1a1a;
+  --surface-border: rgba(245, 245, 247, 0.12);
+  --surface-input: #151515;
+  --surface-badge-bg: rgba(245, 245, 247, 0.07);
+  --surface-badge-text: #f5f5f7;
+  --surface-nav-bg: rgba(10, 10, 10, 0.85);
+  --surface-dropdown-bg: #171717;
+  --surface-text-primary: #f5f5f7;
+  --surface-text-muted: #b9b9be;
+  --surface-gradient-from: #0a0a0a;
+  --surface-logo-bg: #f5f5f7;
+  --surface-logo-mark: #0a0a0a;
+  --surface-carousel-bg: #060606;
 }
 
+/* .light — default "STUDIO GRAY" */
 .light {
-  --background: #f9f9f9;
-  --foreground: #242424;
-  --card: #ffffff;
-  --card-foreground: #242424;
-  --popover: #ffffff;
-  --popover-foreground: #242424;
-  --primary: #242424;
+  --background: #e3e3e6;
+  --foreground: #0e0e10;
+  --card: #efeff1;
+  --card-foreground: #0e0e10;
+  --popover: #efeff1;
+  --popover-foreground: #0e0e10;
+  --primary: #0e0e10;
   --primary-foreground: #ffffff;
-  --secondary: #f2f2f2;
-  --secondary-foreground: #242424;
-  --muted: #ededed;
-  --muted-foreground: #787878;
-  --accent: #ededed;
-  --accent-foreground: #242424;
-  --destructive: #ef4444;
-  --border: #e3e3e3;
-  --input: #e4e4e4;
-  --ring: #242424;
-  --chart-1: #242424;
-  --chart-2: #404040;
-  --chart-3: #5c5c5c;
-  --chart-4: #787878;
-  --chart-5: #949494;
-  --sidebar: #ffffff;
-  --sidebar-foreground: #242424;
-  --sidebar-primary: #242424;
+  --secondary: #e9e9ec;
+  --secondary-foreground: #0e0e10;
+  --muted: #d9d9dd;
+  --muted-foreground: #55555a;
+  --accent: #e9e9ec;
+  --accent-foreground: #0e0e10;
+  --destructive: #dc2626;
+  --border: rgba(14, 14, 16, 0.1);
+  --input: rgba(14, 14, 16, 0.1);
+  --ring: #0e0e10;
+  --chart-1: #0e0e10;
+  --chart-2: #3a3a40;
+  --chart-3: #6e6e76;
+  --chart-4: #a5a5ac;
+  --chart-5: #d6d6db;
+  --radius: 1rem;
+  --sidebar: #e3e3e6;
+  --sidebar-foreground: #0e0e10;
+  --sidebar-primary: #0e0e10;
   --sidebar-primary-foreground: #ffffff;
-  --sidebar-accent: #f2f2f2;
-  --sidebar-accent-foreground: #242424;
-  --sidebar-border: #e3e3e3;
-  --sidebar-ring: #242424;
+  --sidebar-accent: #e9e9ec;
+  --sidebar-accent-foreground: #0e0e10;
+  --sidebar-border: rgba(14, 14, 16, 0.1);
+  --sidebar-ring: #0e0e10;
 
-  --surface-bg: #f9f9f9;
-  --surface-card: #ffffff;
-  --surface-card-hover: #ffffff;
-  --surface-border: #e3e3e3;
-  --surface-input: #f5f5f5;
-  --surface-badge-bg: #ffffff;
-  --surface-badge-text: #262626;
-  --surface-nav-bg: rgba(255, 255, 255, 0.9);
-  --surface-dropdown-bg: #ffffff;
-  --surface-text-primary: #262626;
-  --surface-text-muted: #787878;
-  --surface-gradient-from: #f9f9f9;
-  --surface-logo-bg: #1b1b1e;
+  --accent-brand: #5227ff;
+  --accent-brand-soft: rgba(82, 39, 255, 0.1);
+  --accent-brand-glow: rgba(82, 39, 255, 0.28);
+  --success: #16a34a;
+  --success-soft: rgba(22, 163, 74, 0.1);
+  --shadow-plate: 0 1px 2px rgba(14, 14, 16, 0.05), 0 16px 40px -20px rgba(14, 14, 16, 0.22);
+  --shadow-plate-hover: 0 2px 4px rgba(14, 14, 16, 0.06), 0 24px 56px -24px rgba(14, 14, 16, 0.3);
+
+  --band: #0a0a0a;
+  --band-foreground: #f5f5f7;
+  --band-muted: rgba(245, 245, 247, 0.55);
+  --band-card: #161616;
+  --band-border: rgba(245, 245, 247, 0.12);
+
+  --surface-bg: #e3e3e6;
+  --surface-card: #efeff1;
+  --surface-card-hover: #f5f5f7;
+  --surface-border: rgba(14, 14, 16, 0.1);
+  --surface-input: #efeff1;
+  --surface-badge-bg: #efeff1;
+  --surface-badge-text: #0e0e10;
+  --surface-nav-bg: rgba(227, 227, 230, 0.85);
+  --surface-dropdown-bg: #efeff1;
+  --surface-text-primary: #0e0e10;
+  --surface-text-muted: #55555a;
+  --surface-gradient-from: #e3e3e6;
+  --surface-logo-bg: #0e0e10;
   --surface-logo-mark: #ffffff;
-  --surface-carousel-bg: #ffffff;
+  --surface-carousel-bg: #0a0a0a;
+}
 
-  --accent-brand: #6366f1;
-  --accent-brand-soft: rgba(99, 102, 241, 0.08);
-  --accent-brand-glow: rgba(99, 102, 241, 0.12);
+/* ── Band system — full-bleed near-black sections + on-band context ── */
+/* .band paints the band; .on-band remaps tokens so every legacy class
+ * (cards, chips, strips, borders, text-*) works on dark surfaces. */
+.band {
+  background: var(--band);
+}
+
+.band,
+.on-band {
+  color: var(--band-foreground);
+  --foreground: var(--band-foreground);
+  --muted-foreground: var(--band-muted);
+  --card: var(--band-card);
+  --card-foreground: var(--band-foreground);
+  --popover: var(--band-card);
+  --popover-foreground: var(--band-foreground);
+  --border: var(--band-border);
+  --input: var(--band-border);
+  --ring: rgba(245, 245, 247, 0.5);
+  --secondary: rgba(245, 245, 247, 0.08);
+  --secondary-foreground: var(--band-foreground);
+  --muted: rgba(245, 245, 247, 0.08);
+  --accent: rgba(245, 245, 247, 0.08);
+  --accent-foreground: var(--band-foreground);
+  --shadow-plate: 0 1px 2px rgba(0, 0, 0, 0.5), 0 20px 48px -20px rgba(0, 0, 0, 0.7);
+  --shadow-plate-hover: 0 2px 4px rgba(0, 0, 0, 0.5), 0 28px 64px -24px rgba(0, 0, 0, 0.8);
+  --surface-card: var(--band-card);
+  --surface-card-hover: #1a1a1f;
+  --surface-border: var(--band-border);
+  --surface-input: rgba(245, 245, 247, 0.06);
+  --surface-badge-bg: rgba(245, 245, 247, 0.08);
+  --surface-badge-text: var(--band-foreground);
+  --surface-text-primary: var(--band-foreground);
+  --surface-text-muted: var(--band-muted);
+}
+
+/* ── Grain — film noise for hero screens + black bands ── */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.72' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+  /* Normal blending on purpose: overlay/soft-light resolve to ~0 on the
+   * near-black surfaces this utility is scoped to, hiding the grain. */
+  opacity: 0.09;
+  pointer-events: none;
 }
 
 @layer base {
@@ -168,9 +243,10 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-size: 14px;
-    letter-spacing: -0.03em;
-    font-weight: 500;
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    letter-spacing: -0.011em;
+    font-weight: 400;
   }
   html {
     @apply font-sans;
@@ -182,150 +258,333 @@
   }
 }
 
-/* Elevated card — glassmorphism */
-.card-elevated {
-  background: var(--surface-card);
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  backdrop-filter: blur(12px);
-  box-shadow:
-    0 0 0 0.5px var(--border),
-    0 1px 2px rgba(0, 0, 0, 0.1);
-  transition: border-color 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-              transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+/* ── Keyboard focus — system-wide, on-brand ──────────────────────────────
+ * Deliberately UNLAYERED: Tailwind utilities live in @layer utilities, so
+ * unlayered author rules outrank the `focus:outline-none` / `outline-none`
+ * classes several components still ship — the ring stays visible without
+ * touching those files. Radius is inherited from each element's own
+ * border-radius, so pills stay pills and plates stay plates. */
+:root,
+.light {
+  --focus-ring: var(--accent-brand);
 }
 
-.card-elevated:hover {
-  border-color: var(--ring);
-  box-shadow:
-    0 0 0 0.5px var(--ring),
-    0 8px 32px rgba(0, 0, 0, 0.15);
-  transform: translateY(-2px);
+/* Black bands invert it: blurple on near-black is too quiet to scan for. */
+.band,
+.on-band {
+  --focus-ring: #f5f5f7;
 }
 
-/* Badge pill */
-.badge-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: var(--surface-badge-bg);
-  color: var(--surface-badge-text);
-  border-radius: 100px;
-  padding: 6px 14px;
-  font-size: 13px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  border: 1px solid var(--border);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[contenteditable]:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--accent-brand));
+  outline-offset: 2px;
 }
 
-/* Pill button base */
-.btn-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 100px;
-  padding: 10px 24px;
-  font-size: 14px;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-  border: 1px solid var(--border);
-  box-shadow:
-    0 0 0 0.5px var(--border),
-    0 1px 2px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
+/* The outline follows each element's own border-radius. Elements that carry
+ * none (bare text links, inline controls) get a soft 6px so the ring never
+ * reads as a hard rectangle — pills and plates are excluded so their real
+ * radius always wins. */
+:focus-visible:not([class*="rounded"]):not(.btn-pill):not(.plus-btn):not(.card-elevated):not(.folder-card-body) {
+  border-radius: 6px;
 }
 
-.btn-pill:hover {
-  transform: translateY(-1px);
-  box-shadow:
-    0 0 0 0.5px var(--ring),
-    0 2px 8px rgba(0, 0, 0, 0.12);
+/* Mouse/touch presses never draw the ring. */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
-.btn-pill-primary {
-  background: var(--primary);
-  color: var(--primary-foreground);
-  border-color: var(--primary);
-}
+@layer components {
+  /* Flat tonal card — no border, no shadow; separation is tonal (desses) */
+  .card-elevated {
+    background: var(--card);
+    border: 0;
+    border-radius: 20px;
+    padding: 1.75rem;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
+  }
 
-.btn-pill-primary:hover {
-  opacity: 0.9;
-}
+  .card-elevated:hover {
+    background: var(--surface-card-hover);
+  }
 
-.btn-pill-secondary {
-  background: var(--secondary);
-  color: var(--foreground);
-  border-color: var(--border);
-}
+  /* Section label — borderless dot label (callers pass their own dot span) */
+  .badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    padding: 0;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1.3;
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--muted-foreground);
+  }
 
-.btn-pill-secondary:hover {
-  background: var(--muted);
-}
+  /* Blurple label dot with faint glow ring */
+  .label-dot {
+    width: 6px;
+    height: 6px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: var(--accent-brand);
+    box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent-brand) 20%, transparent);
+  }
 
-/* Typography */
-.text-display {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 4rem;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--surface-text-primary);
-}
+  /* Expand/detail affordance — small square '+' button */
+  .plus-btn {
+    display: grid;
+    place-items: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+    border-radius: 6px;
+    border: 1px solid color-mix(in srgb, var(--foreground) 15%, transparent);
+    background: transparent;
+    font-size: 14px;
+    line-height: 1;
+    color: var(--foreground);
+    transition: background-color 0.2s ease;
+  }
 
-.text-h1 {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 4rem;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--surface-text-primary);
-}
+  .plus-btn:hover {
+    background: color-mix(in srgb, var(--foreground) 6%, transparent);
+  }
 
-.text-h2 {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 3rem;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--surface-text-primary);
-}
+  /* Button base — pill */
+  .btn-pill {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 3rem;
+    padding: 0 28px;
+    border-radius: 9999px;
+    border: 1px solid transparent;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+    transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease,
+      box-shadow 0.25s ease, transform 0.2s ease;
+    cursor: pointer;
+  }
 
-.text-h3 {
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
-  font-size: 1.5rem;
-  line-height: 1.2;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--surface-text-primary);
-}
+  .btn-pill:hover {
+    transform: scale(1.02);
+  }
 
-.text-body-lg {
-  font-size: 0.9375rem;
-  line-height: 1.6;
-  letter-spacing: -0.01em;
-  color: var(--surface-text-muted);
-}
+  .btn-pill .btn-arrow {
+    display: inline-block;
+    transition: transform 0.2s ease;
+  }
 
-.text-caption {
-  font-size: 0.8125rem;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-  color: var(--surface-text-muted);
-}
+  .btn-pill:hover .btn-arrow {
+    transform: translateX(2px);
+  }
 
-/* Responsive typography */
-@media (max-width: 768px) {
+  /* Primary — desses signature: light capsule + leading blurple arrow circle */
+  .btn-pill-primary {
+    height: 3.5rem;
+    gap: 12px;
+    padding: 0 24px 0 10px;
+    background: #f0f0f2;
+    color: #121214;
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    text-transform: none;
+  }
+
+  .btn-pill-primary::before {
+    content: "→";
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: 9999px;
+    background: var(--accent-brand);
+    color: #ffffff;
+    font-size: 1rem;
+    line-height: 1;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    transition: transform 0.2s ease;
+  }
+
+  .btn-pill-primary:hover {
+    background: #ffffff;
+    box-shadow: none;
+  }
+
+  .btn-pill-primary:hover::before {
+    transform: translateX(2px);
+  }
+
+  /* Legacy trailing arrow glyphs — the circle carries the arrow now */
+  .btn-pill-primary .btn-arrow {
+    display: none;
+  }
+
+  .band .btn-pill-primary,
+  .on-band .btn-pill-primary {
+    background: #ffffff;
+    color: #121214;
+  }
+
+  .band .btn-pill-primary:hover,
+  .on-band .btn-pill-primary:hover {
+    background: #f5f5f5;
+  }
+
+  /* Secondary — quiet ghost / text-link pill */
+  .btn-pill-secondary {
+    background: transparent;
+    color: var(--muted-foreground);
+    border-color: transparent;
+    padding: 0 12px;
+  }
+
+  .btn-pill-secondary:hover {
+    color: var(--foreground);
+    background: transparent;
+    border-color: transparent;
+    transform: none;
+  }
+
+  .band .btn-pill-secondary,
+  .on-band .btn-pill-secondary {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.65);
+    border-color: transparent;
+  }
+
+  .band .btn-pill-secondary:hover,
+  .on-band .btn-pill-secondary:hover {
+    background: transparent;
+    color: #ffffff;
+    border-color: transparent;
+  }
+
+  /* Typography */
   .text-display {
-    font-size: 2.25rem;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(3.25rem, 5.5vw, 4.75rem);
+    line-height: 1.07;
+    letter-spacing: -0.02em;
+    font-weight: 500;
+    color: var(--foreground);
   }
+
   .text-h1 {
-    font-size: 2.25rem;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(2.25rem, 4vw, 3.25rem);
+    line-height: 1.08;
+    letter-spacing: -0.025em;
+    font-weight: 500;
+    color: var(--foreground);
   }
+
   .text-h2 {
-    font-size: 1.75rem;
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: clamp(2.5rem, 4vw, 3.75rem);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .text-h3 {
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: 1.25rem;
+    line-height: 1.35;
+    letter-spacing: -0.015em;
+    font-weight: 500;
+    color: var(--foreground);
+  }
+
+  .text-body-lg {
+    font-size: 1.25rem;
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+    font-weight: 400;
+    color: var(--muted-foreground);
+  }
+
+  .text-caption {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0;
+    font-weight: 400;
+    color: var(--muted-foreground);
+  }
+
+  .text-micro-label {
+    font-family: var(--font-inter-tight), ui-sans-serif, system-ui, sans-serif;
+    font-size: 0.8125rem;
+    line-height: 1.2;
+    letter-spacing: 0;
+    font-weight: 500;
+    text-transform: none;
+  }
+
+  /* Accent word — muted-gray emphasis inside headlines (desses two-tone) */
+  .accent-word {
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    color: var(--muted-foreground);
+  }
+
+  /* Underline sweep — prose links and blog-card titles only */
+  .link-sweep {
+    background-image: linear-gradient(var(--accent-brand), var(--accent-brand));
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 2px;
+    transition: background-size 250ms ease-out;
+  }
+
+  .link-sweep:hover {
+    background-size: 100% 2px;
+  }
+}
+
+/* Media zoom — slow image scale on card hover (desses hover language).
+ * Apply to the overflow container whose DIRECT child is the media element;
+ * direct-child targeting keeps imagePosition inline transforms untouched. */
+.media-zoom {
+  overflow: hidden;
+}
+.media-zoom > * {
+  transition: transform 0.7s cubic-bezier(0.44, 0, 0.56, 1);
+}
+.group:hover .media-zoom > *,
+a:hover > .media-zoom > * {
+  transform: scale(1.035);
+}
+@media (prefers-reduced-motion: reduce) {
+  .media-zoom > * {
+    transition: none;
+  }
+  .group:hover .media-zoom > *,
+  a:hover > .media-zoom > * {
+    transform: none;
   }
 }
 
@@ -428,75 +687,84 @@
   animation: marquee-reverse var(--duration, 40s) linear infinite;
 }
 
-/* ── Folder card styles ─────────────────────────────────── */
-
-.folder-card-stack {
-  position: relative;
-  isolation: isolate;
-  padding-top: 60px;
+/* Rail for the shared <Marquee> component. Direction and speed arrive as
+ * custom properties so a single global rule serves every instance — the
+ * component used to inject its own <style> block per mount, which meant N
+ * copies of the same global selector and only the last one winning. The
+ * keyframes are the four defined above; the component's private
+ * scroll/scroll-y duplicates are gone. */
+.marquee-scroller {
+  display: flex;
+  animation-name: var(--marquee-name, marquee);
+  animation-duration: var(--marquee-duration, 20s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
-.folder-card-stack::before,
-.folder-card-stack::after {
-  content: "";
-  position: absolute;
-  top: 60px;
-  left: 6px;
-  right: 6px;
-  bottom: 0;
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  background: var(--card);
-  z-index: -1;
-  transform-origin: bottom center;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.marquee-scroller.paused {
+  animation-play-state: paused;
 }
 
-.folder-card-stack::before {
-  transform: rotate(-2deg) translateY(6px);
-  opacity: 0.7;
-}
-
-.folder-card-stack::after {
-  transform: rotate(-4deg) translateY(10px);
-  opacity: 0.4;
-}
-
-.folder-card-stack:hover::before {
-  transform: rotate(-3deg) translateY(8px);
-  opacity: 0.8;
-}
-
-.folder-card-stack:hover::after {
-  transform: rotate(-5.5deg) translateY(14px);
-  opacity: 0.5;
-}
-
-.folder-card-body {
-  position: relative;
-  z-index: 1;
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  overflow: visible;
-  transition: box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-              border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06),
-              0 8px 32px rgba(0, 0, 0, 0.06);
-}
-
-.folder-card-stack:hover .folder-card-body {
-  border-color: var(--ring);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
-              0 16px 48px rgba(0, 0, 0, 0.12);
-}
-
-@media (max-width: 640px) {
-  .folder-card-stack::before {
-    transform: rotate(-1.5deg) translateY(4px);
+/* Marquees are decorative perpetual motion — the one thing reduced-motion
+ * users most need switched off. Belt-and-braces alongside the JS gates, so a
+ * new marquee can never ship without a guard. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-scroller,
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-marquee-up,
+  .animate-marquee-down,
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
   }
+}
+
+/* Hero gradient-ribbon drift — 12s, alternate, reduced-motion honored in JS too */
+@keyframes hero-float {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg);
+  }
+  100% {
+    transform: translate3d(-18px, 14px, 0) rotate(-1.2deg);
+  }
+}
+
+.animate-hero-float {
+  animation: hero-float 12s ease-in-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-float {
+    animation: none;
+  }
+}
+
+/* ── Folder card styles (neutralized to plain plates) ───── */
+
+@layer components {
+  .folder-card-stack {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .folder-card-stack::before,
   .folder-card-stack::after {
-    transform: rotate(-3deg) translateY(8px);
+    content: none;
+  }
+
+  .folder-card-body {
+    position: relative;
+    z-index: 1;
+    background: var(--card);
+    border: 0;
+    border-radius: 20px;
+    overflow: visible;
+    box-shadow: none;
+    transition: background-color 0.3s ease;
+  }
+
+  .folder-card-stack:hover .folder-card-body {
+    background: var(--surface-card-hover);
   }
 }
