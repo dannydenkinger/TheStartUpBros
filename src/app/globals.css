@@ -256,10 +256,50 @@
   p {
     word-wrap: break-word;
   }
-  :focus-visible {
-    outline: 2px solid var(--accent-brand);
-    outline-offset: 2px;
-  }
+}
+
+/* ── Keyboard focus — system-wide, on-brand ──────────────────────────────
+ * Deliberately UNLAYERED: Tailwind utilities live in @layer utilities, so
+ * unlayered author rules outrank the `focus:outline-none` / `outline-none`
+ * classes several components still ship — the ring stays visible without
+ * touching those files. Radius is inherited from each element's own
+ * border-radius, so pills stay pills and plates stay plates. */
+:root,
+.light {
+  --focus-ring: var(--accent-brand);
+}
+
+/* Black bands invert it: blurple on near-black is too quiet to scan for. */
+.band,
+.on-band {
+  --focus-ring: #f5f5f7;
+}
+
+:focus-visible,
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible,
+[role="button"]:focus-visible,
+[contenteditable]:focus-visible {
+  outline: 2px solid var(--focus-ring, var(--accent-brand));
+  outline-offset: 2px;
+}
+
+/* The outline follows each element's own border-radius. Elements that carry
+ * none (bare text links, inline controls) get a soft 6px so the ring never
+ * reads as a hard rectangle — pills and plates are excluded so their real
+ * radius always wins. */
+:focus-visible:not([class*="rounded"]):not(.btn-pill):not(.plus-btn):not(.card-elevated):not(.folder-card-body) {
+  border-radius: 6px;
+}
+
+/* Mouse/touch presses never draw the ring. */
+:focus:not(:focus-visible) {
+  outline: none;
 }
 
 @layer components {

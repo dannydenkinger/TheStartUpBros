@@ -143,7 +143,7 @@ export const services: Service[] = [
           "Activation-led onboarding flows that move users from signup to first value in minutes.",
       },
     ],
-    caseStudySlugs: ["said", "k-project"],
+    caseStudySlugs: ["said", "vesta-crm"],
     testimonial: {
       quote:
         "Language can't be a barrier to care. SAID works at the bedside — offline, on-device, and specific to medicine. That's a different problem than general translation, and it needs a different tool.",
@@ -218,7 +218,7 @@ export const services: Service[] = [
           "Streaming, caching, and model routing designed so users never wait more than a second.",
       },
     ],
-    caseStudySlugs: ["k-project", "said"],
+    caseStudySlugs: ["zonex", "said"],
     testimonial: {
       quote:
         "The interesting problem in enterprise AI isn't capability — it's control. K Project gives organizations the productivity gains of modern LLMs without handing their data to someone else's infrastructure.",

@@ -2,6 +2,16 @@ import type { Metadata } from "next";
 
 const siteUrl = "https://startupbros.dev";
 
+/* Social share card — 1200x630 declared, shipped at 2x for retina unfurls.
+ * Exported because Next REPLACES (never merges) a parent openGraph block, so
+ * every route declaring its own openGraph must re-supply the image. */
+export const ogImage = {
+  url: "/og.png",
+  width: 1200,
+  height: 630,
+  alt: "StartUpBros — Launch-Ready Products, Built In Weeks",
+};
+
 export const siteMetadata: Metadata = {
   title: {
     default: "StartUpBros | AI-Powered MVP Development",
@@ -18,12 +28,14 @@ export const siteMetadata: Metadata = {
     title: "StartUpBros | AI-Powered MVP Development",
     description:
       "Build Lean. Launch Fast. Scale Smart. Premium MVP development for lean startups.",
+    images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
     title: "StartUpBros | AI-Powered MVP Development",
     description:
       "Build Lean. Launch Fast. Scale Smart. Premium MVP development for lean startups.",
+    images: [ogImage],
   },
   robots: {
     index: true,

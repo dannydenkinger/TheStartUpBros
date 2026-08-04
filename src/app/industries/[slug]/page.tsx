@@ -152,11 +152,11 @@ const industryData: Record<string, IndustryData> = {
         href: "/portfolio/said",
       },
       {
-        tag: "Private LLMs",
+        tag: "Computer Vision",
         location: "Startup Bros",
-        title: "K Project — Private AI for Regulated Industries",
-        image: "/images/portfolio/ai-landing.webp",
-        href: "/portfolio/k-project",
+        title: "ZoneX — AI Sports Analytics Platform",
+        image: "/images/portfolio/zonex-dashboard.webp",
+        href: "/portfolio/zonex",
       },
     ],
     features: [

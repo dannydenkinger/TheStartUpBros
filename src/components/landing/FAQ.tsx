@@ -87,8 +87,8 @@ const faqs = [
 ];
 
 const teamAvatars = [
-  "/images/avatars/anthony-denkinger.png",
-  "/images/avatars/danny-denkinger.png",
+  { src: "/images/avatars/anthony-denkinger.png", name: "Anthony Denkinger" },
+  { src: "/images/avatars/danny-denkinger.png", name: "Danny Denkinger" },
 ];
 
 function FAQItem({
@@ -217,14 +217,14 @@ export function FAQ({ index = "04" }: { index?: string }) {
 
               {/* Founder strip — grayscale to keep the pair tonally unified */}
               <div className="mt-6 grid grid-cols-2 gap-1.5">
-                {teamAvatars.map((src) => (
+                {teamAvatars.map((member) => (
                   <div
-                    key={src}
+                    key={member.src}
                     className="relative aspect-[4/5] rounded-lg overflow-hidden bg-secondary"
                   >
                     <Image
-                      src={src}
-                      alt=""
+                      src={member.src}
+                      alt={member.name}
                       fill
                       sizes="260px"
                       className="object-cover object-[50%_20%] grayscale contrast-[1.05]"

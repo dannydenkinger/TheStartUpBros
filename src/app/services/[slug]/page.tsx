@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { services } from "@/data/services";
+import { ogImage } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { ServicePageContent } from "./ServicePageContent";
 
@@ -23,6 +24,7 @@ export function generateMetadata({
         title: `${service.title} | StartUpBros`,
         description: service.longDescription,
         url: `https://startupbros.dev/services/${slug}`,
+        images: [ogImage],
       },
     };
   });
