@@ -79,49 +79,13 @@ function MarqueeColumn({
   );
 }
 
-// Mobile film strip — one horizontal marquee row of full tiles at a legible
-// height, instead of squeezing the vertical columns into a phone viewport.
-const stripImages = [...col1, ...col2, ...col3, ...col4];
-
-function MobileFilmStrip() {
-  // Duplicate images for seamless -50% loop
-  const doubled = [...stripImages, ...stripImages];
-
-  return (
-    <div className="overflow-hidden carousel-hover-pause">
-      <div className="flex w-max animate-marquee [--duration:70s]">
-        {doubled.map((img, i) => (
-          <div
-            key={`${img.src}-${i}`}
-            className="mr-3 shrink-0 overflow-hidden rounded-xl bg-white/[0.04]"
-          >
-            <Image
-              src={img.src}
-              alt=""
-              width={img.w}
-              height={img.h}
-              quality={90}
-              className="h-[220px] w-auto object-cover"
-              draggable={false}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
+/* Desktop-only: on mobile the hero closes on its own rounded edge and the
+ * Work Samples section carries the visual showcase at the end of the page. */
 export function ShowcaseCarousel() {
   return (
-    <section className="band grain relative -mt-px overflow-hidden rounded-b-[2rem] px-4 pb-4 md:px-6 md:pb-6">
+    <section className="band grain relative -mt-px hidden overflow-hidden rounded-b-[2rem] px-6 pb-6 md:block">
       <AnimateIn variant="fadeIn">
-        {/* Mobile — horizontal film strip */}
-        <div className="md:hidden">
-          <MobileFilmStrip />
-        </div>
-
-        {/* Desktop — four vertical marquee columns */}
-        <div className="hidden md:block h-[520px] overflow-hidden">
+        <div className="h-[520px] overflow-hidden">
           <div className="flex h-full carousel-hover-pause">
             <MarqueeColumn images={col1} direction="up" duration={25} />
             <MarqueeColumn images={col2} direction="down" duration={30} />
