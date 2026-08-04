@@ -70,7 +70,7 @@ export function Hero() {
       {/* The hero screen — full-bleed dark card, rounded bottom corners so it
        * reads as a dark card ending on the light page. Starts at viewport top
        * behind the floating pill nav. */}
-      <div className="band grain relative flex min-h-svh flex-col overflow-hidden max-md:rounded-b-[2rem]">
+      <div className="band grain relative flex min-h-svh flex-col overflow-hidden rounded-b-[2rem]">
         {/* Silk field — WebGL. Owns its own cursor interaction, so there is no
          * wrapper-level pointer drift here. Oversized so the scroll parallax
          * can never expose an edge. */}
