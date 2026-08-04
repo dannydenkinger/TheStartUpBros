@@ -3,6 +3,89 @@ import type { PortfolioProject } from "@/types";
 // Real work from the founders — projects Anthony Denkinger has led or built.
 export const projects: PortfolioProject[] = [
   {
+    title: "AirSync — Aviation Operations Platform",
+    slug: "airsync",
+    description:
+      "Five connected apps on one account — scheduling, dispatch, training records, maintenance, and member billing — so a flight school runs its whole operation from a single source of truth.",
+    image: "/images/portfolio/airsync-home.webp",
+    tags: ["SaaS", "Aviation", "Full-Stack"],
+    deviceType: "macbook",
+    client: "AirSync",
+    year: "2026",
+    industry: "Aviation SaaS",
+    services: [
+      "Product Design",
+      "Full-Stack Development",
+      "Design System",
+      "Billing Integration",
+    ],
+    websiteUrl: "https://airsyncusa.com",
+    overview:
+      "Flight schools and flying clubs run on a patchwork of scheduling tools, paper training records, maintenance spreadsheets, and separate billing systems — so the same aircraft can be grounded in one place and bookable in another. AirSync collapses that into one operating system for the flight line: five apps sharing a single account and a single truth. Ground a plane once and it is a NO-GO everywhere, instantly, with no re-entry and no silos.",
+    challenge:
+      "Aviation operations software is fragmented by default. Scheduling, dispatch, currency and qualification tracking, maintenance status, and member billing typically live in separate systems that never talk to each other. The result is duplicated data entry and — far worse — contradictory answers to safety-critical questions like whether an aircraft is airworthy or a pilot is current.",
+    solution:
+      "A connected product suite rather than a monolith: Flight Schedule, Pilot Debrief, Academy, Marketplace, and PlaneBnB each stand alone but share one account and one data model. Aircraft status, pilot currency, and qualifications propagate across every surface the moment they change. The interface is built for the environments it is used in — the panel, the ramp, and the office — with a dark, high-contrast operational UI and flat, self-serve pricing that removes the enterprise sales call.",
+    timeline: "Ongoing — shipped and in active development",
+    techStack: ["Next.js", "React", "TypeScript", "Stripe", "Vercel"],
+    outcomes: [
+      "Five connected apps operating from one account and one source of truth",
+      "Cross-app grounding — an aircraft marked NO-GO is unbookable everywhere at once",
+      "Currency and qualification tracking verified against every booking",
+      "Self-serve flat pricing with no sales call and a free first aircraft",
+    ],
+    gallery: [
+      {
+        type: "full",
+        image: "/images/portfolio/airsync-home.webp",
+        alt: "AirSync marketing homepage hero",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/airsync-flight-schedule.webp",
+        alt: "AirSync flight scheduling application",
+        heading: "The whole operation on one screen",
+        body: "Flight Schedule is the operational core — dispatch, aircraft availability, and instructor assignment in one view. Because aircraft status is shared across the suite, a grounded tail number disappears from the schedule the instant maintenance flags it.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/airsync-pilot-debrief.webp",
+            alt: "AirSync pilot debrief application",
+          },
+          {
+            src: "/images/portfolio/airsync-academy.webp",
+            alt: "AirSync academy training records",
+          },
+        ],
+        caption: "Pilot Debrief and Academy — training records that stay attached to the flight that produced them.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/airsync-marketplace.webp",
+        alt: "AirSync marketplace for aviation gear",
+        heading: "Powerful alone, unstoppable connected",
+        body: "Marketplace and PlaneBnB extend the platform outward — pilot-to-pilot gear sales and aircraft sharing — while inheriting the same identity, permissions, and billing rails as the operational apps.",
+        align: "right",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/airsync-features.webp",
+            alt: "AirSync features overview",
+          },
+          {
+            src: "/images/portfolio/airsync-pricing.webp",
+            alt: "AirSync flat pricing page",
+          },
+        ],
+        caption: "One flat price, every feature — pricing designed to remove the enterprise sales motion entirely.",
+      },
+    ],
+  },
+  {
     title: "SAID Technology — Offline-First Medical Translation",
     slug: "said",
     description:
