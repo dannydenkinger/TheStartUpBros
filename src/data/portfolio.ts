@@ -331,35 +331,86 @@ export const projects: PortfolioProject[] = [
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/vesta-hero.png",
-        alt: "Vesta CRM landing page and dashboard",
+        image: "/images/portfolio/vesta-app-dashboard-dark.webp",
+        alt: "Vesta CRM dashboard with pipeline value, revenue, and conversion metrics",
         caption:
-          "The Vesta CRM landing page — sales pipeline, revenue metrics, and a full feature overview in one view.",
+          "The dashboard opens on the numbers that matter — pipeline value, monthly revenue, conversion rate, and open inquiries, over a trend chart the user can reframe.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/vesta-calendar.png",
-        alt: "Vesta CRM integrated calendar",
-        heading: "One calendar for everything",
-        body: "Google Calendar, Apple Calendar, CRM tasks, stay dates, and events — all synced into a single view. The team stopped switching tabs and started seeing their full schedule in context. Event sources are filterable, and quick tasks can be created without leaving the calendar.",
+        image: "/images/portfolio/vesta-app-pipeline-dark.webp",
+        alt: "Vesta CRM opportunities board with drag-and-drop deal stages",
+        heading: "The pipeline is the product",
+        body: "Deals move between stages by drag, and every column carries its own deal count and share of total pipeline — so the shape of the funnel is legible at a glance rather than buried in a report. Priority, value, and next action live on the card itself.",
         align: "left",
       },
       {
         type: "twoUp",
         images: [
-          { src: "/images/portfolio/vesta-analytics.png", alt: "Marketing analytics dashboard" },
-          { src: "/images/portfolio/vesta-seo.png", alt: "SEO performance dashboard" },
+          {
+            src: "/images/portfolio/vesta-app-contacts-dark.webp",
+            alt: "Vesta CRM contacts database with custom fields and tagging",
+          },
+          {
+            src: "/images/portfolio/vesta-app-communications-dark.webp",
+            alt: "Vesta CRM communications and outreach history",
+          },
         ],
         caption:
-          "Marketing analytics and SEO monitoring built directly into the CRM — traffic sources, search rankings, Core Web Vitals, and top queries all in one place.",
+          "Contacts and communications share one record — every call, email, and note stays attached to the person it belongs to.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/vesta-login.png",
-        alt: "Vesta CRM login screen",
-        heading: "Clean auth with Google SSO",
-        body: "Authentication built with Google SSO for one-click access. The split-screen login sets the tone for the product — professional, fast, no friction. New team members onboard in seconds, not days.",
+        image: "/images/portfolio/vesta-app-automations-dark.webp",
+        alt: "Vesta CRM automation sequences",
+        heading: "Follow-ups that run themselves",
+        body: "Outreach sequences fire on pipeline events rather than on someone remembering. Combined with the built-in form builder, a new inquiry can land, be tagged, enter a sequence, and appear on the board without anyone touching a keyboard.",
         align: "right",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/vesta-app-calendar-month-dark.webp",
+            alt: "Vesta CRM calendar, month view",
+          },
+          {
+            src: "/images/portfolio/vesta-app-finance-dark.webp",
+            alt: "Vesta CRM finance and revenue tracking",
+          },
+        ],
+        caption:
+          "Google Calendar, Apple Calendar, CRM tasks, and events in one schedule — and the finance view that turns closed deals into tracked revenue.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/vesta-app-marketing-dark.webp",
+            alt: "Vesta CRM marketing analytics with traffic and SEO",
+          },
+          {
+            src: "/images/portfolio/vesta-app-documents-dark.webp",
+            alt: "Vesta CRM document management",
+          },
+        ],
+        caption:
+          "Marketing analytics — traffic, search rankings, Core Web Vitals — and document storage, both inside the CRM rather than bolted onto it.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/vesta-app-pipeline-light.webp",
+            alt: "Vesta CRM pipeline, light theme",
+          },
+          {
+            src: "/images/portfolio/vesta-app-dashboard-light.webp",
+            alt: "Vesta CRM dashboard, light theme",
+          },
+        ],
+        caption:
+          "Every one of the fourteen screens ships in both themes — no second-class light mode.",
       },
     ],
     metrics: [
