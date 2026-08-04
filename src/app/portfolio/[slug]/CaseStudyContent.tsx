@@ -22,7 +22,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ─── Hero — label / display title / lede + meta specs ──────── */}
-      <section className="pt-16 md:pt-24 pb-14 md:pb-20">
+      <section className="pt-12 md:pt-24 pb-10 md:pb-20">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <AnimateIn variant="fadeUp">
             <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-8">
@@ -41,12 +41,12 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
           </AnimateIn>
 
           <AnimateIn variant="fadeUp" delay={0.08}>
-            <h1 className="text-display text-foreground max-w-[1100px]">
+            <h1 className="text-display max-md:text-[2.75rem] max-md:leading-[1.1] text-foreground max-w-[1100px]">
               {project.title}
             </h1>
           </AnimateIn>
 
-          <div className="grid grid-cols-12 gap-x-6 gap-y-10 mt-10 md:mt-14">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-8 md:gap-y-10 mt-8 md:mt-14">
             <AnimateIn
               variant="fadeUp"
               delay={0.16}
@@ -105,7 +105,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       </section>
 
       {/* ─── Hero plate ────────────────────────────────────────────── */}
-      <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-20 md:mb-28">
+      <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-14 md:mb-28">
         <AnimateIn variant="scaleIn" delay={0.1}>
           <Plate caption={project.slug} fig="01">
             <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full overflow-hidden">
@@ -131,7 +131,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <GalleryStyleBody project={project} />
 
       {/* ─── Next case study (ghost rail) ──────────────────────────── */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-24">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <AnimateIn>
             <p className="badge-pill text-micro-label mb-6">
@@ -142,12 +142,12 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
           <AnimateIn delay={0.06}>
             <Link
               href={`/portfolio/${nextProject.slug}`}
-              className="group flex items-center gap-6 md:gap-10 border-y border-border py-7 md:py-8"
+              className="group flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-10 border-y border-border py-7 md:py-8"
             >
               <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap lowercase">
                 NEXT / {pad(nextIndex + 1)}
               </span>
-              <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 group-hover:text-foreground transition-all duration-300 group-hover:translate-x-1">
+              <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 max-md:text-foreground group-hover:text-foreground transition-all duration-300 group-hover:translate-x-1">
                 {nextProject.title}
               </h3>
               <div className="hidden md:block w-[200px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -172,7 +172,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
 
       {/* ─── Final CTA — black grain band, landing language ────────── */}
       <section className="band grain relative">
-        <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-24 md:py-32">
+        <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-32">
           <AnimateIn>
             <div className="grid grid-cols-12 gap-6">
               <h2 className="col-span-12 lg:col-span-7 text-display">
@@ -207,7 +207,7 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
     <>
       {/* Overview */}
       {project.overview && (
-        <section className="pb-16 md:pb-24">
+        <section className="pb-12 md:pb-24">
           <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <div className="grid grid-cols-12 gap-6">
               <AnimateIn className="col-span-12 lg:col-span-3">
@@ -228,8 +228,8 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
 
       {/* Gallery flow */}
       {project.gallery && (
-        <section className="pb-16 md:pb-24">
-          <div className="mx-auto max-w-[1600px] px-6 md:px-10 flex flex-col gap-16 md:gap-24">
+        <section className="pb-12 md:pb-24">
+          <div className="mx-auto max-w-[1600px] px-6 md:px-10 flex flex-col gap-12 md:gap-24">
             {project.gallery.map((block, i) => (
               <GalleryBlockRenderer
                 key={i}
@@ -244,15 +244,15 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
 
       {/* Metrics */}
       {project.metrics && project.metrics.length > 0 && (
-        <section className="py-16 md:py-24">
+        <section className="py-12 md:py-24">
           <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <AnimateIn>
-              <p className="badge-pill text-micro-label mb-10 md:mb-12">
+              <p className="badge-pill text-micro-label mb-8 md:mb-12">
                 <span aria-hidden className="label-dot" />
                 <span className="lowercase">The Outcome in Numbers</span>
               </p>
             </AnimateIn>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-10">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-y-10">
               {project.metrics.map((metric, i) => (
                 <AnimateIn key={metric.label} delay={i * 0.08}>
                   <div className="border-t border-border pt-6 md:pt-8">
@@ -272,7 +272,7 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
 
       {/* Quote */}
       {project.quote && (
-        <section className="pb-16 md:pb-24">
+        <section className="pb-12 md:pb-24">
           <div className="mx-auto max-w-[1600px] px-6 md:px-10">
             <AnimateIn>
               <figure className="relative overflow-hidden rounded-[20px] bg-card p-8 md:p-14">
@@ -306,8 +306,8 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
       )}
 
       {/* Tech stack + outcomes (compact) */}
-      <section className="pb-16 md:pb-24">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-12">
+      <section className="pb-12 md:pb-24">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 md:grid-cols-12 gap-x-6 gap-y-10 md:gap-y-12">
           <AnimateIn className="md:col-span-5 lg:col-span-4">
             <p className="badge-pill text-micro-label mb-6">
               <span aria-hidden className="label-dot" />
@@ -429,7 +429,7 @@ function GalleryBlockRenderer({
   return (
     <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
       <div
-        className={`grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12 items-center ${
+        className={`grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-12 items-center ${
           imageOnLeft ? "" : "md:[&>*:first-child]:order-2"
         }`}
       >
@@ -488,9 +488,9 @@ function FigCaption({
 // ─── Spec row (quiet spec-sheet meta) ────────────────────────────────────
 function SpecRow({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex items-baseline justify-between gap-8 py-3.5 border-b border-border/60 first:pt-0 last:border-b-0 last:pb-0">
+    <div className="flex items-baseline justify-between gap-8 max-md:flex-col max-md:items-start max-md:gap-1 py-3.5 border-b border-border/60 first:pt-0 last:border-b-0 last:pb-0">
       <dt className="text-caption text-muted-foreground shrink-0">{label}</dt>
-      <dd className="text-[15px] font-medium text-foreground text-right">
+      <dd className="text-[15px] font-medium text-foreground text-right max-md:text-left">
         {value}
       </dd>
     </div>

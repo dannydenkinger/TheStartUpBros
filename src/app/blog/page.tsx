@@ -64,7 +64,7 @@ export default function BlogPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Blog Hero */}
-      <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16">
+      <section className="px-6 md:px-10 pt-12 md:pt-24 pb-10 md:pb-16">
         <div className="max-w-[1600px] mx-auto">
           <span className="badge-pill text-micro-label mb-8 inline-flex">
             <span aria-hidden className="label-dot" />
@@ -82,7 +82,7 @@ export default function BlogPage() {
       </section>
 
       {/* Posts */}
-      <section className="px-6 md:px-10 pb-24 md:pb-32 pt-8">
+      <section className="px-6 md:px-10 pb-16 md:pb-32 pt-4 md:pt-8">
         <div className="max-w-[1600px] mx-auto">
           {featured && (
             <GlassBlogCard

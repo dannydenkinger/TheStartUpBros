@@ -341,7 +341,7 @@ export default async function IndustryPage({
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
+      <section className="px-6 md:px-10 pt-14 md:pt-24 pb-12 md:pb-20">
         <div className="max-w-[1600px] mx-auto">
           <AnimateIn variant="fadeUp">
             <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
@@ -356,8 +356,8 @@ export default async function IndustryPage({
             </div>
           </AnimateIn>
 
-          <div className="grid grid-cols-12 gap-x-6 gap-y-8">
-            <h1 className="col-span-12 lg:col-span-8 text-display text-foreground">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-6 md:gap-y-8">
+            <h1 className="col-span-12 lg:col-span-8 text-display max-md:text-[2.5rem] max-md:leading-[1.1] text-foreground">
               <RevealText delay={0.08}>{data.headline}</RevealText>
             </h1>
             <div className="col-span-12 lg:col-start-9 lg:col-span-4 lg:self-end">
@@ -370,7 +370,7 @@ export default async function IndustryPage({
           </div>
 
           <AnimateIn variant="fadeUp" delay={0.18}>
-            <div className="mt-10 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="mt-8 md:mt-12 flex flex-col sm:flex-row sm:items-center gap-3">
               <CTAButton href="/strategy-call" variant="primary">
                 Book Strategy Call
               </CTAButton>
@@ -379,7 +379,7 @@ export default async function IndustryPage({
               </CTAButton>
             </div>
 
-            <div className="mt-12 md:mt-14">
+            <div className="mt-10 md:mt-14">
               <StatusStrip
                 items={[
                   { label: "Scope", value: "Within 48 hours" },
@@ -396,7 +396,7 @@ export default async function IndustryPage({
       <TechBrandsMarquee />
 
       {/* ── Case Studies ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
@@ -449,7 +449,7 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Features Grid ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
@@ -466,7 +466,7 @@ export default async function IndustryPage({
                   delay={(i % 3) * 0.06}
                 >
                   <div className="card-elevated flex h-full flex-col">
-                    <div className="flex items-start justify-between mb-10">
+                    <div className="flex items-start justify-between mb-6 md:mb-10">
                       <Icon
                         className="w-5 h-5 text-foreground"
                         strokeWidth={1.5}
@@ -490,10 +490,10 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Testimonial Quote ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <AnimateIn variant="fadeUp">
-            <div className="mb-12 md:mb-16">
+            <div className="mb-8 md:mb-16">
               <span className="badge-pill text-micro-label">
                 <span aria-hidden className="label-dot" />
                 <span className="sr-only">{idx()} · </span>
@@ -532,7 +532,7 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Explore Other Industries ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
@@ -570,10 +570,10 @@ export default async function IndustryPage({
       </section>
 
       {/* ── Pricing CTA ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <AnimateIn variant="fadeUp">
-            <div className="mb-12 md:mb-16">
+            <div className="mb-8 md:mb-16">
               <span className="badge-pill text-micro-label">
                 <span aria-hidden className="label-dot" />
                 <span className="sr-only">{idx()} · </span>

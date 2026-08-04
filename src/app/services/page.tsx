@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 export default function ServicesPage() {
   return (
     <>
-    <section className="px-6 md:px-10 pt-16 md:pt-24 pb-24 md:pb-32">
+    <section className="px-6 md:px-10 pt-14 md:pt-24 pb-16 md:pb-32">
       <div className="mx-auto max-w-[1600px]">
         <SectionHeader
           index="01"

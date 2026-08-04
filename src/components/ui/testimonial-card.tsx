@@ -28,7 +28,7 @@ export function TestimonialCard({
   const content = (
     <div
       className={cn(
-        "flex w-[400px] shrink-0 flex-col gap-5 rounded-[16px] p-7 text-left",
+        "flex w-[min(400px,85vw)] shrink-0 flex-col gap-5 rounded-[16px] p-6 md:p-7 text-left",
         tone === "dark" ? "on-band bg-(--band-card)" : "bg-card",
         className,
       )}

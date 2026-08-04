@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
+import { motion, useReducedMotion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { cn } from "@/lib/utils";
 import { Menu, Moon, Sun, X } from "lucide-react";
@@ -57,6 +59,7 @@ export function Header() {
   const [industriesOpen, setIndustriesOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const prefersReducedMotion = useReducedMotion();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 600);
@@ -64,6 +67,16 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  // Lock page scroll behind the mobile menu sheet.
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = prev;
+    };
+  }, [mobileMenuOpen]);
 
   // Over the home hero the pill floats on dark artwork; past it (or on any
   // other route) it swaps to a dark-on-light treatment (theme-aware).
@@ -179,7 +192,7 @@ export function Header() {
         {/* Mobile segment — links collapse into a Menu trigger */}
         <div
           className={cn(
-            "flex items-center gap-1 rounded-r-2xl pl-3 pr-2 transition-colors duration-300 lg:hidden",
+            "flex items-stretch gap-0.5 rounded-r-2xl pl-2 pr-1.5 transition-colors duration-300 lg:hidden",
             overArt
               ? "bg-white/85 text-neutral-900"
               : "bg-white/80 text-neutral-900 dark:bg-white/10 dark:text-white"
@@ -188,7 +201,7 @@ export function Header() {
           <button
             type="button"
             aria-label="Open menu"
-            className="flex cursor-pointer items-center gap-2 px-2 py-2 text-sm font-medium"
+            className="flex min-w-11 cursor-pointer items-center gap-2 px-2.5 text-sm font-medium"
             onClick={() => setMobileMenuOpen(true)}
           >
             <Menu className="size-4" strokeWidth={1.5} />
@@ -196,7 +209,7 @@ export function Header() {
           </button>
           <IconThemeToggle
             className={cn(
-              "text-neutral-600 hover:bg-black/5 hover:text-neutral-900",
+              "size-11 self-center text-neutral-600 hover:bg-black/5 hover:text-neutral-900",
               !overArt &&
                 "dark:text-neutral-300 dark:hover:bg-white/10 dark:hover:text-white"
             )}
@@ -204,103 +217,113 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile full-screen menu */}
-      {mobileMenuOpen && (
-        <div className="lg:hidden" role="dialog" aria-modal="true">
-          <div
-            className="fixed inset-0 z-50 bg-black/40"
-            onClick={() => setMobileMenuOpen(false)}
-          />
-          <div className="fixed inset-0 z-50 flex flex-col overflow-y-auto bg-background">
-            <div className="flex h-20 shrink-0 items-center justify-between px-6">
-              <Link
-                href="/"
-                className="text-[20px] font-semibold leading-none tracking-[-0.02em] text-foreground"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                StartUpBros
-              </Link>
-              <button
-                type="button"
-                aria-label="Close menu"
-                className="p-2 text-foreground"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                <X className="h-6 w-6" strokeWidth={1.5} />
-              </button>
-            </div>
-
-            <nav className="flex flex-1 flex-col px-6 pt-2 pb-8">
-              <Link
-                href="/portfolio"
-                className="text-h2 border-b border-border py-5"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Case Studies
-              </Link>
-
-              {/* Industries accordion */}
-              <div className="border-b border-border">
-                <button
-                  type="button"
-                  aria-expanded={industriesOpen}
-                  onClick={() => setIndustriesOpen(!industriesOpen)}
-                  className="flex w-full items-baseline justify-between py-5 text-left"
-                >
-                  <span className="text-h2">Industries</span>
-                  <span
-                    className={cn(
-                      "text-xl text-muted-foreground transition-transform duration-300",
-                      industriesOpen && "rotate-45 text-(--accent-brand)"
-                    )}
-                    aria-hidden="true"
-                  >
-                    +
-                  </span>
-                </button>
-                {industriesOpen && (
-                  <div className="flex flex-col gap-1 pb-6">
-                    {industries.map((item, i) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-baseline gap-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
-                        onClick={() => setMobileMenuOpen(false)}
-                      >
-                        <span className="text-[11px] tabular-nums">
-                          {String(i + 1).padStart(2, "0")}
-                        </span>
-                        {item.name}
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-
-              <Link
-                href="/blog"
-                className="text-h2 border-b border-border py-5"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Blog
-              </Link>
-
-              <div className="mt-auto pt-10">
+      {/* Mobile full-screen menu — portaled to <body>: the header's translate
+       * transform makes it the containing block for fixed children, which
+       * would otherwise clip this sheet to the pill's box. */}
+      {mobileMenuOpen &&
+        createPortal(
+          <div className="lg:hidden" role="dialog" aria-modal="true">
+            <motion.div
+              className="fixed inset-0 z-50 flex flex-col overflow-y-auto overscroll-contain bg-background"
+              initial={
+                prefersReducedMotion ? false : { opacity: 0, y: 12 }
+              }
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <div className="flex h-[72px] shrink-0 items-center justify-between pl-6 pr-3">
                 <Link
-                  href="/strategy-call"
-                  className="btn-pill btn-pill-primary w-full"
+                  href="/"
+                  className="text-[20px] font-semibold leading-none tracking-[-0.02em] text-foreground"
                   onClick={() => setMobileMenuOpen(false)}
                 >
-                  Book a Call
-                  <span className="btn-arrow" aria-hidden="true">
-                    →
-                  </span>
+                  StartUpBros
                 </Link>
+                <div className="flex items-center gap-1">
+                  <IconThemeToggle className="size-11 text-muted-foreground hover:bg-black/5 hover:text-foreground dark:hover:bg-white/10" />
+                  <button
+                    type="button"
+                    aria-label="Close menu"
+                    className="grid size-11 cursor-pointer place-items-center rounded-full text-foreground transition-colors duration-200 hover:bg-black/5 dark:hover:bg-white/10"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    <X className="size-6" strokeWidth={1.5} />
+                  </button>
+                </div>
               </div>
-            </nav>
-          </div>
-        </div>
-      )}
+
+              <nav className="flex flex-1 flex-col px-6 pt-2 pb-8">
+                <Link
+                  href="/portfolio"
+                  className="text-h2 border-b border-border py-5"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Case Studies
+                </Link>
+
+                {/* Industries accordion */}
+                <div className="border-b border-border">
+                  <button
+                    type="button"
+                    aria-expanded={industriesOpen}
+                    onClick={() => setIndustriesOpen(!industriesOpen)}
+                    className="flex w-full cursor-pointer items-baseline justify-between py-5 text-left"
+                  >
+                    <span className="text-h2">Industries</span>
+                    <span
+                      className={cn(
+                        "grid size-11 shrink-0 -translate-y-1 translate-x-2 place-items-center self-center text-xl text-muted-foreground transition-transform duration-300",
+                        industriesOpen && "rotate-45 text-(--accent-brand)"
+                      )}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                  {industriesOpen && (
+                    <div className="grid grid-cols-2 gap-x-6 pb-6">
+                      {industries.map((item, i) => (
+                        <Link
+                          key={item.name}
+                          href={item.href}
+                          className="flex min-h-11 items-center gap-3 py-1.5 text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                          onClick={() => setMobileMenuOpen(false)}
+                        >
+                          <span className="text-[11px] tabular-nums">
+                            {String(i + 1).padStart(2, "0")}
+                          </span>
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                <Link
+                  href="/blog"
+                  className="text-h2 border-b border-border py-5"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Blog
+                </Link>
+
+                <div className="mt-auto pt-10">
+                  <Link
+                    href="/strategy-call"
+                    className="btn-pill btn-pill-primary w-full"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Book a Call
+                    <span className="btn-arrow" aria-hidden="true">
+                      →
+                    </span>
+                  </Link>
+                </div>
+              </nav>
+            </motion.div>
+          </div>,
+          document.body
+        )}
     </header>
   );
 }

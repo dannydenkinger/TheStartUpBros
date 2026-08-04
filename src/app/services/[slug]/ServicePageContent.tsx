@@ -81,7 +81,7 @@ export function ServicePageContent({ service }: { service: Service }) {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* ── Hero ── */}
-      <section className="px-6 md:px-10 pt-16 md:pt-24 pb-16 md:pb-20">
+      <section className="px-6 md:px-10 pt-14 md:pt-24 pb-12 md:pb-20">
         <div className="max-w-[1600px] mx-auto">
           <AnimateIn variant="fadeUp">
             <div className="flex flex-wrap gap-x-6 gap-y-3 mb-8">
@@ -98,14 +98,14 @@ export function ServicePageContent({ service }: { service: Service }) {
 
           <AnimateIn variant="fadeUp" delay={0.06}>
             <div className="grid grid-cols-12 gap-x-6">
-              <h1 className="col-span-12 lg:col-span-10 text-display text-foreground mb-6">
+              <h1 className="col-span-12 lg:col-span-10 text-display max-md:text-[2.75rem] max-md:leading-[1.08] text-foreground mb-6">
                 {service.title}
               </h1>
             </div>
           </AnimateIn>
 
           <AnimateIn variant="fadeUp" delay={0.12}>
-            <p className="text-body-lg max-w-[840px] mb-10">
+            <p className="text-body-lg max-w-[840px] mb-8 md:mb-10">
               {service.longDescription}
             </p>
           </AnimateIn>
@@ -130,7 +130,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Case Studies ── */}
       {caseStudies.length > 0 && (
-        <section className="px-6 md:px-10 py-24 md:py-32">
+        <section className="px-6 md:px-10 py-14 md:py-32">
           <div className="max-w-[1600px] mx-auto">
             <SectionHeader
               index={idx()}
@@ -185,7 +185,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Feature Highlights ── */}
       {service.featureHighlights && service.featureHighlights.length > 0 && (
-        <section className="px-6 md:px-10 py-24 md:py-32">
+        <section className="px-6 md:px-10 py-14 md:py-32">
           <div className="max-w-[1600px] mx-auto">
             <SectionHeader
               index={idx()}
@@ -225,7 +225,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       )}
 
       {/* ── Use Cases ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="USE CASES" title="Use Cases" />
           <div className="grid md:grid-cols-2 gap-x-16">
@@ -246,7 +246,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       </section>
 
       {/* ── Tech Stack — compact band ── */}
-      <section className="px-6 md:px-10 py-16 md:py-20">
+      <section className="px-6 md:px-10 py-12 md:py-20">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
@@ -271,7 +271,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       </section>
 
       {/* ── Deliverables ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader index={idx()} label="WHAT YOU GET" title="What You Get" />
           <div className="max-w-[840px]">
@@ -293,7 +293,7 @@ export function ServicePageContent({ service }: { service: Service }) {
 
       {/* ── Testimonial ── */}
       {service.testimonial && (
-        <section className="px-6 md:px-10 py-24 md:py-32">
+        <section className="px-6 md:px-10 py-14 md:py-32">
           <div className="max-w-[1600px] mx-auto">
             <div className="mb-16">
               <span className="badge-pill text-micro-label">
@@ -327,7 +327,7 @@ export function ServicePageContent({ service }: { service: Service }) {
       )}
 
       {/* ── Explore Other Services ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
           <SectionHeader
             index={idx()}
@@ -362,9 +362,9 @@ export function ServicePageContent({ service }: { service: Service }) {
       </section>
 
       {/* ── Pricing CTA ── */}
-      <section className="px-6 md:px-10 py-24 md:py-32">
+      <section className="px-6 md:px-10 py-14 md:py-32">
         <div className="max-w-[1600px] mx-auto">
-          <div className="mb-16">
+          <div className="mb-10 md:mb-16">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />
               <span className="sr-only">{idx()} · </span>
@@ -379,7 +379,7 @@ export function ServicePageContent({ service }: { service: Service }) {
                     So much value at such a{" "}
                     <span className="accent-word">flexible</span> price
                   </h2>
-                  <p className="text-body-lg max-w-[560px] mb-10">
+                  <p className="text-body-lg max-w-[560px] mb-8 md:mb-10">
                     Consultation-based custom pricing. We scope every project to
                     the fastest path to launch — no retainers, no bloat.
                   </p>

@@ -121,10 +121,11 @@ export function CaseStudiesGrid() {
   const [first, ...rest] = filtered;
 
   return (
-    <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 pb-24 md:pb-32">
-      {/* Filter row — quiet text filters left, flat search right */}
-      <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between border-b border-border pb-6 mb-10 md:mb-14">
-        <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
+    <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 pb-16 md:pb-32">
+      {/* Filter row — quiet text filters left, flat search right.
+       * Mobile: one horizontal snap-scroll rank with edge fades; desktop wraps. */}
+      <div className="flex flex-col gap-4 lg:gap-5 lg:flex-row lg:items-center lg:justify-between border-b border-border pb-5 lg:pb-6 mb-8 md:mb-14">
+        <div className="flex flex-wrap items-center gap-x-5 gap-y-3 scrollbar-hide max-lg:flex-nowrap max-lg:overflow-x-auto max-lg:snap-x max-lg:snap-proximity max-lg:-mx-6 max-lg:px-6 max-lg:scroll-pl-6 max-lg:[mask-image:linear-gradient(to_right,transparent,black_20px,black_calc(100%-24px),transparent)]">
           {["all", ...allTags].map((tag) => {
             const active = category === tag;
             return (
@@ -134,7 +135,7 @@ export function CaseStudiesGrid() {
                 onClick={() => setCategory(tag)}
                 aria-pressed={active}
                 className={cn(
-                  "inline-flex items-center gap-1.5 text-[15px] cursor-pointer transition-colors duration-200",
+                  "inline-flex items-center gap-1.5 text-[15px] cursor-pointer transition-colors duration-200 whitespace-nowrap max-lg:h-11 max-lg:shrink-0 max-lg:snap-start",
                   active
                     ? "text-foreground"
                     : "text-muted-foreground hover:text-foreground",
@@ -158,7 +159,7 @@ export function CaseStudiesGrid() {
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none"
+          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[16px] lg:text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none"
         />
       </div>
 

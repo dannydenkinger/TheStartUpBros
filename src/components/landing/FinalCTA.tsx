@@ -7,7 +7,7 @@ import { MagneticButton } from "@/components/shared/MagneticButton";
 export function FinalCTA({ index = "06" }: { index?: string | null }) {
   return (
     <section className="band grain relative">
-      <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-24 md:py-32">
+      <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-32">
         <AnimateIn>
           <div className="grid grid-cols-12 gap-6">
             <div className="col-span-12">
@@ -26,7 +26,7 @@ export function FinalCTA({ index = "06" }: { index?: string | null }) {
               Book a free strategy call and let&apos;s map out your project,
               tech stack, and launch timeline — zero obligations.
             </p>
-            <div className="col-span-12 mt-8 flex flex-col sm:flex-row sm:items-center gap-3">
+            <div className="col-span-12 mt-8 flex flex-col items-start sm:flex-row sm:items-center gap-3">
               <MagneticButton>
                 <CTAButton href="/strategy-call" variant="primary">
                   Book Strategy Call

@@ -98,7 +98,7 @@ export default function GalleryPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="pt-16 md:pt-24 pb-14 md:pb-16">
+      <section className="pt-12 md:pt-24 pb-10 md:pb-16">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <AnimateIn variant="fadeUp">
             <span className="badge-pill text-micro-label mb-8 inline-flex">
@@ -126,8 +126,8 @@ export default function GalleryPage() {
       </section>
 
       {/* Editorial grid — repeating wide/single rhythm, every image kept */}
-      <section className="pt-4 md:pt-6 pb-24 md:pb-32">
-        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 isolate">
+      <section className="pt-2 md:pt-6 pb-16 md:pb-32">
+        <div className="mx-auto max-w-[1600px] px-6 md:px-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 isolate">
           {galleryImages.map((src, i) => {
             const size = tileSize(i, galleryImages.length);
             return (

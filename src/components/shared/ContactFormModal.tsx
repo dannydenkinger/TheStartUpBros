@@ -105,16 +105,16 @@ export function ContactFormModal() {
         {/* Close button */}
         <button
           onClick={closeModal}
-          className="absolute top-5 right-5 flex size-8 items-center justify-center rounded-full border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
+          className="absolute top-4 right-4 lg:top-5 lg:right-5 flex size-11 lg:size-8 items-center justify-center rounded-full border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
         >
           <X className="w-4 h-4" strokeWidth={1.5} />
         </button>
 
         <div className="flex flex-col lg:flex-row">
           {/* ─── Left Column: Persuasive Copy ─── */}
-          <div className="flex-1 px-8 lg:px-10 py-10 lg:py-12">
+          <div className="flex-1 px-6 sm:px-8 lg:px-10 py-8 sm:py-10 lg:py-12">
             {/* Headline */}
-            <h2 className="text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.12] tracking-[-0.025em] font-medium text-foreground mb-6">
+            <h2 className="text-[clamp(1.75rem,3vw,2.25rem)] leading-[1.12] tracking-[-0.025em] font-medium text-foreground mb-6 max-lg:pr-10">
               Try Our SaaS Dev Team
               <br />
               For One Week.
@@ -144,7 +144,7 @@ export function ContactFormModal() {
           </div>
 
           {/* ─── Right Column: Contact Form ─── */}
-          <div className="w-full lg:w-[420px] px-8 py-10 lg:py-12 lg:px-8 border-t lg:border-t-0 lg:border-l border-border shrink-0">
+          <div className="w-full lg:w-[420px] px-6 sm:px-8 py-8 sm:py-10 lg:py-12 lg:px-8 border-t lg:border-t-0 lg:border-l border-border shrink-0">
             <h3 className="text-h3 mb-8">
               See what Startup Bros can do for your product in 7 days.
             </h3>

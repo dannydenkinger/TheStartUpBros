@@ -38,7 +38,7 @@ export function BlogShareBar({ title, variant = "row" }: BlogShareBarProps) {
 
   // Flat tonal buttons — no borders or shadows, card tone on canvas.
   const btnClass =
-    "size-9 rounded-full bg-card hover:bg-(--surface-card-hover) text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors duration-200 cursor-pointer";
+    "size-11 lg:size-9 rounded-full bg-card hover:bg-(--surface-card-hover) text-muted-foreground hover:text-foreground flex items-center justify-center transition-colors duration-200 cursor-pointer";
 
   return (
     <div

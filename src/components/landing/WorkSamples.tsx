@@ -27,7 +27,7 @@ const galleryImages = [
 
 export function WorkSamples() {
   return (
-    <section className="px-6 md:px-10 py-20 md:py-28 bg-background">
+    <section className="px-6 md:px-10 py-14 md:py-28 bg-background">
       <div className="mx-auto max-w-[1600px]">
         <AnimateIn>
           <SectionHeader
@@ -42,7 +42,7 @@ export function WorkSamples() {
         </AnimateIn>
 
         {/* Uniform 4:3 grid — larger flat tiles, desses card language */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-6 isolate">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6 isolate">
           {galleryImages.map((src) => (
             <div
               key={src}

@@ -107,7 +107,7 @@ export default async function BlogPostPage({
           <AnimateIn variant="fadeUp">
             <Link
               href="/blog"
-              className="group inline-flex items-baseline gap-2 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+              className="group inline-flex items-baseline gap-2 py-2 -my-2 px-1 -mx-1 text-[13px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
             >
               <span
                 aria-hidden
@@ -119,7 +119,7 @@ export default async function BlogPostPage({
             </Link>
           </AnimateIn>
 
-          <div className="mt-12 md:mt-16 grid grid-cols-12 gap-x-6 gap-y-8">
+          <div className="mt-8 md:mt-16 grid grid-cols-12 gap-x-6 gap-y-8">
             {/* Category — borderless dot label */}
             {frontmatter.category && (
               <AnimateIn variant="fadeUp" className="col-span-12">
@@ -131,7 +131,7 @@ export default async function BlogPostPage({
             )}
 
             {/* Title */}
-            <h1 className="col-span-12 lg:col-span-8 text-display text-balance">
+            <h1 className="col-span-12 lg:col-span-8 text-display max-md:text-[2.75rem] max-md:leading-[1.1] text-balance">
               <RevealText delay={0.08}>{frontmatter.title}</RevealText>
             </h1>
 
@@ -203,7 +203,7 @@ export default async function BlogPostPage({
       </header>
 
       {/* Hero plate — full-container editorial media */}
-      <div className="px-6 md:px-10 mt-12 md:mt-16">
+      <div className="px-6 md:px-10 mt-10 md:mt-16">
         <div className="mx-auto max-w-[1600px]">
           <AnimateIn variant="fadeUp" delay={0.1}>
             {frontmatter.image ? (
@@ -235,11 +235,29 @@ export default async function BlogPostPage({
       </div>
 
       {/* Reading measure — 680px prose with anchored ToC rail */}
-      <div className="px-6 md:px-10 pt-16 md:pt-24 pb-20 md:pb-28">
+      <div className="px-6 md:px-10 pt-12 md:pt-24 pb-16 md:pb-28">
         <div className="mx-auto max-w-[1080px]">
           <div className="lg:flex lg:justify-between lg:gap-16">
             {/* Main content */}
             <div className="flex-1 min-w-0 max-w-[680px]" data-blog-content>
+              {/* Mobile / tablet ToC — collapsible card (desktop keeps the rail) */}
+              <details className="group lg:hidden mb-8 rounded-2xl bg-card px-5">
+                <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-2.5 [&::-webkit-details-marker]:hidden">
+                  <span className="flex items-center gap-2.5 text-[15px] font-medium text-foreground">
+                    <span aria-hidden className="label-dot" />
+                    On this page
+                  </span>
+                  <span
+                    aria-hidden
+                    className="plus-btn transition-transform duration-200 group-open:rotate-45"
+                  >
+                    +
+                  </span>
+                </summary>
+                <div className="pb-4 pt-1">
+                  <BlogTableOfContents variant="inline" />
+                </div>
+              </details>
               <div
                 className="
                   prose max-w-none
@@ -334,9 +352,9 @@ export default async function BlogPostPage({
 
       {/* Related posts */}
       {relatedPosts.length > 0 && (
-        <section className="px-6 md:px-10 pb-24 md:pb-32">
+        <section className="px-6 md:px-10 pb-16 md:pb-32">
           <div className="mx-auto max-w-[1600px]">
-            <h2 className="text-h2 text-foreground mb-10 md:mb-14">
+            <h2 className="text-h2 text-foreground mb-8 md:mb-14">
               <RevealText>Continue Reading</RevealText>
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">

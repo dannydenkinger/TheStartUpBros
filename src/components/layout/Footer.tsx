@@ -35,7 +35,7 @@ export function Footer() {
     <footer className="band grain border-t border-border">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         {/* Top zone — dot label / brand+contact / link columns */}
-        <div className="grid grid-cols-12 gap-x-6 gap-y-12 pt-20 md:pt-28 pb-16 md:pb-24">
+        <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-y-12 pt-14 md:pt-28 pb-12 md:pb-24">
           {/* (1) Dot label */}
           <div className="col-span-12 lg:col-span-2">
             <span className="badge-pill text-micro-label">
@@ -76,10 +76,10 @@ export function Footer() {
         </div>
 
         {/* Bottom row — giant wordmark left, legal stack right */}
-        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-10 pb-10 md:pb-12">
+        <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-6 md:pt-10 pb-10 md:pb-12">
           <Link
             href="/"
-            className="block text-[clamp(4rem,9vw,8.5rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-white whitespace-nowrap"
+            className="block text-[clamp(4rem,9vw,8.5rem)] max-md:text-[clamp(2.5rem,15vw,4rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-white whitespace-nowrap"
           >
             StartUpBros<span className="text-(--accent-brand)">.</span>
           </Link>

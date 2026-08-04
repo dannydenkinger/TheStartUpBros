@@ -70,7 +70,7 @@ const edgeFadeMask: CSSProperties = {
 
 export function Testimonials() {
   return (
-    <section className="bg-background text-foreground py-20 md:py-28">
+    <section className="bg-background text-foreground py-14 md:py-28">
       <div className="mx-auto max-w-[1600px] px-6 md:px-10">
         <AnimateIn>
           {/* Divider row — dot label over a full-width hairline (desses) */}
@@ -82,7 +82,7 @@ export function Testimonials() {
             </span>
           </div>
 
-          <div className="grid grid-cols-12 gap-x-6 gap-y-6 mt-14 mb-20 md:mb-28">
+          <div className="grid grid-cols-12 gap-x-6 gap-y-6 mt-10 md:mt-14 mb-14 md:mb-28">
             <h2 className="col-span-12 lg:col-span-7 text-h2">
               How We <span className="accent-word">Work</span>
             </h2>

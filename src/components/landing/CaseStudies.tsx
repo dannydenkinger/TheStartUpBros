@@ -116,9 +116,9 @@ function CaseCard({
 
 export function CaseStudies() {
   return (
-    <section className="px-6 md:px-10 py-20 md:py-28">
+    <section className="px-6 md:px-10 py-14 md:py-28">
       <div className="mx-auto max-w-[1600px]">
-        <div className="grid grid-cols-12 gap-x-8 gap-y-12">
+        <div className="grid grid-cols-12 lg:gap-x-8 gap-y-10 md:gap-y-12">
           {/* Sticky left rail — section header */}
           <aside className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
             <AnimateIn>

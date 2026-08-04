@@ -55,7 +55,7 @@ export function BookingForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="card-elevated p-8 md:p-10 space-y-6">
+    <form onSubmit={handleSubmit} className="card-elevated p-6 sm:p-8 md:p-10 space-y-6">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className={labelStyles}>
@@ -131,7 +131,7 @@ export function BookingForm() {
       <button
         type="submit"
         disabled={status === "submitting"}
-        className="btn-pill btn-pill-primary w-fit disabled:opacity-60 disabled:cursor-not-allowed"
+        className="btn-pill btn-pill-primary w-full sm:w-fit disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === "submitting" ? (
           "Sending..."

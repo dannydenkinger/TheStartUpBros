@@ -143,7 +143,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="px-6 md:px-10 py-20 md:py-28 bg-(--muted) dark:bg-background">
+    <section className="px-6 md:px-10 py-14 md:py-28 bg-(--muted) dark:bg-background">
       <div className="mx-auto max-w-[1600px]">
         <AnimateIn>
           <SectionHeader
@@ -158,7 +158,7 @@ export function FAQ({ index = "04" }: { index?: string }) {
           />
         </AnimateIn>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-10">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-10">
           {/* ─── Left: FAQ stack ───────────────────────────────────── */}
           <div className="space-y-3">
             {faqs.map((faq, i) => (

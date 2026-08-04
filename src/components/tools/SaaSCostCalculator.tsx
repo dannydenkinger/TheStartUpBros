@@ -124,7 +124,7 @@ export function SaaSCostCalculator() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
-      <section className="px-6 md:px-10 pt-16 md:pt-20 pb-12">
+      <section className="px-6 md:px-10 pt-12 md:pt-20 pb-8 md:pb-12">
         <div className="mx-auto max-w-[1600px]">
           <AnimateIn variant="fadeUp">
             <div className="badge-pill text-micro-label mb-6">
@@ -142,10 +142,10 @@ export function SaaSCostCalculator() {
         </div>
       </section>
 
-      <section className="px-6 md:px-10 pb-24">
+      <section className="px-6 md:px-10 pb-16 md:pb-24">
         <div className="mx-auto max-w-[1600px]">
           {/* Feature Toggle Grid */}
-          <AnimateIn variant="fadeUp" className="mb-12">
+          <AnimateIn variant="fadeUp" className="mb-8 md:mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
               {features.map((feature) => {
                 const isOn = selected.has(feature.id);
@@ -199,7 +199,7 @@ export function SaaSCostCalculator() {
                   exit: { opacity: 0, y: -8 },
                   transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
                 })}
-                className="card-elevated p-8 md:p-10"
+                className="card-elevated p-6 sm:p-8 md:p-10"
               >
                 <p className="text-micro-label text-muted-foreground mb-3">
                   Estimated Scope
@@ -228,9 +228,9 @@ export function SaaSCostCalculator() {
                   exit: { opacity: 0, y: -8 },
                   transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
                 })}
-                className="card-elevated p-8 md:p-10"
+                className="card-elevated p-6 sm:p-8 md:p-10"
               >
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
                   <div className="lg:col-span-7">
                     <p className="text-micro-label text-muted-foreground mb-3">
                       Estimated Scope
@@ -281,8 +281,12 @@ export function SaaSCostCalculator() {
                   <p className="text-body-lg">
                     Want an exact quote and timeline for your build?
                   </p>
-                  <MagneticButton>
-                    <CTAButton href="/strategy-call" variant="primary">
+                  <MagneticButton className="max-md:w-full">
+                    <CTAButton
+                      href="/strategy-call"
+                      variant="primary"
+                      className="max-md:w-full max-md:h-auto max-md:min-h-12 max-md:whitespace-normal max-md:text-center max-md:py-2.5"
+                    >
                       Book a Consultation to Finalize This Scope
                     </CTAButton>
                   </MagneticButton>

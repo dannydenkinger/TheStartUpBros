@@ -19,7 +19,7 @@ export default function PortfolioPage() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero */}
-      <section className="pt-16 md:pt-24 pb-12 md:pb-16">
+      <section className="pt-12 md:pt-24 pb-10 md:pb-16">
         <div className="mx-auto max-w-[1600px] px-6 md:px-10">
           <span className="badge-pill text-micro-label mb-8 inline-flex">
             <span aria-hidden className="label-dot" />

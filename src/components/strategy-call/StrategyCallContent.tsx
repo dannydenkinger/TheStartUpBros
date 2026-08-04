@@ -69,7 +69,7 @@ export function StrategyCallContent() {
   return (
     <div className="flex flex-col min-h-screen bg-background">
       {/* Hero — two-column split */}
-      <section className="px-6 md:px-10 pt-16 md:pt-20 pb-16 md:pb-24">
+      <section className="px-6 md:px-10 pt-12 md:pt-20 pb-14 md:pb-24">
         <div className="mx-auto max-w-[1600px]">
           <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
             {/* ─── Left: sales narrative ─── */}
@@ -103,7 +103,7 @@ export function StrategyCallContent() {
                 <p className="text-micro-label text-muted-foreground mb-2">
                   What you&apos;ll walk away with
                 </p>
-                <ul className="mb-12 max-w-[640px]">
+                <ul className="mb-10 md:mb-12 max-w-[640px]">
                   {bulletPoints.map((point, i) => (
                     <li key={i} className="flex items-start gap-3 py-2.5">
                       <span
@@ -127,7 +127,7 @@ export function StrategyCallContent() {
             {/* ─── Right: form card ─── */}
             <div className="w-full lg:w-[540px] 2xl:w-[620px] shrink-0">
               <AnimateIn variant="fadeUp" delay={0.1}>
-                <div className="bg-card rounded-[24px] p-8">
+                <div className="bg-card rounded-[24px] p-6 sm:p-8">
                   <h2 className="text-h3 mb-2">Book your strategy call</h2>
                   <p className="text-caption mb-7">
                     We&apos;ll reply within 24 hours to schedule.
@@ -232,7 +232,7 @@ export function StrategyCallContent() {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="btn-pill btn-pill-primary w-fit group disabled:opacity-60 disabled:cursor-not-allowed"
+                        className="btn-pill btn-pill-primary w-full sm:w-fit group disabled:opacity-60 disabled:cursor-not-allowed"
                       >
                         {isSubmitting ? (
                           <span className="flex items-center justify-center gap-2">
