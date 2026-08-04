@@ -3,6 +3,102 @@ import type { PortfolioProject } from "@/types";
 // Real work from the founders — projects Anthony Denkinger has led or built.
 export const projects: PortfolioProject[] = [
   {
+    title: "AirSync — Aviation Operations Platform",
+    slug: "airsync",
+    description:
+      "Five connected apps on one account — scheduling, dispatch, training records, maintenance, and member billing — so a flight school runs its whole operation from a single source of truth.",
+    image: "/images/portfolio/airsync-home.webp",
+    tags: ["SaaS", "Aviation", "Full-Stack"],
+    deviceType: "macbook",
+    client: "AirSync",
+    year: "2026",
+    industry: "Aviation SaaS",
+    services: [
+      "Product Design",
+      "Full-Stack Development",
+      "Design System",
+      "Billing Integration",
+    ],
+    websiteUrl: "https://airsyncusa.com",
+    overview:
+      "Flight schools and flying clubs run on a patchwork of scheduling tools, paper training records, maintenance spreadsheets, and separate billing systems — so the same aircraft can be grounded in one place and bookable in another. AirSync collapses that into one operating system for the flight line: five apps sharing a single account and a single truth. Ground a plane once and it is a NO-GO everywhere, instantly, with no re-entry and no silos.",
+    challenge:
+      "Aviation operations software is fragmented by default. Scheduling, dispatch, currency and qualification tracking, maintenance status, and member billing typically live in separate systems that never talk to each other. The result is duplicated data entry and — far worse — contradictory answers to safety-critical questions like whether an aircraft is airworthy or a pilot is current.",
+    solution:
+      "A connected product suite rather than a monolith: Flight Schedule, Pilot Debrief, Academy, Marketplace, and PlaneBnB each stand alone but share one account and one data model. Aircraft status, pilot currency, and qualifications propagate across every surface the moment they change. The interface is built for the environments it is used in — the panel, the ramp, and the office — with a dark, high-contrast operational UI and flat, self-serve pricing that removes the enterprise sales call.",
+    timeline: "Ongoing — shipped and in active development",
+    techStack: ["Next.js", "React", "TypeScript", "Stripe", "Vercel"],
+    outcomes: [
+      "Five connected apps operating from one account and one source of truth",
+      "Cross-app grounding — an aircraft marked NO-GO is unbookable everywhere at once",
+      "Currency and qualification tracking verified before dispatch, not after the flight",
+      "Scheduled time flows into member billing with no re-keying",
+      "Multi-tenant workspaces with role-based access for owners, instructors, and students",
+      "Every surface shipped in both light and dark themes",
+    ],
+    gallery: [
+      {
+        type: "full",
+        image: "/images/portfolio/airsync-app-dashboard-dark.webp",
+        alt: "AirSync operations dashboard showing today's board, fleet status, and revenue",
+        caption:
+          "The morning board — every reservation, every tail number, and the one aircraft that is down, on a single screen.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/airsync-app-schedule-light.webp",
+        alt: "AirSync flight schedule with aircraft and instructor resource rows",
+        heading: "Dispatch is the operational core",
+        body: "Aircraft and instructors share one resource timeline, so a double-booking is impossible to create. Grounded tail numbers are struck through in red the moment maintenance flags them — the schedule cannot offer an aircraft that is not airworthy.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/airsync-app-fleet-dark.webp",
+            alt: "AirSync fleet view with per-aircraft airworthiness status",
+          },
+          {
+            src: "/images/portfolio/airsync-app-maintenance-dark.webp",
+            alt: "AirSync maintenance tracking and squawks",
+          },
+        ],
+        caption:
+          "Fleet and Maintenance are the same record seen from two angles — a squawk raised here is what grounds the aircraft everywhere else.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/airsync-app-roster-dark.webp",
+        alt: "AirSync roster showing owners, instructors, students and their hours",
+        heading: "One roster, four roles",
+        body: "Owners, staff, instructors, and students share a single roster, each with their own permissions, logged hours, and account balance. Currency and endorsements live against the pilot rather than in a binder — so the schedule can refuse a dispatch before the flight instead of discovering the problem after it.",
+        align: "right",
+      },
+      {
+        type: "full",
+        image: "/images/portfolio/airsync-app-billing-dark.webp",
+        alt: "AirSync member billing and invoicing",
+        caption:
+          "Billing closes the loop — flight time booked on the schedule becomes an invoice without anyone re-keying it.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/airsync-app-aircraft-detail-light.webp",
+            alt: "AirSync aircraft detail view, light theme",
+          },
+          {
+            src: "/images/portfolio/airsync-app-aircraft-detail-dark.webp",
+            alt: "AirSync aircraft detail view, dark theme",
+          },
+        ],
+        caption:
+          "Every surface ships in both themes — daylight on the ramp, dark in the panel at night.",
+      },
+    ],
+  },
+  {
     title: "SAID Technology — Offline-First Medical Translation",
     slug: "said",
     description:

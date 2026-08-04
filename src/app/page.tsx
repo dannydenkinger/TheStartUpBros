@@ -1,5 +1,4 @@
 import { Hero } from "@/components/landing/Hero";
-import { ShowcaseCarousel } from "@/components/landing/ShowcaseCarousel";
 import { ValueProps } from "@/components/landing/ValueProps";
 import { CaseStudies } from "@/components/landing/CaseStudies";
 import { StatementBand } from "@/components/landing/StatementBand";
@@ -29,10 +28,7 @@ export default function HomePage() {
   return (
     <>
       <JsonLd data={organizationJsonLd} />
-      <div className="flex flex-col">
-        <Hero />
-        <ShowcaseCarousel />
-      </div>
+      <Hero />
       <ValueProps />
       <CaseStudies />
       <StatementBand />
