@@ -1,8 +1,9 @@
 "use client";
 
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { REVEAL_EASE } from "@/lib/animations";
+import { maskUp, REVEAL_EASE } from "@/lib/animations";
 
 /* Masked line reveal — children slide up out of an overflow clip, the
  * desses/Framer headline entrance. The OUTER element carries whileInView
@@ -11,17 +12,23 @@ import { REVEAL_EASE } from "@/lib/animations";
 export function RevealText({
   children,
   delay = 0,
+  duration = 0.9,
   once = true,
   className,
   as: Tag = "span",
 }: {
   children: React.ReactNode;
   delay?: number;
+  /** Reveal length in seconds — shorten for small type, keep 0.9 for display. */
+  duration?: number;
   once?: boolean;
   className?: string;
   as?: "span" | "div";
 }) {
   const prefersReducedMotion = useReducedMotion();
+  /* Promote to its own layer only while moving — a permanent will-change on
+   * every headline keeps dozens of layers alive for no reason. */
+  const [settled, setSettled] = useState(false);
 
   if (prefersReducedMotion) {
     return <Tag className={className}>{children}</Tag>;
@@ -37,12 +44,13 @@ export function RevealText({
       viewport={{ once, margin: "-40px" }}
     >
       <motion.span
-        className="block will-change-transform"
+        className={cn("block", !settled && "will-change-transform")}
+        onAnimationComplete={() => setSettled(true)}
         variants={{
-          hidden: { y: "110%" },
+          hidden: maskUp.hidden,
           visible: {
             y: "0%",
-            transition: { duration: 0.9, ease: REVEAL_EASE, delay },
+            transition: { duration, ease: REVEAL_EASE, delay },
           },
         }}
       >

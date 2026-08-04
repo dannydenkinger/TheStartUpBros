@@ -115,7 +115,9 @@ export function Testimonials() {
           className="relative flex w-full overflow-hidden"
           style={edgeFadeMask}
         >
-          <div className="flex animate-marquee [--duration:60s] [&>*]:mr-4">
+          {/* Hovering a rail parks it — a quote you're reading shouldn't slide
+           * out from under you. animation-play-state resumes seamlessly. */}
+          <div className="flex animate-marquee [--duration:60s] [&>*]:mr-4 hover:[animation-play-state:paused]">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 topRow.map((testimonial, i) => (
@@ -136,7 +138,7 @@ export function Testimonials() {
           className="relative flex w-full overflow-hidden"
           style={edgeFadeMask}
         >
-          <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4">
+          <div className="flex animate-marquee-reverse [--duration:65s] [&>*]:mr-4 hover:[animation-play-state:paused]">
             {[...Array(2)].map((_, groupIdx) =>
               [...Array(4)].map((_, setIndex) =>
                 bottomRow.map((testimonial, i) => (

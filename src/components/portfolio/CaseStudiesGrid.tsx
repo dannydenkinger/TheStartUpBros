@@ -3,12 +3,37 @@
 import { useState, useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { AnimateIn } from "@/components/shared/AnimateIn";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "framer-motion";
+import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
 import { projects } from "@/data/portfolio";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 import { cn } from "@/lib/utils";
 
 const allTags = Array.from(new Set(projects.flatMap((p) => p.tags))).sort();
+
+/* Card choreography — cards arrive from y28/scale .98 and leave by shrinking
+ * back into the grain. Exit is deliberately faster than entrance (0.34 vs
+ * 0.7) so a filter change reads as "clear, then deal" rather than a crossfade
+ * mush. Transform + opacity only. */
+const cardVariants: Variants = {
+  hidden: { opacity: 0, y: 28, scale: 0.98 },
+  visible: (delay: number = 0) => ({
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.7, ease: REVEAL_EASE, delay },
+  }),
+  exit: {
+    opacity: 0,
+    scale: 0.97,
+    transition: { duration: 0.34, ease: EXIT_EASE },
+  },
+};
 
 /* Titles are stored as "Name — Descriptor"; render them with the same
  * name-row + gray-subtitle anatomy the landing case cards use. */
@@ -30,80 +55,96 @@ function CaseCard({
   delay?: number;
 }) {
   const [name, descriptor] = splitTitle(project.title);
+  const prefersReducedMotion = useReducedMotion();
 
-  return (
-    <AnimateIn delay={delay}>
-      <Link
-        href={`/portfolio/${project.slug}`}
-        className="group block overflow-hidden rounded-lg"
+  const inner = (
+    <Link
+      href={`/portfolio/${project.slug}`}
+      className="group block overflow-hidden rounded-lg"
+    >
+      {/* Media — edge-to-edge, shares the card's radius */}
+      <div
+        className={cn(
+          "relative media-zoom",
+          featured
+            ? "aspect-[4/3] sm:aspect-[2/1] xl:aspect-[21/9]"
+            : "aspect-[4/3] sm:aspect-[16/10]",
+        )}
       >
-        {/* Media — edge-to-edge, shares the card's radius */}
         <div
+          className="absolute inset-0"
+          style={getWrapperStyle(project.image)}
+        >
+          <Image
+            src={project.image}
+            alt={project.title}
+            fill
+            quality={90}
+            priority={featured}
+            sizes={
+              featured
+                ? "(min-width: 1024px) 1520px, 100vw"
+                : "(min-width: 1024px) 750px, (min-width: 640px) 50vw, 100vw"
+            }
+            className="object-cover"
+            style={getImageStyle(project.image)}
+          />
+        </div>
+      </div>
+
+      {/* Attached content panel */}
+      <div className={cn("bg-card", featured ? "p-6 md:p-7" : "p-6")}>
+        <div className="flex items-start justify-between gap-4">
+          <span className="text-[13px] font-medium text-(--accent-brand)">
+            {project.tags.join(" · ")}
+          </span>
+          <span aria-hidden className="plus-btn">
+            +
+          </span>
+        </div>
+        <h2
           className={cn(
-            "relative media-zoom",
-            featured
-              ? "aspect-[4/3] sm:aspect-[2/1] xl:aspect-[21/9]"
-              : "aspect-[4/3] sm:aspect-[16/10]",
+            "mt-2 font-semibold tracking-tight text-foreground",
+            featured ? "text-[30px] leading-[1.15]" : "text-2xl",
           )}
         >
-          <div
-            className="absolute inset-0"
-            style={getWrapperStyle(project.image)}
-          >
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              quality={90}
-              priority={featured}
-              sizes={
-                featured
-                  ? "(min-width: 1024px) 1520px, 100vw"
-                  : "(min-width: 1024px) 750px, (min-width: 640px) 50vw, 100vw"
-              }
-              className="object-cover"
-              style={getImageStyle(project.image)}
-            />
-          </div>
-        </div>
-
-        {/* Attached content panel */}
-        <div className={cn("bg-card", featured ? "p-6 md:p-7" : "p-6")}>
-          <div className="flex items-start justify-between gap-4">
-            <span className="text-[13px] font-medium text-(--accent-brand)">
-              {project.tags.join(" · ")}
-            </span>
-            <span aria-hidden className="plus-btn">
-              +
-            </span>
-          </div>
-          <h2
+          {name}
+        </h2>
+        {descriptor && (
+          <p
             className={cn(
-              "mt-2 font-semibold tracking-tight text-foreground",
-              featured ? "text-[30px] leading-[1.15]" : "text-2xl",
+              "mt-1 text-muted-foreground",
+              featured ? "text-[17px] line-clamp-1" : "text-[16px] line-clamp-2",
             )}
           >
-            {name}
-          </h2>
-          {descriptor && (
-            <p
-              className={cn(
-                "mt-1 text-muted-foreground",
-                featured ? "text-[17px] line-clamp-1" : "text-[16px] line-clamp-2",
-              )}
-            >
-              {descriptor}
-            </p>
-          )}
-        </div>
-      </Link>
-    </AnimateIn>
+            {descriptor}
+          </p>
+        )}
+      </div>
+    </Link>
+  );
+
+  if (prefersReducedMotion) return <div>{inner}</div>;
+
+  return (
+    <motion.div
+      layout="position"
+      custom={delay}
+      variants={cardVariants}
+      initial="hidden"
+      whileInView="visible"
+      exit="exit"
+      viewport={{ once: true, margin: "-80px" }}
+    >
+      {inner}
+    </motion.div>
   );
 }
 
 export function CaseStudiesGrid() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("all");
+  const prefersReducedMotion = useReducedMotion();
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase().trim();
@@ -141,11 +182,13 @@ export function CaseStudiesGrid() {
                     : "text-muted-foreground hover:text-foreground",
                 )}
               >
+                {/* The dot doesn't fade in — it pops from nothing, so the
+                 * filter feels switched rather than cross-dissolved. */}
                 <span
                   aria-hidden
                   className={cn(
-                    "label-dot transition-opacity duration-200",
-                    !active && "opacity-0",
+                    "label-dot origin-center transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none",
+                    active ? "opacity-100 scale-100" : "opacity-0 scale-0",
                   )}
                 />
                 {tag === "all" ? "All" : tag}
@@ -159,20 +202,37 @@ export function CaseStudiesGrid() {
           placeholder="Search..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[16px] lg:text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none"
+          className="w-full lg:w-[280px] h-11 rounded-full bg-card px-5 text-[16px] lg:text-[15px] text-foreground placeholder:text-muted-foreground/70 focus:outline-none transition-[background-color,box-shadow] duration-300 focus:bg-(--surface-card-hover) focus:shadow-[0_0_0_2px_var(--accent-brand-soft)] motion-reduce:transition-none"
         />
       </div>
 
-      {/* First result full-width, the rest in a 2-col grid */}
-      {first && <CaseCard project={first} featured />}
+      {/* First result full-width, the rest in a 2-col grid.
+       * Keys carry the slug so AnimatePresence tracks identity across filter
+       * changes; the featured slot is keyed separately because a project
+       * moving in/out of it changes aspect ratio — that should read as an
+       * exit + enter, not a morph. */}
+      <AnimatePresence mode="wait">
+        {first && (
+          <CaseCard key={`featured-${first.slug}`} project={first} featured />
+        )}
+      </AnimatePresence>
 
-      {rest.length > 0 && (
-        <div className="mt-6 grid gap-6 sm:grid-cols-2">
+      <div
+        className={cn(
+          "grid gap-6 sm:grid-cols-2",
+          rest.length > 0 && "mt-6",
+        )}
+      >
+        <AnimatePresence mode="popLayout">
           {rest.map((project, i) => (
-            <CaseCard key={project.slug} project={project} delay={i * 0.08} />
+            <CaseCard
+              key={project.slug}
+              project={project}
+              delay={prefersReducedMotion ? 0 : Math.min(i, 5) * 0.06}
+            />
           ))}
-        </div>
-      )}
+        </AnimatePresence>
+      </div>
     </section>
   );
 }

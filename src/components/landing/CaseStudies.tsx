@@ -1,7 +1,9 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
@@ -36,6 +38,53 @@ function splitTitle(title: string): [string, string | null] {
   return [title.slice(0, idx), title.slice(idx + 3)];
 }
 
+/* Scroll parallax INSIDE the frame — the media plate is cut 14% taller than
+ * its clip and drifts ±6%, so the image floats behind the card edge as the
+ * card crosses the viewport. Three nested layers, each with one job:
+ *   A (hover scale, owned by .media-zoom)  →
+ *   B (scroll drift, owned here)           →
+ *   C (imagePosition zoom, untouched).
+ * Keeping them separate is what stops the CSS hover transform and the
+ * scroll-linked inline transform from overwriting each other. */
+function ParallaxMedia({ src, alt, sizes }: { src: string; alt: string; sizes: string }) {
+  const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], ["-6%", "6%"]);
+
+  const plate = (
+    <div className="absolute inset-0" style={getWrapperStyle(src)}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        quality={90}
+        sizes={sizes}
+        className="object-cover"
+        style={getImageStyle(src)}
+      />
+    </div>
+  );
+
+  return (
+    <div ref={ref} className="absolute inset-0">
+      {prefersReducedMotion ? (
+        plate
+      ) : (
+        <motion.div
+          className="absolute -top-[7%] h-[114%] w-full will-change-transform"
+          style={{ y }}
+        >
+          {plate}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 function CaseCard({
   study,
   compact = false,
@@ -46,6 +95,7 @@ function CaseCard({
   delay?: number;
 }) {
   const [name, descriptor] = splitTitle(study.title);
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <AnimateIn delay={delay}>
@@ -60,24 +110,15 @@ function CaseCard({
             compact ? "aspect-[4/3]" : "aspect-[16/8]",
           )}
         >
-          <div
-            className="absolute inset-0"
-            style={getWrapperStyle(study.heroImage)}
-          >
-            <Image
-              src={study.heroImage}
-              alt={study.title}
-              fill
-              quality={90}
-              sizes={
-                compact
-                  ? "(min-width: 1024px) 430px, (min-width: 640px) 50vw, 100vw"
-                  : "(min-width: 1024px) 880px, 100vw"
-              }
-              className="object-cover"
-              style={getImageStyle(study.heroImage)}
-            />
-          </div>
+          <ParallaxMedia
+            src={study.heroImage}
+            alt={study.title}
+            sizes={
+              compact
+                ? "(min-width: 1024px) 430px, (min-width: 640px) 50vw, 100vw"
+                : "(min-width: 1024px) 880px, 100vw"
+            }
+          />
         </div>
 
         {/* Attached content panel */}
@@ -86,7 +127,18 @@ function CaseCard({
             <span className="text-[13px] font-medium text-(--accent-brand)">
               {study.tags.join(" · ")}
             </span>
-            <span aria-hidden className="plus-btn">
+            {/* The whole card is the affordance, so the affordance should
+             * acknowledge it: the plus inks up to accent and swells a hair.
+             * (A quarter-turn is wasted on a '+' — it looks identical.) */}
+            <span
+              aria-hidden
+              className={cn(
+                "plus-btn",
+                !prefersReducedMotion &&
+                  "transition-[transform,background-color,border-color,color] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110",
+                "group-hover:border-transparent group-hover:bg-(--accent-brand) group-hover:text-white",
+              )}
+            >
               +
             </span>
           </div>
@@ -115,25 +167,40 @@ function CaseCard({
 }
 
 export function CaseStudies() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"],
+  });
+  /* The pinned rail eases up a touch while the card column runs past it —
+   * enough to register as depth, not enough to read as drift. */
+  const railY = useTransform(scrollYProgress, [0, 1], [26, -26]);
+
   return (
-    <section className="px-6 md:px-10 py-14 md:py-28">
+    <section ref={sectionRef} className="px-6 md:px-10 py-14 md:py-28">
       <div className="mx-auto max-w-[1600px]">
         <div className="grid grid-cols-12 lg:gap-x-8 gap-y-10 md:gap-y-12">
           {/* Sticky left rail — section header */}
           <aside className="col-span-12 lg:col-span-4 lg:sticky lg:top-28 lg:self-start">
-            <AnimateIn>
-              <span className="badge-pill text-micro-label">
-                <span aria-hidden className="label-dot" />
-                <span className="sr-only">02 · </span>
-                <span className="lowercase">DESIGN STUDIES</span>
-              </span>
-            </AnimateIn>
-            <h2 className="text-h2 mt-6 max-w-[430px]">
-              <RevealText delay={0.08}>
-                Product <span className="accent-word">deep-dives</span> from the
-                kind of SaaS we build
-              </RevealText>
-            </h2>
+            <motion.div
+              style={prefersReducedMotion ? undefined : { y: railY }}
+              className="will-change-transform"
+            >
+              <AnimateIn>
+                <span className="badge-pill text-micro-label">
+                  <span aria-hidden className="label-dot" />
+                  <span className="sr-only">02 · </span>
+                  <span className="lowercase">DESIGN STUDIES</span>
+                </span>
+              </AnimateIn>
+              <h2 className="text-h2 mt-6 max-w-[430px]">
+                <RevealText delay={0.08}>
+                  Product <span className="accent-word">deep-dives</span> from
+                  the kind of SaaS we build
+                </RevealText>
+              </h2>
+            </motion.div>
           </aside>
 
           {/* Right column — first project full-width, the rest in a 2-col grid */}

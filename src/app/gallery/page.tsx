@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 import { AnimateIn } from "@/components/shared/AnimateIn";
+import { Parallax } from "@/components/shared/Parallax";
 import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
@@ -133,36 +134,51 @@ export default function GalleryPage() {
             // Mobile rhythm: every 5th tile takes the full row as a
             // cinematic beat between pairs of smaller tiles.
             const mobileFull = i % 5 === 0;
-            return (
-              <AnimateIn
-                key={src}
-                variant="fadeUp"
-                delay={(i % 3) * 0.06}
-                className={`${tileSpan[size]} ${mobileFull ? "max-sm:col-span-2" : ""}`}
-              >
-                <div className="group rounded-2xl overflow-hidden isolate bg-card shadow-none">
-                  <div
-                    className={`relative w-full overflow-hidden ${tileAspect[size]} ${
-                      mobileFull ? "max-sm:aspect-[16/10]" : "max-sm:aspect-square"
-                    }`}
-                  >
-                    <div className="absolute inset-0" style={getWrapperStyle(src)}>
-                      <Image
-                        src={src}
-                        alt=""
-                        fill
-                        quality={90}
-                        sizes={
-                          size === "single"
-                            ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                            : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
-                        }
-                        className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-                        style={getImageStyle(src)}
-                      />
-                    </div>
+            // Only the wide/full beats drift. Ten drifting tiles out of fifty
+            // is enough for the grid to breathe while keeping the scroll-linked
+            // work off the other forty (and off every mobile tile).
+            const drifts = size !== "single";
+            const tile = (
+              <div className="group rounded-2xl overflow-hidden isolate bg-card shadow-none">
+                <div
+                  className={`relative w-full overflow-hidden ${tileAspect[size]} ${
+                    mobileFull ? "max-sm:aspect-[16/10]" : "max-sm:aspect-square"
+                  }`}
+                >
+                  <div className="absolute inset-0" style={getWrapperStyle(src)}>
+                    <Image
+                      src={src}
+                      alt=""
+                      fill
+                      quality={90}
+                      sizes={
+                        size === "single"
+                          ? "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          : "(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 66vw"
+                      }
+                      className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                      style={getImageStyle(src)}
+                    />
                   </div>
                 </div>
+              </div>
+            );
+            return (
+              // Tiles arrive scaling up from 0.96 rather than sliding — a wall
+              // of 50 sliding tiles reads as noise; a wall of 50 settling into
+              // focus reads as a contact sheet being laid down. Column index
+              // gives the left→right sweep inside each row.
+              <AnimateIn
+                key={src}
+                variant="scaleIn"
+                delay={(i % 3) * 0.07}
+                className={`${tileSpan[size]} ${mobileFull ? "max-sm:col-span-2" : ""}`}
+              >
+                {drifts ? (
+                  <Parallax amount={10}>{tile}</Parallax>
+                ) : (
+                  tile
+                )}
               </AnimateIn>
             );
           })}

@@ -1,17 +1,104 @@
 "use client";
 
+import { useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "framer-motion";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { CountUp } from "@/components/shared/CountUp";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { Plate } from "@/components/shared/Plate";
+import { REVEAL_EASE } from "@/lib/animations";
 import { projects } from "@/data/portfolio";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
+import { cn } from "@/lib/utils";
 import type { GalleryBlock, PortfolioProject } from "@/types";
 
 const pad = (n: number) => String(n).padStart(2, "0");
+
+/* ─── Parallax frame ──────────────────────────────────────────────────────
+ * The plate is a fixed window; the image drifts inside it as the plate
+ * crosses the viewport. The drift is ±3% of frame height against a 1.08
+ * overscale (4% bleed per edge), so the frame can never reveal an empty
+ * corner. Only the extra wrapper moves — the imagePosition wrapper/image
+ * layers underneath are untouched. */
+function ParallaxFrame({
+  className,
+  amount = 3,
+  children,
+}: {
+  className?: string;
+  amount?: number;
+  children: React.ReactNode;
+}) {
+  const ref = useRef<HTMLDivElement>(null);
+  const prefersReducedMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const y = useTransform(
+    scrollYProgress,
+    [0, 1],
+    [`${amount}%`, `${-amount}%`],
+  );
+
+  return (
+    <div ref={ref} className={cn("relative w-full overflow-hidden", className)}>
+      {prefersReducedMotion ? (
+        <div className="absolute inset-0">{children}</div>
+      ) : (
+        <motion.div
+          style={{ y, scale: 1.08 }}
+          className="absolute inset-0 will-change-transform"
+        >
+          {children}
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+/* Hairline that draws itself left→right as a metric enters — the rule above
+ * each number is the reveal, so the figure feels underwritten rather than
+ * just faded in. scaleX only.
+ *
+ * The OUTER span carries whileInView and the INNER one does the scaling, for
+ * the same reason RevealText splits: a scaleX(0) element has a zero-area
+ * client rect and never reports an intersection, so observing it directly
+ * would leave the first rule permanently undrawn. */
+function DrawRule({ delay = 0 }: { delay?: number }) {
+  const prefersReducedMotion = useReducedMotion();
+  if (prefersReducedMotion) {
+    return <span aria-hidden className="block h-px w-full bg-border" />;
+  }
+  return (
+    <motion.span
+      aria-hidden
+      className="block h-px w-full"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+    >
+      <motion.span
+        className="block h-px w-full origin-left bg-border"
+        variants={{
+          hidden: { scaleX: 0 },
+          visible: {
+            scaleX: 1,
+            transition: { duration: 0.85, ease: REVEAL_EASE, delay },
+          },
+        }}
+      />
+    </motion.span>
+  );
+}
 
 export function CaseStudyContent({ project }: { project: PortfolioProject }) {
   const currentIndex = projects.findIndex((p) => p.slug === project.slug);
@@ -108,7 +195,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
       <section className="mx-auto w-full max-w-[1600px] px-6 md:px-10 mb-14 md:mb-28">
         <AnimateIn variant="scaleIn" delay={0.1}>
           <Plate caption={project.slug} fig="01">
-            <div className="relative aspect-[16/10] md:aspect-[2.2/1] w-full overflow-hidden">
+            <ParallaxFrame className="aspect-[16/10] md:aspect-[2.2/1]">
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(project.image)}
@@ -123,7 +210,7 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
                   style={getImageStyle(project.image)}
                 />
               </div>
-            </div>
+            </ParallaxFrame>
           </Plate>
         </AnimateIn>
       </section>
@@ -144,13 +231,16 @@ export function CaseStudyContent({ project }: { project: PortfolioProject }) {
               href={`/portfolio/${nextProject.slug}`}
               className="group flex flex-col items-start gap-3 md:flex-row md:items-center md:gap-10 border-y border-border py-7 md:py-8"
             >
-              <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap lowercase">
+              {/* Ghost rail hover choreography — the index nudges first, the
+               * title inks in and slides, the plate lands last (60ms later)
+               * unfolding from 0.9/x8. Reads as one gesture with a tail. */}
+              <span className="text-xs font-medium tabular-nums text-muted-foreground whitespace-nowrap lowercase transition-[color,transform] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:text-(--accent-brand) group-hover:translate-x-1 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">
                 NEXT / {pad(nextIndex + 1)}
               </span>
-              <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 max-md:text-foreground group-hover:text-foreground transition-all duration-300 group-hover:translate-x-1">
+              <h3 className="flex-1 text-[clamp(1.75rem,3.5vw,3rem)] font-medium leading-[1.1] tracking-[-0.025em] text-foreground/20 max-md:text-foreground group-hover:text-foreground transition-[color,transform] duration-[450ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:translate-x-2 motion-reduce:transition-none motion-reduce:group-hover:translate-x-0">
                 {nextProject.title}
               </h3>
-              <div className="hidden md:block w-[200px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <div className="hidden md:block w-[200px] shrink-0 aspect-[4/3] rounded-[14px] overflow-hidden opacity-0 translate-x-2 scale-90 group-hover:opacity-100 group-hover:translate-x-0 group-hover:scale-100 transition-[opacity,transform] duration-[550ms] delay-[60ms] ease-[cubic-bezier(0.22,1,0.36,1)] will-change-transform motion-reduce:transition-none motion-reduce:translate-x-0 motion-reduce:scale-100">
                 <div
                   className="relative w-full h-full"
                   style={getWrapperStyle(nextProject.image)}
@@ -254,16 +344,19 @@ function GalleryStyleBody({ project }: { project: PortfolioProject }) {
             </AnimateIn>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-x-6 gap-y-8 md:gap-y-10">
               {project.metrics.map((metric, i) => (
-                <AnimateIn key={metric.label} delay={i * 0.08}>
-                  <div className="border-t border-border pt-6 md:pt-8">
-                    <p className="text-[clamp(2.75rem,4.5vw,4rem)] font-medium leading-none tracking-[-0.03em] tabular-nums text-foreground mb-4 break-words">
-                      <CountUp value={metric.value} />
-                    </p>
-                    <p className="text-caption text-muted-foreground">
-                      {metric.label}
-                    </p>
-                  </div>
-                </AnimateIn>
+                <div key={metric.label}>
+                  <DrawRule delay={i * 0.12} />
+                  <AnimateIn delay={0.12 + i * 0.12}>
+                    <div className="pt-6 md:pt-8">
+                      <p className="text-[clamp(2.75rem,4.5vw,4rem)] font-medium leading-none tracking-[-0.03em] tabular-nums text-foreground mb-4 break-words">
+                        <CountUp value={metric.value} duration={1.7} />
+                      </p>
+                      <p className="text-caption text-muted-foreground">
+                        {metric.label}
+                      </p>
+                    </div>
+                  </AnimateIn>
+                </div>
               ))}
             </div>
           </div>
@@ -368,7 +461,7 @@ function GalleryBlockRenderer({
       <AnimateIn variant="fadeUp" delay={Math.min(index * 0.04, 0.2)}>
         <div className="flex flex-col">
           <Plate>
-            <div className="relative aspect-[16/10] w-full overflow-hidden">
+            <ParallaxFrame className="aspect-[16/10]" amount={3.2}>
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(block.image)}
@@ -382,7 +475,7 @@ function GalleryBlockRenderer({
                   style={getImageStyle(block.image)}
                 />
               </div>
-            </div>
+            </ParallaxFrame>
           </Plate>
           <FigCaption caption={block.caption} slug={slug} fig={fig} />
         </div>
@@ -396,10 +489,13 @@ function GalleryBlockRenderer({
         <div className="flex flex-col">
           <Plate>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-1.5">
+              {/* Paired plates drift by slightly different amounts so the
+               * two-up reads as two panes of glass, not one flat sheet. */}
               {block.images.map((img, i) => (
-                <div
+                <ParallaxFrame
                   key={`${img.src}-${i}`}
-                  className="relative aspect-[4/3] w-full overflow-hidden"
+                  className="aspect-[4/3]"
+                  amount={i % 2 === 0 ? 2.4 : 3.6}
                 >
                   <div
                     className="absolute inset-0"
@@ -414,7 +510,7 @@ function GalleryBlockRenderer({
                       style={getImageStyle(img.src)}
                     />
                   </div>
-                </div>
+                </ParallaxFrame>
               ))}
             </div>
           </Plate>
@@ -435,7 +531,7 @@ function GalleryBlockRenderer({
       >
         <div className="md:col-span-7">
           <Plate caption={slug} fig={fig}>
-            <div className="relative aspect-[4/3] w-full overflow-hidden">
+            <ParallaxFrame className="aspect-[4/3]" amount={3.2}>
               <div
                 className="absolute inset-0"
                 style={getWrapperStyle(block.image)}
@@ -449,7 +545,7 @@ function GalleryBlockRenderer({
                   style={getImageStyle(block.image)}
                 />
               </div>
-            </div>
+            </ParallaxFrame>
           </Plate>
         </div>
         <div className="md:col-span-5">

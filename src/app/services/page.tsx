@@ -32,16 +32,18 @@ export default function ServicesPage() {
             delay={services.length * 0.08}
             className="h-full"
           >
+            {/* Same hover grammar as ServiceCard so the sixth tile belongs to
+              * the set — lift, icon rise, index dims. */}
             <Link
               href="/strategy-call"
-              className="card-elevated group flex h-full flex-col"
+              className="card-elevated group flex h-full flex-col transition-[background-color,transform] duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
             >
               <div className="mb-6 flex items-start justify-between">
                 <Calendar
-                  className="h-5 w-5 text-(--accent-brand)"
+                  className="h-5 w-5 text-(--accent-brand) transition-transform duration-300 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:-translate-y-0.5 motion-reduce:transition-none motion-reduce:group-hover:translate-y-0"
                   strokeWidth={1.5}
                 />
-                <span className="text-xs tabular-nums text-muted-foreground/80">
+                <span className="text-xs tabular-nums text-muted-foreground/80 transition-opacity duration-300 group-hover:opacity-50 motion-reduce:transition-none">
                   {String(services.length + 1).padStart(2, "0")}
                 </span>
               </div>

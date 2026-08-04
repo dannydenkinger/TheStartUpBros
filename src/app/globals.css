@@ -687,6 +687,39 @@ a:hover > .media-zoom > * {
   animation: marquee-reverse var(--duration, 40s) linear infinite;
 }
 
+/* Rail for the shared <Marquee> component. Direction and speed arrive as
+ * custom properties so a single global rule serves every instance — the
+ * component used to inject its own <style> block per mount, which meant N
+ * copies of the same global selector and only the last one winning. The
+ * keyframes are the four defined above; the component's private
+ * scroll/scroll-y duplicates are gone. */
+.marquee-scroller {
+  display: flex;
+  animation-name: var(--marquee-name, marquee);
+  animation-duration: var(--marquee-duration, 20s);
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.marquee-scroller.paused {
+  animation-play-state: paused;
+}
+
+/* Marquees are decorative perpetual motion — the one thing reduced-motion
+ * users most need switched off. Belt-and-braces alongside the JS gates, so a
+ * new marquee can never ship without a guard. */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-scroller,
+  .animate-marquee,
+  .animate-marquee-reverse,
+  .animate-marquee-up,
+  .animate-marquee-down,
+  .animate-marquee-left,
+  .animate-marquee-right {
+    animation: none !important;
+  }
+}
+
 /* Hero gradient-ribbon drift — 12s, alternate, reduced-motion honored in JS too */
 @keyframes hero-float {
   0% {

@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { REVEAL_EASE } from "@/lib/animations";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 
@@ -96,13 +98,17 @@ function FAQItem({
   answer,
   isOpen,
   onToggle,
+  delay,
 }: {
   question: string;
   answer: string;
   isOpen: boolean;
   onToggle: () => void;
+  delay: number;
 }) {
-  return (
+  const prefersReducedMotion = useReducedMotion();
+
+  const body = (
     <div className="rounded-xl bg-card shadow-none">
       <button
         onClick={onToggle}
@@ -114,28 +120,57 @@ function FAQItem({
         <span
           aria-hidden
           className={cn(
-            "plus-btn transition-transform duration-300",
+            "plus-btn",
+            !prefersReducedMotion &&
+              "transition-[transform,background-color] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
             isOpen && "rotate-45",
           )}
         >
           +
         </span>
       </button>
+      {/* Answer reveal stays on grid-rows (the only technique that animates to
+       * intrinsic height without a measurement pass); easing is the house
+       * REVEAL_EASE so it decelerates like everything else on the page. The
+       * copy itself rides in on a transform, which is what gives the reveal
+       * its weight — the row alone reads mechanical. */}
       <div
         className={cn(
-          "grid transition-all duration-300 ease-in-out",
+          "grid motion-reduce:transition-none",
+          "transition-[grid-template-rows,opacity] duration-[420ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
           isOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0",
         )}
       >
         <div className="overflow-hidden">
           <div className="mx-6 border-t border-border">
-            <p className="max-w-[560px] pt-4 pb-5 text-sm leading-relaxed text-muted-foreground">
+            <p
+              className={cn(
+                "max-w-[560px] pt-4 pb-5 text-sm leading-relaxed text-muted-foreground",
+                !prefersReducedMotion &&
+                  "transition-transform duration-[520ms] ease-[cubic-bezier(0.22,1,0.36,1)]",
+                !prefersReducedMotion &&
+                  (isOpen ? "translate-y-0" : "-translate-y-1.5"),
+              )}
+            >
               {answer}
             </p>
           </div>
         </div>
       </div>
     </div>
+  );
+
+  if (prefersReducedMotion) return body;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.6, ease: REVEAL_EASE, delay }}
+    >
+      {body}
+    </motion.div>
   );
 }
 
@@ -173,6 +208,13 @@ export function FAQ({ index = "04" }: { index?: string }) {
                 answer={faq.answer}
                 isOpen={openIndex === i}
                 onToggle={() => setOpenIndex(openIndex === i ? null : i)}
+                /* First screenful cascades; anything revealed by "show all"
+                 * lands almost immediately — the user asked for it. */
+                delay={
+                  i < VISIBLE_COUNT
+                    ? i * 0.05
+                    : Math.min(i - VISIBLE_COUNT, 4) * 0.03
+                }
               />
             ))}
 

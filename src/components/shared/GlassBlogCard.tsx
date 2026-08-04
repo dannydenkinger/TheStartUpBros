@@ -1,7 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { REVEAL_EASE } from "@/lib/animations";
 
 interface GlassBlogCardProps {
   title: string;
@@ -62,13 +64,36 @@ function CardMedia({
         fill ? "aspect-[16/9] lg:aspect-auto lg:h-full" : "aspect-[16/9]"
       )}
     >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={image}
-        alt={title}
-        className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-      />
+      {/* Cover reveal — the crop settles out of a 1.06 overscale as the card
+       * enters, so the image feels developed rather than pasted. Lives on a
+       * wrapper so the hover zoom on the <img> composes instead of fighting. */}
+      <MediaReveal>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={title}
+          className="h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+        />
+      </MediaReveal>
     </div>
+  );
+}
+
+function MediaReveal({ children }: { children: React.ReactNode }) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) return <div className="h-full w-full">{children}</div>;
+
+  return (
+    <motion.div
+      className="h-full w-full will-change-transform"
+      initial={{ scale: 1.06, opacity: 0 }}
+      whileInView={{ scale: 1, opacity: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.9, ease: REVEAL_EASE }}
+    >
+      {children}
+    </motion.div>
   );
 }
 

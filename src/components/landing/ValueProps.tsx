@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import type { LucideIcon } from "lucide-react";
 import {
   Globe,
@@ -12,7 +13,10 @@ import {
   Users,
   Megaphone,
   Lightbulb,
+  ArrowUpRight,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { REVEAL_EASE } from "@/lib/animations";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { CTAButton } from "@/components/shared/CTAButton";
 import { SectionHeader } from "@/components/shared/SectionHeader";
@@ -90,6 +94,39 @@ const services: ServiceCell[] = [
   },
 ];
 
+/* Grid-aware reveal — each row wipes in left→right by column, so the 3×3
+ * grid assembles as a wave instead of nine simultaneous fades. Each card
+ * carries its own viewport trigger, so a row fires as that row arrives. */
+function CardReveal({
+  children,
+  column,
+}: {
+  children: React.ReactNode;
+  column: number;
+}) {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return <div className="h-full">{children}</div>;
+  }
+
+  return (
+    <motion.div
+      className="h-full"
+      initial={{ opacity: 0, y: 30, scale: 0.985 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{
+        duration: 0.75,
+        ease: REVEAL_EASE,
+        delay: column * 0.09,
+      }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
 function ServiceCard({
   title,
   description,
@@ -97,13 +134,50 @@ function ServiceCard({
   image,
   index,
 }: ServiceCell & { index: string }) {
+  const prefersReducedMotion = useReducedMotion();
+  /* Transform-driven hover has to be gated in JS — a `motion-reduce:` utility
+   * can't cancel a `translate` utility (different CSS properties). */
+  const glide = prefersReducedMotion
+    ? ""
+    : "transition-transform duration-[520ms] ease-[cubic-bezier(0.44,0,0.56,1)]";
+
   return (
     <div className="card-elevated h-full flex flex-col group">
       <div className="flex items-center justify-between mb-6">
-        <Icon className="w-5 h-5 text-foreground" strokeWidth={1.5} />
-        <span className="text-[13px] font-medium tabular-nums text-muted-foreground/70">
-          {index}
+        <Icon
+          className={cn(
+            "w-5 h-5 text-foreground",
+            glide,
+            !prefersReducedMotion && "group-hover:-translate-y-0.5",
+          )}
+          strokeWidth={1.5}
+        />
+        {/* Index → arrow swap: the number lifts out of a clip and the accent
+         * arrow takes its place, so hover states the card is a door. */}
+        <span
+          aria-hidden
+          className="relative grid h-5 w-5 shrink-0 items-center justify-items-end overflow-hidden"
+        >
+          <span
+            className={cn(
+              "col-start-1 row-start-1 text-[13px] font-medium tabular-nums leading-5 text-muted-foreground/70",
+              glide,
+              !prefersReducedMotion && "group-hover:-translate-y-[130%]",
+            )}
+          >
+            {index}
+          </span>
+          {!prefersReducedMotion && (
+            <ArrowUpRight
+              className={cn(
+                "col-start-1 row-start-1 size-[18px] translate-y-[130%] text-(--accent-brand) group-hover:translate-y-0",
+                glide,
+              )}
+              strokeWidth={1.75}
+            />
+          )}
         </span>
+        <span className="sr-only">{index}</span>
       </div>
 
       <div className="media-zoom relative aspect-[16/10] rounded-[12px] overflow-hidden bg-secondary mb-6">
@@ -144,16 +218,12 @@ export function ValueProps() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
           {services.map((service, i) => (
-            <AnimateIn
-              key={service.title}
-              delay={(i % 3) * 0.06}
-              className="h-full"
-            >
+            <CardReveal key={service.title} column={i % 3}>
               <ServiceCard
                 {...service}
                 index={String(i + 1).padStart(2, "0")}
               />
-            </AnimateIn>
+            </CardReveal>
           ))}
         </div>
 

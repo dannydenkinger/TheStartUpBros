@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { MagneticButton } from "@/components/shared/MagneticButton";
 import { CTAButton } from "@/components/shared/CTAButton";
+import { REVEAL_EASE } from "@/lib/animations";
 import {
   ShieldCheck,
   Brain,
@@ -102,6 +103,44 @@ function getTier(days: number): { label: string; description: string } {
   };
 }
 
+/* Tweens the running total from wherever it currently sits to the new value
+ * instead of restarting at zero — the point of the number is the delta a
+ * feature adds, so the eye has to be able to follow it. rAF + easeOutCubic,
+ * 0.5s; under reduced motion the value just updates. */
+function TweenNumber({ value }: { value: number }) {
+  const prefersReducedMotion = useReducedMotion();
+  const [display, setDisplay] = useState(value);
+  const fromRef = useRef(value);
+
+  useEffect(() => {
+    if (prefersReducedMotion) {
+      fromRef.current = value;
+      setDisplay(value);
+      return;
+    }
+    const from = fromRef.current;
+    if (from === value) return;
+
+    const start = performance.now();
+    const duration = 500;
+    let rafId: number;
+
+    const tick = (now: number) => {
+      const t = Math.min(1, (now - start) / duration);
+      const eased = 1 - Math.pow(1 - t, 3);
+      const next = Math.round(from + (value - from) * eased);
+      fromRef.current = next;
+      setDisplay(next);
+      if (t < 1) rafId = requestAnimationFrame(tick);
+      else fromRef.current = value;
+    };
+    rafId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(rafId);
+  }, [value, prefersReducedMotion]);
+
+  return <>{display}</>;
+}
+
 export function SaaSCostCalculator() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
   const prefersReducedMotion = useReducedMotion();
@@ -152,11 +191,20 @@ export function SaaSCostCalculator() {
                 const Icon = feature.icon;
 
                 return (
-                  <button
+                  /* The card is the switch, so it has to feel like one:
+                   * press dips it to 0.985, release springs it back, the ring
+                   * fades up (never a width/box-shadow tween on scroll — this
+                   * only ever runs on click), and the status dot pops from
+                   * scale 0 with a short spring so the "on" state lands with
+                   * a tick rather than a dissolve. */
+                  <motion.button
                     key={feature.id}
                     onClick={() => toggle(feature.id)}
                     aria-pressed={isOn}
-                    className={`w-full h-full text-left rounded-[20px] p-6 transition-all duration-300 cursor-pointer select-none hover:-translate-y-0.5 ${
+                    whileHover={prefersReducedMotion ? undefined : { y: -2 }}
+                    whileTap={prefersReducedMotion ? undefined : { scale: 0.985 }}
+                    transition={{ duration: 0.25, ease: [0.44, 0, 0.56, 1] }}
+                    className={`relative w-full h-full text-left rounded-[20px] p-6 transition-[background-color,box-shadow] duration-300 cursor-pointer select-none ${
                       isOn
                         ? "bg-white dark:bg-[#1c1c1c] ring-2 ring-(--accent-brand)"
                         : "bg-card hover:bg-(--surface-card-hover)"
@@ -167,10 +215,28 @@ export function SaaSCostCalculator() {
                       <span className="flex items-center gap-2">
                         <span
                           aria-hidden
-                          className={`size-1.5 shrink-0 rounded-full ${
-                            isOn ? "bg-(--accent-brand)" : "bg-foreground/15"
-                          }`}
-                        />
+                          className="relative grid size-1.5 shrink-0 place-items-center"
+                        >
+                          <span className="absolute inset-0 rounded-full bg-foreground/15" />
+                          <motion.span
+                            className="absolute inset-0 rounded-full bg-(--accent-brand)"
+                            initial={false}
+                            animate={{
+                              scale: isOn ? 1 : 0,
+                              opacity: isOn ? 1 : 0,
+                            }}
+                            transition={
+                              prefersReducedMotion
+                                ? { duration: 0 }
+                                : {
+                                    type: "spring",
+                                    stiffness: 620,
+                                    damping: 26,
+                                    mass: 0.5,
+                                  }
+                            }
+                          />
+                        </span>
                         <span className="text-xs tabular-nums text-muted-foreground">
                           +{feature.days} days
                         </span>
@@ -182,7 +248,7 @@ export function SaaSCostCalculator() {
                     <p className="text-[12px] text-muted-foreground leading-relaxed">
                       {feature.description}
                     </p>
-                  </button>
+                  </motion.button>
                 );
               })}
             </div>
@@ -197,7 +263,7 @@ export function SaaSCostCalculator() {
                   initial: { opacity: 0, y: 16 },
                   animate: { opacity: 1, y: 0 },
                   exit: { opacity: 0, y: -8 },
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  transition: { duration: 0.3, ease: REVEAL_EASE },
                 })}
                 className="card-elevated p-6 sm:p-8 md:p-10"
               >
@@ -226,7 +292,7 @@ export function SaaSCostCalculator() {
                   initial: { opacity: 0, y: 16 },
                   animate: { opacity: 1, y: 0 },
                   exit: { opacity: 0, y: -8 },
-                  transition: { duration: 0.3, ease: [0.16, 1, 0.3, 1] },
+                  transition: { duration: 0.3, ease: REVEAL_EASE },
                 })}
                 className="card-elevated p-6 sm:p-8 md:p-10"
               >
@@ -235,24 +301,39 @@ export function SaaSCostCalculator() {
                     <p className="text-micro-label text-muted-foreground mb-3">
                       Estimated Scope
                     </p>
+                    {/* Line items slide in from the left and collapse out;
+                      * `layout` keeps the survivors gliding to their new rows
+                      * (transform only) so the ledger never jump-cuts. */}
                     <div>
-                      {selectedFeatures.map((f) => (
-                        <div
-                          key={f.id}
-                          className="flex items-baseline justify-between gap-6 py-3 border-b border-border/60"
-                        >
-                          <span className="text-sm text-muted-foreground">
-                            {f.label}
-                          </span>
-                          <span className="text-[15px] font-medium text-foreground tabular-nums">
-                            {f.days} days
-                          </span>
-                        </div>
-                      ))}
+                      <AnimatePresence initial={false} mode="popLayout">
+                        {selectedFeatures.map((f) => (
+                          <motion.div
+                            key={f.id}
+                            {...(!prefersReducedMotion && {
+                              layout: true,
+                              initial: { opacity: 0, x: -12 },
+                              animate: { opacity: 1, x: 0 },
+                              exit: { opacity: 0, x: -12 },
+                              transition: {
+                                duration: 0.28,
+                                ease: [0.22, 1, 0.36, 1],
+                              },
+                            })}
+                            className="flex items-baseline justify-between gap-6 py-3 border-b border-border/60"
+                          >
+                            <span className="text-sm text-muted-foreground">
+                              {f.label}
+                            </span>
+                            <span className="text-[15px] font-medium text-foreground tabular-nums">
+                              {f.days} days
+                            </span>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
                     </div>
                     <div className="flex items-baseline gap-3 pt-5">
                       <span className="text-[4rem] font-medium leading-none tracking-[-0.02em] tabular-nums text-foreground">
-                        {totalDays}
+                        <TweenNumber value={totalDays} />
                       </span>
                       <span className="text-xs text-muted-foreground">
                         dev days
@@ -264,16 +345,47 @@ export function SaaSCostCalculator() {
                     <p className="text-micro-label text-muted-foreground mb-3">
                       Complexity Tier
                     </p>
+                    {/* Crossing a tier boundary is the one moment the tool
+                      * changes its verdict, so the word rises in behind a mask
+                      * instead of just re-rendering.
+                      *
+                      * Keyed remount rather than AnimatePresence on purpose:
+                      * an exit animation leaves the mask empty for a frame,
+                      * the inline-block collapses, and the blurple dot next to
+                      * it — baseline-aligned — visibly drops. */}
                     <p className="flex items-baseline gap-3 text-[2.5rem] font-medium leading-none tracking-[-0.02em] text-foreground mb-3">
-                      {tier.label}
+                      <span className="inline-block overflow-hidden pb-1 -mb-1">
+                        <motion.span
+                          key={tier.label}
+                          className="inline-block"
+                          {...(!prefersReducedMotion && {
+                            initial: { y: "105%" },
+                            animate: { y: "0%" },
+                            transition: {
+                              duration: 0.42,
+                              ease: [0.22, 1, 0.36, 1],
+                            },
+                          })}
+                        >
+                          {tier.label}
+                        </motion.span>
+                      </span>
                       <span
                         aria-hidden
                         className="size-2.5 shrink-0 rounded-full bg-(--accent-brand)"
                       />
                     </p>
-                    <p className="text-[14px] text-muted-foreground max-w-[300px]">
+                    <motion.p
+                      key={tier.label}
+                      className="text-[14px] text-muted-foreground max-w-[300px]"
+                      {...(!prefersReducedMotion && {
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { duration: 0.3, delay: 0.08 },
+                      })}
+                    >
                       {tier.description}
-                    </p>
+                    </motion.p>
                   </div>
                 </div>
 

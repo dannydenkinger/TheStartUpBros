@@ -47,7 +47,7 @@ function Tile({ src }: { src: string }) {
           fill
           quality={90}
           sizes="(max-width: 768px) 260px, 400px"
-          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
+          className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.44,0,0.56,1)] group-hover:scale-[1.035] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
           style={getImageStyle(src)}
         />
       </div>
@@ -66,8 +66,10 @@ function MarqueeRow({
 }) {
   return (
     <div className="relative flex w-full overflow-hidden" style={edgeFadeMask}>
+      {/* Parks on hover so the tile you're looking at — and its slow zoom —
+       * holds still instead of sliding away mid-gesture. */}
       <div
-        className={`flex w-max [&>*]:mr-3 md:[&>*]:mr-4 ${
+        className={`flex w-max [&>*]:mr-3 md:[&>*]:mr-4 hover:[animation-play-state:paused] ${
           reverse ? "animate-marquee-reverse" : "animate-marquee"
         }`}
         style={{ ["--duration" as string]: `${duration}s` }}

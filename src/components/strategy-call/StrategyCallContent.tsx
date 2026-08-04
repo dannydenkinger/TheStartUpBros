@@ -2,10 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Check } from "lucide-react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { StatusStrip } from "@/components/shared/StatusStrip";
+import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
 
 const budgetOptions = [
   "Under $5,000",
@@ -29,9 +30,66 @@ const stats = [
   { label: "Ship", value: "MVP in 2–4 weeks" },
 ];
 
+/* The confirmation is the payoff for a five-field form, so it gets the one
+ * genuinely choreographed beat on the page: a blurple ring expands and fades
+ * out of the badge, the badge springs up from nothing, the tick draws itself,
+ * and the two lines of copy rise behind it. ~0.9s end to end, all transform /
+ * opacity except the tick's stroke-dashoffset (a one-shot, not a scroll). */
+function SuccessMark() {
+  const prefersReducedMotion = useReducedMotion();
+
+  if (prefersReducedMotion) {
+    return (
+      <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <path
+            d="M20 6 9 17l-5-5"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </div>
+    );
+  }
+
+  return (
+    <div className="relative mx-auto mb-4 size-10">
+      <motion.span
+        aria-hidden
+        className="absolute inset-0 rounded-full ring-2 ring-(--accent-brand)"
+        initial={{ scale: 0.6, opacity: 0.55 }}
+        animate={{ scale: 2.1, opacity: 0 }}
+        transition={{ duration: 0.85, ease: [0.22, 1, 0.36, 1], delay: 0.12 }}
+      />
+      <motion.div
+        className="relative flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)"
+        initial={{ scale: 0 }}
+        animate={{ scale: 1 }}
+        transition={{ type: "spring", stiffness: 480, damping: 22, mass: 0.7 }}
+      >
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden>
+          <motion.path
+            d="M20 6 9 17l-5-5"
+            stroke="currentColor"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            initial={{ pathLength: 0 }}
+            animate={{ pathLength: 1 }}
+            transition={{ duration: 0.34, ease: "easeOut", delay: 0.18 }}
+          />
+        </svg>
+      </motion.div>
+    </div>
+  );
+}
+
 export function StrategyCallContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,10 +119,16 @@ export function StrategyCallContent() {
     setSubmitted(true);
   };
 
+  /* Focus is a state change, not a scroll frame, so a ring tween is safe —
+   * 250ms on the house reveal curve, plus a hairline lift so the active field
+   * physically comes forward out of the card. */
   const inputStyles =
-    "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200";
+    "w-full h-12 rounded-xl border border-input bg-(--surface-input) px-4 text-base text-foreground placeholder:text-muted-foreground/60 focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) focus:-translate-y-px transition-[color,background-color,border-color,box-shadow,transform] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:focus:translate-y-0";
 
-  const labelStyles = "block text-caption font-medium mb-2";
+  /* Label inks from muted to full foreground while its field is focused —
+   * the quietest possible "you are here". */
+  const labelStyles =
+    "block text-caption font-medium mb-2 transition-colors duration-[250ms] group-focus-within:text-foreground motion-reduce:transition-none";
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -133,27 +197,80 @@ export function StrategyCallContent() {
                     We&apos;ll reply within 24 hours to schedule.
                   </p>
 
+                  {/* mode="wait" — the form clears out before the
+                    * confirmation lands, so the two never overlap inside a
+                    * card whose height is changing. */}
+                  <AnimatePresence mode="wait" initial={false}>
                   {submitted ? (
-                    <div className="py-14 text-center">
-                      <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
-                        <Check className="w-5 h-5" strokeWidth={2.5} />
-                      </div>
-                      <p className="text-[18px] font-semibold text-foreground">
-                        Thank you!
-                      </p>
-                      <p className="text-[14px] text-muted-foreground mt-1">
-                        We&apos;ll be in touch within 24 hours.
-                      </p>
-                      <Link
-                        href="/"
-                        className="link-sweep inline-block mt-6 text-[13px] font-medium text-foreground"
+                    <motion.div
+                      key="done"
+                      className="py-14 text-center"
+                      {...(!prefersReducedMotion && {
+                        initial: { opacity: 0 },
+                        animate: { opacity: 1 },
+                        transition: { duration: 0.2 },
+                      })}
+                    >
+                      <SuccessMark />
+                      <motion.p
+                        className="text-[18px] font-semibold text-foreground"
+                        {...(!prefersReducedMotion && {
+                          initial: { opacity: 0, y: 10 },
+                          animate: { opacity: 1, y: 0 },
+                          transition: {
+                            duration: 0.5,
+                            ease: REVEAL_EASE,
+                            delay: 0.22,
+                          },
+                        })}
                       >
-                        Back to Homepage
-                      </Link>
-                    </div>
+                        Thank you!
+                      </motion.p>
+                      <motion.p
+                        className="text-[14px] text-muted-foreground mt-1"
+                        {...(!prefersReducedMotion && {
+                          initial: { opacity: 0, y: 10 },
+                          animate: { opacity: 1, y: 0 },
+                          transition: {
+                            duration: 0.5,
+                            ease: REVEAL_EASE,
+                            delay: 0.3,
+                          },
+                        })}
+                      >
+                        We&apos;ll be in touch within 24 hours.
+                      </motion.p>
+                      <motion.span
+                        className="inline-block"
+                        {...(!prefersReducedMotion && {
+                          initial: { opacity: 0, y: 10 },
+                          animate: { opacity: 1, y: 0 },
+                          transition: {
+                            duration: 0.5,
+                            ease: REVEAL_EASE,
+                            delay: 0.38,
+                          },
+                        })}
+                      >
+                        <Link
+                          href="/"
+                          className="link-sweep inline-block mt-6 text-[13px] font-medium text-foreground"
+                        >
+                          Back to Homepage
+                        </Link>
+                      </motion.span>
+                    </motion.div>
                   ) : (
-                    <form onSubmit={handleSubmit} className="space-y-5">
-                      <div>
+                    <motion.form
+                      key="form"
+                      onSubmit={handleSubmit}
+                      className="space-y-5"
+                      {...(!prefersReducedMotion && {
+                        exit: { opacity: 0, y: -8 },
+                        transition: { duration: 0.22, ease: EXIT_EASE },
+                      })}
+                    >
+                      <div className="group">
                         <label className={labelStyles}>
                           Name
                           <span className="text-(--accent-brand) ml-1">*</span>
@@ -167,7 +284,7 @@ export function StrategyCallContent() {
                         />
                       </div>
 
-                      <div>
+                      <div className="group">
                         <label className={labelStyles}>
                           Email
                           <span className="text-(--accent-brand) ml-1">*</span>
@@ -181,7 +298,7 @@ export function StrategyCallContent() {
                         />
                       </div>
 
-                      <div>
+                      <div className="group">
                         <label className={labelStyles}>
                           Company
                         </label>
@@ -193,7 +310,7 @@ export function StrategyCallContent() {
                         />
                       </div>
 
-                      <div>
+                      <div className="group">
                         <label className={labelStyles}>
                           Budget
                           <span className="text-(--accent-brand) ml-1">*</span>
@@ -215,7 +332,7 @@ export function StrategyCallContent() {
                         </select>
                       </div>
 
-                      <div>
+                      <div className="group">
                         <label className={labelStyles}>
                           Tell us about your project
                           <span className="text-(--accent-brand) ml-1">*</span>
@@ -225,53 +342,84 @@ export function StrategyCallContent() {
                           required
                           rows={4}
                           placeholder="What are you building? What's your timeline?"
-                          className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) transition-colors duration-200"
+                          className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) focus:-translate-y-px transition-[color,background-color,border-color,box-shadow,transform] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:focus:translate-y-0"
                         />
                       </div>
 
+                      {/* The label crossfades on a mask rather than swapping,
+                        * so the button never blinks between states. */}
                       <button
                         type="submit"
                         disabled={isSubmitting}
                         className="btn-pill btn-pill-primary w-full sm:w-fit group disabled:opacity-60 disabled:cursor-not-allowed"
                       >
-                        {isSubmitting ? (
-                          <span className="flex items-center justify-center gap-2">
-                            <svg
-                              className="animate-spin w-4 h-4"
-                              viewBox="0 0 24 24"
-                            >
-                              <circle
-                                className="opacity-25"
-                                cx="12"
-                                cy="12"
-                                r="10"
-                                stroke="currentColor"
-                                strokeWidth="4"
-                                fill="none"
-                              />
-                              <path
-                                className="opacity-75"
-                                fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
-                              />
-                            </svg>
-                            Submitting...
-                          </span>
-                        ) : (
-                          <>
-                            Book Strategy Call
-                            <span aria-hidden className="btn-arrow">
-                              →
-                            </span>
-                          </>
-                        )}
+                        <span className="grid overflow-hidden [&>*]:col-start-1 [&>*]:row-start-1">
+                          <AnimatePresence mode="wait" initial={false}>
+                            {isSubmitting ? (
+                              <motion.span
+                                key="pending"
+                                className="flex items-center justify-center gap-2"
+                                {...(!prefersReducedMotion && {
+                                  initial: { opacity: 0, y: "60%" },
+                                  animate: { opacity: 1, y: "0%" },
+                                  exit: { opacity: 0, y: "-60%" },
+                                  transition: {
+                                    duration: 0.18,
+                                    ease: REVEAL_EASE,
+                                  },
+                                })}
+                              >
+                                <svg
+                                  className="animate-spin w-4 h-4"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <circle
+                                    className="opacity-25"
+                                    cx="12"
+                                    cy="12"
+                                    r="10"
+                                    stroke="currentColor"
+                                    strokeWidth="4"
+                                    fill="none"
+                                  />
+                                  <path
+                                    className="opacity-75"
+                                    fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"
+                                  />
+                                </svg>
+                                Submitting...
+                              </motion.span>
+                            ) : (
+                              <motion.span
+                                key="idle"
+                                className="flex items-center justify-center gap-2.5"
+                                {...(!prefersReducedMotion && {
+                                  initial: { opacity: 0, y: "60%" },
+                                  animate: { opacity: 1, y: "0%" },
+                                  exit: { opacity: 0, y: "-60%" },
+                                  transition: {
+                                    duration: 0.18,
+                                    ease: REVEAL_EASE,
+                                  },
+                                })}
+                              >
+                                Book Strategy Call
+                                <span aria-hidden className="btn-arrow">
+                                  →
+                                </span>
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                        </span>
                       </button>
 
                       <p className="text-caption pt-1">
                         No obligations. We&apos;ll reply within 24 hours.
                       </p>
-                    </form>
+                    </motion.form>
                   )}
+                  </AnimatePresence>
                 </div>
               </AnimateIn>
             </div>

@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { AnimateIn } from "@/components/shared/AnimateIn";
+import { FooterWordmark } from "@/components/shared/FooterWordmark";
 
 const columns = [
   {
@@ -37,59 +39,74 @@ export function Footer() {
         {/* Top zone — dot label / brand+contact / link columns */}
         <div className="grid grid-cols-12 gap-x-6 gap-y-10 md:gap-y-12 pt-14 md:pt-28 pb-12 md:pb-24">
           {/* (1) Dot label */}
-          <div className="col-span-12 lg:col-span-2">
+          <AnimateIn className="col-span-12 lg:col-span-2">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />
               <span className="lowercase">MVP STUDIO</span>
             </span>
-          </div>
+          </AnimateIn>
 
           {/* (2) Brand / contact block */}
-          <div className="col-span-12 sm:col-span-6 lg:col-span-4">
+          <AnimateIn
+            delay={0.06}
+            className="col-span-12 sm:col-span-6 lg:col-span-4"
+          >
             <p className="text-[17px] text-white">StartUpBros</p>
             <p className="mt-3 max-w-xs text-[17px] leading-[1.5] text-white">
               Full-stack development for startups. We build apps, websites, and
               software — from idea to launch.
             </p>
-          </div>
+          </AnimateIn>
 
-          {/* (3+4) Link columns */}
-          {columns.map((col) => (
-            <div key={col.title} className="col-span-6 sm:col-span-4 lg:col-span-2">
+          {/* (3+4) Link columns — each column staggers its own rows, and the
+           * columns themselves step in left-to-right. */}
+          {columns.map((col, ci) => (
+            <AnimateIn
+              key={col.title}
+              delay={0.12 + ci * 0.07}
+              className="col-span-6 sm:col-span-4 lg:col-span-2"
+            >
               <p className="mb-4 text-[17px] text-muted-foreground">
                 {col.title}
               </p>
-              <ul className="space-y-2.5">
+              <AnimateIn
+                as="ul"
+                itemAs="li"
+                stagger={0.05}
+                delay={0.06}
+                margin="-40px"
+                className="space-y-2.5"
+              >
                 {col.links.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="text-[17px] text-white hover:text-white/70 transition-colors duration-200"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-[17px] text-white hover:text-white/70 transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
                 ))}
-              </ul>
-            </div>
+              </AnimateIn>
+            </AnimateIn>
           ))}
         </div>
 
         {/* Bottom row — giant wordmark left, legal stack right */}
         <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between pt-6 md:pt-10 pb-10 md:pb-12">
-          <Link
-            href="/"
-            className="block text-[clamp(4rem,9vw,8.5rem)] max-md:text-[clamp(2.5rem,15vw,4rem)] font-semibold leading-[0.9] tracking-[-0.04em] text-white whitespace-nowrap"
+          <FooterWordmark />
+          {/* margin 0: this block never clears the last 80px of the viewport,
+           * so the default inset trigger would leave it hidden at page end. */}
+          <AnimateIn
+            delay={0.3}
+            margin="0px"
+            className="shrink-0 space-y-1 pb-2 text-xs text-muted-foreground md:text-right"
           >
-            StartUpBros<span className="text-(--accent-brand)">.</span>
-          </Link>
-          <div className="shrink-0 space-y-1 pb-2 text-xs text-muted-foreground md:text-right">
             <p>
               &copy; {new Date().getFullYear()} StartUpBros. All rights
               reserved.
             </p>
             <p className="lowercase">BUILT IN WEEKS, NOT MONTHS</p>
-          </div>
+          </AnimateIn>
         </div>
       </div>
     </footer>

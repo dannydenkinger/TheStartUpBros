@@ -7,6 +7,7 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import Link from "next/link";
 import { BlogTableOfContents } from "@/components/blog/BlogTableOfContents";
 import { BlogShareBar } from "@/components/blog/BlogShareBar";
+import { ReadingProgress } from "@/components/blog/ReadingProgress";
 import { Plate } from "@/components/shared/Plate";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { RevealText } from "@/components/shared/RevealText";
@@ -205,7 +206,9 @@ export default async function BlogPostPage({
       {/* Hero plate — full-container editorial media */}
       <div className="px-6 md:px-10 mt-10 md:mt-16">
         <div className="mx-auto max-w-[1600px]">
-          <AnimateIn variant="fadeUp" delay={0.1}>
+          {/* The hero plate scales up rather than sliding — a 21/9 slab
+            * sliding 28px under the headline fights the RevealText above it. */}
+          <AnimateIn variant="scaleIn" delay={0.1}>
             {frontmatter.image ? (
               <Plate caption={frontmatter.category || slug} fig="01">
                 <div className="aspect-[16/10] md:aspect-[21/9]">
@@ -239,7 +242,7 @@ export default async function BlogPostPage({
         <div className="mx-auto max-w-[1080px]">
           <div className="lg:flex lg:justify-between lg:gap-16">
             {/* Main content */}
-            <div className="flex-1 min-w-0 max-w-[680px]" data-blog-content>
+            <ReadingProgress className="flex-1 min-w-0 max-w-[680px]">
               {/* Mobile / tablet ToC — collapsible card (desktop keeps the rail) */}
               <details className="group lg:hidden mb-8 rounded-2xl bg-card px-5">
                 <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-2.5 [&::-webkit-details-marker]:hidden">
@@ -335,7 +338,7 @@ export default async function BlogPostPage({
                   <BlogShareBar title={frontmatter.title} />
                 </div>
               </div>
-            </div>
+            </ReadingProgress>
 
             {/* Anchored rail — ToC + share */}
             <aside className="hidden lg:block w-[240px] shrink-0">
@@ -359,21 +362,26 @@ export default async function BlogPostPage({
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
               {relatedPosts.map((related: any, index: number) => (
-                <GlassBlogCard
+                <AnimateIn
                   key={related.slug}
-                  figIndex={index + 1}
-                  title={related.title}
-                  excerpt={related.description}
-                  category={related.category}
-                  image={related.image}
-                  href={`/blog/${related.slug}`}
-                  readTime={related.readTime}
-                  date={new Date(related.date).toLocaleDateString("en-US", {
-                    year: "numeric",
-                    month: "short",
-                    day: "numeric",
-                  })}
-                />
+                  delay={index * 0.08}
+                  className="h-full"
+                >
+                  <GlassBlogCard
+                    figIndex={index + 1}
+                    title={related.title}
+                    excerpt={related.description}
+                    category={related.category}
+                    image={related.image}
+                    href={`/blog/${related.slug}`}
+                    readTime={related.readTime}
+                    date={new Date(related.date).toLocaleDateString("en-US", {
+                      year: "numeric",
+                      month: "short",
+                      day: "numeric",
+                    })}
+                  />
+                </AnimateIn>
               ))}
             </div>
           </div>
