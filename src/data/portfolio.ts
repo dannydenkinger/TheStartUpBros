@@ -371,7 +371,7 @@ export const projects: PortfolioProject[] = [
     slug: "said",
     description:
       "A secure, offline-first AI translation system for healthcare, defense, and emergency environments — real-time multilingual care without a network connection.",
-    image: "/images/portfolio/said-hero-brand.webp",
+    image: "/images/portfolio/said-card.webp",
     tags: ["AI", "Healthcare", "Defense"],
     deviceType: "macbook",
     client: "SAID Technology",
@@ -394,42 +394,60 @@ export const projects: PortfolioProject[] = [
     ],
     gallery: [
       {
-        type: "full",
-        image: "/images/portfolio/said-lineup.webp",
-        alt: "SAID Technology interface — consultation, conversation, translation detail, and security status",
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/said-app-conversation-setup.webp",
+            alt: "SAID conversation setup — assigning each speaker a language",
+          },
+          {
+            src: "/images/portfolio/said-app-live-bilingual-transcript.webp",
+            alt: "SAID live bilingual transcript with heard-text under each turn",
+          },
+        ],
+        portrait: true,
         caption:
-          "On-device translation tuned for medical scenarios — patient intake, symptoms, consent, critical care.",
-      },
-      {
-        type: "imageWithCaption",
-        image: "/images/portfolio/said-clinical.webp",
-        alt: "Clinician reviewing a SAID translation at the bedside",
-        heading: "Designed for the moment, not the demo",
-        body: "Every interaction tuned for ambulances without signal, field hospitals, and the bedside of a patient who speaks a language the clinician doesn't. Offline-first isn't a feature — it's the foundation.",
-        align: "left",
+          "Two speakers, two languages, one thread. Every turn shows the translation the other person receives and — underneath it — what the device actually heard.",
       },
       {
         type: "twoUp",
         images: [
           {
-            src: "/images/portfolio/said-translation-detail.webp",
-            alt: "Translation detail view with source and target language panels",
+            src: "/images/portfolio/said-app-shared-display.webp",
+            alt: "SAID shared display mode showing a single translated line at arm's length",
           },
           {
-            src: "/images/portfolio/said-chat-marble.webp",
-            alt: "Bilingual conversation view",
+            src: "/images/portfolio/said-app-phrase-pack-library.webp",
+            alt: "SAID phrase pack library",
           },
         ],
+        portrait: true,
         caption:
-          "Detail and conversation surfaces share one component system — consistent across hospital, field, and defense deployments.",
+          "Shared display turns the phone around — one line, set large enough to read across a bed — while phrase packs cover the sentences a clinician says every shift.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/said-security.webp",
-        alt: "Privacy-first architecture — HIPAA, GDPR, and SOC 2 posture",
-        heading: "Mission-driven, not general-purpose",
-        body: "SAID isn't a general-purpose AI tool. It's a focused system designed so language is never a barrier to care — and so patient data never leaves the device unless a clinician explicitly sends it.",
+        image: "/images/portfolio/said-app-local-ai-stack-verified.webp",
+        alt: "SAID local AI stack showing verified on-device translation engines",
+        heading: "Offline is a claim, so it is auditable",
+        body: "The Local AI Stack panel names every engine running on the device and verifies each against the app manifest before use — a dedicated Marshallese pack alongside the primary and extended coverage models. A clinician can check that no online translation API touched the conversation, rather than taking the marketing at its word.",
         align: "right",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/said-app-conversation-review-profile.webp",
+            alt: "SAID conversation review and patient profile",
+          },
+          {
+            src: "/images/portfolio/said-app-languages-and-voices.webp",
+            alt: "SAID language and voice settings",
+          },
+        ],
+        portrait: true,
+        caption:
+          "Review keeps the record of what was actually said; language and voice settings let a deployment match the population it serves.",
       },
     ],
     metrics: [
