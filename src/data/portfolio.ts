@@ -3,6 +3,177 @@ import type { PortfolioProject } from "@/types";
 // Real work from the founders — projects Anthony Denkinger has led or built.
 export const projects: PortfolioProject[] = [
   {
+    title: "EnVision — Hospital Price Leak Detector",
+    slug: "envision",
+    description:
+      "A mobile app that catches procurement price leaks before the purchase order goes out — every cart line checked against the contract a hospital already signed.",
+    image: "/images/portfolio/envision-card.webp",
+    tags: ["Mobile", "Healthcare", "Procurement"],
+    deviceType: "iphone",
+    client: "EnVision",
+    year: "2026",
+    industry: "Healthcare Procurement",
+    services: [
+      "Product Design",
+      "Mobile App Development",
+      "Brand & Identity",
+    ],
+    overview:
+      "Hospitals negotiate hard on supply contracts and then quietly overpay against them. A vendor's catalogue price drifts, a SKU gets re-listed, a rep quotes off-contract — and because nobody reconciles line by line at the moment of purchase, the difference just leaves. EnVision closes that window. It ingests the contract, reads the cart, and flags the lines where cart price and contract price disagree — with the dollar figure attached, before the order is placed rather than in an audit six months later.",
+    challenge:
+      "The leak is invisible at the only moment it can be stopped. Contract terms live in a PDF in a procurement folder; the purchase happens in a different system, often on a phone, often under time pressure. Catching a variance requires someone to remember a negotiated price for a specific SKU — which nobody does across thousands of line items. The product had to make that check effortless enough to happen every time, and clear enough that a non-specialist can act on it in seconds.",
+    solution:
+      "A phone-first tool built around a single number: what this cart could save right now. The dashboard leads with total potential savings and the count of items needing review; each flagged line shows cart price against contract price and the resulting delta, then offers three honest outcomes — update the vendor price, mark it prevented, or record that it was purchased anyway. That last option matters: it keeps the log truthful and turns the app into a record of what was actually recovered. Contract ingestion, scan history, and notifications close the loop around it.",
+    timeline: "Ongoing — shipped and in active development",
+    techStack: ["React Native", "TypeScript", "Mobile", "Contract parsing"],
+    outcomes: [
+      "Cart lines reconciled against signed contract pricing at the point of purchase",
+      "Potential savings surfaced as a single figure with per-item breakdown",
+      "Three-way resolution — price updated, saving captured, or override logged",
+      "Contract ingestion, scan history, and alerts in one phone-first flow",
+    ],
+    gallery: [
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/envision-main-dashboard.webp",
+            alt: "EnVision dashboard showing total potential savings and items to review",
+          },
+          {
+            src: "/images/portfolio/envision-results-analysis.webp",
+            alt: "EnVision review list with cart versus contract pricing",
+          },
+        ],
+        portrait: true,
+        caption:
+          "One number leads the app — what this cart could save — then every flagged line shows cart price against the contract price behind it.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/envision-item-detail.webp",
+            alt: "EnVision item detail with price breakdown",
+          },
+          {
+            src: "/images/portfolio/envision-contract-ingestion.webp",
+            alt: "EnVision contract ingestion",
+          },
+        ],
+        portrait: true,
+        caption:
+          "Item detail explains the variance; contract ingestion is what makes the comparison possible in the first place.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/envision-scan-history.webp",
+            alt: "EnVision scan history",
+          },
+          {
+            src: "/images/portfolio/envision-notifications.webp",
+            alt: "EnVision notifications",
+          },
+        ],
+        portrait: true,
+        caption:
+          "History and alerts turn one-off catches into a record of what was actually recovered.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/envision-splash.webp",
+            alt: "EnVision splash screen",
+          },
+          {
+            src: "/images/portfolio/envision-login.webp",
+            alt: "EnVision sign-in screen",
+          },
+        ],
+        portrait: true,
+        caption:
+          "The full account flow — splash, sign-in, registration, verification, and password recovery — designed alongside the product rather than bolted on.",
+      },
+    ],
+  },
+  {
+    title: "Renado Labs — Applied AI R&D Studio",
+    slug: "renado-labs",
+    description:
+      "The identity and site for a private applied-AI lab — a quiet, editorial system for a studio whose pitch is that its systems survive contact with production.",
+    image: "/images/portfolio/renado-hero.webp",
+    tags: ["Brand", "Web Design", "AI"],
+    deviceType: "macbook",
+    client: "Renado Labs",
+    year: "2026",
+    industry: "Applied AI R&D",
+    services: ["Brand & Identity", "Web Design", "Art Direction"],
+    overview:
+      "Renado Labs builds and architects AI products, rapid prototypes, and production infrastructure — first prototype through deployed system. The site had to read as a working lab rather than an agency: no stock-photo futurism, no neon, no promises of disruption. The result is a bone-paper editorial system where a grotesque display face carries the claims, a serif italic carries the asides, and aerial survey photography — land marked, measured, gridded — does the atmospheric work. Restraint is the pitch: the design implies a studio with nothing to prove.",
+    challenge:
+      "Applied-AI studios all sound identical, and their websites look it — the same gradients, the same abstract meshes, the same language about transformation. A lab whose actual value is judgment and production rigour cannot signal that with visual noise. The design had to establish seriousness in the first five seconds while keeping the founder, not the technology, at the centre.",
+    solution:
+      "An editorial identity in the register of a research document. A numbered section spine (RNDO-001, 02 · PRODUCTS & PROJECTS) frames the site as filed work; the palette stays bone, ink, and paper; and aerial survey imagery — surveyed ground, faint grid lines — supplies texture without a single technology cliché. The headline sets the whole position in one line and turns on a serif italic: AI systems that survive contact with production. Capabilities, an active-tracks section presenting the lab as a living portfolio of builds, and a plainly stated engagement model follow — with a single, unhurried call to action.",
+    timeline: "Ongoing — shipped and in active development",
+    techStack: ["Next.js", "React", "Tailwind CSS", "Vercel"],
+    outcomes: [
+      "Editorial identity that reads as a research lab rather than an agency",
+      "Numbered section spine framing the site as filed, documented work",
+      "Aerial survey art direction — texture and rigour without technology clichés",
+      "Founder-forward positioning with a single, unhurried call to action",
+    ],
+    gallery: [
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/renado-capabilities.webp",
+        alt: "Renado Labs capabilities section",
+        heading: "Claims stated, not sold",
+        body: "Capabilities are set as a document rather than a pitch deck — plain language, generous measure, and a serif italic reserved for the turn in each sentence. Nothing animates for its own sake.",
+        align: "left",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/renado-project-tracks.webp",
+            alt: "Renado Labs active project tracks",
+          },
+          {
+            src: "/images/portfolio/renado-project-track-detail.webp",
+            alt: "Renado Labs project track detail",
+          },
+        ],
+        caption:
+          "A living lab of systems and builds — four active tracks presented as ongoing work rather than finished case studies.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/renado-about.webp",
+            alt: "Renado Labs about section",
+          },
+          {
+            src: "/images/portfolio/renado-engagement.webp",
+            alt: "Renado Labs engagement model",
+          },
+        ],
+        caption:
+          "The founder stays at the centre, and the engagement model is stated plainly — scope call first, no funnel.",
+      },
+      {
+        type: "full",
+        image: "/images/portfolio/renado-contact.webp",
+        alt: "Renado Labs contact section",
+        caption:
+          "One unhurried call to action closes the page — the same restraint the rest of the system is arguing for.",
+      },
+    ],
+  },
+  {
     title: "VetClaim Pro — VA Disability Claim Builder",
     slug: "vetclaim-pro",
     description:
@@ -276,16 +447,16 @@ export const projects: PortfolioProject[] = [
     title: "ZoneX — AI Sports Analytics Platform",
     slug: "zonex",
     description:
-      "An AI-driven sports analytics platform that turns raw film and game data into actionable intelligence — computer vision, structured data, and explainable models built for coaches, not data scientists.",
-    image: "/images/portfolio/zonex-dashboard.webp",
+      "A measurement platform for coaching — golf swings reconstructed from video into tracked body positions, and team fixtures broken into shot-clock-anchored possessions, each claim carrying its own evidence tier.",
+    image: "/images/portfolio/zonex-app-hero-dashboard.webp",
     tags: ["AI", "Sports", "Computer Vision"],
     deviceType: "macbook",
     client: "ZoneX",
     year: "2025",
     industry: "Sports Tech",
-    services: ["Product Design", "AI Integration", "Dashboard"],
+    services: ["Product Design", "Computer Vision", "Full-Stack Development"],
     overview:
-      "ZoneX unifies video analysis, AI-powered computer vision, and structured game data into a single intelligence layer for coaches and analysts. Built to solve the film-overload problem — and to deliver explainable insights that actually translate into game-day decisions, without requiring a data science team to operate.",
+      "ZoneX turns coaching intuition into measurement. On the golf side it reconstructs a player's swing from their own captured video — tracking pelvis sway, depth, and lead-side position at the checkpoints that matter — then ranks the faults that actually recur instead of the one that happened last. ZoneX Cortex applies the same discipline to team sport, cutting basketball and lacrosse fixtures into shot-clock-anchored possessions with resolved player counts and offensive shape. Across both, every claim carries an explicit evidence tier, so a coach knows how hard the footage is backing what the system just told them.",
     challenge:
       "Competitive teams face three compounding problems — film overload, fragmented data sources, and black-box analytics nobody trusts. Most sports analytics tools solve one of those and make the other two worse. Coaches either drown in dashboards or give up and go back to manual tagging.",
     solution:
@@ -301,27 +472,78 @@ export const projects: PortfolioProject[] = [
     gallery: [
       {
         type: "full",
-        image: "/images/portfolio/zonex-dashboard.webp",
-        alt: "ZoneX dashboard — recent form, efficiency trends, and game results",
+        image: "/images/portfolio/zonex-app-hero-dashboard.webp",
+        alt: "ZoneX Golf coaching brief showing swing checkpoints and measured patterns",
         caption:
-          "The dashboard lands a coach in the last ten games — efficiency trends, net rating, and recent results in one glance.",
+          "The coaching brief opens on a read, not a data dump — the pattern that recurs most, the swings that prove it, and the next capture to take.",
       },
       {
         type: "imageWithCaption",
-        image: "/images/portfolio/zonex-coaching.webp",
-        alt: "Coach-specific portal memo with fit analysis",
-        heading: "Built for the coach, not the data team",
-        body: "Most analytics tools make the coach the operator. ZoneX makes the coach the asker — portal memos, fit drivers, and coach lenses are generated for the specific decision in front of them.",
-        align: "right",
+        image: "/images/portfolio/zonex-app-hero-swing-detail.webp",
+        alt: "ZoneX Golf swing detail with tracked body positions",
+        heading: "The golfer, tracked from their own video",
+        body: "Every figure is the player themselves, reconstructed from captured video at the checkpoints that matter. Pelvis sway, depth, and lead-side position are measured rather than eyeballed — so a coaching note points at a number instead of an opinion.",
+        align: "left",
       },
       {
         type: "twoUp",
         images: [
-          { src: "/images/portfolio/zonex-film.webp", alt: "Computer vision tracking on live game film" },
-          { src: "/images/portfolio/zonex-game-data.webp", alt: "Per-game summary with Four Factors breakdown" },
+          {
+            src: "/images/portfolio/zonex-app-faults.webp",
+            alt: "ZoneX Golf fault library with recurrence and severity",
+          },
+          {
+            src: "/images/portfolio/zonex-app-compare.webp",
+            alt: "ZoneX Golf side-by-side swing comparison",
+          },
         ],
         caption:
-          "Film analysis and structured game data share a single dashboard — the same lens on every source.",
+          "Faults are ranked by how often they recur and how bad they get; comparison puts two captures side by side so progress is visible rather than asserted.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/zonex-app-ball-data.webp",
+            alt: "ZoneX Golf ball flight data",
+          },
+          {
+            src: "/images/portfolio/zonex-app-progress.webp",
+            alt: "ZoneX Golf progress tracking across sessions",
+          },
+        ],
+        caption:
+          "Ball data and body data sit in one record, so a change in launch numbers can be traced to the movement that produced it.",
+      },
+      {
+        type: "imageWithCaption",
+        image: "/images/portfolio/zonex-app-kiosk.webp",
+        alt: "ZoneX Golf kiosk mode for the practice bay",
+        heading: "A mode for the bay, not the desk",
+        body: "Kiosk mode strips the workspace down for the range — capture, review, repeat — so the system works where the coaching actually happens instead of only in an office afterwards.",
+        align: "right",
+      },
+      {
+        type: "full",
+        image: "/images/portfolio/zonex-cortex-possession-basketball.webp",
+        alt: "ZoneX Cortex possession analysis for a basketball fixture",
+        caption:
+          "ZoneX Cortex — the same measurement discipline applied to team sport: shot-clock-anchored possessions, resolved player counts, and offensive shape, across basketball and lacrosse fixtures.",
+      },
+      {
+        type: "twoUp",
+        images: [
+          {
+            src: "/images/portfolio/zonex-cortex-matchups-basketball.webp",
+            alt: "ZoneX Cortex matchup analysis",
+          },
+          {
+            src: "/images/portfolio/zonex-cortex-evidence-tiers.webp",
+            alt: "ZoneX Cortex evidence tiers",
+          },
+        ],
+        caption:
+          "Matchups and an explicit evidence tier on every claim — the system states how strongly the footage supports what it is telling you.",
       },
     ],
     metrics: [
