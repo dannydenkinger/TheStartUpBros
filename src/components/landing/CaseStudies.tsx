@@ -8,27 +8,23 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 import { cn } from "@/lib/utils";
+import { projects } from "@/data/portfolio";
 
-const cases = [
-  {
-    tags: ["CRM", "Full-Stack", "SaaS"],
-    title: "Vesta CRM — Complete CRM Platform Built From Scratch",
-    href: "/portfolio/vesta-crm",
-    heroImage: "/images/portfolio/vesta-hero.png",
-  },
-  {
-    tags: ["AI", "Sports", "Computer Vision"],
-    title: "ZoneX — AI Sports Analytics Platform",
-    href: "/portfolio/zonex",
-    heroImage: "/images/portfolio/zonex-dashboard.webp",
-  },
-  {
-    tags: ["AI", "Healthcare", "Defense"],
-    title: "SAID Technology — Offline-First Medical Translation",
-    href: "/portfolio/said",
-    heroImage: "/images/portfolio/said-hero-brand.webp",
-  },
-];
+/* Which projects lead the homepage. Everything else — title, tags, and the
+ * thumbnail — is read from src/data/portfolio.ts, so refreshing a case
+ * study's imagery updates the landing page with it. */
+const FEATURED = ["envision", "vetclaim-pro", "zonex"] as const;
+
+const cases = FEATURED.map((slug) => {
+  const project = projects.find((p) => p.slug === slug);
+  if (!project) throw new Error(`Featured case study "${slug}" not found`);
+  return {
+    tags: project.tags,
+    title: project.title,
+    href: `/portfolio/${project.slug}`,
+    heroImage: project.image,
+  };
+});
 
 /* Titles are stored as "Name — Descriptor"; the desses card anatomy renders
  * the same copy as a big name row + one-line gray subtitle. */
