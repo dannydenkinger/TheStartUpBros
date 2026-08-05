@@ -7,9 +7,9 @@ import { RevealText } from "@/components/shared/RevealText";
 import { FinalCTA } from "@/components/landing/FinalCTA";
 
 export const metadata = {
-  title: "Blog | StartUpBros",
+  title: "Blog — MVP, App Development & Startup Insights",
   description:
-    "Case studies, insights, and lessons from building apps and software for startups.",
+    "Playbooks and lessons from building MVPs: scoping, shipping in weeks, pricing, design systems, and what actually matters before launch.",
 };
 
 type BlogPost = {

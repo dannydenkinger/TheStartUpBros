@@ -8,9 +8,9 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { services } from "@/data/services";
 
 export const metadata: Metadata = {
-  title: "Services",
+  title: "Services — App Development, Website Design & SEO",
   description:
-    "Full-stack app development, custom SaaS frameworks, AI agents & automation, premium web design, and custom business tools.",
+    "Full-stack app development, custom SaaS frameworks, AI agents and automation, website design, and search engine optimization — built for startups shipping an MVP.",
 };
 
 export default function ServicesPage() {

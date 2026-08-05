@@ -2,6 +2,42 @@ import type { Service } from "@/types";
 
 export const services: Service[] = [
   {
+    title: "Search Engine Optimization",
+    slug: "seo",
+    description:
+      "Technical SEO and content strategy that gets your product ranking for the terms your customers actually search.",
+    longDescription:
+      "Most startup sites are invisible to search because nobody built them to be found. We fix that at the foundation — crawlable architecture, fast Core Web Vitals, structured data that earns rich results, and content targeted at the queries your buyers type. Because we also build the product, the SEO work happens inside the codebase rather than as a layer bolted on by a separate agency afterwards.",
+    icon: "search",
+    features: [
+      "Technical SEO audit and fixes",
+      "Core Web Vitals and performance",
+      "Structured data and rich results",
+      "Keyword and content strategy",
+      "Analytics and Search Console setup",
+    ],
+    useCases: [
+      "A new MVP that needs to be indexable from launch day",
+      "A site with traffic that never converts to signups",
+      "A product ranking below competitors for its own category terms",
+      "A rebuild that must not lose existing rankings",
+    ],
+    techStack: [
+      "Next.js",
+      "Structured data (JSON-LD)",
+      "Google Search Console",
+      "Core Web Vitals",
+      "Analytics",
+    ],
+    deliverables: [
+      "Technical SEO audit with prioritised fixes",
+      "Metadata, canonical, and sitemap architecture",
+      "Structured data implementation",
+      "Keyword map tied to real pages",
+      "Search Console and analytics reporting",
+    ],
+  },
+  {
     title: "Full-Stack App Development",
     slug: "full-stack-apps",
     description:

@@ -15,33 +15,68 @@ export const ogImage = {
   alt: "StartUpBros — Launch-Ready Products, Built In Weeks",
 };
 
+const TITLE = "MVP Development Agency | App Development & Web Design — StartUpBros";
+const DESCRIPTION =
+  "We build your MVP in 2–4 weeks, hand you the code, and stay on retainer for updates and maintenance. Full-stack app development, website design, AI integration, and SEO for startups.";
+
 export const siteMetadata: Metadata = {
   title: {
-    default: "StartUpBros | AI-Powered MVP Development",
+    default: TITLE,
     template: "%s | StartUpBros",
   },
-  description:
-    "The one-stop shop for AI-powered MVPs. We deliver 90% solutions so you can go to market tomorrow. Full-stack apps, SaaS frameworks, AI agents, and more.",
+  description: DESCRIPTION,
   metadataBase: new URL(siteUrl),
+  applicationName: "StartUpBros",
+  authors: [{ name: "StartUpBros" }],
+  creator: "StartUpBros",
+  publisher: "StartUpBros",
+  category: "Software Development",
+  keywords: [
+    "MVP development",
+    "MVP development agency",
+    "build an MVP",
+    "app development",
+    "custom app development",
+    "web app development",
+    "website design",
+    "web design agency",
+    "search engine optimization",
+    "SEO services",
+    "startup app developer",
+    "SaaS development",
+    "AI integration",
+    "AI agents",
+    "product design",
+    "software maintenance retainer",
+    "minimum viable product",
+  ],
+  alternates: {
+    canonical: siteUrl,
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
     url: siteUrl,
     siteName: "StartUpBros",
-    title: "StartUpBros | AI-Powered MVP Development",
-    description:
-      "Build Lean. Launch Fast. Scale Smart. Premium MVP development for lean startups.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: [ogImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: "StartUpBros | AI-Powered MVP Development",
-    description:
-      "Build Lean. Launch Fast. Scale Smart. Premium MVP development for lean startups.",
+    title: TITLE,
+    description: DESCRIPTION,
     images: [ogImage],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
   },
 };

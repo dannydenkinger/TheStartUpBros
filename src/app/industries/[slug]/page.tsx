@@ -1,4 +1,6 @@
+import type { Metadata } from "next";
 import Image from "next/image";
+import { ogImage, siteUrl } from "@/lib/metadata";
 import Link from "next/link";
 import {
   Activity,
@@ -82,7 +84,7 @@ const industryData: Record<string, IndustryData> = {
         tag: "Sports",
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
-        image: "/images/portfolio/zonex-dashboard.webp",
+        image: "/images/portfolio/zonex-app-hero-dashboard.webp",
         href: "/portfolio/zonex",
       },
       {
@@ -148,14 +150,14 @@ const industryData: Record<string, IndustryData> = {
         tag: "AI Healthcare",
         location: "Startup Bros",
         title: "SAID Technology — Offline-First Medical Translation",
-        image: "/images/portfolio/geo-analytics.avif",
+        image: "/images/portfolio/said-card.webp",
         href: "/portfolio/said",
       },
       {
         tag: "Computer Vision",
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
-        image: "/images/portfolio/zonex-dashboard.webp",
+        image: "/images/portfolio/zonex-app-hero-dashboard.webp",
         href: "/portfolio/zonex",
       },
     ],
@@ -221,7 +223,7 @@ const industryData: Record<string, IndustryData> = {
         tag: "AI Analytics",
         location: "Startup Bros",
         title: "ZoneX — AI Sports Analytics Platform",
-        image: "/images/portfolio/zonex-dashboard.webp",
+        image: "/images/portfolio/zonex-app-hero-dashboard.webp",
         href: "/portfolio/zonex",
       },
     ],
@@ -298,7 +300,7 @@ function getIndustryData(slug: string): IndustryData {
         tag: label,
         location: "Startup Bros",
         title: "SAID Technology — Offline-First Medical Translation",
-        image: "/images/portfolio/geo-analytics.avif",
+        image: "/images/portfolio/said-card.webp",
         href: "/portfolio/said",
       },
       {
@@ -321,6 +323,28 @@ function getIndustryData(slug: string): IndustryData {
       quote: `Good ${label} SaaS design starts with the buyer's actual workflow — every screen earns its place by moving them one step closer to the outcome they came for.`,
       name: "Anthony Denkinger",
       role: "Startup Bros",
+    },
+  };
+}
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const { label } = getIndustryData(slug);
+  const title = `${label} MVP & App Development`;
+  const description = `MVP development, app development, and website design for ${label} startups. We design and build your product in 2–4 weeks, hand over the code, and stay on retainer for updates.`;
+  return {
+    title,
+    description,
+    alternates: { canonical: `${siteUrl}/industries/${slug}` },
+    openGraph: {
+      title: `${title} | StartUpBros`,
+      description,
+      url: `${siteUrl}/industries/${slug}`,
+      images: [ogImage],
     },
   };
 }

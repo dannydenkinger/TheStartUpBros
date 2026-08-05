@@ -15,10 +15,10 @@ const columns = [
   {
     title: "Services",
     links: [
-      { label: "Web Development", href: "/services/web-development" },
-      { label: "Custom Apps", href: "/services/custom-app-dev" },
+      { label: "Web Development", href: "/services/web-design" },
+      { label: "Custom Apps", href: "/services/full-stack-apps" },
       { label: "SEO", href: "/services/seo" },
-      { label: "AI Integration", href: "/services/ai-integration" },
+      { label: "AI Integration", href: "/services/ai-agents" },
       { label: "All Services", href: "/services" },
     ],
   },

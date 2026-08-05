@@ -18,8 +18,9 @@ export function generateMetadata({
     const service = services.find((s) => s.slug === slug);
     if (!service) return { title: "Service Not Found" };
     return {
-      title: `${service.title} | StartUpBros`,
+      title: service.title,
       description: service.longDescription,
+      alternates: { canonical: `${siteUrl}/services/${slug}` },
       openGraph: {
         title: `${service.title} | StartUpBros`,
         description: service.longDescription,

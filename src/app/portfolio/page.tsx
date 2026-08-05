@@ -3,8 +3,8 @@ import { FinalCTA } from "@/components/landing/FinalCTA";
 import { projects } from "@/data/portfolio";
 
 export const metadata = {
-  title: "Design Studies | Startup Bros",
-  description: "Design studies and concept work — B2B and AI SaaS deep-dives by the Denkinger brothers.",
+  title: "Case Studies — MVP & App Development Work",
+  description: "Real MVPs we designed and built: aviation SaaS, healthcare mobile apps, CRM platforms, sports analytics, and AI products — with the product screens to prove it.",
 };
 
 // Derived from the project data — count + year range.

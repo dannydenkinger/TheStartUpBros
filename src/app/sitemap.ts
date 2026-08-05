@@ -2,8 +2,23 @@ import type { MetadataRoute } from "next";
 import fs from "fs";
 import path from "path";
 import { services } from "@/data/services";
+import { projects } from "@/data/portfolio";
 import { siteUrl } from "@/lib/metadata";
 
+/* Industry landing pages. The route is an unbounded [slug], so the set that
+ * should be indexed is the set we actually link — mirror Header.tsx. */
+const INDUSTRY_SLUGS = [
+  "ai",
+  "marketing",
+  "agencies",
+  "mobile-apps",
+  "web3",
+  "sales",
+  "fintech",
+  "ed-tech",
+  "healthcare",
+  "b2b",
+];
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticRoutes = [
@@ -23,6 +38,21 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.85 as const,
   }));
 
+  // Case studies — the deepest proof pages on the site, and the ones most
+  // likely to rank for "<industry> MVP" style queries.
+  const caseStudyRoutes = projects.map((p) => ({
+    url: `${siteUrl}/portfolio/${p.slug}`,
+    lastModified: new Date(),
+    priority: 0.8 as const,
+  }));
+
+  // Industry landing pages
+  const industryRoutes = INDUSTRY_SLUGS.map((slug) => ({
+    url: `${siteUrl}/industries/${slug}`,
+    lastModified: new Date(),
+    priority: 0.75 as const,
+  }));
+
   // Blog posts
   const contentDir = path.join(process.cwd(), "src/content/blog");
   let blogRoutes: MetadataRoute.Sitemap = [];
@@ -36,5 +66,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }));
   }
 
-  return [...staticRoutes, ...serviceRoutes, ...blogRoutes];
+  return [
+    ...staticRoutes,
+    ...serviceRoutes,
+    ...caseStudyRoutes,
+    ...industryRoutes,
+    ...blogRoutes,
+  ];
 }

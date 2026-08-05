@@ -18,7 +18,8 @@ export function generateMetadata({
     const project = projects.find((p) => p.slug === slug);
     if (!project) return { title: "Case Study Not Found" };
     return {
-      title: `${project.title} | StartUpBros`,
+      title: project.title,
+      alternates: { canonical: `${siteUrl}/portfolio/${slug}` },
       description: project.description,
       openGraph: {
         title: `${project.title} — Case Study | StartUpBros`,

@@ -6,7 +6,7 @@ import { RevealText } from "@/components/shared/RevealText";
 import { getImageStyle, getWrapperStyle } from "@/lib/imagePosition";
 
 export const metadata = {
-  title: "Gallery | StartUpBros",
+  title: "Design Gallery — App & Website Design Work",
   description:
     "A showcase of our recent product, dashboard, and landing page work — dashboards, AI tools, mobile apps, and web3 surfaces.",
 };
