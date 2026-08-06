@@ -18,6 +18,9 @@ const fieldLimits = {
   utmCampaign: 300,
   utmTerm: 300,
   utmContent: 300,
+  estimateFeatures: 500,
+  estimateDays: 20,
+  estimateTier: 40,
   faxNumber: 200,
 } as const;
 

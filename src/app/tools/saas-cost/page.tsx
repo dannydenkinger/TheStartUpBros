@@ -3,6 +3,7 @@ import { ogImage, siteUrl } from "@/lib/metadata";
 import { JsonLd } from "@/components/shared/JsonLd";
 import { SaaSCostCalculator } from "@/components/tools/SaaSCostCalculator";
 import { FinalCTA } from "@/components/landing/FinalCTA";
+import { parseSaasFeatureIds } from "@/lib/saasEstimate";
 
 export const metadata: Metadata = {
   title: "SaaS Cost Calculator | StartUpBros",
@@ -37,11 +38,18 @@ const webAppJsonLd = {
   },
 };
 
-export default function SaaSCostPage() {
+export default async function SaaSCostPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ features?: string | string[] }>;
+}) {
+  const { features } = await searchParams;
+  const initialFeatureIds = parseSaasFeatureIds(features);
+
   return (
     <>
       <JsonLd data={webAppJsonLd} />
-      <SaaSCostCalculator />
+      <SaaSCostCalculator initialFeatureIds={initialFeatureIds} />
       <FinalCTA index={null} />
     </>
   );

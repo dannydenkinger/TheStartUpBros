@@ -87,7 +87,18 @@ function SuccessMark() {
   );
 }
 
-export function StrategyCallContent() {
+type InitialEstimate = {
+  featureIds: string[];
+  featureLabels: string[];
+  totalDays: number;
+  tier: string;
+};
+
+export function StrategyCallContent({
+  initialEstimate,
+}: {
+  initialEstimate?: InitialEstimate;
+}) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -281,6 +292,37 @@ export function StrategyCallContent() {
                           autoComplete="off"
                         />
                       </div>
+                      {initialEstimate && (
+                        <div className="rounded-xl border border-(--accent-brand)/25 bg-(--accent-brand-soft) p-4">
+                          <p className="text-sm font-medium text-foreground">
+                            Calculator estimate attached
+                          </p>
+                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                            {initialEstimate.featureLabels.join(", ")} ·{" "}
+                            {initialEstimate.totalDays} development days ·{" "}
+                            {initialEstimate.tier} complexity
+                          </p>
+                        </div>
+                      )}
+                      {initialEstimate && (
+                        <>
+                          <input
+                            type="hidden"
+                            name="estimateFeatures"
+                            value={initialEstimate.featureIds.join(",")}
+                          />
+                          <input
+                            type="hidden"
+                            name="estimateDays"
+                            value={String(initialEstimate.totalDays)}
+                          />
+                          <input
+                            type="hidden"
+                            name="estimateTier"
+                            value={initialEstimate.tier}
+                          />
+                        </>
+                      )}
                       <div className="group">
                         <label htmlFor="strategy-name" className={labelStyles}>
                           Name
@@ -357,6 +399,11 @@ export function StrategyCallContent() {
                           name="description"
                           required
                           rows={4}
+                          defaultValue={
+                            initialEstimate
+                              ? `I used the SaaS Cost Calculator. Selected features: ${initialEstimate.featureLabels.join(", ")}. Estimated scope: ${initialEstimate.totalDays} development days (${initialEstimate.tier} complexity).`
+                              : undefined
+                          }
                           placeholder="What are you building? What's your timeline?"
                           className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) focus:-translate-y-px transition-[color,background-color,border-color,box-shadow,transform] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:focus:translate-y-0"
                         />
