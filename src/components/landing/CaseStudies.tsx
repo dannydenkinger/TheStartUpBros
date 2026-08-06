@@ -186,7 +186,7 @@ export function CaseStudies() {
               <AnimateIn>
                 <span className="badge-pill text-micro-label">
                   <span aria-hidden className="label-dot" />
-                  <span className="sr-only">02 · </span>
+                  <span className="sr-only">03 · </span>
                   <span className="lowercase">DESIGN STUDIES</span>
                 </span>
               </AnimateIn>

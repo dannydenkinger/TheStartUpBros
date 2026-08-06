@@ -1,6 +1,7 @@
 import { Hero } from "@/components/landing/Hero";
 import { ValueProps } from "@/components/landing/ValueProps";
 import { CaseStudies } from "@/components/landing/CaseStudies";
+import { HowItWorks } from "@/components/landing/HowItWorks";
 import { StatementBand } from "@/components/landing/StatementBand";
 import { Testimonials } from "@/components/landing/Testimonials";
 import { FAQ } from "@/components/landing/FAQ";
@@ -87,6 +88,7 @@ export default function HomePage() {
       <JsonLd data={faqJsonLd} />
       <Hero />
       <ValueProps />
+      <HowItWorks />
       <CaseStudies />
       <StatementBand />
       <Testimonials />

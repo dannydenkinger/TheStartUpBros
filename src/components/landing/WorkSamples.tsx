@@ -91,7 +91,7 @@ export function WorkSamples() {
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />
-              <span className="sr-only">05 · </span>
+              <span className="sr-only">06 · </span>
               <span className="lowercase">WORK SAMPLES</span>
             </span>
             <Link

@@ -77,7 +77,7 @@ export function Testimonials() {
           <div className="flex items-center justify-between gap-4 border-b border-border pb-4">
             <span className="badge-pill text-micro-label">
               <span aria-hidden className="label-dot" />
-              <span className="sr-only">03 · </span>
+              <span className="sr-only">04 · </span>
               <span className="lowercase">PRINCIPLES</span>
             </span>
           </div>

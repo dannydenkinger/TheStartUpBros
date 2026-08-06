@@ -9,6 +9,7 @@ import { REVEAL_EASE } from "@/lib/animations";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { SectionHeader } from "@/components/shared/SectionHeader";
 import { faqs } from "@/data/faqs";
+import { useContactModal } from "@/context/ContactModalContext";
 
 const teamAvatars = [
   { src: "/images/avatars/anthony-denkinger.png", name: "Anthony Denkinger" },
@@ -99,7 +100,8 @@ function FAQItem({
 // How many questions show before the quiet "show all" toggle
 const VISIBLE_COUNT = 6;
 
-export function FAQ({ index = "04" }: { index?: string }) {
+export function FAQ({ index = "05" }: { index?: string }) {
+  const { openModal } = useContactModal();
   const [openIndex, setOpenIndex] = useState<number | null>(0);
   const [showAll, setShowAll] = useState(false);
   const visibleFaqs = showAll ? faqs : faqs.slice(0, VISIBLE_COUNT);
@@ -171,12 +173,13 @@ export function FAQ({ index = "04" }: { index?: string }) {
                 >
                   Book Strategy Call
                 </Link>
-                <Link
-                  href="/strategy-call"
-                  className="text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
+                <button
+                  type="button"
+                  onClick={openModal}
+                  className="cursor-pointer text-[15px] font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
                 >
                   Chat with Us
-                </Link>
+                </button>
               </div>
 
               {/* Founder strip — grayscale to keep the pair tonally unified */}

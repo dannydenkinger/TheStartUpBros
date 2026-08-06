@@ -9,7 +9,7 @@ import { MagneticButton } from "@/components/shared/MagneticButton";
  * gets a real ladder — label, then the headline wiping up out of its own clip
  * (the same masked reveal the hero opens with, so the page bookends itself),
  * then the paragraph, then the buttons. ~0.9s end to end. */
-export function FinalCTA({ index = "06" }: { index?: string | null }) {
+export function FinalCTA({ index = "07" }: { index?: string | null }) {
   return (
     <section className="band grain relative">
       <div className="relative z-10 mx-auto max-w-[1600px] px-6 md:px-10 py-16 md:py-32">
