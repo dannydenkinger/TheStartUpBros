@@ -7,6 +7,7 @@ import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
+import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
 
 const budgetOptions = [
   "Under $5,000",
@@ -89,34 +90,29 @@ function SuccessMark() {
 export function StrategyCallContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setErrorMessage(null);
 
     const form = new FormData(e.currentTarget);
-    const payload = {
-      source: "StrategyCallContent",
-      name: form.get("name"),
-      email: form.get("email"),
-      company: form.get("company"),
-      budget: form.get("budget"),
-      description: form.get("description"),
-    };
+    const payload = createContactPayload("StrategyCallContent", form);
 
     try {
-      await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-    } catch {
-      // fail silently — dev scaffold, real handling comes with real endpoint
+      await submitContactPayload(payload);
+      setSubmitted(true);
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your request. Please try again.",
+      );
+    } finally {
+      setIsSubmitting(false);
     }
-
-    setIsSubmitting(false);
-    setSubmitted(true);
   };
 
   /* Focus is a state change, not a scroll frame, so a ring tween is safe —
@@ -204,6 +200,8 @@ export function StrategyCallContent() {
                   {submitted ? (
                     <motion.div
                       key="done"
+                      role="status"
+                      aria-live="polite"
                       className="py-14 text-center"
                       {...(!prefersReducedMotion && {
                         initial: { opacity: 0 },
@@ -270,12 +268,26 @@ export function StrategyCallContent() {
                         transition: { duration: 0.22, ease: EXIT_EASE },
                       })}
                     >
+                      <div
+                        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+                        aria-hidden="true"
+                      >
+                        <label htmlFor="strategy-fax-number">Fax number</label>
+                        <input
+                          id="strategy-fax-number"
+                          name="faxNumber"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                        />
+                      </div>
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-name" className={labelStyles}>
                           Name
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
+                          id="strategy-name"
                           name="name"
                           type="text"
                           required
@@ -285,11 +297,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-email" className={labelStyles}>
                           Email
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
+                          id="strategy-email"
                           name="email"
                           type="email"
                           required
@@ -299,10 +312,11 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-company" className={labelStyles}>
                           Company
                         </label>
                         <input
+                          id="strategy-company"
                           name="company"
                           type="text"
                           placeholder="Acme Inc."
@@ -311,11 +325,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-budget" className={labelStyles}>
                           Budget
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <select
+                          id="strategy-budget"
                           name="budget"
                           required
                           defaultValue=""
@@ -333,11 +348,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-description" className={labelStyles}>
                           Tell us about your project
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <textarea
+                          id="strategy-description"
                           name="description"
                           required
                           rows={4}
@@ -413,6 +429,16 @@ export function StrategyCallContent() {
                           </AnimatePresence>
                         </span>
                       </button>
+
+                      {errorMessage && (
+                        <p
+                          role="alert"
+                          aria-live="assertive"
+                          className="text-sm text-red-600 dark:text-red-400"
+                        >
+                          {errorMessage}
+                        </p>
+                      )}
 
                       <p className="text-caption pt-1">
                         No obligations. We&apos;ll reply within 24 hours.
