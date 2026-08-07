@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Inter_Tight, JetBrains_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header } from "@/components/shared/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Providers } from "@/components/shared/Providers";
@@ -36,6 +38,8 @@ export default function RootLayout({
           <main className="min-h-screen pt-[80px]">{children}</main>
           <Footer />
         </Providers>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );
