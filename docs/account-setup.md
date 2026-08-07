@@ -4,6 +4,17 @@ This is the click-through handoff for the accounts assigned to Anthony and Codex
 
 The repository is public. It is safe to keep the approved business email and public profile copy here. Never add passwords, phone numbers, recovery codes, backup codes, API keys, or MFA details.
 
+## Completed accounts
+
+Confirmed live on August 7, 2026:
+
+| Platform | Public profile | Completed setup |
+| --- | --- | --- |
+| Crunchbase | [StartUpBros company profile](https://www.crunchbase.com/organization/startupbros-4d63) | Company name, website, contact email, description, and Software, Web Development, SaaS, and AI categories are published. The contributor account is under Danny Denkinger's name. Unverified company facts remain blank. |
+| Product Hunt | [Danny Denkinger maker profile](https://www.producthunt.com/@dannydenkinger) | Personal maker account, `dannydenkinger` username, StartUpBros headline, bio, website, and Google sign-in are configured. The StartUpBros product page remains intentionally pending until the account is old enough to submit. |
+
+Do not mark another account complete until its public identity, profile URL, ownership, and recovery path have been verified.
+
 ## Use these details everywhere
 
 | Field | Use this value |
@@ -83,6 +94,8 @@ Facebook requires a real personal account to create and manage a business Page. 
 
 ## 3. Crunchbase
 
+**Status: Complete — [view the StartUpBros company profile](https://www.crunchbase.com/organization/startupbros-4d63).**
+
 1. Search [Crunchbase](https://www.crunchbase.com/) for **StartUpBros** first so a duplicate is not created.
 2. If no organization exists, open [Crunchbase registration](https://www.crunchbase.com/register) and create the contributor account under **Danny Denkinger** using `thestartupbros1@gmail.com`.
 3. Complete Crunchbase's social authentication.
@@ -98,6 +111,8 @@ Facebook requires a real personal account to create and manage a business Page. 
 Do not guess a founding date, headquarters, legal entity, employee count, funding, revenue, or customer count. Danny should add those only when he can verify them. Crunchbase's [official profile instructions](https://support.crunchbase.com/hc/en-us/articles/115011823988-How-do-I-create-a-Crunchbase-profile) explain the required authenticated-contributor flow.
 
 ## 4. Product Hunt
+
+**Status: Maker account complete — [view Danny Denkinger's profile](https://www.producthunt.com/@dannydenkinger). Product submission remains pending until the account is at least one week old.**
 
 1. Open [Product Hunt login/signup](https://www.producthunt.com/login).
 2. Continue with Google using `thestartupbros1@gmail.com`.
