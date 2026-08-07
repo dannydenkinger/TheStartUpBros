@@ -203,3 +203,73 @@ CaseStudiesGrid: `ltv-ai`, `gigamind-landing`, `gigamind-product`, `sybill`, `ho
 `propflow-crm`, `healthsync-ai`, `fittrack-mobile`, `invoicebot`, `launchpad-landing`, `budgetlens`
 
 The legacy 6 still SSG-build for SEO/sitemap purposes. They're not deleted in case the user wants to repurpose them, but they could be removed if confirmed dead. Worth flagging for the user.
+
+---
+
+## Analytics: Vercel Web Analytics, Speed Insights, and GA4
+
+### Context
+No analytics of any kind were installed. Added Vercel's two products plus GA4
+(`G-XVP6P5LNXE`), all mounted in `src/app/layout.tsx`.
+
+### Changes
+- [x] `@vercel/analytics` — `<Analytics />`, traffic and pageviews
+- [x] `@vercel/speed-insights` — `<SpeedInsights />`, real-user Core Web Vitals
+- [x] GA4 via a local `GoogleAnalytics` component, gated to production builds
+- [x] Verified in headless Chrome with beacons intercepted and answered `204`,
+      so no test data reached either property
+
+### The SPA pageview problem (the non-obvious part)
+Google's copy-paste snippet assumes full page loads. This site is a SPA, so
+navigation is a `history.pushState`. gtag's history listener fires on the
+pushState — *before* React commits the route — so the hit carries the outgoing
+page's URL and title. Measured against the stock install:
+
+    nav -> /portfolio    NO BEACON
+    nav -> /services     page_view  dl=/portfolio   <- previous page
+
+Every page that matters for search (`/services/*`, `/portfolio/*`,
+`/industries/*`) is reached this way, so traffic landed on the wrong rows.
+
+Fix: `send_page_view: false` on the config, and emit each pageview from an
+effect keyed on `usePathname()`. The hit is then built after the commit, when
+`location` and `document.title` describe the page actually on screen. Verified
+correct on initial load, on each client-side navigation, and on browser back.
+
+Rejected `@next/third-parties/google`: fires `config` once on mount, no
+route-change handling, no way to pass `send_page_view`.
+
+Pageviews are keyed on pathname only — deliberately *not* `useSearchParams()`,
+which forces a Suspense boundary and would deopt statically-rendered pages to
+dynamic. Query-string-only changes won't fire a pageview; nothing navigates
+that way today.
+
+### OPEN — required in the GA4 dashboard, not in code
+`send_page_view: false` suppresses the config pageview but NOT the history
+listener, which still emits a stale duplicate. Raw capture after the fix:
+
+    #4 POST /g/collect  en=page_view  dl=.../services   <- stale duplicate
+    #5 POST /g/collect  en=page_view  dl=.../blog       <- correct
+
+- [ ] GA4 → Admin → Data streams → web stream → Enhanced measurement → ⚙ →
+      uncheck **"Page changes based on browser history events"**
+
+Until that is unchecked, internal navigation is counted roughly twice. There is
+no client-side override for this setting; patching gtag internals to suppress
+it would be fragile, so the supported stream setting is the right fix.
+
+### Files Touched
+1. `src/app/layout.tsx` — three components mounted; GA gated on `NODE_ENV`
+2. `src/components/shared/GoogleAnalytics.tsx` — new
+3. `package.json` — added `@vercel/analytics`, `@vercel/speed-insights`
+4. `tasks/todo.md` — this section
+
+### Notes
+- Ad blockers block all three scripts. Testing from a browser with uBlock shows
+  zero traffic and reads as broken.
+- Vercel's script refuses to send from headless/webdriver sessions by design, so
+  a headless check can prove it loads but never that a beacon sends.
+- GA measurement ID is hardcoded, not an env var — it ships in the client bundle
+  either way, and hardcoding means it can't vanish because an env var went unset.
+- EEA consent mode not configured; schema declares `areaServed: United States`.
+  Revisit if EU clients come on.
