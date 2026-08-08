@@ -23,8 +23,7 @@ const LEAD_LABELS: Record<LeadSource, string> = {
 
 /**
  * Fire on a *confirmed* lead — after the endpoint returns ok, never on optimistic
- * UI. Two of the three forms show "Thank you!" even when the request fails, so
- * firing alongside that message would overstate conversions.
+ * UI. Firing before delivery succeeds would overstate conversions.
  *
  * `generate_lead` is a GA4 recommended event name, which is what lets it be
  * marked as a key event and show up in the standard reports rather than

@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { useContactModal } from "@/context/ContactModalContext";
 import { StatusStrip } from "@/components/shared/StatusStrip";
+import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
 import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
@@ -37,7 +38,7 @@ export function ContactFormModal() {
   const { isOpen, closeModal } = useContactModal();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -64,41 +65,27 @@ export function ContactFormModal() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setFailed(false);
+    setErrorMessage(null);
 
     const form = new FormData(e.currentTarget);
-    const payload = {
-      source: "ContactFormModal",
-      name: form.get("name"),
-      email: form.get("email"),
-      company: form.get("company"),
-      website: form.get("website"),
-      budget: form.get("budget"),
-      description: form.get("description"),
-      referral: form.get("referral"),
-    };
+    const payload = createContactPayload("ContactFormModal", form);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      /* Only a confirmed 2xx is a lead — both for the analytics event and for
-       * the success panel. This used to thank the user unconditionally, which
-       * meant a failed send looked identical to a delivered one and the
-       * enquiry was simply lost. */
-      if (!res.ok) throw new Error();
+      await submitContactPayload(payload);
       trackLead("ContactFormModal");
-      setIsSubmitting(false);
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
         closeModal();
       }, 2500);
-    } catch {
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your request. Please try again.",
+      );
+    } finally {
       setIsSubmitting(false);
-      setFailed(true);
     }
   };
 
@@ -110,9 +97,16 @@ export function ContactFormModal() {
       onClick={handleOverlayClick}
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-sm p-4 animate-in fade-in duration-200"
     >
-      <div className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card rounded-[24px] animate-in zoom-in-95 slide-in-from-bottom-4 duration-300">
+      <div
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="contact-modal-title"
+        className="relative w-full max-w-[960px] max-h-[90vh] overflow-y-auto bg-card rounded-[24px] animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
+      >
         {/* Close button */}
         <button
+          type="button"
+          aria-label="Close contact form"
           onClick={closeModal}
           className="absolute top-4 right-4 lg:top-5 lg:right-5 flex size-11 lg:size-8 items-center justify-center rounded-full border border-border text-muted-foreground hover:border-foreground hover:text-foreground transition-colors z-10"
         >
@@ -154,12 +148,12 @@ export function ContactFormModal() {
 
           {/* ─── Right Column: Contact Form ─── */}
           <div className="w-full lg:w-[420px] px-6 sm:px-8 py-8 sm:py-10 lg:py-12 lg:px-8 border-t lg:border-t-0 lg:border-l border-border shrink-0">
-            <h3 className="text-h3 mb-8">
+            <h3 id="contact-modal-title" className="text-h3 mb-8">
               See what Startup Bros can do for your product in 7 days.
             </h3>
 
             {submitted ? (
-              <div className="py-16 text-center">
+              <div role="status" aria-live="polite" className="py-16 text-center">
                 <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
                   <Check className="w-5 h-5" strokeWidth={2.5} />
                 </div>
@@ -168,12 +162,26 @@ export function ContactFormModal() {
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-5">
+                <div
+                  className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+                  aria-hidden="true"
+                >
+                  <label htmlFor="modal-fax-number">Fax number</label>
+                  <input
+                    id="modal-fax-number"
+                    name="faxNumber"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                  />
+                </div>
                 {/* Name */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-name" className={labelStyles}>
                     Name<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
+                    id="modal-name"
                     name="name"
                     type="text"
                     required
@@ -184,10 +192,11 @@ export function ContactFormModal() {
 
                 {/* Email */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-email" className={labelStyles}>
                     Email<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
+                    id="modal-email"
                     name="email"
                     type="email"
                     required
@@ -198,10 +207,11 @@ export function ContactFormModal() {
 
                 {/* Company Name */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-company" className={labelStyles}>
                     Company Name<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
+                    id="modal-company"
                     name="company"
                     type="text"
                     required
@@ -212,10 +222,11 @@ export function ContactFormModal() {
 
                 {/* Website */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-website" className={labelStyles}>
                     Website<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
+                    id="modal-website"
                     name="website"
                     type="url"
                     required
@@ -226,10 +237,11 @@ export function ContactFormModal() {
 
                 {/* Budget */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-budget" className={labelStyles}>
                     Budget<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <select
+                    id="modal-budget"
                     name="budget"
                     required
                     defaultValue=""
@@ -244,10 +256,11 @@ export function ContactFormModal() {
 
                 {/* Project description */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-description" className={labelStyles}>
                     Tell us about your project<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <textarea
+                    id="modal-description"
                     name="description"
                     required
                     rows={3}
@@ -258,10 +271,11 @@ export function ContactFormModal() {
 
                 {/* How did you find us */}
                 <div>
-                  <label className={labelStyles}>
+                  <label htmlFor="modal-referral" className={labelStyles}>
                     How did you find us?<span className="text-(--accent-brand) ml-1">*</span>
                   </label>
                   <input
+                    id="modal-referral"
                     name="referral"
                     type="text"
                     required
@@ -269,17 +283,6 @@ export function ContactFormModal() {
                     className={inputStyles}
                   />
                 </div>
-
-                {/* Send failed — say so rather than thanking them for a message
-                  * that never arrived. No fallback address offered on purpose:
-                  * the domain has no MX records, so any @startupbros.io mailbox
-                  * would bounce. Worth adding one and linking it here. */}
-                {failed && (
-                  <p role="alert" className="text-[13px] leading-relaxed text-(--destructive)">
-                    Something went wrong sending that — your message
-                    wasn&apos;t delivered. Please try again in a moment.
-                  </p>
-                )}
 
                 {/* Submit */}
                 <button
@@ -304,6 +307,16 @@ export function ContactFormModal() {
                     </>
                   )}
                 </button>
+
+                {errorMessage && (
+                  <p
+                    role="alert"
+                    aria-live="assertive"
+                    className="text-sm text-red-600 dark:text-red-400"
+                  >
+                    {errorMessage}
+                  </p>
+                )}
               </form>
             )}
           </div>

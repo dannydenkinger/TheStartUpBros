@@ -7,6 +7,7 @@ import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
+import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
 import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
@@ -90,41 +91,29 @@ function SuccessMark() {
 export function StrategyCallContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const [failed, setFailed] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const prefersReducedMotion = useReducedMotion();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
-    setFailed(false);
+    setErrorMessage(null);
 
     const form = new FormData(e.currentTarget);
-    const payload = {
-      source: "StrategyCallContent",
-      name: form.get("name"),
-      email: form.get("email"),
-      company: form.get("company"),
-      budget: form.get("budget"),
-      description: form.get("description"),
-    };
+    const payload = createContactPayload("StrategyCallContent", form);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      /* Only a confirmed 2xx is a lead — for the analytics event and for the
-       * success panel alike. This used to thank the user unconditionally, so a
-       * failed send looked identical to a delivered one. */
-      if (!res.ok) throw new Error();
+      await submitContactPayload(payload);
       trackLead("StrategyCallContent");
-      setIsSubmitting(false);
       setSubmitted(true);
-      return;
-    } catch {
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : "We couldn't send your request. Please try again.",
+      );
+    } finally {
       setIsSubmitting(false);
-      setFailed(true);
     }
   };
 
@@ -213,6 +202,8 @@ export function StrategyCallContent() {
                   {submitted ? (
                     <motion.div
                       key="done"
+                      role="status"
+                      aria-live="polite"
                       className="py-14 text-center"
                       {...(!prefersReducedMotion && {
                         initial: { opacity: 0 },
@@ -279,12 +270,26 @@ export function StrategyCallContent() {
                         transition: { duration: 0.22, ease: EXIT_EASE },
                       })}
                     >
+                      <div
+                        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+                        aria-hidden="true"
+                      >
+                        <label htmlFor="strategy-fax-number">Fax number</label>
+                        <input
+                          id="strategy-fax-number"
+                          name="faxNumber"
+                          type="text"
+                          tabIndex={-1}
+                          autoComplete="off"
+                        />
+                      </div>
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-name" className={labelStyles}>
                           Name
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
+                          id="strategy-name"
                           name="name"
                           type="text"
                           required
@@ -294,11 +299,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-email" className={labelStyles}>
                           Email
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <input
+                          id="strategy-email"
                           name="email"
                           type="email"
                           required
@@ -308,10 +314,11 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-company" className={labelStyles}>
                           Company
                         </label>
                         <input
+                          id="strategy-company"
                           name="company"
                           type="text"
                           placeholder="Acme Inc."
@@ -320,11 +327,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-budget" className={labelStyles}>
                           Budget
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <select
+                          id="strategy-budget"
                           name="budget"
                           required
                           defaultValue=""
@@ -342,11 +350,12 @@ export function StrategyCallContent() {
                       </div>
 
                       <div className="group">
-                        <label className={labelStyles}>
+                        <label htmlFor="strategy-description" className={labelStyles}>
                           Tell us about your project
                           <span className="text-(--accent-brand) ml-1">*</span>
                         </label>
                         <textarea
+                          id="strategy-description"
                           name="description"
                           required
                           rows={4}
@@ -354,16 +363,6 @@ export function StrategyCallContent() {
                           className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) focus:-translate-y-px transition-[color,background-color,border-color,box-shadow,transform] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:focus:translate-y-0"
                         />
                       </div>
-
-                      {/* Send failed — say so rather than thanking them for a
-                        * message that never arrived. See ContactFormModal for
-                        * why no fallback address is offered. */}
-                      {failed && (
-                        <p role="alert" className="text-[13px] leading-relaxed text-(--destructive)">
-                          Something went wrong sending that — your message
-                          wasn&apos;t delivered. Please try again in a moment.
-                        </p>
-                      )}
 
                       {/* The label crossfades on a mask rather than swapping,
                         * so the button never blinks between states. */}
@@ -432,6 +431,16 @@ export function StrategyCallContent() {
                           </AnimatePresence>
                         </span>
                       </button>
+
+                      {errorMessage && (
+                        <p
+                          role="alert"
+                          aria-live="assertive"
+                          className="text-sm text-red-600 dark:text-red-400"
+                        >
+                          {errorMessage}
+                        </p>
+                      )}
 
                       <p className="text-caption pt-1">
                         No obligations. We&apos;ll reply within 24 hours.

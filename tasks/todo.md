@@ -328,7 +328,7 @@ flush is what made them observable.
 
 ---
 
-## Contact form: actually delivers email (Resend)
+## Contact form: reliable Web3Forms delivery
 
 ### Context
 `/api/contact` validated, `console.log`ed and returned `{ok:true}` — every lead
@@ -337,35 +337,32 @@ submitted through the site was discarded. Both live forms then showed
 delivered one.
 
 ### Changes
-- [x] `resend` installed; `/api/contact` sends via Resend
-- [x] `Reply-To` set to the prospect, so replying from the inbox reaches them
-      directly (the domain has no MX records, so a reply to the From address
-      would bounce)
-- [x] All user-supplied values HTML-escaped before going into the email body
-- [x] API key read at request time, not module scope — a missing key would
-      otherwise throw during build and 500 without explaining why
-- [x] Both forms now show a failure notice (`role="alert"`) instead of a false
-      success, and fire no `generate_lead` on failure
+- [x] Web3Forms form created for the approved StartUpBros business inbox
+- [x] Browser-side form helper sends submissions directly to Web3Forms, as
+      required by its free plan
+- [x] Public Web3Forms form ID lives in the site code, so delivery does not
+      depend on access to the hosting account
+- [x] Required name and email fields are validated before submission
+- [x] Honeypot submissions accepted quietly without sending downstream
+- [x] Source page, original landing page, referrer, and UTM values included
+- [x] Forms show a failure notice (`role="alert"`) instead of false success
+- [x] `generate_lead` fires only after Web3Forms confirms delivery
 
-### Config (env)
-    RESEND_API_KEY    required
-    CONTACT_TO_EMAIL  defaults to Thestartupbros1@gmail.com
-    CONTACT_FROM      defaults to "StartUpBros <leads@startupbros.io>"
+### Configuration
+Web3Forms marks its form access key as public. The approved form ID is stored in
+the shared contact helper, while account ownership and inbox access remain with
+Danny.
 
-### DNS verified live on startupbros.io (added via Resend auto-configure)
-    DKIM  resend._domainkey      valid RSA key
-    SPF   send.startupbros.io    v=spf1 include:amazonses.com ~all
-    MX    send.startupbros.io    10 feedback-smtp.us-east-1.amazonses.com
+### Verified locally
+    changed contact files        -> lint passes
+    production build             -> passes
+    invalid email                -> rejected before provider call
+    populated honeypot           -> accepted without provider call
 
-### Verified with no key set (failure path)
-    POST /api/contact            -> 500 {"ok":false,"error":"Email is not configured"}
-    shows "Thank you"            -> false
-    shows failure notice         -> true
-    generate_lead fired          -> none
+### Verified end to end
+    strategy-call browser submit -> success confirmation shown
+    Web3Forms provider           -> submission accepted
+    StartUpBros Gmail inbox      -> matching inquiry received
 
 ### OPEN
-- [ ] No mailbox exists on the domain — there are no MX records at the apex, so
-      hello@startupbros.io etc. would bounce. That is why the failure notice
-      offers no fallback address, and why the site publishes no contact email
-      anywhere. Worth adding a real inbox.
 - [ ] `BookingForm.tsx` still orphaned — no `/contact` route imports it.

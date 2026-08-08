@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Check } from "lucide-react";
+import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
 import { trackLead } from "@/lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
@@ -19,22 +20,10 @@ export function BookingForm() {
     setStatus("submitting");
 
     const form = new FormData(e.currentTarget);
-    const payload = {
-      source: "BookingForm",
-      name: form.get("name"),
-      email: form.get("email"),
-      company: form.get("company"),
-      budget: form.get("budget"),
-      description: form.get("description"),
-    };
+    const payload = createContactPayload("BookingForm", form);
 
     try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      if (!res.ok) throw new Error();
+      await submitContactPayload(payload);
       trackLead("BookingForm");
       setStatus("success");
     } catch {
@@ -44,7 +33,7 @@ export function BookingForm() {
 
   if (status === "success") {
     return (
-      <div className="card-elevated p-10 text-center">
+      <div role="status" aria-live="polite" className="card-elevated p-10 text-center">
         <div className="mx-auto mb-4 flex size-10 items-center justify-center rounded-full bg-(--success-soft) text-(--success)">
           <Check className="w-5 h-5" strokeWidth={2.5} />
         </div>
@@ -58,6 +47,19 @@ export function BookingForm() {
 
   return (
     <form onSubmit={handleSubmit} className="card-elevated p-6 sm:p-8 md:p-10 space-y-6">
+      <div
+        className="absolute left-[-10000px] top-auto h-px w-px overflow-hidden"
+        aria-hidden="true"
+      >
+        <label htmlFor="booking-fax-number">Fax number</label>
+        <input
+          id="booking-fax-number"
+          name="faxNumber"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
           <label htmlFor="name" className={labelStyles}>
@@ -146,6 +148,16 @@ export function BookingForm() {
           </>
         )}
       </button>
+
+      {status === "error" && (
+        <p
+          role="alert"
+          aria-live="assertive"
+          className="text-sm text-red-600 dark:text-red-400"
+        >
+          We couldn&apos;t send your request right now. Please try again.
+        </p>
+      )}
     </form>
   );
 }
