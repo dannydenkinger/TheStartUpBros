@@ -90,11 +90,13 @@ function SuccessMark() {
 export function StrategyCallContent() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [failed, setFailed] = useState(false);
   const prefersReducedMotion = useReducedMotion();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFailed(false);
 
     const form = new FormData(e.currentTarget);
     const payload = {
@@ -112,16 +114,18 @@ export function StrategyCallContent() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      /* Only a confirmed 2xx counts as a lead — see the note in
-       * ContactFormModal; this form shows its success panel unconditionally
-       * too. */
-      if (res.ok) trackLead("StrategyCallContent");
+      /* Only a confirmed 2xx is a lead — for the analytics event and for the
+       * success panel alike. This used to thank the user unconditionally, so a
+       * failed send looked identical to a delivered one. */
+      if (!res.ok) throw new Error();
+      trackLead("StrategyCallContent");
+      setIsSubmitting(false);
+      setSubmitted(true);
+      return;
     } catch {
-      // fail silently — dev scaffold, real handling comes with real endpoint
+      setIsSubmitting(false);
+      setFailed(true);
     }
-
-    setIsSubmitting(false);
-    setSubmitted(true);
   };
 
   /* Focus is a state change, not a scroll frame, so a ring tween is safe —
@@ -350,6 +354,16 @@ export function StrategyCallContent() {
                           className="w-full min-h-[120px] rounded-xl border border-input bg-(--surface-input) px-4 py-3 text-base text-foreground placeholder:text-muted-foreground/60 resize-y focus:outline-none focus:border-foreground focus:ring-2 focus:ring-(--accent-brand-soft) focus:-translate-y-px transition-[color,background-color,border-color,box-shadow,transform] duration-[250ms] ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none motion-reduce:focus:translate-y-0"
                         />
                       </div>
+
+                      {/* Send failed — say so rather than thanking them for a
+                        * message that never arrived. See ContactFormModal for
+                        * why no fallback address is offered. */}
+                      {failed && (
+                        <p role="alert" className="text-[13px] leading-relaxed text-(--destructive)">
+                          Something went wrong sending that — your message
+                          wasn&apos;t delivered. Please try again in a moment.
+                        </p>
+                      )}
 
                       {/* The label crossfades on a mask rather than swapping,
                         * so the button never blinks between states. */}

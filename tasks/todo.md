@@ -325,3 +325,47 @@ flush is what made them observable.
    `/contact` route. Instrumented anyway so it works if wired up.
 3. Both modal and strategy-call forms show "Thank you!" even when the POST
    fails, so a user whose submission errored believes it went through.
+
+---
+
+## Contact form: actually delivers email (Resend)
+
+### Context
+`/api/contact` validated, `console.log`ed and returned `{ok:true}` — every lead
+submitted through the site was discarded. Both live forms then showed
+"Thank you!" regardless, so a failed submission was indistinguishable from a
+delivered one.
+
+### Changes
+- [x] `resend` installed; `/api/contact` sends via Resend
+- [x] `Reply-To` set to the prospect, so replying from the inbox reaches them
+      directly (the domain has no MX records, so a reply to the From address
+      would bounce)
+- [x] All user-supplied values HTML-escaped before going into the email body
+- [x] API key read at request time, not module scope — a missing key would
+      otherwise throw during build and 500 without explaining why
+- [x] Both forms now show a failure notice (`role="alert"`) instead of a false
+      success, and fire no `generate_lead` on failure
+
+### Config (env)
+    RESEND_API_KEY    required
+    CONTACT_TO_EMAIL  defaults to Thestartupbros1@gmail.com
+    CONTACT_FROM      defaults to "StartUpBros <leads@startupbros.io>"
+
+### DNS verified live on startupbros.io (added via Resend auto-configure)
+    DKIM  resend._domainkey      valid RSA key
+    SPF   send.startupbros.io    v=spf1 include:amazonses.com ~all
+    MX    send.startupbros.io    10 feedback-smtp.us-east-1.amazonses.com
+
+### Verified with no key set (failure path)
+    POST /api/contact            -> 500 {"ok":false,"error":"Email is not configured"}
+    shows "Thank you"            -> false
+    shows failure notice         -> true
+    generate_lead fired          -> none
+
+### OPEN
+- [ ] No mailbox exists on the domain — there are no MX records at the apex, so
+      hello@startupbros.io etc. would bounce. That is why the failure notice
+      offers no fallback address, and why the site publishes no contact email
+      anywhere. Worth adding a real inbox.
+- [ ] `BookingForm.tsx` still orphaned — no `/contact` route imports it.

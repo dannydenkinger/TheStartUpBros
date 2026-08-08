@@ -37,6 +37,7 @@ export function ContactFormModal() {
   const { isOpen, closeModal } = useContactModal();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [failed, setFailed] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -63,6 +64,7 @@ export function ContactFormModal() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setFailed(false);
 
     const form = new FormData(e.currentTarget);
     const payload = {
@@ -82,20 +84,22 @@ export function ContactFormModal() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
-      /* Only a confirmed 2xx counts as a lead. The success panel below renders
-       * either way (pre-existing behaviour), so keying the event off that
-       * instead would report conversions the inbox never received. */
-      if (res.ok) trackLead("ContactFormModal");
+      /* Only a confirmed 2xx is a lead — both for the analytics event and for
+       * the success panel. This used to thank the user unconditionally, which
+       * meant a failed send looked identical to a delivered one and the
+       * enquiry was simply lost. */
+      if (!res.ok) throw new Error();
+      trackLead("ContactFormModal");
+      setIsSubmitting(false);
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        closeModal();
+      }, 2500);
     } catch {
-      // fail silently — dev scaffold, real handling comes with real endpoint
+      setIsSubmitting(false);
+      setFailed(true);
     }
-
-    setIsSubmitting(false);
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      closeModal();
-    }, 2500);
   };
 
   if (!isOpen) return null;
@@ -265,6 +269,17 @@ export function ContactFormModal() {
                     className={inputStyles}
                   />
                 </div>
+
+                {/* Send failed — say so rather than thanking them for a message
+                  * that never arrived. No fallback address offered on purpose:
+                  * the domain has no MX records, so any @startupbros.io mailbox
+                  * would bounce. Worth adding one and linking it here. */}
+                {failed && (
+                  <p role="alert" className="text-[13px] leading-relaxed text-(--destructive)">
+                    Something went wrong sending that — your message
+                    wasn&apos;t delivered. Please try again in a moment.
+                  </p>
+                )}
 
                 {/* Submit */}
                 <button
