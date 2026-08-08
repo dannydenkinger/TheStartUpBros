@@ -8,6 +8,7 @@ import { AnimateIn } from "@/components/shared/AnimateIn";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
 import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
+import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
   "Under $5,000",
@@ -103,6 +104,7 @@ export function StrategyCallContent() {
 
     try {
       await submitContactPayload(payload);
+      trackLead("StrategyCallContent");
       setSubmitted(true);
     } catch (error) {
       setErrorMessage(

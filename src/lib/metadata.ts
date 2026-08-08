@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 
 /* Canonical origin — the single source of truth for every absolute URL
- * (metadata, OG/twitter cards, JSON-LD, sitemap). Change it here when a
- * custom domain is connected; nothing else hardcodes the host. */
-export const siteUrl = "https://the-start-up-bros.vercel.app";
+ * (metadata, OG/twitter cards, JSON-LD, sitemap). Nothing else hardcodes the
+ * host except the Sitemap line in public/robots.txt, which can't import.
+ *
+ * The www is deliberate: the apex 308-redirects to www, so www is where every
+ * request actually lands. A canonical pointing at a URL that redirects makes
+ * Google resolve a hop to find the real page — point it at the destination. */
+export const siteUrl = "https://www.startupbros.io";
 
 /* Social share card — 1200x630 declared, shipped at 2x for retina unfurls.
  * Exported because Next REPLACES (never merges) a parent openGraph block, so

@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Check } from "lucide-react";
 import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
+import { trackLead } from "@/lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -23,6 +24,7 @@ export function BookingForm() {
 
     try {
       await submitContactPayload(payload);
+      trackLead("BookingForm");
       setStatus("success");
     } catch {
       setStatus("error");
