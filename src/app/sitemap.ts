@@ -28,6 +28,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/blog`, lastModified: new Date(), priority: 0.8 },
     { url: `${siteUrl}/strategy-call`, lastModified: new Date(), priority: 0.9 },
     { url: `${siteUrl}/gallery`, lastModified: new Date(), priority: 0.7 },
+    { url: `${siteUrl}/tools`, lastModified: new Date(), priority: 0.8 },
+    { url: `${siteUrl}/tools/mvp-scope`, lastModified: new Date(), priority: 0.8 },
     { url: `${siteUrl}/tools/saas-cost`, lastModified: new Date(), priority: 0.7 },
   ];
 
