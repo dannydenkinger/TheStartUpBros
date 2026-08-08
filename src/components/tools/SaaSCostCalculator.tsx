@@ -15,92 +15,49 @@ import {
   HardDrive,
   Mail,
   BarChart3,
+  Check,
+  RotateCcw,
+  Share2,
 } from "lucide-react";
+import {
+  getSaasEstimate,
+  saasFeatures,
+  serializeSaasFeatureIds,
+  type SaasFeatureId,
+} from "@/lib/saasEstimate";
 
-interface Feature {
-  id: string;
-  label: string;
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  days: number;
-  description: string;
-}
+const featureIcons: Record<
+  SaasFeatureId,
+  React.ComponentType<{ className?: string; strokeWidth?: number }>
+> = {
+  auth: ShieldCheck,
+  ai: Brain,
+  database: Database,
+  payments: CreditCard,
+  admin: LayoutDashboard,
+  storage: HardDrive,
+  email: Mail,
+  analytics: BarChart3,
+};
 
-const features: Feature[] = [
-  {
-    id: "auth",
-    label: "Authentication",
-    icon: ShieldCheck,
-    days: 5,
-    description: "User signup, login, OAuth, password reset, session management",
-  },
-  {
-    id: "ai",
-    label: "AI / LLM Integration",
-    icon: Brain,
-    days: 8,
-    description: "LLM API integration, prompt engineering, response handling",
-  },
-  {
-    id: "database",
-    label: "Database & ORM",
-    icon: Database,
-    days: 4,
-    description: "Schema design, migrations, ORM setup, seeding",
-  },
-  {
-    id: "payments",
-    label: "Payments / Billing",
-    icon: CreditCard,
-    days: 6,
-    description: "Stripe integration, subscriptions, invoicing, webhooks",
-  },
-  {
-    id: "admin",
-    label: "Admin Dashboard",
-    icon: LayoutDashboard,
-    days: 7,
-    description: "User management, analytics views, content moderation",
-  },
-  {
-    id: "storage",
-    label: "File Storage",
-    icon: HardDrive,
-    days: 3,
-    description: "Upload, CDN, image processing, access control",
-  },
-  {
-    id: "email",
-    label: "Email / Notifications",
-    icon: Mail,
-    days: 3,
-    description: "Transactional emails, in-app notifications, templates",
-  },
-  {
-    id: "analytics",
-    label: "Analytics",
-    icon: BarChart3,
-    days: 4,
-    description: "Event tracking, dashboards, usage metrics, reporting",
-  },
-];
+type ShareStatus = "copied" | "shared" | "error" | null;
 
-function getTier(days: number): { label: string; description: string } {
-  if (days <= 12) {
-    return {
-      label: "Simple",
-      description: "A focused MVP with core features. Ideal for validation.",
-    };
+async function copyText(value: string) {
+  if (navigator.clipboard?.writeText) {
+    await navigator.clipboard.writeText(value);
+    return;
   }
-  if (days <= 25) {
-    return {
-      label: "Standard",
-      description: "A well-rounded product with multiple integrated systems.",
-    };
-  }
-  return {
-    label: "Complex",
-    description: "A feature-rich platform requiring careful architecture.",
-  };
+
+  const textArea = document.createElement("textarea");
+  textArea.value = value;
+  textArea.style.position = "fixed";
+  textArea.style.opacity = "0";
+  document.body.appendChild(textArea);
+  textArea.select();
+  const copied = document.execCommand("copy");
+  textArea.remove();
+
+  if (!copied) throw new Error("Copy failed");
 }
 
 /* Tweens the running total from wherever it currently sits to the new value
@@ -115,8 +72,8 @@ function TweenNumber({ value }: { value: number }) {
   useEffect(() => {
     if (prefersReducedMotion) {
       fromRef.current = value;
-      setDisplay(value);
-      return;
+      const rafId = requestAnimationFrame(() => setDisplay(value));
+      return () => cancelAnimationFrame(rafId);
     }
     const from = fromRef.current;
     if (from === value) return;
@@ -141,11 +98,34 @@ function TweenNumber({ value }: { value: number }) {
   return <>{display}</>;
 }
 
-export function SaaSCostCalculator() {
-  const [selected, setSelected] = useState<Set<string>>(new Set());
+export function SaaSCostCalculator({
+  initialFeatureIds = [],
+}: {
+  initialFeatureIds?: SaasFeatureId[];
+}) {
+  const [selected, setSelected] = useState<Set<SaasFeatureId>>(
+    () => new Set(initialFeatureIds),
+  );
+  const [shareStatus, setShareStatus] = useState<ShareStatus>(null);
   const prefersReducedMotion = useReducedMotion();
 
-  const toggle = (id: string) => {
+  useEffect(() => {
+    const serialized = serializeSaasFeatureIds(selected);
+    const params = new URLSearchParams(window.location.search);
+
+    if (serialized) params.set("features", serialized);
+    else params.delete("features");
+
+    const query = params.toString();
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`,
+    );
+  }, [selected]);
+
+  const toggle = (id: SaasFeatureId) => {
+    setShareStatus(null);
     setSelected((prev) => {
       const next = new Set(prev);
       if (next.has(id)) next.delete(id);
@@ -154,12 +134,49 @@ export function SaaSCostCalculator() {
     });
   };
 
-  const selectedFeatures = features.filter((f) => selected.has(f.id));
-  const totalDays = selectedFeatures.reduce((sum, f) => sum + f.days, 0);
-
-  const tier = getTier(totalDays);
+  const { selectedFeatures, totalDays, tier } = getSaasEstimate(selected);
+  const serializedFeatures = serializeSaasFeatureIds(selected);
+  const strategyCallHref = `/strategy-call?from=saas-cost&features=${encodeURIComponent(serializedFeatures)}`;
 
   const Wrapper = prefersReducedMotion ? "div" : motion.div;
+
+  const shareEstimate = async () => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("features", serializedFeatures);
+
+    const featureList = selectedFeatures.map((feature) => feature.label).join(", ");
+    const summary = `StartUpBros MVP estimate: ${featureList}. ${totalDays} development days, ${tier.label.toLowerCase()} complexity.`;
+
+    try {
+      if (navigator.share) {
+        await navigator.share({
+          title: "My StartUpBros MVP estimate",
+          text: summary,
+          url: url.toString(),
+        });
+        setShareStatus("shared");
+      } else {
+        await copyText(`${summary}\n${url.toString()}`);
+        setShareStatus("copied");
+      }
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") return;
+
+      try {
+        await copyText(`${summary}\n${url.toString()}`);
+        setShareStatus("copied");
+      } catch {
+        setShareStatus("error");
+      }
+    }
+
+    window.setTimeout(() => setShareStatus(null), 3000);
+  };
+
+  const resetEstimate = () => {
+    setShareStatus(null);
+    setSelected(new Set());
+  };
 
   return (
     <div className="flex flex-col min-h-screen bg-background">
@@ -186,9 +203,9 @@ export function SaaSCostCalculator() {
           {/* Feature Toggle Grid */}
           <AnimateIn variant="fadeUp" className="mb-8 md:mb-12">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-5">
-              {features.map((feature) => {
+              {saasFeatures.map((feature) => {
                 const isOn = selected.has(feature.id);
-                const Icon = feature.icon;
+                const Icon = featureIcons[feature.id];
 
                 return (
                   /* The card is the switch, so it has to feel like one:
@@ -265,6 +282,7 @@ export function SaaSCostCalculator() {
                   exit: { opacity: 0, y: -8 },
                   transition: { duration: 0.3, ease: REVEAL_EASE },
                 })}
+                aria-live="polite"
                 className="card-elevated p-6 sm:p-8 md:p-10"
               >
                 <p className="text-micro-label text-muted-foreground mb-3">
@@ -294,6 +312,7 @@ export function SaaSCostCalculator() {
                   exit: { opacity: 0, y: -8 },
                   transition: { duration: 0.3, ease: REVEAL_EASE },
                 })}
+                aria-live="polite"
                 className="card-elevated p-6 sm:p-8 md:p-10"
               >
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10">
@@ -386,8 +405,51 @@ export function SaaSCostCalculator() {
                     >
                       {tier.description}
                     </motion.p>
+
+                    <div className="mt-7 flex flex-wrap gap-3">
+                      <button
+                        type="button"
+                        onClick={shareEstimate}
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:border-foreground"
+                      >
+                        {shareStatus === "copied" || shareStatus === "shared" ? (
+                          <Check className="size-4" aria-hidden />
+                        ) : (
+                          <Share2 className="size-4" aria-hidden />
+                        )}
+                        {shareStatus === "copied"
+                          ? "Link copied"
+                          : shareStatus === "shared"
+                            ? "Shared"
+                            : shareStatus === "error"
+                              ? "Copy failed"
+                              : "Share estimate"}
+                      </button>
+                      <button
+                        type="button"
+                        onClick={resetEstimate}
+                        className="inline-flex min-h-11 items-center gap-2 rounded-full px-4 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                      >
+                        <RotateCcw className="size-4" aria-hidden />
+                        Reset
+                      </button>
+                    </div>
+                    <p className="sr-only" aria-live="polite">
+                      {shareStatus === "copied"
+                        ? "Estimate link copied to clipboard."
+                        : shareStatus === "shared"
+                          ? "Estimate shared."
+                          : shareStatus === "error"
+                            ? "The estimate could not be copied."
+                            : ""}
+                    </p>
                   </div>
                 </div>
+
+                <p className="mt-7 text-xs leading-relaxed text-muted-foreground">
+                  Planning estimate only. Final timing depends on product requirements,
+                  integrations, and launch readiness.
+                </p>
 
                 <div className="mt-10 pt-6 border-t border-border flex flex-col items-start gap-6 md:flex-row md:items-center md:justify-between">
                   <p className="text-body-lg">
@@ -395,11 +457,11 @@ export function SaaSCostCalculator() {
                   </p>
                   <MagneticButton className="max-md:w-full">
                     <CTAButton
-                      href="/strategy-call"
+                      href={strategyCallHref}
                       variant="primary"
                       className="max-md:w-full max-md:h-auto max-md:min-h-12 max-md:whitespace-normal max-md:text-center max-md:py-2.5"
                     >
-                      Book a Consultation to Finalize This Scope
+                      Discuss This Estimate
                     </CTAButton>
                   </MagneticButton>
                 </div>

@@ -77,6 +77,9 @@ export async function submitContactPayload(
       "UTM campaign": payload.utmCampaign,
       "UTM term": payload.utmTerm,
       "UTM content": payload.utmContent,
+      "Estimate features": payload.estimateFeatures,
+      "Estimate days": payload.estimateDays,
+      "Estimate tier": payload.estimateTier,
     }),
   });
 
