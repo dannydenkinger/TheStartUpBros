@@ -95,10 +95,22 @@ type InitialEstimate = {
   tier: string;
 };
 
+type InitialScope = {
+  productType: string;
+  audience: string;
+  goal: string;
+  posture: string;
+  capabilities: string[];
+  laterCapabilities: string[];
+  timeline: string;
+};
+
 export function StrategyCallContent({
   initialEstimate,
+  initialScope,
 }: {
   initialEstimate?: InitialEstimate;
+  initialScope?: InitialScope;
 }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -306,6 +318,17 @@ export function StrategyCallContent({
                           </p>
                         </div>
                       )}
+                      {initialScope && (
+                        <div className="rounded-xl border border-(--accent-brand)/25 bg-(--accent-brand-soft) p-4">
+                          <p className="text-sm font-medium text-foreground">
+                            MVP scope plan attached
+                          </p>
+                          <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                            {initialScope.productType} · {initialScope.audience} ·{" "}
+                            {initialScope.timeline} · {initialScope.posture}
+                          </p>
+                        </div>
+                      )}
                       {initialEstimate && (
                         <>
                           <input
@@ -322,6 +345,45 @@ export function StrategyCallContent({
                             type="hidden"
                             name="estimateTier"
                             value={initialEstimate.tier}
+                          />
+                        </>
+                      )}
+                      {initialScope && (
+                        <>
+                          <input
+                            type="hidden"
+                            name="scopeProductType"
+                            value={initialScope.productType}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopeAudience"
+                            value={initialScope.audience}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopeGoal"
+                            value={initialScope.goal}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopePosture"
+                            value={initialScope.posture}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopeCapabilities"
+                            value={initialScope.capabilities.join(", ")}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopeLaterCapabilities"
+                            value={initialScope.laterCapabilities.join(", ")}
+                          />
+                          <input
+                            type="hidden"
+                            name="scopeTimeline"
+                            value={initialScope.timeline}
                           />
                         </>
                       )}
@@ -402,7 +464,9 @@ export function StrategyCallContent({
                           required
                           rows={4}
                           defaultValue={
-                            initialEstimate
+                            initialScope
+                              ? `I used the MVP Scope Planner. Product: ${initialScope.productType}. Audience: ${initialScope.audience}. Launch goal: ${initialScope.goal}. Build now: ${initialScope.capabilities.join(", ")}. Planning range: ${initialScope.timeline}.`
+                              : initialEstimate
                               ? `I used the SaaS Cost Calculator. Selected features: ${initialEstimate.featureLabels.join(", ")}. Estimated scope: ${initialEstimate.totalDays} development days (${initialEstimate.tier} complexity).`
                               : undefined
                           }

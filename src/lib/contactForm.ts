@@ -80,6 +80,13 @@ export async function submitContactPayload(
       "Estimate features": payload.estimateFeatures,
       "Estimate days": payload.estimateDays,
       "Estimate tier": payload.estimateTier,
+      "Scope product type": payload.scopeProductType,
+      "Scope audience": payload.scopeAudience,
+      "Scope launch goal": payload.scopeGoal,
+      "Scope release approach": payload.scopePosture,
+      "Scope build now": payload.scopeCapabilities,
+      "Scope build later": payload.scopeLaterCapabilities,
+      "Scope timeline": payload.scopeTimeline,
     }),
   });
 

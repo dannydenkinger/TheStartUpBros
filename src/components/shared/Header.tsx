@@ -27,9 +27,19 @@ const industries = [
 
 const tools = [
   {
+    name: "MVP Scope Planner",
+    description: "Turn product decisions into a focused first-release plan.",
+    href: "/tools/mvp-scope",
+  },
+  {
     name: "SaaS Cost Calculator",
     description: "Estimate MVP scope, timeline, and complexity.",
     href: "/tools/saas-cost",
+  },
+  {
+    name: "All Tools",
+    description: "Browse the complete founder toolkit.",
+    href: "/tools",
   },
 ];
 

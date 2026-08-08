@@ -25,9 +25,9 @@ const columns = [
   {
     title: "Resources",
     links: [
-      { label: "Case Studies", href: "/portfolio" },
+      { label: "MVP Scope Planner", href: "/tools/mvp-scope" },
       { label: "SaaS Cost Calculator", href: "/tools/saas-cost" },
-      { label: "All Services", href: "/services" },
+      { label: "All Tools", href: "/tools" },
     ],
   },
 ];
