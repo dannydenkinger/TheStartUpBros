@@ -6,12 +6,13 @@ The repository is public. It is safe to keep the approved business email and pub
 
 ## Completed accounts
 
-Confirmed live on August 7, 2026:
+Confirmed live as of August 8, 2026:
 
 | Platform | Public profile | Completed setup |
 | --- | --- | --- |
 | Crunchbase | [StartUpBros company profile](https://www.crunchbase.com/organization/startupbros-4d63) | Company name, website, contact email, description, and Software, Web Development, SaaS, and AI categories are published. The contributor account is under Danny Denkinger's name. Unverified company facts remain blank. |
 | Product Hunt | [Danny Denkinger maker profile](https://www.producthunt.com/@dannydenkinger) | Personal maker account, `dannydenkinger` username, StartUpBros headline, bio, website, and Google sign-in are configured. The StartUpBros product page remains intentionally pending until the account is old enough to submit. |
+| Reddit | [Danny \| StartUpBros](https://www.reddit.com/user/thestartupbrosstudio/) | The `u/thestartupbrosstudio` account, public display name, StartUpBros bio, business email, and sign-in are configured. Community memberships are separate engagement work and are not required to consider the account complete. |
 
 Do not mark another account complete until its public identity, profile URL, ownership, and recovery path have been verified.
 
@@ -62,37 +63,7 @@ Use the closest options each platform provides:
 
 The banner is 2400 × 1260. Use the appropriate founder headshot for personal accounts. Do not use a founder photo as the company logo.
 
-## 1. X
-
-1. Open [X account signup](https://x.com/i/flow/signup).
-2. Choose **Continue with Google** and sign in with `thestartupbros1@gmail.com`.
-3. Use these public details:
-   - Display name: **StartUpBros**
-   - Preferred handle: **@startupbrosstudio**
-   - Backup handle: **@buildwithstartupbros**
-   - Bio: use the **Short bio** above
-   - Website: `https://the-start-up-bros.vercel.app`
-   - Header image: use the **StartUpBros social banner** above
-4. Complete any phone, email, or anti-spam verification X requests.
-
-The preferred X handle returned no existing profile when checked on August 6, 2026, but availability is only confirmed when X accepts it during signup.
-
-## 2. Facebook Page
-
-1. Sign in to Danny's real Facebook profile.
-2. Open [Create a Facebook Page](https://www.facebook.com/pages/create).
-3. Use these public details:
-   - Page name: **StartUpBros**
-   - Category: **Software company** or the closest available development category
-   - Bio: use the **Short bio** above
-   - Preferred username: **@startupbrosstudio**
-   - Website: `https://the-start-up-bros.vercel.app`
-   - Cover image: use the **StartUpBros social banner** above
-4. After the Page exists, give Anthony Page access from the Page's access settings.
-
-Facebook requires a real personal account to create and manage a business Page. Do not create a fake personal profile named StartUpBros.
-
-## 3. Crunchbase
+## 1. Crunchbase
 
 **Status: Complete — [view the StartUpBros company profile](https://www.crunchbase.com/organization/startupbros-4d63).**
 
@@ -110,7 +81,7 @@ Facebook requires a real personal account to create and manage a business Page. 
 
 Do not guess a founding date, headquarters, legal entity, employee count, funding, revenue, or customer count. Danny should add those only when he can verify them. Crunchbase's [official profile instructions](https://support.crunchbase.com/hc/en-us/articles/115011823988-How-do-I-create-a-Crunchbase-profile) explain the required authenticated-contributor flow.
 
-## 4. Product Hunt
+## 2. Product Hunt
 
 **Status: Maker account complete — [view Danny Denkinger's profile](https://www.producthunt.com/@dannydenkinger). Product submission remains pending until the account is at least one week old.**
 
@@ -127,37 +98,32 @@ Do not guess a founding date, headquarters, legal entity, employee count, fundin
 
 Read Product Hunt's [personal-versus-company account rule](https://help.producthunt.com/en/articles/771527-personal-account-vs-company-account) before submitting. The account must be older than one week before it can launch a product.
 
-## 5. PitchBook
+## 3. Reddit account and communities
 
-1. Open [PitchBook](https://pitchbook.com/) and search the profile previews for **StartUpBros**.
-2. If a profile exists, open it and choose **Update this profile**. PitchBook says a company representative can submit an update from the public site even without a paid account.
-3. If no profile exists and Danny has platform access, open [PitchBook login](https://my.pitchbook.com/), choose **Request Research**, and request a new company profile.
-4. Use the company name, website, founders, descriptions, and categories from the top of this file.
+**Status: Complete — [view Danny | StartUpBros on Reddit](https://www.reddit.com/user/thestartupbrosstudio/).**
 
-Do not submit funding, revenue, valuation, employee, legal-entity, or headquarters information unless Danny can verify it. PitchBook's [official research and profile-update instructions](https://pitchbook.com/help/how-to-request-research-submit-data-feedback-or-update-your-profile) explain both the new-profile and existing-profile paths.
+The live account uses this transparent person-plus-company identity:
 
-## 6. Reddit account and communities
+- Username: **u/thestartupbrosstudio**
+- Display name: **Danny | StartUpBros**
+- Bio: **Danny, co-founder of StartUpBros. I build MVPs and answer practical questions about scoping, product design, and app development.**
 
-1. Open [Reddit signup](https://www.reddit.com/register/).
-2. Use `thestartupbros1@gmail.com`.
-3. Use a transparent person-plus-company identity:
-   - Preferred username: **DannyStartUpBros**
-   - Backup username: **DannyAtStartUpBros**
-   - Bio: **Danny, co-founder of StartUpBros. I build MVPs and answer practical questions about scoping, product design, and app development.**
-4. Remember that Reddit usernames cannot be changed after creation.
-5. Join and read the rules for:
-   - [r/AppIdeas](https://www.reddit.com/r/AppIdeas/)
-   - [r/SaaS](https://www.reddit.com/r/SaaS/)
-   - [r/startups](https://www.reddit.com/r/startups/)
-   - [r/Entrepreneur](https://www.reddit.com/r/Entrepreneur/)
+Community participation is ongoing lead-development work. Join and read the rules for:
+
+- [r/AppIdeas](https://www.reddit.com/r/AppIdeas/)
+- [r/SaaS](https://www.reddit.com/r/SaaS/)
+- [r/startups](https://www.reddit.com/r/startups/)
+- [r/Entrepreneur](https://www.reddit.com/r/Entrepreneur/)
 
 Answer the question first. Mention StartUpBros only when relevant and disclose the affiliation. Do not mass-message members, repeat the same pitch, or post promotional links where self-promotion is prohibited.
 
-## 7. Discord account and communities
+## 4. Discord account and communities
 
-1. Open [Discord signup](https://discord.com/register).
-2. Use `thestartupbros1@gmail.com`.
-3. Use this public identity:
+**Status: Awaiting account validation. Do not mark Discord complete until the verification step succeeds and the account can be signed into again.**
+
+1. Complete Discord's email or account-validation prompt for the account created with the approved business email.
+2. Sign out and back in to confirm the account and recovery path work.
+3. Confirm this public identity:
    - Display name: **Danny | StartUpBros**
    - About me: **Co-founder at StartUpBros. I help founders scope and build web apps, SaaS products, and AI tools.**
 4. Join [Tech Startups](https://discord.com/invite/startups).
@@ -165,15 +131,9 @@ Answer the question first. Mention StartUpBros only when relevant and disclose t
 
 Read each server's rules before posting. Help in public channels first. Do not send unsolicited direct messages or scrape member lists.
 
-## 8. Facebook communities
+## Out of the current account scope
 
-Use Danny's real Facebook profile when joining groups. Keep the StartUpBros Page for official company posts.
-
-- [Search SaaS founder groups](https://www.facebook.com/search/groups/?q=saas%20founders)
-- [Search startup founder groups](https://www.facebook.com/search/groups/?q=startup%20founders)
-- [Search app-development groups](https://www.facebook.com/search/groups/?q=app%20development)
-
-Join only groups with recent posts, active moderation, and rules that allow helpful vendor participation. Disclose the StartUpBros affiliation when it is relevant. Do not cold-message group members.
+X, Facebook, and PitchBook are intentionally deferred. They are not blockers for this PR and should not be treated as unfinished work in the current account package.
 
 ## Leave these decisions with Danny
 
