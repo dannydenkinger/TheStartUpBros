@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://the-start-up-bros.vercel.app/sitemap.xml
+Sitemap: https://www.startupbros.io/sitemap.xml

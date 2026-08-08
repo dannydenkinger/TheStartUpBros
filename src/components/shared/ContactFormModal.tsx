@@ -5,6 +5,7 @@ import { X, Check } from "lucide-react";
 import { useContactModal } from "@/context/ContactModalContext";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { createContactPayload, submitContactPayload } from "@/lib/contactForm";
+import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
   "Under $5,000",
@@ -71,6 +72,7 @@ export function ContactFormModal() {
 
     try {
       await submitContactPayload(payload);
+      trackLead("ContactFormModal");
       setSubmitted(true);
       setTimeout(() => {
         setSubmitted(false);
