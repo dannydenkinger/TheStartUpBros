@@ -25,6 +25,14 @@ const industries = [
   { name: "Supply Chain", href: "/industries/b2b" },
 ];
 
+const tools = [
+  {
+    name: "SaaS Cost Calculator",
+    description: "Estimate MVP scope, timeline, and complexity.",
+    href: "/tools/saas-cost",
+  },
+];
+
 /* Dropdown opens with intent: the plate scales/slides from its top edge,
  * then the ten industries ink in on a 28ms cadence — fast enough that the
  * list is readable before the eye finishes travelling down it. */
@@ -95,7 +103,10 @@ function IconThemeToggle({ className }: { className?: string }) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setMounted(true));
+    return () => cancelAnimationFrame(frame);
+  }, []);
 
   if (!mounted) {
     return <div className={cn("size-8", className)} />;
@@ -125,6 +136,7 @@ function IconThemeToggle({ className }: { className?: string }) {
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [industriesOpen, setIndustriesOpen] = useState(false);
+  const [toolsOpen, setToolsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
@@ -182,6 +194,26 @@ export function Header() {
           {String(i + 1).padStart(2, "0")}
         </span>
         {item.name}
+      </Link>
+    ));
+
+  const toolLinks = (onNavigate?: () => void) =>
+    tools.map((item, i) => (
+      <Link
+        key={item.name}
+        href={item.href}
+        onClick={onNavigate}
+        className="flex items-start gap-3 rounded-xl px-3 py-3 text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none"
+      >
+        <span className="pt-0.5 text-[11px] tabular-nums text-muted-foreground">
+          {String(i + 1).padStart(2, "0")}
+        </span>
+        <span>
+          <span className="block text-sm font-medium">{item.name}</span>
+          <span className="mt-1 block max-w-[30ch] text-xs leading-relaxed text-muted-foreground">
+            {item.description}
+          </span>
+        </span>
       </Link>
     ));
 
@@ -300,6 +332,63 @@ export function Header() {
             >
               Blog
             </Link>
+          </motion.div>
+
+          {/* Tools accordion */}
+          <motion.div variants={sheetItemVariants} className="border-b border-border">
+            <button
+              type="button"
+              aria-expanded={toolsOpen}
+              onClick={() => setToolsOpen(!toolsOpen)}
+              className="flex w-full cursor-pointer items-baseline justify-between py-5 text-left"
+            >
+              <span className="text-h2">Tools</span>
+              <span
+                className={cn(
+                  "grid size-11 shrink-0 -translate-y-1 translate-x-2 place-items-center self-center text-xl text-muted-foreground transition-transform duration-300",
+                  toolsOpen && "rotate-45 text-(--accent-brand)"
+                )}
+                aria-hidden="true"
+              >
+                +
+              </span>
+            </button>
+            {toolsOpen &&
+              (prefersReducedMotion ? (
+                <div className="pb-6">{toolLinks(() => setMobileMenuOpen(false))}</div>
+              ) : (
+                <motion.div
+                  className="pb-6"
+                  initial="hidden"
+                  animate="visible"
+                  variants={{
+                    hidden: {},
+                    visible: { transition: { staggerChildren: 0.03 } },
+                  }}
+                >
+                  {tools.map((item, i) => (
+                    <motion.div key={item.name} variants={plateItemVariants}>
+                      <Link
+                        href={item.href}
+                        className="flex min-h-11 items-start gap-3 rounded-xl py-2 text-foreground transition-colors duration-200 hover:text-(--accent-brand) focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        <span className="pt-0.5 text-[11px] tabular-nums text-muted-foreground">
+                          {String(i + 1).padStart(2, "0")}
+                        </span>
+                        <span>
+                          <span className="block text-[15px] font-medium">
+                            {item.name}
+                          </span>
+                          <span className="mt-1 block text-xs leading-relaxed text-muted-foreground">
+                            {item.description}
+                          </span>
+                        </span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </motion.div>
+              ))}
           </motion.div>
 
           <motion.div variants={sheetItemVariants} className="mt-auto pt-10">
@@ -435,6 +524,82 @@ export function Header() {
                 <Link href="/blog" className={navLinkClass}>
                   Blog
                 </Link>
+
+                {/* Tools dropdown — uses the same plate language as Industries */}
+                <div
+                  className="relative flex h-14 items-center"
+                  onMouseEnter={() => setToolsOpen(true)}
+                  onMouseLeave={() => setToolsOpen(false)}
+                  onFocus={() => setToolsOpen(true)}
+                  onBlur={(event) => {
+                    if (!event.currentTarget.contains(event.relatedTarget)) {
+                      setToolsOpen(false);
+                    }
+                  }}
+                >
+                  <button
+                    type="button"
+                    aria-expanded={toolsOpen}
+                    className={`${navLinkClass} cursor-pointer`}
+                  >
+                    Tools
+                  </button>
+
+                  <AnimatePresence>
+                    {toolsOpen && (
+                      <div
+                        key="tools-plate"
+                        className="absolute top-full left-1/2 -translate-x-1/2 pt-3"
+                      >
+                        {prefersReducedMotion ? (
+                          <div
+                            className="w-[330px] rounded-2xl border border-border p-2 shadow-(--shadow-plate)"
+                            style={{ background: "var(--surface-dropdown-bg)" }}
+                          >
+                            {toolLinks()}
+                          </div>
+                        ) : (
+                          <motion.div
+                            key="tools-plate"
+                            className="w-[330px] rounded-2xl border border-border p-2 shadow-(--shadow-plate) will-change-transform"
+                            style={{
+                              background: "var(--surface-dropdown-bg)",
+                              transformOrigin: "top center",
+                            }}
+                            variants={plateVariants}
+                            initial="hidden"
+                            animate="visible"
+                            exit="exit"
+                          >
+                            {tools.map((item, i) => (
+                              <motion.div
+                                key={item.name}
+                                variants={plateItemVariants}
+                              >
+                                <Link
+                                  href={item.href}
+                                  className="flex items-start gap-3 rounded-xl px-3 py-3 text-foreground transition-colors duration-200 hover:bg-secondary focus-visible:bg-secondary focus-visible:outline-none"
+                                >
+                                  <span className="pt-0.5 text-[11px] tabular-nums text-muted-foreground">
+                                    {String(i + 1).padStart(2, "0")}
+                                  </span>
+                                  <span>
+                                    <span className="block text-sm font-medium">
+                                      {item.name}
+                                    </span>
+                                    <span className="mt-1 block max-w-[30ch] text-xs leading-relaxed text-muted-foreground">
+                                      {item.description}
+                                    </span>
+                                  </span>
+                                </Link>
+                              </motion.div>
+                            ))}
+                          </motion.div>
+                        )}
+                      </div>
+                    )}
+                  </AnimatePresence>
+                </div>
               </nav>
 
               <Link
