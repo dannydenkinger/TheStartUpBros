@@ -273,3 +273,55 @@ it would be fragile, so the supported stream setting is the right fix.
   either way, and hardcoding means it can't vanish because an env var went unset.
 - EEA consent mode not configured; schema declares `areaServed: United States`.
   Revisit if EU clients come on.
+
+---
+
+## Analytics: conversion tracking + preview-deploy gate
+
+### Changes
+- [x] `src/lib/analytics.ts` (new) — `trackLead(source)` fires GA4 `generate_lead`
+- [x] Wired into all three forms, firing only on a confirmed `res.ok`
+- [x] GA gate switched from `NODE_ENV` to `VERCEL_ENV === "production"`
+
+### Why fire on res.ok, not on the success panel
+`ContactFormModal` and `StrategyCallContent` render "Thank you!" unconditionally
+— the fetch is wrapped in a try/catch that swallows failures. Keying the event
+off the visible success state would report conversions the inbox never received,
+so both now check `res.ok` before tracking. UI behaviour left as-is.
+
+### Why VERCEL_ENV, not NODE_ENV
+Vercel builds preview deploys in production mode, so a `NODE_ENV` check still
+let every branch preview report into the live property. Verified:
+
+    VERCEL_ENV=preview     build -> 0 occurrences of the measurement ID
+    VERCEL_ENV=production  build -> 2
+
+Undefined off-platform, so a local `next start` stays silent too.
+
+### Bug found and fixed during verification
+`page_path` is a reserved GA4 parameter name — a custom value under it is
+silently dropped. The beacon transmitted `ep.page_path=null` while the gtag call
+clearly contained the path. Renamed to `lead_page`. Verified transmitted:
+
+    /strategy-call   generate_lead  location="Strategy call page"  lead_page="/strategy-call"
+    contact modal    generate_lead  location="Contact modal"       lead_page="/"
+
+Note GA4 batches custom events rather than sending them immediately — a capture
+window that only waits a few seconds will miss them. Forcing a `visibilitychange`
+flush is what made them observable.
+
+### OPEN — dashboard follow-up
+- [ ] GA4 → Admin → Events → mark `generate_lead` as a **key event** (only
+      appears after the first real submission lands)
+- [ ] Optional: register `lead_page`, `form_location`, `form_source` as custom
+      dimensions so they're reportable, not just present on the event
+
+### FLAGGED — not fixed, needs a decision
+1. **`/api/contact` does not send email.** It validates, `console.log`s, and
+   returns `{ok:true}`. Every lead submitted through the site is lost — the
+   TODO in the route still says to swap in Resend/Formspree. Conversion
+   tracking will now faithfully report leads that nobody receives.
+2. **`BookingForm.tsx` is orphaned** — nothing imports it and there is no
+   `/contact` route. Instrumented anyway so it works if wired up.
+3. Both modal and strategy-call forms show "Thank you!" even when the POST
+   fails, so a user whose submission errored believes it went through.

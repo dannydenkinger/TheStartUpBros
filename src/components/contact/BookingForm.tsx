@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Check } from "lucide-react";
+import { trackLead } from "@/lib/analytics";
 
 type FormStatus = "idle" | "submitting" | "success" | "error";
 
@@ -34,6 +35,7 @@ export function BookingForm() {
         body: JSON.stringify(payload),
       });
       if (!res.ok) throw new Error();
+      trackLead("BookingForm");
       setStatus("success");
     } catch {
       setStatus("error");

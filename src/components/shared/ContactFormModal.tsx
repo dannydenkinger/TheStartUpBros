@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { X, Check } from "lucide-react";
 import { useContactModal } from "@/context/ContactModalContext";
 import { StatusStrip } from "@/components/shared/StatusStrip";
+import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
   "Under $5,000",
@@ -76,11 +77,15 @@ export function ContactFormModal() {
     };
 
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      /* Only a confirmed 2xx counts as a lead. The success panel below renders
+       * either way (pre-existing behaviour), so keying the event off that
+       * instead would report conversions the inbox never received. */
+      if (res.ok) trackLead("ContactFormModal");
     } catch {
       // fail silently — dev scaffold, real handling comes with real endpoint
     }

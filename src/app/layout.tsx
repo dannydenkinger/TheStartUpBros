@@ -46,10 +46,14 @@ export default function RootLayout({
         </Providers>
         <Analytics />
         <SpeedInsights />
-        {/* Gated to production builds. Vercel's own scripts detect dev mode and
-         * switch to a no-op debug build; gtag has no such guard, so without
-         * this every `next dev` page load would land in the real GA property. */}
-        {process.env.NODE_ENV === "production" && (
+        {/* VERCEL_ENV, not NODE_ENV. Vercel builds preview deploys in
+         * production mode too, so a NODE_ENV check still lets every branch
+         * preview report into the live property; VERCEL_ENV is "preview" there
+         * and "production" only on the real domain. Vercel's own scripts detect
+         * dev mode themselves — gtag has no such guard, which is why it needs
+         * one here at all. Undefined off-platform, so a local `next start`
+         * stays silent too. */}
+        {process.env.VERCEL_ENV === "production" && (
           <GoogleAnalytics gaId={GA_MEASUREMENT_ID} />
         )}
       </body>

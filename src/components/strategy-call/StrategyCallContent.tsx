@@ -7,6 +7,7 @@ import { TechBrandsMarquee } from "@/components/landing/TechBrandsMarquee";
 import { AnimateIn } from "@/components/shared/AnimateIn";
 import { StatusStrip } from "@/components/shared/StatusStrip";
 import { EXIT_EASE, REVEAL_EASE } from "@/lib/animations";
+import { trackLead } from "@/lib/analytics";
 
 const budgetOptions = [
   "Under $5,000",
@@ -106,11 +107,15 @@ export function StrategyCallContent() {
     };
 
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      /* Only a confirmed 2xx counts as a lead — see the note in
+       * ContactFormModal; this form shows its success panel unconditionally
+       * too. */
+      if (res.ok) trackLead("StrategyCallContent");
     } catch {
       // fail silently — dev scaffold, real handling comes with real endpoint
     }
