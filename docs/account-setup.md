@@ -13,6 +13,7 @@ Confirmed live as of August 8, 2026:
 | Crunchbase | [StartUpBros company profile](https://www.crunchbase.com/organization/startupbros-4d63) | Company name, website, contact email, description, and Software, Web Development, SaaS, and AI categories are published. The contributor account is under Danny Denkinger's name. Unverified company facts remain blank. |
 | Product Hunt | [Danny Denkinger maker profile](https://www.producthunt.com/@dannydenkinger) | Personal maker account, `dannydenkinger` username, StartUpBros headline, bio, website, and Google sign-in are configured. The StartUpBros product page remains intentionally pending until the account is old enough to submit. |
 | Reddit | [Danny \| StartUpBros](https://www.reddit.com/user/thestartupbrosstudio/) | The `u/thestartupbrosstudio` account, public display name, StartUpBros bio, business email, and sign-in are configured. Community memberships are separate engagement work and are not required to consider the account complete. |
+| Discord | [Discord](https://discord.com/channels/@me) | The business email is verified, sign-in succeeds, and the account displays as **Danny \| StartUpBros** with the username `startupbrosstudio_53384`. Community memberships are separate engagement work and are not required to consider the account complete. |
 
 Do not mark another account complete until its public identity, profile URL, ownership, and recovery path have been verified.
 
@@ -119,15 +120,14 @@ Answer the question first. Mention StartUpBros only when relevant and disclose t
 
 ## 4. Discord account and communities
 
-**Status: Awaiting account validation. Do not mark Discord complete until the verification step succeeds and the account can be signed into again.**
+**Status: Complete — the business email is verified and a fresh sign-in succeeded on August 8, 2026.**
 
-1. Complete Discord's email or account-validation prompt for the account created with the approved business email.
-2. Sign out and back in to confirm the account and recovery path work.
-3. Confirm this public identity:
-   - Display name: **Danny | StartUpBros**
-   - About me: **Co-founder at StartUpBros. I help founders scope and build web apps, SaaS products, and AI tools.**
-4. Join [Tech Startups](https://discord.com/invite/startups).
-5. Use [Discord Server Discovery](https://discord.com/servers) to find additional active communities for SaaS founders, startup founders, indie hackers, and app development.
+The verified account uses this identity:
+
+- Display name: **Danny | StartUpBros**
+- Username: **startupbrosstudio_53384**
+
+Community participation is ongoing lead-development work. Start with [Tech Startups](https://discord.com/invite/startups), then use [Discord Server Discovery](https://discord.com/servers) to find additional active communities for SaaS founders, startup founders, indie hackers, and app development.
 
 Read each server's rules before posting. Help in public channels first. Do not send unsolicited direct messages or scrape member lists.
 
